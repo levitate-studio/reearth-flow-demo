@@ -1,0 +1,136 @@
+html,body{
+  margin: 0;
+}
+
+.dnd-flow{
+  height: 100vh;
+  background: #222;
+  flex-direction: row;
+  display: flex;
+  --node-color-default: rgb(147, 221, 50);
+  --node-color-input: rgb(50, 210, 221);
+  --node-color-output: rgb(221, 190, 50);
+}
+
+.dnd-flow aside{
+  width: 20%;
+  max-width: 180px;
+  background: #252525;
+  padding: 15px 10px;
+  font-size: 12px;
+  border-left: 1px solid #000;
+}
+
+.dnd-flow aside > * {
+  margin-bottom: 10px;
+  cursor: grab;
+}
+
+.dnd-flow aside .description {
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.dnd-flow .reactflow-wrapper {
+  flex-grow: 1;
+  height: 100%;
+}
+
+.dnd-flow .dndnode {
+  align-items: center;
+  border: 1px solid #1a192b;
+  border-radius: 2px;
+  cursor: grab;
+  display: flex;
+  height: 20px;
+  justify-content: center;
+  padding: 4px;
+  background-color: var(--node-color-default);
+}
+.dnd-flow .dndnode.input{
+  background-color: var(--node-color-input);
+}
+.dnd-flow .dndnode.output{
+  background-color: var(--node-color-output);
+}
+
+/* overwrite theme */
+.dnd-flow .react-flow__node-default {
+  background: var(--node-color-default);
+  border: none;
+}
+.dnd-flow .react-flow__node-default .react-flow__handle{
+  background: var(--node-color-default);
+  border-color: #000;
+}
+
+.dnd-flow .react-flow__node-input {
+  background: var(--node-color-input);
+  border: none;
+}
+.dnd-flow .react-flow__node-input .react-flow__handle{
+  background: var(--node-color-input);
+  border-color: #000;
+}
+
+.dnd-flow .react-flow__node-output {
+  background: var(--node-color-output);
+  border: none;
+}
+.dnd-flow .react-flow__node-output .react-flow__handle{
+  background: var(--node-color-output);
+  border-color: #000;
+}
+
+.dnd-flow .react-flow__node-default.selected, 
+.dnd-flow .react-flow__node-default.selected:hover,
+.dnd-flow .react-flow__node-input.selected, 
+.dnd-flow .react-flow__node-input.selected:hover,
+.dnd-flow .react-flow__node-output.selected, 
+.dnd-flow .react-flow__node-output.selected:hover {
+  box-shadow: 0 0 0 1px #ffffff;
+}
+
+.dnd-flow .react-flow__controls-button{
+  background-color: #444;
+  border-color: #000;
+}
+.dnd-flow .react-flow__minimap{
+  background-color: #444;
+}
+
+/* custom nodes */
+.dnd-flow .react-flow__node-numberInput{
+  background: var(--node-color-input);
+  border: none;
+  font-size: 12px;
+  border-radius: 3px;
+  width: 150px;
+}
+.dnd-flow .react-flow__node-numberInput .react-flow__handle{
+  background: var(--node-color-input);
+  border-color: #000;
+}
+.dnd-flow .react-flow__node-numberInput.selected, 
+.dnd-flow .react-flow__node-numberInput.selected:hover {
+  box-shadow: 0 0 0 1px #ffffff;
+}
+
+.dnd-flow .node-title{
+  font-size: 12px;
+  padding: 3px 10px;
+  background-color: rgba(0,0,0,.5);
+  color: #fff;
+}
+
+.dnd-flow .node-content{
+  padding: 5px 10px;
+}
+
+.dnd-flow input{
+  width: 100%;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 24px;
+}

@@ -17,6 +17,9 @@ const Examples: React.FC<Props> = () => {
       <li>
         <Link to="/example_3">Example_3</Link>
       </li>
+      <li>
+        <Link to="/example_a">Example_a</Link>
+      </li>
     </div>
   );
 };
