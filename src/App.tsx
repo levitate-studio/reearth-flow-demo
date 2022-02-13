@@ -3,7 +3,7 @@ import { Router } from "@reach/router";
 import Example_1 from "./components/examples/1";
 import Example_2 from "./components/examples/2";
 import Example_3 from "./components/examples/3";
-import Example_a from "./components/examples/a";
+import { DnDFlow as Example_a } from "./components/examples/a";
 import Examples from "./components/pages/Examples";
 import Home from "./components/pages/Home";
 

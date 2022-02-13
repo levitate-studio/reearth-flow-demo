@@ -16,19 +16,12 @@ html,body{
   width: 20%;
   max-width: 180px;
   background: #252525;
-  padding: 15px 10px;
   font-size: 12px;
   border-left: 1px solid #000;
 }
 
 .dnd-flow aside > * {
-  margin-bottom: 10px;
   cursor: grab;
-}
-
-.dnd-flow aside .description {
-  margin-bottom: 10px;
-  color: #fff;
 }
 
 .dnd-flow .reactflow-wrapper {
@@ -45,6 +38,7 @@ html,body{
   height: 20px;
   justify-content: center;
   padding: 4px;
+  margin-bottom: 5px;
   background-color: var(--node-color-default);
 }
 .dnd-flow .dndnode.input{
@@ -116,6 +110,24 @@ html,body{
   box-shadow: 0 0 0 1px #ffffff;
 }
 
+.dnd-flow .react-flow__node-numberAdd{
+  background: var(--node-color-default);
+  border: none;
+  font-size: 12px;
+  border-radius: 3px;
+  width: 150px;
+}
+.dnd-flow .react-flow__node-numberAdd .react-flow__handle{
+  background: var(--node-color-default);
+  border-color: #000;
+}
+.dnd-flow .react-flow__node-numberAdd.selected, 
+.dnd-flow .react-flow__node-numberAdd.selected:hover {
+  box-shadow: 0 0 0 1px #ffffff;
+}
+
+/* UI */
+
 .dnd-flow .node-title{
   font-size: 12px;
   padding: 3px 10px;
@@ -125,6 +137,15 @@ html,body{
 
 .dnd-flow .node-content{
   padding: 5px 10px;
+  font-size: 24px;
+}
+
+.dnd-flow .node-run{
+  font-size: 12px;
+  padding: 3px 10px;
+  background-color: rgba(0,0,100,.5);
+  color: #fff;
+  cursor: pointer;
 }
 
 .dnd-flow input{
@@ -133,4 +154,26 @@ html,body{
   outline: none;
   background: none;
   font-size: 24px;
+}
+
+/* property bar */
+.dnd-flow .property-bar{
+  color: #fff;
+}
+.dnd-flow .tool-bar-title{
+  padding: 5px 10px;
+  color: #fff;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+.dnd-flow .tool-bar-card{
+  padding: 10px;
+}
+.dnd-flow list{
+  list-style: none;
+}
+
+.dnd-flow .property-name{
+  display: inline-block;
+  width: 50%;
 }
