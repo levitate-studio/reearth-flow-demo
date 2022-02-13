@@ -5,16 +5,16 @@ const NumberAddNode = ({ data, isConnectable }: any) => {
   const [stdOut0, setStdOut0] = useState(0);
   data.attr.stdOut0 = stdOut0;
 
-  useEffect(() => {
-    console.log("add: input updated", data.attr.stdIn0, data.attr.stdIn1);
-    caculate();
-  }, [data.attr.stdIn0, data.attr.stdIn1]);
-
   const caculate = () => {
     setStdOut0(data.attr.stdIn0 + data.attr.stdIn1);
     data.attr.stdOut0 = data.attr.stdIn0 + data.attr.stdIn1;
     data.onChange(data.attr.id);
   };
+
+  useEffect(() => {
+    console.log("add: input updated", data.attr.stdIn0, data.attr.stdIn1);
+    caculate();
+  }, [data.attr.stdIn0, data.attr.stdIn1]);
 
   const onRun = () => {
     data.onRun(data.attr.id);

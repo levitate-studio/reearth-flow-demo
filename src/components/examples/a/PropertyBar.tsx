@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { CurrentElementContext } from "./index";
 
 const PropertyBar = () => {
-  const currentElement: Element | null = useContext(CurrentElementContext);
+  const currentElement: any = useContext(CurrentElementContext);
   let list;
   if (currentElement?.data) {
     list = Object.keys(currentElement.data.attr).map((key) => (
