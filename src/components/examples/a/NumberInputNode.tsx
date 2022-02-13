@@ -4,8 +4,10 @@ import { Handle, Position } from "react-flow-renderer";
 const NumberInputNode = ({ data, isConnectable }: any) => {
   const [stdOut0, setStdOut0] = useState(0);
   data.attr.stdOut0 = stdOut0;
-  const onNodeValueChange = (e) => {
+
+  const caculate = (e) => {
     setStdOut0(Number(e.target.value));
+    data.attr.stdOut0 = Number(e.target.value);
     data.onChange(data.attr.id);
   };
   return (
@@ -16,7 +18,7 @@ const NumberInputNode = ({ data, isConnectable }: any) => {
           className="nodrag"
           type="number"
           value={stdOut0}
-          onChange={onNodeValueChange}
+          onChange={caculate}
         />
       </div>
 

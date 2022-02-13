@@ -39,8 +39,8 @@ let id = 0;
 const getId = () => `dndnode_${id++}`;
 
 const NodesDebugger = () => {
-  const nodes = useStoreState((state) => state.nodes);
-  console.log(nodes);
+  // const nodes = useStoreState((state) => state.nodes);
+  // console.log(nodes);
   return null;
 };
 
@@ -58,17 +58,32 @@ const DnDFlow: React.FC<Props> = () => {
   // property bar
   const [currentElement, setCurrentElement] = useState({});
   const onNodeDataChange = (nodeId) => {
-    const element = reactFlowInstance
-      .getElements()
-      .find((item) => item.id === nodeId);
+    const elements = reactFlowInstance.getElements();
+    const element = elements.find((item) => item.id === nodeId);
     if (element) {
       setCurrentElement(element);
+
+      console.log(element.data.attr.stdOut0);
+
+      // update target
+      const edges = elements.filter(
+        (item: Node<any> | Element<any> | Edge<any>) =>
+          isEdge(item) && item.source === element.id
+      );
+      if (edges) {
+        edges.forEach((edge) => {
+          elements.find((item) => item.id === edge.target).data.attr[
+            edge.targetHandle
+          ] = elements.find((item) => item.id === edge.source).data.attr[
+            edge.sourceHandle
+          ];
+        });
+      }
     }
   };
 
   const onNodeRun = (nodeId: string) => {
     const elements = reactFlowInstance.getElements();
-    console.log(elements);
     const edges = elements.filter(
       (item: Node<any> | Element<any> | Edge<any>) =>
         isEdge(item) && item.target === nodeId
@@ -86,6 +101,25 @@ const DnDFlow: React.FC<Props> = () => {
   };
 
   const onConnect = (params: Edge | Connection) => {
+    // remove exist source
+    const elements = reactFlowInstance.getElements();
+    const edges = elements.filter(
+      (item: Node<any> | Element<any> | Edge<any>) =>
+        isEdge(item) &&
+        item.target === params.target &&
+        item.targetHandle === params.targetHandle
+    );
+    if (edges) {
+      onElementsRemove(edges);
+    }
+
+    elements.find((item) => item.id === params.target).data.attr[
+      params.targetHandle
+    ] = elements.find((item) => item.id === params.source).data.attr[
+      params.sourceHandle
+    ];
+
+    // add edge
     setElements((els: Elements) => addEdge(params, els));
   };
 
@@ -136,7 +170,7 @@ const DnDFlow: React.FC<Props> = () => {
   const onSelectionChange = (elements: Elements<any> | null) => {
     if (elements && elements.length === 1) {
       setCurrentElement(elements[0]);
-      console.log(currentElement);
+      console.log(elements[0]);
     } else {
       setCurrentElement({});
     }
