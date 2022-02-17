@@ -1,0 +1,52 @@
+/* controls */
+.rf .react-flow__controls-button{
+  border-color: #333;
+  background: #555;
+}
+
+/* node */
+.rf{
+  --rf-node-color-basic: rgb(147, 221, 50);
+}
+
+.rf .react-flow__node-basicNode .node{
+  position: relative;
+}
+
+.rf .node-title{
+  padding: 6px 12px;
+  background-color: #444;
+  color: var(--rf-node-color-basic);
+  font-weight: bold;
+}
+
+/* handles */
+.rf .node-ports{
+  left: 0;
+  width: 100%;
+  display: flex;
+}
+.rf .node-ports-top{
+  top: 0;
+}
+.rf .node-ports-bottom{
+  bottom: 0;
+}
+
+.rf .react-flow__handle{
+  border-radius: 0;
+  border: none;
+  background: var(--rf-node-color-basic);
+  width: 12px;
+  height: 6px;
+  left: 0;
+  top: 0;
+  position: relative;
+  transform: none;
+  margin-right: 2px;
+  flex-shrink: 0;
+}
+
+.rf .react-flow__handle:last-child{
+  margin-right: 0;
+}

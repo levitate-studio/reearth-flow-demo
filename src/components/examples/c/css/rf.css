@@ -1,0 +1,114 @@
+html, body{
+  background: #333;
+  color: #fff;
+}
+
+.rf{
+  --editor-bg-color: #252525;
+  --block-bg-color: #1A1A1A;;
+  --block-border-color: #000;
+  --node-default-color: rgb(147, 221, 50);
+}
+
+.rf{
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* -------------------------
+structure 
+----------------------------*/
+.rf .rf-main{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.rf .rf-sidebar{
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  max-width: 500px;
+  background-color: var(--block-bg-color);
+  font-size: 12px;
+  border-left: 1px solid var(--block-border-color)
+}
+
+/* -------------------------
+reactflow 
+----------------------------*/
+.rf .reactflow-wrapper {
+  flex-grow: 1;
+  height: 100%;
+  background-color: var(--editor-bg-color);
+}
+
+/* -------------------------
+block 
+----------------------------*/
+.rf .rf-block{
+  flex-grow: 1;
+}
+.rf .rf-block-title{
+  padding: 10px;
+  border-bottom: 1px solid var(--block-border-color);
+  font-weight: bold;
+}
+.rf .rf-block-subtitle{
+  margin-top: 20px;
+  font-weight: bold;
+}
+.rf .rf-block-content{
+  padding: 10px;
+}
+
+/* -------------------------
+block-instance: output
+----------------------------*/
+.rf .rf-block-output{
+  height: 40px;
+  background-color: var(--block-bg-color);
+  border-top: 1px solid var(--block-border-color);
+}
+
+/* -------------------------
+block-instance: nodes
+----------------------------*/
+.rf .rf-block-nodes{
+  flex-grow: 0;
+}
+
+.rf .rf-block-nodes .rf-block-content{
+  display: flex;
+}
+
+.rf .rf-block-nodes .node-ref{
+  padding: 6px 12px;
+  margin: 0 5px 5px 0;
+  color: var(--node-default-color);
+  background-color: #333;
+  cursor: pointer;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+/* -------------------------
+block-instance: property
+----------------------------*/
+.rf .property-line{
+  display: flex;
+  margin: 10px 0;
+}
+.rf .property-name{
+  display: inline-block;
+  width: 30%;
+}
+.rf .property-value{
+  flex-grow: 1;
+}

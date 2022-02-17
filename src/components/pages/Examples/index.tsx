@@ -23,6 +23,9 @@ const Examples: React.FC<Props> = () => {
       <li>
         <Link to="/example_b">Example_b</Link>
       </li>
+      <li>
+        <Link to="/example_c">Example_c</Link>
+      </li>
     </div>
   );
 };
