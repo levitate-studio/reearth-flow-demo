@@ -6,24 +6,6 @@ const NodesBlock = () => {
     event.dataTransfer.effectAllowed = "move";
   };
 
-  // const nodes = [
-  //   {
-  //     title: "Number Input",
-  //     type: "basicNode",
-  //     category: "input",
-  //   },
-  //   {
-  //     title: "Number Add",
-  //     type: "numberAdd",
-  //     category: "default",
-  //   },
-  //   {
-  //     title: "Number Add Plus",
-  //     type: "numberAddPlus",
-  //     category: "default",
-  //   },
-  // ];
-
   const nodes = Nodes.datas;
 
   const nodeList = Object.keys(nodes).map((nodeId) => (

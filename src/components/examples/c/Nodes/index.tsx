@@ -1,8 +1,8 @@
 import BasicNode from "./BasicNode";
-import { NumberAddNodeData } from "./NumberAdd";
-import { NumberInputNodeData } from "./NumberInput";
+import { NumberAddNode } from "./NumberAdd";
+import { NumberInputNode } from "./NumberInput";
 
-const _nodes = [NumberInputNodeData, NumberAddNodeData];
+const _nodes = [NumberAddNode, NumberInputNode];
 
 const datas: any = {};
 

@@ -6,6 +6,8 @@ html, body{
 .rf{
   --editor-bg-color: #252525;
   --block-bg-color: #1A1A1A;;
+  --block-title-color: #111;
+  --block-input-bg-color: #222;
   --block-border-color: #000;
   --node-default-color: rgb(147, 221, 50);
 }
@@ -58,11 +60,14 @@ block
 .rf .rf-block-title{
   padding: 10px;
   border-bottom: 1px solid var(--block-border-color);
+  border-top: 1px solid var(--block-border-color);
   font-weight: bold;
+  background-color: var(--block-title-color);
 }
 .rf .rf-block-subtitle{
-  margin-top: 20px;
+  margin: 20px 0 10px;
   font-weight: bold;
+  color: orange;
 }
 .rf .rf-block-content{
   padding: 10px;
@@ -103,11 +108,24 @@ block-instance: property
 ----------------------------*/
 .rf .property-line{
   display: flex;
-  margin: 10px 0;
+  align-items: center;
+  min-height: 30px;
+}
+.rf .property-line input{
+  width: 100%;
+  background-color: var(--block-input-bg-color);
+  border: none;
+  border-radius: 0;
+  outline: none;
+  color: #fff;
+  height: 24px;
+}
+.rf .property-line input:disabled{
+  background-color: var(--block-bg-color);
 }
 .rf .property-name{
-  display: inline-block;
   width: 30%;
+  flex-shrink: 0;
 }
 .rf .property-value{
   flex-grow: 1;

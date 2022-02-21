@@ -1,17 +1,17 @@
-import { useState, useRef, createContext, useEffect } from "react";
+import { useState, useRef } from "react";
 import ReactFlow, {
   ReactFlowProvider,
   addEdge,
-  removeElements,
+  // removeElements,
   Controls,
   Background,
   OnLoadParams,
   Edge,
   Connection,
   Elements,
-  FlowElement,
-  Position,
-  isEdge,
+  // FlowElement,
+  // Position,
+  // isEdge,
 } from "react-flow-renderer";
 
 import * as Assist from "./Assist";
@@ -29,9 +29,13 @@ export type Props = {
 };
 
 const dataset: any = [];
-const addToDataset = (id: string, data: any) => {
-  dataset[id] = data;
-  console.log(dataset);
+const addToDataset = (id: string, data: any, update: any) => {
+  dataset[id] = {
+    id,
+    data,
+    update,
+  };
+  // console.log(dataset);
 };
 
 const ExampleC: React.FC<Props> = () => {
@@ -73,17 +77,15 @@ const ExampleC: React.FC<Props> = () => {
         y: event.clientY - reactFlowBounds.top,
       });
       const id = Assist.getGUID();
+      const data = Nodes.datas[nodeId].create();
       const newNode = {
         id,
-        type: Nodes.datas[nodeId].nodeType,
+        type: data.nodeType,
         position,
-        data: { ...Nodes.datas[nodeId] },
+        data: data,
       };
       setElements((es) => es.concat(newNode));
-      addToDataset(id, { ...Nodes.datas[nodeId] });
-
-      // console.log(newNode);
-      // console.log(dataset);
+      addToDataset(id, data, Nodes.datas[nodeId].update);
     }
   };
 
@@ -102,6 +104,25 @@ const ExampleC: React.FC<Props> = () => {
     // if (edges.length > 0) {
     //   onElementsRemove(edges);
     // }
+    if (params.target && params.source) {
+      const target = dataset[params.target];
+      const targetPort = target.data.portsIn.find(
+        (port: any) => port.name === params.targetHandle
+      );
+
+      const source = dataset[params.source];
+      const sourcePort = source.data.portsOut.find(
+        (port: any) => port.name === params.sourceHandle
+      );
+      //
+      targetPort.value = sourcePort.value;
+      targetPort.isConnected = true;
+      target.update?.(target.data);
+
+      sourcePort.targets.push(target.id);
+    }
+
+    //
 
     // elements.find((item: FlowElement) => item.id === params.target).data.attr[
     //   params.targetHandle as string
@@ -109,7 +130,7 @@ const ExampleC: React.FC<Props> = () => {
     //   (item: FlowElement) => item.id === params.source
     // ).data.attr[params.sourceHandle as string];
 
-    console.log(params);
+    // console.log(params, target, targetPort);
 
     // add edge
     setElements((els: Elements) => addEdge(params, els));
