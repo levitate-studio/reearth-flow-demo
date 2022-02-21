@@ -16,19 +16,19 @@ const PropertyBlock = (Props: any) => {
     setTimestemp(new Date().getTime());
     //
     // console.log(element);
-    updateTree(element.id);
+    Props.onUpdateTree(element.id);
   };
 
-  const updateTree = (elementId: string) => {
-    if (Props.dataset[elementId].data.portsOut?.length > 0) {
-      Array.from(Props.dataset[elementId].data.portsOut).forEach((out: any) => {
-        Array.from(out.targets).forEach((target: any) => {
-          Props.dataset[target].update?.(Props.dataset[target].data);
-          updateTree(target);
-        });
-      });
-    }
-  };
+  // const updateTree = (elementId: string) => {
+  //   if (Props.dataset[elementId].data.portsOut?.length > 0) {
+  //     Array.from(Props.dataset[elementId].data.portsOut).forEach((out: any) => {
+  //       Array.from(out.targets).forEach((target: any) => {
+  //         Props.dataset[target].update?.(Props.dataset[target].data);
+  //         updateTree(target);
+  //       });
+  //     });
+  //   }
+  // };
 
   const valueComponent = (port: any) => {
     switch (port.valueComp) {

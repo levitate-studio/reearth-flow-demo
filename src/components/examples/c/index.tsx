@@ -120,6 +120,9 @@ const ExampleC: React.FC<Props> = () => {
       target.update?.(target.data);
 
       sourcePort.targets.push(target.id);
+
+      //
+      updateTree(target.id);
     }
 
     //
@@ -148,6 +151,20 @@ const ExampleC: React.FC<Props> = () => {
     }
     // console.log(current.elementId);
     // console.log(dataset);
+  };
+
+  // =======================================
+  // Update Tree
+  // =======================================
+  const updateTree = (elementId: string) => {
+    if (dataset[elementId].data.portsOut?.length > 0) {
+      Array.from(dataset[elementId].data.portsOut).forEach((out: any) => {
+        Array.from(out.targets).forEach((target: any) => {
+          dataset[target].update?.(dataset[target].data);
+          updateTree(target);
+        });
+      });
+    }
   };
 
   return (
@@ -181,6 +198,7 @@ const ExampleC: React.FC<Props> = () => {
           <PropertyBlock
             currentElementId={currentElementId}
             dataset={dataset}
+            onUpdateTree={updateTree}
           />
         </div>
       </ReactFlowProvider>
