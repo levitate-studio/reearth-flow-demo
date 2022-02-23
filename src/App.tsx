@@ -6,6 +6,7 @@ import Example_3 from "./components/examples/3";
 import { DnDFlow as Example_a } from "./components/examples/a";
 import { ExampleB as Example_b } from "./components/examples/b";
 import { ExampleC as Example_c } from "./components/examples/c";
+import { DataFlow as Example_d } from "./components/examples/d";
 import Examples from "./components/pages/Examples";
 import Home from "./components/pages/Home";
 
@@ -21,6 +22,7 @@ function App() {
         <Example_a path="/example_a" />
         <Example_b path="/example_b" />
         <Example_c path="/example_c" />
+        <Example_d path="/example_d" />
       </Router>
     </div>
   );

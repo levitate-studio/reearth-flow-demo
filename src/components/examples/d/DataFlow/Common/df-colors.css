@@ -1,0 +1,14 @@
+.df-app.dark{
+  --canvas-bg-color: #212121;
+  --output-bg-color: #1a1a1a;
+  --block-bg-color: #1a1a1a;;
+  --block-title-color: #111;
+  --block-input-bg-color: #222;
+  --block-border-color: #101010;
+  --node-default-color: rgb(147, 221, 50);
+  --text-color-default: #fff;
+
+  /* theme color */
+  --theme-color-green: rgb(147, 221, 50);
+  --theme-color-blue: rgb(50, 215, 221);
+}
