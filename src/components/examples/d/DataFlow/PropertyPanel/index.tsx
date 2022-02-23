@@ -5,11 +5,8 @@ const PropertyPanel = ({ dataManager }: any) => {
   const updateValue = (port: any, value: any) => {
     // update port
     port.value.v = Number(value);
-    // // update node
-    element.update?.(element.data);
-    // //
-    // // console.log(element);
-    dataManager.updateChildren(element.id);
+    //
+    dataManager.updateNode(element.id);
     dataManager.reRender();
   };
 
