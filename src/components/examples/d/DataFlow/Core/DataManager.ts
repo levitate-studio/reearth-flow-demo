@@ -63,6 +63,7 @@ class DataManager {
           v: DataManager.getPortInitValue(portDef.type, portDef.defaultValue),
         },
         isConnected: false,
+        defaultValue: portDef.defaultValue,
       };
       portsType === "in" ? (newPort.sources = []) : (newPort.targets = []);
       ports.push(newPort);
@@ -158,6 +159,12 @@ class DataManager {
               }
             );
             targetPort.isConnected = false;
+            targetPort.value = {
+              v: DataManager.getPortInitValue(
+                targetPort.type,
+                targetPort.defaultValue
+              ),
+            };
           });
         });
         // remove node data
@@ -188,9 +195,7 @@ class DataManager {
     // update value
     targetPort.value = sourcePort.value;
     targetPort.isConnected = true;
-    target.update?.(target.data);
-    // update children
-    this.updateChildren(target.id);
+    this.updateNode(target.id);
   }
 
   // =======================================
@@ -214,6 +219,10 @@ class DataManager {
       }
     });
     targetPort.isConnected = false;
+    targetPort.value = {
+      v: DataManager.getPortInitValue(targetPort.type, targetPort.defaultValue),
+    };
+    this.updateNode(target.id);
   }
 
   // =======================================
@@ -231,17 +240,30 @@ class DataManager {
   // =======================================
   // update children nodes
   // =======================================
-  updateChildren(nodeId: string) {
+  // updateChildren(nodeId: string) {
+  //   const ele = DataManager.getElement(this.data, nodeId);
+  //   if (ele.data.portsOut?.length > 0) {
+  //     Array.from(ele.data.portsOut).forEach((out: any) => {
+  //       Array.from(out.targets).forEach((target: any) => {
+  //         const targetEle = DataManager.getElement(this.data, target.elementId);
+  //         targetEle.update?.(targetEle.data);
+  //         this.updateChildren(target.elementId);
+  //       });
+  //     });
+  //   }
+  // }
+
+  updateNode(nodeId: string) {
     const ele = DataManager.getElement(this.data, nodeId);
+    ele.update?.(ele.data);
     if (ele.data.portsOut?.length > 0) {
       Array.from(ele.data.portsOut).forEach((out: any) => {
         Array.from(out.targets).forEach((target: any) => {
-          const targetEle = DataManager.getElement(this.data, target.elementId);
-          targetEle.update?.(targetEle.data);
-          this.updateChildren(target.elementId);
+          this.updateNode(target.elementId);
         });
       });
     }
+    // this.reRender();
   }
 
   // =======================================
@@ -250,6 +272,7 @@ class DataManager {
   reRender() {
     if (this.reRenderer) {
       this.reRenderer(new Date().getTime());
+      console.log("triggered rerender");
     }
   }
 }
