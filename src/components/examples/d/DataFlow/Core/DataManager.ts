@@ -210,6 +210,7 @@ class DataManager {
     targetPort.value = sourcePort.value;
     targetPort.isConnected = true;
     this.updateNode(target.id);
+    this.reRender();
   }
 
   // =======================================

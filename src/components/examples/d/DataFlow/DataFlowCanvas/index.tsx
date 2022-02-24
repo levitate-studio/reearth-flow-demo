@@ -107,7 +107,7 @@ const DataFlowCanvas: React.FC<Props> = ({ dataManager }) => {
   // Event: onSelectionChange
   // =======================================
   const onSelectionChange = (elements: Elements<any> | null) => {
-    if (elements && elements.length === 1) {
+    if (elements && elements.length === 1 && isNode(elements[0])) {
       dataManager.setCurrentElement(elements[0].id);
     } else {
       dataManager.setCurrentElement();

@@ -11,7 +11,10 @@ import { Viewer, GeoJsonDataSource } from "resium";
 const ResiumMap = ({ dataManager }: any) => {
   const data = dataManager.renderSource
     ? dataManager.tempGetRenderData().v
-    : undefined;
+    : {
+        type: "FeatureCollection",
+        features: [],
+      };
   // if (data) {
   //   console.log(data);
   // }
