@@ -24,13 +24,6 @@
   background-color: #555;
 }
 
-.node.Input .node-title{
-  color: var(--theme-color-green);
-}
-.node.Ops .node-title{
-  color: var(--theme-color-blue);
-}
-
 /* handles */
 .node-ports{
   left: 0;

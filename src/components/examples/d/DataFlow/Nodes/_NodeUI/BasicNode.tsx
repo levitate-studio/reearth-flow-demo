@@ -10,6 +10,7 @@ const BasicNode = ({ data, isConnectable }: any) => {
         id={port.name}
         isConnectable={isConnectable}
         position={Position.Top}
+        className={`portcolor-${port.type}`}
       />
     ));
   }
@@ -22,11 +23,12 @@ const BasicNode = ({ data, isConnectable }: any) => {
         id={port.name}
         isConnectable={isConnectable}
         position={Position.Bottom}
+        className={`portcolor-${port.type}`}
       />
     ));
   }
   return (
-    <div className={`node ${data.public.category}`}>
+    <div className={`node catcolor-${data.public.category.replace(".", "-")}`}>
       <div className="node-ports node-ports-top">{portsIn}</div>
       <div className="node-title">{data.public.title}</div>
       <div className="node-ports node-ports-bottom">{portsOut}</div>

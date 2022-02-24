@@ -2,7 +2,7 @@ const NumberAdd = {
   public: {
     nodeId: "Ops.NumberAdd",
     category: "Ops",
-    title: "Number Add",
+    title: "Add",
     des: "Node description for Ops.NumberAdd",
   },
   portsIn: [

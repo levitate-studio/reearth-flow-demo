@@ -4,16 +4,22 @@ import * as Nodes from "../Nodes";
 class DataManager {
   // properties
   nodeDefs: any;
+  nodeCategories: any;
   data: any;
   nodeTypes: any;
   //
   currentElement: any;
   //
+  outputSource: any;
+  //
   reRenderer: any;
+  //
+  renderSource: any;
 
   // constuctor
   constructor() {
     this.nodeDefs = Nodes.nodeDefs;
+    this.nodeCategories = Nodes.nodeCategories;
     this.data = [];
     this.nodeTypes = Nodes.types;
     this.currentElement = null;
@@ -95,16 +101,24 @@ class DataManager {
       const nodeType = "basicNode";
       const portsIn = DataManager.createPorts(nodeDef.portsIn, "in");
       const portsOut = DataManager.createPorts(nodeDef.portsOut, "out");
-      this.data.push({
+      const newNode = {
         id,
         nodeType,
         public: nodeDef.public,
         update: nodeDef.update,
+        init: nodeDef.init,
         data: {
           portsIn,
           portsOut,
         },
-      });
+      };
+      this.data.push(newNode);
+      //
+      if (newNode.public.isRenderer) {
+        // TEMP: use the first input as render data
+        // this.renderSource = newNode.data.portsIn[0].value;
+        this.renderSource = id;
+      }
       return {
         id,
         nodeType,
@@ -230,11 +244,43 @@ class DataManager {
   // =======================================
   setCurrentElement(nodeId: string) {
     if (nodeId) {
-      this.currentElement = this.data.find((ele: any) => ele.id === nodeId);
+      const ele = this.data.find((ele: any) => ele.id === nodeId);
+      if (ele.data.portsOut.length === 1) {
+        this.setOutputSource(ele.data.portsOut[0]);
+      } else if (ele.data.portsOut.length > 1) {
+        ele.data.portsOut.forEach((port: any) => {
+          if (port.asDefaultOutput) {
+            this.setOutputSource(port);
+          }
+        });
+      }
+      this.currentElement = ele;
     } else {
       this.currentElement = null;
+      this.setOutputSource(null);
     }
     this.reRender();
+  }
+
+  // =======================================
+  // set current element
+  // =======================================
+  setOutputSource(port: any) {
+    if (port) {
+      this.outputSource = port;
+    } else {
+      this.outputSource = null;
+    }
+    this.reRender();
+  }
+
+  // =======================================
+  // set current element
+  // =======================================
+  tempGetRenderData() {
+    if (!this.renderSource) return null;
+    const ele = DataManager.getElement(this.data, this.renderSource);
+    return ele.data.portsIn[0].value;
   }
 
   // =======================================

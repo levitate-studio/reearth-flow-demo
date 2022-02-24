@@ -32,16 +32,43 @@ block
   flex-grow: 1;
 }
 .df-block-title{
-  padding: 7px 10px;
   font-weight: bold;
+  display: flex;
 }
-.df-block-subtitle{
-  margin: 20px 0 10px;
-  font-weight: bold;
-  color: orange;
-}
+
 .df-block-content{
   padding: 10px;
+}
+
+.df-block-group-title{
+  margin: 10px 0 10px;
+  font-weight: bold;
+  color: orange;
+  flex-shrink: 0;
+}
+
+/* -------------------------
+tab 
+----------------------------*/
+.df-block-title-tab{
+  padding: 7px 10px;
+  color: #fff;
+}
+.df-block-title-tab.multi{
+  cursor: pointer;
+}
+.df-block-title-tab.active{
+  border-bottom: 2px solid #f90;
+}
+
+.df-block-tab-content{
+  width: 100%;
+  display: none;
+  position: relative;
+  flex-grow: 1;
+}
+.df-block-tab-content.active{
+  display: flex;
 }
 
 /* -------------------------
@@ -53,10 +80,46 @@ canvas
 }
 
 /* -------------------------
-output panel
+category color 
 ----------------------------*/
-.df-output-panel{
-  height: 40%;
-  background-color: var(--output-bg-color);
+.catcolor-Input{
+  color: var(--theme-color-green);
+}
+.catcolor-Ops{
+  color: var(--theme-color-blue);
+}
+.catcolor-GeoJSON{
+  color: var(--theme-color-orange);
+}
+.catcolor-GeoJSON-Turf{
+  color: var(--theme-color-orange);
 }
 
+/* -------------------------
+port color 
+----------------------------*/
+.portcolor-geoJSONObject{
+  background: var(--theme-color-orange);
+}
+
+/* -------------------------
+scroll-bar
+----------------------------*/
+::-webkit-scrollbar
+{
+  width:10px;
+  height:10px;
+  background-color:#1a1a1a;
+}
+::-webkit-scrollbar-track
+{
+  box-shadow:none;
+  border-radius:10px;
+  background-color:#1a1a1a;
+}
+::-webkit-scrollbar-thumb
+{
+  border-radius:5px;
+  box-shadow:inset 0 0 6px rgba(0,0,0,.3);
+  background-color:#666;
+}

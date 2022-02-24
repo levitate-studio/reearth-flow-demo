@@ -18,3 +18,10 @@ export const getGUID = () => {
     S4()
   );
 };
+
+export const getPortInValue = (data: any, portName: string) => {
+  return data.portsIn.find((port: any) => port.name === portName).value.v;
+};
+export const getPortOutValueObj = (data: any, portName: string) => {
+  return data.portsOut.find((port: any) => port.name === portName).value;
+};

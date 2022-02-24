@@ -5,7 +5,7 @@ nodes panel
   width: 50%;
 }
 
-.df-nodes-panel .df-block-content{
+.df-nodes-panel .df-nodes-wrapper{
   display: flex;
 }
 
@@ -16,11 +16,4 @@ nodes panel
   cursor: pointer;
   font-weight: bold;
   flex-shrink: 0;
-}
-
-.df-nodes-panel .node-ref.Input{
-  color: var(--theme-color-green);
-}
-.df-nodes-panel .node-ref.Ops{
-  color: var(--theme-color-blue);
 }

@@ -12,8 +12,8 @@ import "./DataFlow/common/df-app.css";
 
 const dataManager = new DataManager();
 
-const win: any = window;
-win.DFDM = dataManager;
+// const win: any = window;
+// win.DFDM = dataManager;
 
 export type Props = {
   path?: string;
@@ -25,10 +25,13 @@ const DataFlow: React.FC<Props> = () => {
     <div className="df-app dark">
       <DataFlowCanvas dataManager={dataManager} />
       <div className="df-block df-sidebar">
-        <OutputPanel />
+        <OutputPanel dataManager={dataManager} />
         <div className="df-block df-group-panel">
           <PropertyPanel dataManager={dataManager} />
-          <NodesPanel nodeDefs={dataManager.nodeDefs} />
+          <NodesPanel
+            nodeDefs={dataManager.nodeDefs}
+            nodeCategories={dataManager.nodeCategories}
+          />
         </div>
       </div>
     </div>

@@ -1,8 +1,8 @@
 const NumberInput = {
   public: {
-    nodeId: "Input.NumberInput",
+    nodeId: "Input.Number",
     category: "Input",
-    title: "Number Input",
+    title: "Number",
     des: "Node description for Input.NumberInput",
   },
   portsIn: [],
