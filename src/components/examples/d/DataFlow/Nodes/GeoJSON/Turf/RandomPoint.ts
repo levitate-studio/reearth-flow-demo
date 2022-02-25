@@ -25,7 +25,7 @@ const RandomPoint = {
       name: "points",
       type: "geoJSONObject",
       des: "GeoJSON FeatureCollection of points",
-      component: "outputSource",
+      component: "OutputSource",
       defaultValue: randomPoint(0),
     },
   ],

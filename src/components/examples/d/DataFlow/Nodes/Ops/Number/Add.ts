@@ -1,3 +1,5 @@
+import { getPortInValue, getPortOutValueObj } from "../../../Common/AssistFns";
+
 const Add = {
   public: {
     title: "Add",
@@ -19,16 +21,15 @@ const Add = {
     {
       name: "value",
       type: "number",
-      component: "pureDisplay",
+      component: "PureDisplay",
       des: "value: output the sum of two inputs",
     },
   ],
   update: (data: any) => {
-    data.portsOut.find((port: any) => port.name === "value").value.v =
-      Number(
-        data.portsIn.find((port: any) => port.name === "number0").value.v
-      ) +
-      Number(data.portsIn.find((port: any) => port.name === "number1").value.v);
+    const number0 = getPortInValue(data, "number0");
+    const number1 = getPortInValue(data, "number1");
+    const output = getPortOutValueObj(data, "value");
+    output.v = number0 + number1;
   },
 };
 

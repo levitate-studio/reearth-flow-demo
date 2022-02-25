@@ -11,7 +11,6 @@ export const types = {
 const nodeTree = { Source, Ops, GeoJSON };
 
 const nodeDefs: any = [];
-const nodeCategories: any = [];
 const nodeMap: any = [];
 
 const flatTree = (ele: any, key: any, map: any, prefix: any) => {
@@ -38,4 +37,6 @@ const flatTree = (ele: any, key: any, map: any, prefix: any) => {
 
 flatTree(nodeTree, null, nodeMap, "");
 
-export { nodeDefs, nodeCategories, nodeMap };
+console.log(nodeDefs, nodeMap);
+
+export { nodeDefs, nodeMap };

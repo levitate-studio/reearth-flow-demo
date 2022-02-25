@@ -10,7 +10,7 @@ const Renderer = {
       type: "geoJSONObject",
       des: "",
       defaultValue: {},
-      component: "outputSource",
+      component: "OutputSource",
     },
   ],
   portsOut: [],

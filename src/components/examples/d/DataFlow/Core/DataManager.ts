@@ -4,7 +4,6 @@ import * as Nodes from "../Nodes";
 class DataManager {
   // properties
   nodeDefs: any;
-  nodeCategories: any;
   data: any;
   nodeTypes: any;
   //
@@ -19,7 +18,6 @@ class DataManager {
   // constuctor
   constructor() {
     this.nodeDefs = Nodes.nodeDefs;
-    this.nodeCategories = Nodes.nodeCategories;
     this.data = [];
     this.nodeTypes = Nodes.types;
     this.currentElement = null;
@@ -35,10 +33,10 @@ class DataManager {
     }
     switch (type) {
       case "number":
-        return "numberInput";
+        return "NumberInput";
       case "string":
       default:
-        return "input";
+        return "Input";
     }
   }
   static getPortInitValue(type: string, defaultValue: any) {
@@ -51,6 +49,10 @@ class DataManager {
         return 0;
       case "string":
         return "";
+      case "array":
+        return [];
+      case "object":
+        return {};
     }
   }
 
@@ -70,6 +72,7 @@ class DataManager {
         },
         isConnected: false,
         defaultValue: portDef.defaultValue,
+        options: portDef.options,
       };
       portsType === "in" ? (newPort.sources = []) : (newPort.targets = []);
       ports.push(newPort);
@@ -94,8 +97,6 @@ class DataManager {
   // =======================================
   addNode(nodeId: string) {
     const nodeDef = this.nodeDefs[nodeId];
-    console.log(nodeId);
-    console.log(this.nodeDefs);
     if (nodeDef) {
       const id = AssistFns.getGUID();
       //
@@ -245,22 +246,34 @@ class DataManager {
   // set current element
   // =======================================
   setCurrentElement(nodeId: string) {
+    let outputSource = null;
     if (nodeId) {
       const ele = this.data.find((ele: any) => ele.id === nodeId);
       if (ele.data.portsOut.length === 1) {
-        this.setOutputSource(ele.data.portsOut[0]);
+        outputSource = ele.data.portsOut[0];
       } else if (ele.data.portsOut.length > 1) {
         ele.data.portsOut.forEach((port: any) => {
           if (port.asDefaultOutput) {
-            this.setOutputSource(port);
+            outputSource = port;
           }
         });
       }
       this.currentElement = ele;
     } else {
       this.currentElement = null;
-      this.setOutputSource(null);
     }
+    this.setOutputSource(outputSource);
+    this.reRender();
+  }
+
+  // =======================================
+  // set port value
+  // =======================================
+  setPortValue(port: any, value: any, elementId: string) {
+    // update port
+    port.value.v = value;
+    //
+    this.updateNode(elementId);
     this.reRender();
   }
 

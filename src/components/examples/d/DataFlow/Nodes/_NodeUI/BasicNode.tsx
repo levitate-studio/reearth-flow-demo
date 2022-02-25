@@ -10,7 +10,7 @@ const BasicNode = ({ data, isConnectable }: any) => {
         id={port.name}
         isConnectable={isConnectable}
         position={Position.Top}
-        className={`portcolor-${port.type}`}
+        className={`portcolor-${port.type} ${port.hidden && "port-hidden"}`}
       />
     ));
   }
@@ -23,7 +23,7 @@ const BasicNode = ({ data, isConnectable }: any) => {
         id={port.name}
         isConnectable={isConnectable}
         position={Position.Bottom}
-        className={`portcolor-${port.type}`}
+        className={`portcolor-${port.type} ${port.hidden && "port-hidden"}`}
       />
     ));
   }

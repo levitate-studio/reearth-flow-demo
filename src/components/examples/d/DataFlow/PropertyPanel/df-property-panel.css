@@ -35,6 +35,17 @@ propery panel
   padding: 5px 0;
   font-size: 12px;
 }
+.property-line select{
+  width: 100%;
+  background-color: var(--block-input-bg-color);
+  border: none;
+  border-radius: 0;
+  outline: none;
+  color: #ccc;
+  height: 24px;
+  padding: 5px 0;
+  font-size: 12px;
+}
 .property-line input:disabled{
   background-color: var(--block-bg-color);
 }

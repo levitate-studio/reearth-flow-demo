@@ -21,17 +21,20 @@ const NodesPanel = () => {
         </div>
       ));
     }
-    const node = Nodes.nodeDefs[element];
-    return (
+    return Object.keys(element).map((key: string) => (
       <div
-        key={node.public.nodeId}
-        className={`node-ref catcolor-${node.public.category}`}
-        onDragStart={(event) => onDragStart(event, node.public.nodeId)}
+        key={Nodes.nodeDefs[element[key]].public.nodeId}
+        className={`node-ref catcolor-${
+          Nodes.nodeDefs[element[key]].public.category
+        }`}
+        onDragStart={(event) =>
+          onDragStart(event, Nodes.nodeDefs[element[key]].public.nodeId)
+        }
         draggable
       >
-        {node.public.title}
+        {Nodes.nodeDefs[element[key]].public.title}
       </div>
-    );
+    ));
   };
 
   const nodeList = l(Nodes.nodeMap, "");

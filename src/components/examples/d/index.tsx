@@ -24,7 +24,7 @@ const DataFlow: React.FC<Props> = () => {
   return (
     <div className="df-app dark">
       <DataFlowCanvas dataManager={dataManager} />
-      <div className="df-block df-sidebar">
+      <div className="df-sidebar">
         <OutputPanel dataManager={dataManager} />
         <div className="df-block df-group-panel">
           <PropertyPanel dataManager={dataManager} />
