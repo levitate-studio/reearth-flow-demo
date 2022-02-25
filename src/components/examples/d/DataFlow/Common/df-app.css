@@ -46,6 +46,9 @@ block
   color: orange;
   flex-shrink: 0;
 }
+.df-block-group-wrapper{
+  padding-left: 10px;
+}
 
 /* -------------------------
 tab 
@@ -82,15 +85,15 @@ canvas
 /* -------------------------
 category color 
 ----------------------------*/
-.catcolor-Input{
+.catcolor-Source{
   color: var(--theme-color-green);
 }
-.catcolor-Ops{
+.catcolor-Ops,
+.catcolor-Ops-Number{
   color: var(--theme-color-blue);
 }
-.catcolor-GeoJSON{
-  color: var(--theme-color-orange);
-}
+.catcolor-GeoJSON,
+.catcolor-GeoJSON-Common,
 .catcolor-GeoJSON-Turf{
   color: var(--theme-color-orange);
 }

@@ -1,14 +1,41 @@
 import BasicNode from "./_NodeUI/BasicNode";
 //
-import RandomPoint from "./GeoJSON.Turf/RandomPoint";
-import GeoJSONRenderer from "./GeoJSON/GeoJSONRenderer";
-import NumberInput from "./Input/NumberInput";
-import NumberAdd from "./Ops/NumberAdd";
+import * as GeoJSON from "./GeoJSON";
+import * as Ops from "./Ops";
+import * as Source from "./Source";
 
 export const types = {
   basicNode: BasicNode,
 };
 
-export const nodeDefs = [NumberInput, NumberAdd, GeoJSONRenderer, RandomPoint];
+const nodeTree = { Source, Ops, GeoJSON };
 
-export const nodeCategories = ["Input", "Ops", "GeoJSON", "GeoJSON.Turf"];
+const nodeDefs: any = [];
+const nodeCategories: any = [];
+const nodeMap: any = [];
+
+const flatTree = (ele: any, key: any, map: any, prefix: any) => {
+  const id = key ? (prefix ? `${prefix}-${key}` : key) : ``;
+  if (ele.public) {
+    // set node id
+    ele.public.nodeId = id;
+    // set node category
+    ele.public.category = prefix;
+    // add to refs
+    nodeDefs[id] = ele;
+    // add to map
+    map.push(id);
+  } else {
+    if (key && !map[key]) {
+      map[key] = [];
+    }
+    Object.keys(ele).forEach((cat) => {
+      const currentMap = key ? map[key] : map;
+      flatTree(ele[cat], cat, currentMap, id);
+    });
+  }
+};
+
+flatTree(nodeTree, null, nodeMap, "");
+
+export { nodeDefs, nodeCategories, nodeMap };

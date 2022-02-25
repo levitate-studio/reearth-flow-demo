@@ -28,10 +28,7 @@ const DataFlow: React.FC<Props> = () => {
         <OutputPanel dataManager={dataManager} />
         <div className="df-block df-group-panel">
           <PropertyPanel dataManager={dataManager} />
-          <NodesPanel
-            nodeDefs={dataManager.nodeDefs}
-            nodeCategories={dataManager.nodeCategories}
-          />
+          <NodesPanel />
         </div>
       </div>
     </div>

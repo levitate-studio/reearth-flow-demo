@@ -1,11 +1,9 @@
 import { randomPoint } from "@turf/random";
 
-import { getPortInValue, getPortOutValueObj } from "../../Common/AssistFns";
+import { getPortInValue, getPortOutValueObj } from "../../../Common/AssistFns";
 
 const RandomPoint = {
   public: {
-    nodeId: "GeoJSON.Turf.RandomPoint",
-    category: "GeoJSON.Turf",
     title: "RandomPoint",
     des: "http://turfjs.org/docs/#randomPoint",
   },

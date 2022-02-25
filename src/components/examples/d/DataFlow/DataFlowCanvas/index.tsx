@@ -54,14 +54,17 @@ const DataFlowCanvas: React.FC<Props> = ({ dataManager }) => {
         x: event.clientX - reactFlowBounds.left,
         y: event.clientY - reactFlowBounds.top,
       });
-      const { id, nodeType, nodeDef } = dataManager.addNode(nodeId);
-      const newNode = {
-        id,
-        type: nodeType,
-        position,
-        data: nodeDef,
-      };
-      setElements((es) => es.concat(newNode));
+      const newNode = dataManager.addNode(nodeId);
+      if (newNode) {
+        setElements((es) =>
+          es.concat({
+            id: newNode.id,
+            type: newNode.nodeType,
+            position,
+            data: newNode.nodeDef,
+          })
+        );
+      }
     }
   };
 

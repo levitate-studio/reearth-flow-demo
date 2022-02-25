@@ -1,7 +1,5 @@
-const GeoJSONRenderer = {
+const Renderer = {
   public: {
-    nodeId: "GeoJSON.Renderer",
-    category: "GeoJSON",
     title: "Renderer",
     des: "",
     isRenderer: true,
@@ -18,4 +16,4 @@ const GeoJSONRenderer = {
   portsOut: [],
 };
 
-export default GeoJSONRenderer;
+export default Renderer;

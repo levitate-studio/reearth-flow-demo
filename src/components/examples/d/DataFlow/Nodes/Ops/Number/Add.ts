@@ -1,9 +1,7 @@
-const NumberAdd = {
+const Add = {
   public: {
-    nodeId: "Ops.NumberAdd",
-    category: "Ops",
     title: "Add",
-    des: "Node description for Ops.NumberAdd",
+    des: "",
   },
   portsIn: [
     {
@@ -34,4 +32,4 @@ const NumberAdd = {
   },
 };
 
-export default NumberAdd;
+export default Add;

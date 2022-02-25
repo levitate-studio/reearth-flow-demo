@@ -1,9 +1,7 @@
-const NumberInput = {
+const Number = {
   public: {
-    nodeId: "Input.Number",
-    category: "Input",
     title: "Number",
-    des: "Node description for Input.NumberInput",
+    des: "",
   },
   portsIn: [],
   portsOut: [
@@ -16,4 +14,4 @@ const NumberInput = {
   ],
 };
 
-export default NumberInput;
+export default Number;

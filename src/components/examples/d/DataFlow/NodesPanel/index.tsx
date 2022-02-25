@@ -1,41 +1,40 @@
-// import * as Nodes from "./Nodes";
+import * as Nodes from "../Nodes";
+
 import "./df-nodes-panel.css";
 
-const NodesPanel = ({ nodeDefs, nodeCategories }: any) => {
+const NodesPanel = () => {
   const onDragStart = (event: any, nodeId: any) => {
     event.dataTransfer.setData("application/reactflow", nodeId);
     event.dataTransfer.effectAllowed = "move";
   };
 
-  const nodeList = nodeCategories?.map((category: string) => (
-    <div key={category}>
+  const l = (element: any, prefix: any) => {
+    if (typeof element === "object" && typeof element[0] !== "string") {
+      return Object.keys(element).map((key: string) => (
+        <div key={key}>
+          <div className={`df-block-group-title catcolor${prefix}-${key}`}>
+            {key}
+          </div>
+          <div className="df-block-group-wrapper">
+            {l(element[key], `${prefix}-${key}`)}
+          </div>
+        </div>
+      ));
+    }
+    const node = Nodes.nodeDefs[element];
+    return (
       <div
-        className={`df-block-group-title catcolor-${category.replace(
-          ".",
-          "-"
-        )}`}
+        key={node.public.nodeId}
+        className={`node-ref catcolor-${node.public.category}`}
+        onDragStart={(event) => onDragStart(event, node.public.nodeId)}
+        draggable
       >
-        {category}
+        {node.public.title}
       </div>
-      <div className="df-nodes-wrapper">
-        {nodeDefs
-          .filter((node: any) => node.public.category === category)
-          .map((node: any) => (
-            <div
-              key={node.public.nodeId}
-              className={`node-ref catcolor-${node.public.category.replace(
-                ".",
-                "-"
-              )}`}
-              onDragStart={(event) => onDragStart(event, node.public.nodeId)}
-              draggable
-            >
-              {node.public.title}
-            </div>
-          ))}
-      </div>
-    </div>
-  ));
+    );
+  };
+
+  const nodeList = l(Nodes.nodeMap, "");
 
   return (
     <div className="df-nodes-panel">

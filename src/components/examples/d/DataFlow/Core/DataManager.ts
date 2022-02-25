@@ -93,15 +93,20 @@ class DataManager {
   // add node
   // =======================================
   addNode(nodeId: string) {
-    const nodeDef = this.nodeDefs.find(
-      (node: any) => node.public.nodeId === nodeId
-    );
+    const nodeDef = this.nodeDefs[nodeId];
+    console.log(nodeId);
+    console.log(this.nodeDefs);
     if (nodeDef) {
       const id = AssistFns.getGUID();
+      //
+      if (nodeDef.public.isRenderer && this.renderSource) {
+        return false;
+      }
+      //
       const nodeType = "basicNode";
       const portsIn = DataManager.createPorts(nodeDef.portsIn, "in");
       const portsOut = DataManager.createPorts(nodeDef.portsOut, "out");
-      const newNode = {
+      this.data.push({
         id,
         nodeType,
         public: nodeDef.public,
@@ -111,12 +116,8 @@ class DataManager {
           portsIn,
           portsOut,
         },
-      };
-      this.data.push(newNode);
-      //
-      if (newNode.public.isRenderer) {
-        // TEMP: use the first input as render data
-        // this.renderSource = newNode.data.portsIn[0].value;
+      });
+      if (nodeDef.public.isRenderer) {
         this.renderSource = id;
       }
       return {

@@ -45,7 +45,7 @@ const OutputPanel = ({ dataManager }: any) => {
         <div
           className={`df-block-tab-content ${activeTab === "map" && "active"}`}
         >
-          <ResiumMap dataManager={dataManager} />
+          {/* <ResiumMap dataManager={dataManager} /> */}
         </div>
       </div>
     </div>

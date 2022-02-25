@@ -84,7 +84,7 @@ const PropertyPanel = ({ dataManager }: any) => {
             <div className="df-block-group-title">Basic</div>
             <div className="property-line">
               <div className="property-name">Node</div>
-              <div className="property-value">{element.public.title}</div>
+              <div className="property-value">{element.public.nodeId}</div>
             </div>
             <div className="property-line">
               <div className="property-name">Element ID</div>
