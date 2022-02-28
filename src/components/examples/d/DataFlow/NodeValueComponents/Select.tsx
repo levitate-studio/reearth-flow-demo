@@ -1,11 +1,11 @@
 const Select = ({ element, port, dataManager }: any) => {
   let options = [];
   if (
-    element.data.portsIn.find((p) => p.name === port.options.columnSource).value
-      .v
+    element.data.portsIn.find((p: any) => p.name === port.options.columnSource)
+      .value.v
   )
     options = element.data.portsIn.find(
-      (p) => p.name === port.options.columnSource
+      (p: any) => p.name === port.options.columnSource
     ).value.v[0];
   return (
     <select

@@ -1,7 +1,7 @@
 import * as NodeValueComponents from "../NodeValueComponents";
 import "./df-property-panel.css";
 
-console.log(NodeValueComponents);
+// console.log(NodeValueComponents);
 
 const PropertyPanel = ({ dataManager }: any) => {
   const element = dataManager.currentElement;
