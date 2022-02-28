@@ -1,0 +1,15 @@
+.df-home{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.df-home h1{
+  font-size: 70px;
+  line-height: 1.5;
+}
+.df-home a{
+  font-size: 24px;
+  color: #eee;
+}
