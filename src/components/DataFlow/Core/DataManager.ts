@@ -1,11 +1,11 @@
-import * as AssistFns from "../Common/AssistFns";
 import * as Nodes from "../Nodes";
+
+import * as AssistFns from "./AssistFns";
 
 class DataManager {
   // properties
   nodeDefs: any;
   data: any;
-  nodeTypes: any;
   //
   currentElement: any;
   //
@@ -19,7 +19,6 @@ class DataManager {
   constructor() {
     this.nodeDefs = Nodes.nodeDefs;
     this.data = [];
-    this.nodeTypes = Nodes.types;
     this.currentElement = null;
     this.reRenderer = null;
   }

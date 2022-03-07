@@ -1,10 +1,15 @@
+import { useContext } from "react";
+
+import { LvtFlowContext } from "../index.tsx";
 import * as NodeValueComponents from "../NodeValueComponents";
 import "./df-property-panel.css";
 
 // console.log(NodeValueComponents);
 
 const PropertyPanel = ({ dataManager }: any) => {
-  const element = dataManager.currentElement;
+  // const element = dataManager.currentElement;
+  const lvtFlow = useContext(LvtFlowContext);
+  const element = lvtFlow.currentElement;
 
   const valueComponent = (element: any, port: any) => {
     return NodeValueComponents[port.component]?.({

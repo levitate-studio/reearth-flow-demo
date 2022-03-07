@@ -1,10 +1,7 @@
-// mapboxgl.accessToken =
-//   "pk.eyJ1IjoibGJ5LTAxIiwiYSI6ImNrenpmeWtiYzA5c3AzY3F3ZzQxZzR3M3gifQ.edS4rn9RohxV8Ug6SgP6aQ";
 import { useState } from "react";
 
 import DataViewer from "./DataViewer";
-// import Mapbox from "./Mapbox";
-import ResiumMap from "./ResiumMap";
+// import ResiumMap from "./ResiumMap";
 
 import "./df-output-panel.css";
 
