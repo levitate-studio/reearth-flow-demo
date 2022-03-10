@@ -4,3 +4,7 @@ const S4 = () => {
 export const createGUID = () => {
   return `${S4()}${S4()}-${S4()}-${S4()}-${S4()}-${S4()}${S4()}${S4()}`;
 };
+
+export const spreadData = (data: any) => {
+  return Array.isArray(data) ? data : [data];
+};

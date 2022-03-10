@@ -1,17 +1,14 @@
-const Select = ({ element, port, dataManager }: any) => {
+const Select = ({ node, port, lvtFlow }: any) => {
   let options = [];
-  if (
-    element.data.portsIn.find((p: any) => p.name === port.options.columnSource)
-      .value.v
-  )
-    options = element.data.portsIn.find(
-      (p: any) => p.name === port.options.columnSource
-    ).value.v[0];
+  if (port.ui.componentOptions)
+    options = node.getPortInByName(port.ui.componentOptions.columnSource).value
+      .v[0];
   return (
     <select
       value={port.value.v}
       onChange={(e) => {
-        dataManager.setPortValue(port, Number(e.target.value), element.id);
+        port.setValue(Number(e.target.value));
+        lvtFlow.chainUpdateNode(node.id);
       }}
     >
       {options.map((column: string, index: number) => (

@@ -1,26 +1,20 @@
-import { Viewer, GeoJsonDataSource } from "resium";
+import { useContext } from "react";
+import { Viewer, GeoJsonDataSource, CzmlDataSource } from "resium";
 
-// const iframe = document.getElementsByClassName("cesium-infoBox-iframe")[0];
+import { LvtFlowContext } from "../../../pages/Editor/index";
 
-// iframe.setAttribute(
-//   "sandbox",
-//   "allow-same-origin allow-scripts allow-popups allow-forms"
-// );
-// iframe.setAttribute("src", "");
+const ResiumMap = () => {
+  const lvtFlow = useContext(LvtFlowContext);
+  const renderData = lvtFlow.renderData?.v;
 
-const ResiumMap = ({ dataManager }: any) => {
-  const data = dataManager.renderSource
-    ? dataManager.tempGetRenderData().v
-    : {
-        type: "FeatureCollection",
-        features: [],
-      };
-  // if (data) {
-  //   console.log(data);
-  // }
   return (
     <Viewer full>
-      <GeoJsonDataSource data={data} />
+      {renderData && renderData.dataType === "GeoJSON" && (
+        <GeoJsonDataSource data={renderData.data} />
+      )}
+      {renderData && renderData.dataType === "CZML" && (
+        <CzmlDataSource data={renderData.data} />
+      )}
     </Viewer>
   );
 };

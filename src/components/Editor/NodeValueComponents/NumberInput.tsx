@@ -1,12 +1,13 @@
-const NumberInput = ({ element, port, dataManager }: any) => {
+const NumberInput = ({ port, node, lvtFlow }: any) => {
   return (
     <input
       value={port.value.v}
       type="number"
-      disabled={port.isConnected}
-      onChange={(e) =>
-        dataManager.setPortValue(port, Number(e.target.value), element.id)
-      }
+      disabled={port.connected}
+      onChange={(e) => {
+        port.setValue(Number(e.target.value));
+        lvtFlow.chainUpdateNode(node.id);
+      }}
     />
   );
 };

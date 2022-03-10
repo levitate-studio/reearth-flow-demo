@@ -1,10 +1,10 @@
-const OutputSource = ({ port, dataManager }: any) => {
+const OutputSource = ({ port, lvtFlow }: any) => {
   return (
     <div className="property-value ">
       <a
         className="output-source"
         onClick={() => {
-          dataManager.setOutputSource(port);
+          lvtFlow.setOutputSource(port);
         }}
       >
         {typeof port.value.v}

@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 import DataViewer from "./DataViewer";
-// import ResiumMap from "./ResiumMap";
+import ResiumMap from "./ResiumMap";
 
 import "./df-output-panel.css";
 
-const OutputPanel = ({ dataManager }: any) => {
+const OutputPanel = () => {
   const [activeTab, setActiveTab] = useState("output");
   return (
     <div className="df-output-panel">
@@ -37,12 +37,12 @@ const OutputPanel = ({ dataManager }: any) => {
             activeTab === "output" && "active"
           }`}
         >
-          <DataViewer data={dataManager.outputSource} />
+          <DataViewer />
         </div>
         <div
           className={`df-block-tab-content ${activeTab === "map" && "active"}`}
         >
-          {/* <ResiumMap dataManager={dataManager} /> */}
+          <ResiumMap />
         </div>
       </div>
     </div>

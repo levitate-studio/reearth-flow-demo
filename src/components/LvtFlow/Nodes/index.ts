@@ -1,38 +1,49 @@
-//
-// import * as GeoJSON from "./GeoJSON";
-import * as Ops from "./Ops";
-// import * as Source from "./Source";
+import { LvtNodeDef } from "../Core/LvtNode";
 
-// const nodeTree = { Source, Ops, GeoJSON };
-const nodeTree = { Ops };
+import Entity from "./Entity";
+import Ops from "./Ops";
+import Renderer from "./Renderer";
+import Source from "./Source";
 
-const nodeDefs: any = [];
-const nodeMap: any = [];
+const nodes = {
+  children: [Source, Ops, Entity, Renderer],
+};
 
-const flatTree = (ele: any, key: any, map: any, prefix: string) => {
-  const id = key ? (prefix ? `${prefix}-${key}` : key) : ``;
-  if (ele.public) {
-    // set node id
-    ele.public.nodeId = id;
-    // set node category
-    ele.public.category = prefix;
-    // add to refs
-    nodeDefs[id] = ele;
-    // add to map
-    map.push(id);
-  } else {
-    if (key && !map[key]) {
-      map[key] = [];
+// =======================================
+// nodeDefs
+// generate an object of all nodes defines
+// =======================================
+const nodeDefs: { [key: string]: LvtNodeDef } = {};
+
+// =======================================
+// nodeTree
+// generate an tree structured with node
+// category
+// =======================================
+const nodeTree: any = [];
+
+const arrangeNode = (n: any, id: string, tree: any) => {
+  const cid = id === "Root" ? "" : id ? `${id}-${n._id}` : n._id;
+  if (n.children) {
+    let ctree = tree;
+    if (n._id) {
+      tree[n._id] = [];
+      ctree = tree[n._id];
     }
-    Object.keys(ele).forEach((cat) => {
-      const currentMap = key ? map[key] : map;
-      flatTree(ele[cat], cat, currentMap, id);
+    n.children.forEach((c: any) => {
+      arrangeNode(c, cid, ctree);
     });
+  } else {
+    // is node
+    tree.push(cid);
+    nodeDefs[cid] = n;
+    nodeDefs[cid].nodeId = cid;
+    nodeDefs[cid].category = id;
   }
 };
 
-flatTree(nodeTree, null, nodeMap, "");
+arrangeNode(nodes, "Root", nodeTree);
 
-console.log(nodeDefs, nodeMap);
+// console.log(nodeDefs, nodeTree);
 
-export { nodeDefs, nodeMap };
+export { nodeDefs, nodeTree };

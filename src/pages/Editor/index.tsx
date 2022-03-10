@@ -1,35 +1,46 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useRef } from "react";
 
-import DataManager from "../../components/DataFlow/Core/DataManager";
 import DataFlowCanvas from "../../components/Editor/DataFlowCanvas";
 import NodesPanel from "../../components/Editor/NodesPanel";
 import OutputPanel from "../../components/Editor/OutputPanel";
 import PropertyPanel from "../../components/Editor/PropertyPanel";
+import ToolbarPanel from "../../components/Editor/ToolbarPanel";
+import LvtFlow from "../../components/LvtFlow";
 
 import "./df-editor.css";
 
-const lvtFlow = new DataManager();
-export const LvtFlowContext = createContext({});
-
-const dataManager = new DataManager();
-
-// const win: any = window;
-// win.DFDM = dataManager;
+const lvtFlow = new LvtFlow();
+const LvtFlowContext = createContext(lvtFlow);
 
 export type Props = {
   path?: string;
 };
 const Editor: React.FC<Props> = () => {
+  // lvtflow
   const [_timestamp, setTimestamp] = useState(new Date().getTime());
-  dataManager.reRenderer = setTimestamp;
+  LvtFlow.setUIReRenderer(setTimestamp);
+
+  // canvas
+  const dataFlowCanvasRef = useRef();
+  // export
+  const exportData = () => {
+    const e = {
+      lvtFlow: lvtFlow.exportData(),
+      canvas: (dataFlowCanvasRef.current as any).exportData(),
+    };
+    console.log(JSON.stringify(e));
+  };
   return (
     <LvtFlowContext.Provider value={lvtFlow}>
       <div className="df-editor dark">
-        <DataFlowCanvas dataManager={dataManager} />
+        <div className="df-main">
+          <ToolbarPanel exportData={exportData} />
+          <DataFlowCanvas cref={dataFlowCanvasRef} />
+        </div>
         <div className="df-sidebar">
-          <OutputPanel dataManager={dataManager} />
-          <div className="df-block df-group-panel">
-            <PropertyPanel dataManager={dataManager} />
+          <OutputPanel />
+          <div className="df-group-panel">
+            <PropertyPanel />
             <NodesPanel />
           </div>
         </div>
@@ -38,4 +49,4 @@ const Editor: React.FC<Props> = () => {
   );
 };
 
-export default Editor;
+export { Editor, LvtFlowContext };

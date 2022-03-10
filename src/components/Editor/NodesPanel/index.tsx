@@ -1,4 +1,4 @@
-import * as Nodes from "../../DataFlow/Nodes";
+import * as Nodes from "../../LvtFlow/Nodes";
 
 import "./df-nodes-panel.css";
 
@@ -23,21 +23,19 @@ const NodesPanel = () => {
     }
     return Object.keys(element).map((key: string) => (
       <div
-        key={Nodes.nodeDefs[element[key]].public.nodeId}
-        className={`node-ref catcolor-${
-          Nodes.nodeDefs[element[key]].public.category
-        }`}
+        key={Nodes.nodeDefs[element[key]].nodeId}
+        className={`node-ref catcolor-${Nodes.nodeDefs[element[key]].category}`}
         onDragStart={(event) =>
-          onDragStart(event, Nodes.nodeDefs[element[key]].public.nodeId)
+          onDragStart(event, Nodes.nodeDefs[element[key]].nodeId)
         }
         draggable
       >
-        {Nodes.nodeDefs[element[key]].public.title}
+        {Nodes.nodeDefs[element[key]].ui.title}
       </div>
     ));
   };
 
-  const nodeList = l(Nodes.nodeMap, "");
+  const nodeList = l(Nodes.nodeTree, "");
 
   return (
     <div className="df-nodes-panel">

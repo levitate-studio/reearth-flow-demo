@@ -1,3 +1,8 @@
-export { default as Number } from "./Number";
-export { default as FileCSV } from "./FileCSV";
-export { default as DemoCSV } from "./DemoCSV";
+import Demo from "./Demo";
+import File from "./File";
+import Input from "./Input";
+
+export default {
+  _id: "Source",
+  children: [Input, Demo, File],
+};

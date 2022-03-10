@@ -14,6 +14,11 @@
   position: relative;
 }
 
+/* edge */
+.react-flow__edge-path {
+  stroke-width: 3;
+}
+
 /* title */
 .node-title{
   padding: 6px 12px;

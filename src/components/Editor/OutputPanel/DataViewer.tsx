@@ -1,10 +1,14 @@
+import { useContext } from "react";
 import ReactJson from "react-json-view";
 
-const DataViewer = ({ data }: any) => {
-  const displayData = data
-    ? typeof data.value.v === "object"
-      ? data.value.v
-      : { value: data.value.v }
+import { LvtFlowContext } from "../../../pages/Editor/index";
+
+const DataViewer = () => {
+  const lvtFlow = useContext(LvtFlowContext);
+  const displayData = lvtFlow.outputSource
+    ? typeof lvtFlow.outputSource.value.v === "object"
+      ? lvtFlow.outputSource.value.v
+      : { value: lvtFlow.outputSource.value.v }
     : {};
   return (
     <ReactJson

@@ -1,6 +1,6 @@
 import { Router } from "@reach/router";
 
-import Editor from "./pages/Editor";
+import { Editor } from "./pages/Editor";
 import Home from "./pages/Home";
 
 import "./pages/Common/df-reset.css";

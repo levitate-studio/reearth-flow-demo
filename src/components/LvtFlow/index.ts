@@ -1,1 +1,3 @@
-export * from "./Core/LvtFlow";
+import { LvtFlow } from "./Core/LvtFlow";
+
+export default LvtFlow;

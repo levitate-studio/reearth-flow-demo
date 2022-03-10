@@ -1,29 +1,29 @@
 import { useContext } from "react";
 
-import { LvtFlowContext } from "../index.tsx";
-import * as NodeValueComponents from "../NodeValueComponents";
+import { LvtFlowContext } from "../../../pages/Editor/index";
+import NodeValueComponents from "../NodeValueComponents";
 import "./df-property-panel.css";
 
 // console.log(NodeValueComponents);
 
-const PropertyPanel = ({ dataManager }: any) => {
-  // const element = dataManager.currentElement;
+const PropertyPanel = () => {
   const lvtFlow = useContext(LvtFlowContext);
   const element = lvtFlow.currentElement;
+  console.log("rerender property");
 
-  const valueComponent = (element: any, port: any) => {
-    return NodeValueComponents[port.component]?.({
-      element,
+  const valueComponent = (node: any, port: any) => {
+    return NodeValueComponents[port.ui.component as string]?.({
+      node,
       port,
-      dataManager,
+      lvtFlow,
     });
   };
 
   // portIn
-  const portsIn = element?.data.portsIn.length > 0 && (
+  const portsIn = element && element?.data.portsIn.length > 0 && (
     <>
       <div className="df-block-group-title">Ports IN</div>
-      {element.data.portsIn.map((port: any, index: number) => (
+      {element?.data.portsIn.map((port: any, index: number) => (
         <div className="property-line" key={`in-${index}`}>
           <div className="property-name">{port.name}</div>
           {valueComponent(element, port)}
@@ -33,10 +33,10 @@ const PropertyPanel = ({ dataManager }: any) => {
   );
 
   // portIn
-  const portsOut = element?.data.portsOut.length > 0 && (
+  const portsOut = element && element?.data.portsOut.length > 0 && (
     <>
       <div className="df-block-group-title">Ports OUT</div>
-      {element.data.portsOut.map((port: any, index: number) => (
+      {element?.data.portsOut.map((port: any, index: number) => (
         <div className="property-line" key={`out-${index}`}>
           <div className="property-name">{port.name}</div>
           {valueComponent(element, port)}
@@ -56,7 +56,7 @@ const PropertyPanel = ({ dataManager }: any) => {
             <div className="df-block-group-title">Basic</div>
             <div className="property-line">
               <div className="property-name">Node</div>
-              <div className="property-value">{element.public.nodeId}</div>
+              <div className="property-value">{element.nodeId}</div>
             </div>
             <div className="property-line">
               <div className="property-name">Element ID</div>

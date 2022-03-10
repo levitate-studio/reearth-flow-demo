@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext, useImperativeHandle } from "react";
 import ReactFlow, {
   ReactFlowProvider,
   addEdge,
@@ -14,20 +14,26 @@ import ReactFlow, {
   isNode,
 } from "react-flow-renderer";
 
+import { LvtFlowContext } from "../../../pages/Editor/index";
+
 import "./df-canvas.css";
 import BasicNode from "./BasicNode";
 
 const nodeTypes = {
   basicNode: BasicNode,
 };
-export type Props = {
-  dataManager: any;
-};
 
-const DataFlowCanvas: React.FC<Props> = ({ dataManager }) => {
+const DataFlowCanvas = ({ cref }: any) => {
   const reactFlowWrapper = useRef<HTMLDivElement>(null);
   const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
   const [elements, setElements] = useState<Elements>([]);
+  const lvtFlow = useContext(LvtFlowContext);
+
+  useImperativeHandle(cref, () => ({
+    exportData: () => {
+      return elements;
+    },
+  }));
 
   // =======================================
   // Event: onLoad
@@ -58,14 +64,17 @@ const DataFlowCanvas: React.FC<Props> = ({ dataManager }) => {
         x: event.clientX - reactFlowBounds.left,
         y: event.clientY - reactFlowBounds.top,
       });
-      const newNode = dataManager.addNode(nodeId);
-      if (newNode) {
+      const node = lvtFlow.addNode(nodeId);
+      if (node) {
         setElements((es) =>
           es.concat({
-            id: newNode.id,
-            type: newNode.nodeType,
+            id: node.id,
+            type: node.ui.nodeType,
             position,
-            data: newNode.nodeDef,
+            data: {
+              nodeId: node.nodeId,
+              isValidConnection: lvtFlow.isValidConnection,
+            },
           })
         );
       }
@@ -78,9 +87,9 @@ const DataFlowCanvas: React.FC<Props> = ({ dataManager }) => {
   const onElementsRemove = (elementsToRemove: Elements) => {
     elementsToRemove.forEach((ele) => {
       if (isEdge(ele)) {
-        dataManager.removeEdge(ele);
+        lvtFlow.removeEdge(ele);
       } else if (isNode(ele)) {
-        dataManager.removeNode(ele.id);
+        lvtFlow.removeNode(ele.id);
       }
     });
 
@@ -107,7 +116,7 @@ const DataFlowCanvas: React.FC<Props> = ({ dataManager }) => {
     setElements((els: Elements) => addEdge(params, els));
 
     // update data
-    dataManager.addEdge(params);
+    lvtFlow.addEdge(params);
   };
 
   // =======================================
@@ -115,9 +124,9 @@ const DataFlowCanvas: React.FC<Props> = ({ dataManager }) => {
   // =======================================
   const onSelectionChange = (elements: Elements<any> | null) => {
     if (elements && elements.length === 1 && isNode(elements[0])) {
-      dataManager.setCurrentElement(elements[0].id);
+      lvtFlow.setCurrentElement(elements[0].id);
     } else {
-      dataManager.setCurrentElement();
+      lvtFlow.setCurrentElement(null);
     }
   };
 

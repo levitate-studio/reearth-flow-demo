@@ -1,14 +1,19 @@
-const DemoCSV = {
-  public: {
-    title: "DemoCSV",
-    des: "",
+import { LvtNodeDef } from "../../../Core/LvtNode";
+
+const CSV: LvtNodeDef = {
+  _id: "CSV",
+  ui: {
+    title: "Demo CSV",
+    description: "",
   },
   portsIn: [],
   portsOut: [
     {
       name: "data",
-      type: "csvData",
-      component: "OutputSource",
+      dataType: "stringSpread",
+      ui: {
+        component: "OutputSource",
+      },
       defaultValue: [
         [
           "title",
@@ -198,9 +203,8 @@ const DemoCSV = {
           "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Osaka_Castle_02bs3200.jpg/600px-Osaka_Castle_02bs3200.jpg",
         ],
       ],
-      des: "",
     },
   ],
 };
 
-export default DemoCSV;
+export default CSV;

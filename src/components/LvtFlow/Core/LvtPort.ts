@@ -1,39 +1,68 @@
-type portType = "input" | "output";
-type dataType = "string" | "number" | "array" | "spread" | "object";
-type source = {
-  nodeId: string;
-  portName: string;
-};
-type target = {
-  nodeId: string;
-  portName: string;
-};
+export type portType = "input" | "output";
 
-export type LvtPortDef = {
+type dataType =
+  | "string"
+  | "stringArray"
+  | "stringSpread"
+  | "number"
+  | "numberArray"
+  | "numberSpread"
+  | "array"
+  | "spread"
+  | "object"
+  | "objectArray"
+  | "file";
+
+interface source {
+  id: string;
+  portName: string;
+}
+interface target {
+  id: string;
+  portName: string;
+}
+
+export interface LvtPortDef {
   name: string;
   dataType: dataType;
   defaultValue?: any;
+  isRenderSource?: boolean;
   ui?: {
     title?: string;
     description?: string;
-    component?: "PureDisplay" | "input" | "numberInput" | "outputSource";
-    options?: any;
-  };
-};
+    hidden?: boolean;
+    asDefaultOutput?: boolean;
+    component?:
+      | "PureDisplay"
+      | "Input"
+      | "NumberInput"
+      | "FileCSVInput"
+      | "Select"
+      | "OutputSource";
 
-export type LvtPortOptions = LvtPortDef & {
+    componentOptions?: any;
+  };
+}
+
+export interface LvtPortOptions extends LvtPortDef {
   portType: portType;
-};
+  node: any;
+}
 
 export class LvtPort {
   name: string;
   portType: portType;
   dataType: dataType;
   ui: any;
-  value: any;
+  defaultValue: any;
+  value: {
+    v: any;
+  };
+  isRenderSource?: boolean;
   connected: boolean;
-  source: source | undefined;
-  targets: Array<target>;
+  source?: source | undefined;
+  targets?: Array<target>;
+  // node: any;
 
   static getPortDefaultValue(type: dataType, defaultValue: any) {
     if (defaultValue) {
@@ -46,8 +75,13 @@ export class LvtPort {
       case "string":
         return "";
       case "array":
-        return "";
+      case "numberArray":
+      case "stringArray":
+      case "objectArray":
+        return [];
       case "spread":
+      case "numberSpread":
+      case "stringSpread":
         return [[]];
       case "object":
         return {};
@@ -62,12 +96,9 @@ export class LvtPort {
       case "number":
         return "NumberInput";
       case "string":
-      default:
         return "Input";
-      case "array":
-      case "spread":
-      case "object":
-        return "outputSource";
+      default:
+        return "OutputSource";
     }
   }
 
@@ -80,14 +111,95 @@ export class LvtPort {
         options.dataType,
         options.ui?.component
       ),
+      componentOptions: options.ui?.componentOptions,
       description: options.ui?.description,
     };
-    this.value = LvtPort.getPortDefaultValue(
+    this.defaultValue = LvtPort.getPortDefaultValue(
       options.dataType,
       options.defaultValue
     );
+    this.value = {
+      v: this.defaultValue,
+    };
     this.connected = false;
+    // Edges
+    if (this.portType === "input") {
+      this.source = undefined;
+    } else if (this.portType === "output") {
+      this.targets = [];
+    }
+    this.isRenderSource = options.isRenderSource;
+    // node ref
+    // this.node = options.node;
+  }
+
+  // =======================================
+  // value methods
+  // =======================================
+  getValue() {
+    return this.value.v;
+  }
+  getValueObj() {
+    return this.value;
+  }
+  setValue(value: any) {
+    this.value.v = value;
+  }
+  resetValue() {
+    this.value = {
+      v: this.defaultValue,
+    };
+  }
+  cloneValue(sourceValue: any) {
+    this.value = {
+      ...sourceValue,
+    };
+  }
+  setValueObj(valueObj: any) {
+    this.value = valueObj;
+  }
+
+  // =======================================
+  // edge methods
+  // =======================================
+  setSource(source: source) {
+    if (source) {
+      this.source = source;
+      this.connected = true;
+    } else {
+      this.source = undefined;
+      this.connected = false;
+    }
+  }
+  removeSource() {
     this.source = undefined;
-    this.targets = [];
+    this.connected = false;
+  }
+
+  addTarget(target: target) {
+    if (
+      !this.targets?.find(
+        (t) => t.id === target.id && t.portName === target.portName
+      )
+    ) {
+      this.targets?.push(target);
+    }
+    this.connected = true;
+  }
+  removeTarget(target: target) {
+    if (this.targets) {
+      for (let i = 0; i < this.targets?.length; i += 1) {
+        if (
+          this.targets[i].id === target.id &&
+          this.targets[i].portName === target.portName
+        ) {
+          this.targets.splice(i, 1);
+          break;
+        }
+      }
+      this.connected = this.targets.length > 0;
+    } else {
+      this.connected = false;
+    }
   }
 }

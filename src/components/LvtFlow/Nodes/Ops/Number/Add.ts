@@ -1,6 +1,7 @@
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
 const Add: LvtNodeDef = {
+  _id: "Add",
   ui: {
     title: "Add",
     description: "",
@@ -24,10 +25,14 @@ const Add: LvtNodeDef = {
       },
     },
   ],
+  rule: (a: number, b: number) => {
+    return a + b;
+  },
   update: (node: LvtNode) => {
-    const n0 = node.getPortsInValueByName("number0");
-    const n1 = node.getPortsInValueByName("number1");
-    node.setPortsOutValueByName("result", n0 + n1);
+    const n0 = node.getPortInByName("number0")?.getValue();
+    const n1 = node.getPortInByName("number1")?.getValue();
+    node.getPortOutByName("result")?.setValue(node.rule(n0, n1));
+    return node;
   },
 };
 

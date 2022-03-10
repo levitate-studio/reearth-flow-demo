@@ -1,11 +1,12 @@
 import CSVReader from "react-csv-reader";
 
-const FileCSVInput = ({ element, port, dataManager }: any) => {
+const FileCSVInput = ({ port, node, lvtFlow }: any) => {
   return (
     <CSVReader
       onFileLoaded={(data) => {
         console.log(data);
-        dataManager.setPortValue(port, data, element.id);
+        port.setValue(data);
+        lvtFlow.chainUpdateNode(node.id);
       }}
     />
   );
