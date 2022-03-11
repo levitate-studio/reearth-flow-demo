@@ -6,6 +6,7 @@ import OutputPanel from "../../components/Editor/OutputPanel";
 import PropertyPanel from "../../components/Editor/PropertyPanel";
 import ToolbarPanel from "../../components/Editor/ToolbarPanel";
 import LvtFlow from "../../components/LvtFlow";
+import Demos from "../../demos";
 
 import "./df-editor.css";
 
@@ -30,11 +31,29 @@ const Editor: React.FC<Props> = () => {
     };
     console.log(JSON.stringify(e));
   };
+  // clear
+  const clearData = () => {
+    lvtFlow.clearData();
+    (dataFlowCanvasRef.current as any).clearData();
+  };
+  // import
+  const importData = (demoName: string) => {
+    const data = (Demos as any)[demoName];
+    if (data) {
+      lvtFlow.importData(data.lvtFlow);
+      (dataFlowCanvasRef.current as any).importData(data.canvas);
+    }
+  };
+  //
   return (
     <LvtFlowContext.Provider value={lvtFlow}>
       <div className="df-editor dark">
         <div className="df-main">
-          <ToolbarPanel exportData={exportData} />
+          <ToolbarPanel
+            exportData={exportData}
+            clearData={clearData}
+            importData={importData}
+          />
           <DataFlowCanvas cref={dataFlowCanvasRef} />
         </div>
         <div className="df-sidebar">

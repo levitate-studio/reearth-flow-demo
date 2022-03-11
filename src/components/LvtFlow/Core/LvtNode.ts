@@ -1,10 +1,14 @@
 import * as Nodes from "../Nodes";
 
-import { createGUID } from "./CommFuc";
-import { LvtPort, LvtPortDef, portType } from "./LvtPort";
+import { idCreator } from "./CommFuc";
+import { LvtPort, LvtPortDef } from "./LvtPort";
 
-interface LvtNodeOptions {
+export interface LvtNodeOptions {
   nodeId: string;
+  id?: string;
+  data?: {
+    portsIn?: any;
+  };
 }
 
 export interface LvtNodeDef {
@@ -36,10 +40,17 @@ export class LvtNode {
   rule: any;
 
   //
-  static createPorts(portsDef: any, portType: portType, node: LvtNode) {
+  static createPorts({ portsDef, portType, portValue }: any) {
     const ports: Array<LvtPort> = [];
     portsDef.forEach((portDef: any) => {
-      ports.push(new LvtPort({ ...portDef, portType, node }));
+      let importedValue;
+      if (portValue) {
+        const importedPort = portValue.find(
+          (p: any) => p.name === portDef.name
+        );
+        if (importedPort) importedValue = importedPort.value;
+      }
+      ports.push(new LvtPort({ ...portDef, portType, importedValue }));
     });
     return ports;
   }
@@ -47,7 +58,7 @@ export class LvtNode {
   constructor(options: LvtNodeOptions) {
     const nodeDef = Nodes.nodeDefs[options.nodeId];
     //
-    this.id = createGUID();
+    this.id = options.id ? options.id : idCreator.getId().toString();
     this.nodeId = nodeDef.nodeId;
     this.category = nodeDef.category;
     //
@@ -59,10 +70,22 @@ export class LvtNode {
     this.update = nodeDef.update;
     this.rule = nodeDef.rule;
     this.data = {
-      portsIn: LvtNode.createPorts(nodeDef.portsIn, "input", this),
-      portsOut: LvtNode.createPorts(nodeDef.portsOut, "output", this),
+      portsIn: LvtNode.createPorts({
+        portsDef: nodeDef.portsIn,
+        portType: "input",
+        portValue: options.data?.portsIn,
+      }),
+      portsOut: LvtNode.createPorts({
+        portsDef: nodeDef.portsOut,
+        portType: "output",
+      }),
     };
     this.isRenderer = nodeDef.isRenderer;
+    //
+    // auto update once if is imported
+    if (options.id) {
+      this.update?.(this);
+    }
   }
 
   // =======================================

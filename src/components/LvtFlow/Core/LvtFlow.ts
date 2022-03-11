@@ -1,6 +1,7 @@
 import React from "react";
 
-import { LvtNode } from "./LvtNode";
+import { idCreator } from "./CommFuc";
+import { LvtNode, LvtNodeOptions } from "./LvtNode";
 import { LvtPort } from "./LvtPort";
 
 interface IEdgeParams {
@@ -83,8 +84,8 @@ export class LvtFlow {
   // =======================================
   // nodes
   // =======================================
-  addNode(nodeId: string) {
-    const node = new LvtNode({ nodeId });
+  addNode(options: LvtNodeOptions) {
+    const node = new LvtNode(options);
     this.data.push(node);
     return node;
   }
@@ -250,16 +251,83 @@ export class LvtFlow {
   }
 
   // =======================================
+  // clear
+  // =======================================
+  clearData() {
+    this.data = [];
+  }
+
+  // =======================================
   // export
   // =======================================
   exportData() {
-    const exportData = [];
+    const exportData: IExportData = {
+      nodes: [],
+      edges: [],
+    };
     for (let i = 0; i < this.data.length; i += 1) {
-      exportData.push({
+      const nodeData: any = {
         id: this.data[i].id,
         nodeId: this.data[i].nodeId,
-      });
+      };
+
+      // portsIn
+      if (this.data[i].data.portsIn.length > 0) {
+        // has ports in
+        this.data[i].data.portsIn.forEach((port: any) => {
+          if (!port.connected) {
+            if (!nodeData.data) {
+              nodeData.data = {
+                portsIn: [],
+              };
+            }
+            const portData: any = {
+              name: port.name,
+              value: port.value.v,
+            };
+            nodeData.data.portsIn.push(portData);
+          }
+          if (port.source) {
+            exportData.edges.push({
+              source: port.source.id,
+              sourceHandle: port.source.portName,
+              target: this.data[i].id,
+              targetHandle: port.name,
+            });
+          }
+        });
+      }
+
+      exportData.nodes.push(nodeData);
     }
     return exportData;
   }
+
+  // =======================================
+  // import
+  // =======================================
+  importData(importData: IExportData) {
+    this.clearData();
+    // add nodes
+    const nodeIds: number[] = [];
+    if (importData.nodes.length > 0) {
+      importData.nodes.forEach((node) => {
+        nodeIds.push(Number(node.id));
+        this.addNode(node);
+      });
+    }
+    // add edges
+    if (importData.edges.length > 0) {
+      importData.edges.forEach((edge) => {
+        this.addEdge(edge);
+      });
+    }
+    // set the id to prevent same id
+    idCreator.setId(Math.max(...nodeIds) + 1);
+  }
+}
+
+interface IExportData {
+  nodes: Array<any>;
+  edges: Array<any>;
 }

@@ -47,6 +47,7 @@ export interface LvtPortDef {
 export interface LvtPortOptions extends LvtPortDef {
   portType: portType;
   node: any;
+  importedValue?: any;
 }
 
 export class LvtPort {
@@ -119,7 +120,7 @@ export class LvtPort {
       options.defaultValue
     );
     this.value = {
-      v: this.defaultValue,
+      v: options.importedValue ? options.importedValue : this.defaultValue,
     };
     this.connected = false;
     // Edges

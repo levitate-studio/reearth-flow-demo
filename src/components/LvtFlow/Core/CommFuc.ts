@@ -5,6 +5,20 @@ export const createGUID = () => {
   return `${S4()}${S4()}-${S4()}-${S4()}-${S4()}-${S4()}${S4()}${S4()}`;
 };
 
+const createIdFucCreator = () => {
+  let id = 1;
+  return {
+    getId: () => {
+      return id++;
+    },
+    setId: (i: number) => {
+      id = i;
+    },
+  };
+};
+
+export const idCreator = createIdFucCreator();
+
 export const spreadData = (data: any) => {
   return Array.isArray(data) ? data : [data];
 };

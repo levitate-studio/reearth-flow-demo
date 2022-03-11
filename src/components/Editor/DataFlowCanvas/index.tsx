@@ -31,7 +31,16 @@ const DataFlowCanvas = ({ cref }: any) => {
 
   useImperativeHandle(cref, () => ({
     exportData: () => {
-      return elements;
+      return reactFlowInstance.toObject();
+    },
+    clearData: () => {
+      setElements([]);
+    },
+    importData: (flow: any) => {
+      setElements(flow.elements || []);
+      setTimeout(() => {
+        reactFlowInstance.fitView();
+      }, 0);
     },
   }));
 
@@ -64,7 +73,7 @@ const DataFlowCanvas = ({ cref }: any) => {
         x: event.clientX - reactFlowBounds.left,
         y: event.clientY - reactFlowBounds.top,
       });
-      const node = lvtFlow.addNode(nodeId);
+      const node = lvtFlow.addNode({ nodeId });
       if (node) {
         setElements((es) =>
           es.concat({
