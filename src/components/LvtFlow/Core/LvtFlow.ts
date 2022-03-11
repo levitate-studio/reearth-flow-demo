@@ -154,6 +154,9 @@ export class LvtFlow {
       case "numberArray":
         allowed = ["numberArray", "numberSpread"];
         break;
+      case "numberSpread":
+        allowed = ["numberSpread"];
+        break;
       case "object":
         allowed = ["object"];
         break;
