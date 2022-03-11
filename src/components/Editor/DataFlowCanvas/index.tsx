@@ -23,6 +23,8 @@ const nodeTypes = {
   basicNode: BasicNode,
 };
 
+let lastClickTime = 0;
+
 const DataFlowCanvas = ({ cref }: any) => {
   const reactFlowWrapper = useRef<HTMLDivElement>(null);
   const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
@@ -139,6 +141,18 @@ const DataFlowCanvas = ({ cref }: any) => {
     }
   };
 
+  // =======================================
+  // Event: onDoubleClick
+  // =======================================
+  const onPaneClick = () => {
+    const now = new Date().getTime();
+    if (now - lastClickTime < 300) {
+      console.log("dbclick");
+    } else {
+      lastClickTime = now;
+    }
+  };
+
   return (
     <div className="df-canvas">
       <ReactFlowProvider>
@@ -157,6 +171,7 @@ const DataFlowCanvas = ({ cref }: any) => {
             defaultZoom={1.2}
             nodeTypes={nodeTypes}
             deleteKeyCode={46}
+            onPaneClick={onPaneClick}
           >
             <Controls />
           </ReactFlow>
