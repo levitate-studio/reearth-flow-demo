@@ -258,6 +258,7 @@ export class LvtFlow {
     this.currentElement = null;
     this.outputSource = null;
     this.renderData = null;
+    LvtFlow.reRender();
   }
 
   // =======================================
