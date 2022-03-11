@@ -1,7 +1,8 @@
 import { useState } from "react";
 
+import CesiumMap from "./CesiumMap";
 import DataViewer from "./DataViewer";
-import ResiumMap from "./ResiumMap";
+// import ResiumMap from "./ResiumMap";
 
 import "./df-output-panel.css";
 
@@ -42,7 +43,8 @@ const OutputPanel = () => {
         <div
           className={`df-block-tab-content ${activeTab === "map" && "active"}`}
         >
-          <ResiumMap />
+          {/* <ResiumMap /> */}
+          <CesiumMap />
         </div>
       </div>
     </div>

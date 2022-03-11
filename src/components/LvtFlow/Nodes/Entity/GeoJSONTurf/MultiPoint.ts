@@ -1,56 +1,66 @@
 import { multiPoint } from "@turf/helpers";
 
-import { getPortInValue, getPortOutValueObj } from "../../../Core/AssistFns";
+import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
-const MultiPoint = {
-  public: {
+const MultiPoint: LvtNodeDef = {
+  _id: "MultiPoint",
+  ui: {
     title: "MultiPoint",
-    des: "https://turfjs.org/docs/#point",
+    description: "https://turfjs.org/docs/#point",
   },
   portsIn: [
     {
       name: "coordinates",
-      type: "array",
-      des: "longitude, latitude position (each in decimal degrees)",
-      component: "OutputSource",
+      dataType: "numberSpread",
+      ui: {
+        description: "longitude, latitude position (each in decimal degrees)",
+      },
     },
     {
       name: "properties",
-      type: "object",
-      des: "an Object of key-value pairs to add as properties",
-      component: "OutputSource",
+      dataType: "object",
+      ui: {
+        description: "an Object of key-value pairs to add as properties",
+      },
     },
     {
       name: "bbox",
-      type: "array",
-      des: "Bounding Box Array",
-      component: "OutputSource",
+      dataType: "numberArray",
+      ui: {
+        description: "Bounding Box Array",
+      },
     },
     {
       name: "id",
-      type: "string",
-      des: "Identifier associated with the Feature",
-      component: "OutputSource",
+      dataType: "string",
+      ui: {
+        description: "Identifier associated with the Feature",
+      },
     },
   ],
   portsOut: [
     {
       name: "points",
-      type: "geoJSONObject",
-      des: "a MultiPoint feature",
-      component: "OutputSource",
+      dataType: "object",
+      ui: {
+        description: "a MultiPoint feature",
+      },
       defaultValue: multiPoint([]),
     },
   ],
-  update: (data: any) => {
-    const coordinates = getPortInValue(data, "coordinates");
-    const properties = getPortInValue(data, "properties");
-    const bbox = getPortInValue(data, "bbox");
-    const id = getPortInValue(data, "id");
-    const points = getPortOutValueObj(data, "points");
+  rule: multiPoint,
+  update: (node: LvtNode) => {
+    const coordinates = node.getPortInByName("coordinates")?.getValue();
+    const properties = node.getPortInByName("properties")?.getValue();
+    const bbox = node.getPortInByName("bbox")?.getValue();
+    const id = node.getPortInByName("id")?.getValue();
+
     const options: any =
       bbox.length > 0 && id.length > 0 ? { bbox, id } : undefined;
-    points.v = multiPoint(coordinates, properties, options);
+
+    node
+      .getPortOutByName("points")
+      ?.setValue(node.rule(coordinates, properties, options));
   },
 };
 
