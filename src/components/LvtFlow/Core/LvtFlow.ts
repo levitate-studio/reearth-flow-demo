@@ -38,11 +38,11 @@ export class LvtFlow {
     this.data = [];
     this.currentElement = null;
     this.outputSource = null;
+    this.renderData = null;
     // expose to window
     (window as any).lvtFlow = this;
     //
     this.isValidConnection = this.isValidConnection.bind(this);
-    this.renderData = null;
   }
 
   // =======================================
@@ -255,6 +255,9 @@ export class LvtFlow {
   // =======================================
   clearData() {
     this.data = [];
+    this.currentElement = null;
+    this.outputSource = null;
+    this.renderData = null;
   }
 
   // =======================================
