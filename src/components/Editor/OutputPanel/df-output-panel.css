@@ -23,3 +23,8 @@ output panel
   font-family: Menlo, Monaco, 'Courier New', monospace !important;
   padding: 10px;
 }
+
+#cesium-container{
+  width: 100%;
+  height: 100%;
+}
