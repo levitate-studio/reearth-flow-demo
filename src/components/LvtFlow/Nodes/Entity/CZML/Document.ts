@@ -3,7 +3,7 @@ import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 const Document: LvtNodeDef = {
   _id: "Document",
   ui: {
-    title: "Document CZML",
+    title: "CzmlDocument",
     description: "",
   },
   portsIn: [

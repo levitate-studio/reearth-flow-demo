@@ -3,7 +3,7 @@ import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 const CSV: LvtNodeDef = {
   _id: "CSV",
   ui: {
-    title: "File CSV",
+    title: "FileCSV",
     description: "",
   },
   portsIn: [

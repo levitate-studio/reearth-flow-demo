@@ -3,7 +3,7 @@ import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 const Vector2Spread: LvtNodeDef = {
   _id: "Vector2Spread",
   ui: {
-    title: "Vector2 Spread",
+    title: "Vector2Spread",
     description: "",
   },
   portsIn: [

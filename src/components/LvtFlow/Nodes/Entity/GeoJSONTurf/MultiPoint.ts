@@ -5,7 +5,7 @@ import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 const MultiPoint: LvtNodeDef = {
   _id: "MultiPoint",
   ui: {
-    title: "MultiPoint",
+    title: "GeoJsonMultiPoint",
     description: "https://turfjs.org/docs/#point",
   },
   portsIn: [

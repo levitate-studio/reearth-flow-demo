@@ -5,7 +5,7 @@ import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 const RandomPoint: LvtNodeDef = {
   _id: "RandomPoint",
   ui: {
-    title: "Random Point",
+    title: "GeoJsonRandomPoint",
     description: "http://turfjs.org/docs/#randomPoint",
   },
   portsIn: [

@@ -4,7 +4,7 @@ import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 const HexToRGBA: LvtNodeDef = {
   _id: "HexToRGBA",
   ui: {
-    title: "Hex To RGBA",
+    title: "HexToRGBA",
     description: "",
   },
   portsIn: [

@@ -3,7 +3,7 @@ import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 const GetIndex: LvtNodeDef = {
   _id: "GetIndex",
   ui: {
-    title: "Get Index",
+    title: "GetIndex",
     description: "",
   },
   portsIn: [

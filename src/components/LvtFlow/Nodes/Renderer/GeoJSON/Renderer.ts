@@ -4,7 +4,7 @@ const Renderer: LvtNodeDef = {
   _id: "Renderer",
   isRenderer: true,
   ui: {
-    title: "GeoJSON Renderer",
+    title: "GeoJsonRenderer",
     description: "",
   },
   portsIn: [

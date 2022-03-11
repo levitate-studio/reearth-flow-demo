@@ -3,7 +3,7 @@ import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 const SelectColumn: LvtNodeDef = {
   _id: "SeclectColumn",
   ui: {
-    title: "Select Column",
+    title: "SelectColumn",
     description: "",
   },
   portsIn: [

@@ -2,7 +2,7 @@ import { spreadData } from "../../../Core/CommFuc";
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
 const AsNumber: LvtNodeDef = {
-  _id: "As Number",
+  _id: "AsNumber",
   ui: {
     title: "AsNumber",
     description: "",

@@ -2,9 +2,9 @@ import { spreadData } from "../../../Core/CommFuc";
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
 const Points: LvtNodeDef = {
-  _id: "CZML Points",
+  _id: "Points",
   ui: {
-    title: "Points",
+    title: "CzmlPoints",
     description: "",
   },
   portsIn: [
