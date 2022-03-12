@@ -27,15 +27,17 @@ export interface LvtNodeDef {
 }
 
 export class LvtNode {
-  id: string;
+  id: string | undefined;
   nodeId: string | undefined;
   category: string | undefined;
   ui: any;
   isRenderer?: boolean;
-  data: {
-    portsIn: Array<LvtPort>;
-    portsOut: Array<LvtPort>;
-  };
+  data:
+    | {
+        portsIn: Array<LvtPort>;
+        portsOut: Array<LvtPort>;
+      }
+    | undefined;
   update: any;
   rule: any;
 
@@ -57,34 +59,38 @@ export class LvtNode {
 
   constructor(options: LvtNodeOptions) {
     const nodeDef = Nodes.nodeDefs[options.nodeId];
-    //
-    this.id = options.id ? options.id : idCreator.getId().toString();
-    this.nodeId = nodeDef.nodeId;
-    this.category = nodeDef.category;
-    //
-    this.ui = {
-      nodeType: "basicNode",
-      ...nodeDef.ui,
-    };
-    //
-    this.update = nodeDef.update;
-    this.rule = nodeDef.rule;
-    this.data = {
-      portsIn: LvtNode.createPorts({
-        portsDef: nodeDef.portsIn,
-        portType: "input",
-        portValue: options.data?.portsIn,
-      }),
-      portsOut: LvtNode.createPorts({
-        portsDef: nodeDef.portsOut,
-        portType: "output",
-      }),
-    };
-    this.isRenderer = nodeDef.isRenderer;
-    //
-    // auto update once if is imported
-    if (options.id) {
-      this.update?.(this);
+    if (!nodeDef) {
+      console.warn("NodeDef not found: " + options.nodeId);
+    } else {
+      //
+      this.id = options.id ? options.id : idCreator.getId().toString();
+      this.nodeId = nodeDef.nodeId;
+      this.category = nodeDef.category;
+      //
+      this.ui = {
+        nodeType: "basicNode",
+        ...nodeDef.ui,
+      };
+      //
+      this.update = nodeDef.update;
+      this.rule = nodeDef.rule;
+      this.data = {
+        portsIn: LvtNode.createPorts({
+          portsDef: nodeDef.portsIn,
+          portType: "input",
+          portValue: options.data?.portsIn,
+        }),
+        portsOut: LvtNode.createPorts({
+          portsDef: nodeDef.portsOut,
+          portType: "output",
+        }),
+      };
+      this.isRenderer = nodeDef.isRenderer;
+      //
+      // auto update once if is imported
+      if (options.id) {
+        this.update?.(this);
+      }
     }
   }
 
@@ -92,10 +98,10 @@ export class LvtNode {
   // ports methods
   // =======================================
   getPortInByName(portName: string) {
-    return this.data.portsIn.find((p) => p.name === portName);
+    return this.data?.portsIn.find((p) => p.name === portName);
   }
   getPortOutByName(portName: string) {
-    return this.data.portsOut.find((p) => p.name === portName);
+    return this.data?.portsOut.find((p) => p.name === portName);
   }
 
   // =======================================
@@ -103,7 +109,7 @@ export class LvtNode {
   // =======================================
   getAllEdges() {
     const edges: any = [];
-    this.data.portsIn?.forEach((port) => {
+    this.data?.portsIn?.forEach((port) => {
       if (port.source) {
         edges.push({
           source: port.source.id,
@@ -113,7 +119,7 @@ export class LvtNode {
         });
       }
     });
-    this.data.portsOut?.forEach((port) => {
+    this.data?.portsOut?.forEach((port) => {
       if (port.targets && port.targets.length > 0) {
         port.targets?.forEach((target) => {
           edges.push({

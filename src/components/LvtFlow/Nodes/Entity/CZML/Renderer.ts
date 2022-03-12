@@ -4,13 +4,13 @@ const Renderer: LvtNodeDef = {
   _id: "Renderer",
   isRenderer: true,
   ui: {
-    title: "GeoJsonRenderer",
+    title: "Renderer",
     description: "",
   },
   portsIn: [
     {
-      name: "geoJSON",
-      dataType: "object",
+      name: "CZML",
+      dataType: "objectArray",
     },
   ],
   portsOut: [
@@ -25,12 +25,12 @@ const Renderer: LvtNodeDef = {
   ],
   rule: (a: any) => {
     return {
-      dataType: "GeoJSON",
+      dataType: "CZML",
       data: a,
     };
   },
   update: (node: LvtNode) => {
-    const geoJSON = node.getPortInByName("geoJSON")?.getValue();
+    const geoJSON = node.getPortInByName("CZML")?.getValue();
     node.getPortOutByName("renderData")?.setValue(node.rule(geoJSON));
     return node;
   },

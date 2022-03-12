@@ -3,13 +3,23 @@ import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 const Document: LvtNodeDef = {
   _id: "Document",
   ui: {
-    title: "CzmlDocument",
+    title: "Document",
     description: "",
   },
   portsIn: [
     {
       name: "objects",
       dataType: "objectArray",
+    },
+    {
+      name: "name",
+      dataType: "string",
+      defaultValue: "dataflow",
+    },
+    {
+      name: "version",
+      dataType: "string",
+      defaultValue: "1.0",
     },
   ],
   portsOut: [
@@ -18,23 +28,31 @@ const Document: LvtNodeDef = {
       dataType: "objectArray",
     },
   ],
-  rule: (a: any) => {
-    if (typeof a === "object") {
+  rule: (objects: any, name: any, version: any) => {
+    if (typeof objects === "object") {
       return [
         {
           id: "document",
-          name: "data-flow",
-          version: "1.0",
+          name,
+          version,
         },
-        ...a,
+        ...objects,
       ];
     } else {
-      return [];
+      return [
+        {
+          id: "document",
+          name,
+          version,
+        },
+      ];
     }
   },
   update: (node: LvtNode) => {
     const objects = node.getPortInByName("objects")?.getValue();
-    node.getPortOutByName("CZML")?.setValue(node.rule(objects));
+    const name = node.getPortInByName("name")?.getValue();
+    const version = node.getPortInByName("version")?.getValue();
+    node.getPortOutByName("CZML")?.setValue(node.rule(objects, name, version));
     return node;
   },
 };

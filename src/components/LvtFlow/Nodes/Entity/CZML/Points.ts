@@ -4,7 +4,7 @@ import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 const Points: LvtNodeDef = {
   _id: "Points",
   ui: {
-    title: "CzmlPoints",
+    title: "Points",
     description: "",
   },
   portsIn: [

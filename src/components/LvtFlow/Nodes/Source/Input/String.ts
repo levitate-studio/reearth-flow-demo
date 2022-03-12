@@ -1,17 +1,16 @@
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
-const Number: LvtNodeDef = {
-  _id: "Number",
+const String: LvtNodeDef = {
+  _id: "String",
   ui: {
-    title: "Number",
+    title: "String",
     description: "",
   },
   portsIn: [
     {
       name: "input",
-      dataType: "number",
+      dataType: "string",
       ui: {
-        component: "NumberInput",
         hidden: true,
       },
     },
@@ -19,13 +18,13 @@ const Number: LvtNodeDef = {
   portsOut: [
     {
       name: "result",
-      dataType: "number",
+      dataType: "string",
       ui: {
         component: "PureDisplay",
       },
     },
   ],
-  rule: (a: number) => {
+  rule: (a: string) => {
     return a;
   },
   update: (node: LvtNode) => {
@@ -34,4 +33,4 @@ const Number: LvtNodeDef = {
   },
 };
 
-export default Number;
+export default String;

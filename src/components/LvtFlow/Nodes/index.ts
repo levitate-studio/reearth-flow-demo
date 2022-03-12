@@ -2,11 +2,10 @@ import { LvtNodeDef } from "../Core/LvtNode";
 
 import Entity from "./Entity";
 import Ops from "./Ops";
-import Renderer from "./Renderer";
 import Source from "./Source";
 
 const nodes = {
-  children: [Source, Ops, Entity, Renderer],
+  children: [Source, Ops, Entity],
 };
 
 // =======================================

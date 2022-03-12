@@ -24,6 +24,11 @@ const nodeTypes = {
 };
 
 let lastClickTime = 0;
+// const pressedKeys: any = {
+//   Control: false,
+//   C: false,
+//   V: false,
+// };
 
 const DataFlowCanvas = ({ cref }: any) => {
   const reactFlowWrapper = useRef<HTMLDivElement>(null);
@@ -77,7 +82,7 @@ const DataFlowCanvas = ({ cref }: any) => {
       });
       const node = lvtFlow.addNode({ nodeId });
       if (node) {
-        setElements((es) =>
+        setElements((es: any) =>
           es.concat({
             id: node.id,
             type: node.ui.nodeType,
@@ -153,6 +158,29 @@ const DataFlowCanvas = ({ cref }: any) => {
     }
   };
 
+  // =======================================
+  // Event: onKeyDown
+  // =======================================
+  // const onKeyDown = (event: KeyboardEvent) => {
+  //   pressedKeys.Control = event.key === "Control" ? true : pressedKeys.Control;
+  //   pressedKeys.C = event.key === "c" ? true : pressedKeys.C;
+  //   pressedKeys.V = event.key === "v" ? true : pressedKeys.V;
+  //   if (pressedKeys.Control && pressedKeys.C) {
+  //     console.log("ctrl+c");
+  //   }
+  //   console.log("down", event.key, pressedKeys.Control, pressedKeys.C);
+  // };
+
+  // =======================================
+  // Event: onKeyUp
+  // =======================================
+  // const onKeyUp = (event: KeyboardEvent) => {
+  //   pressedKeys.Control = event.key === "Control" ? false : pressedKeys.Control;
+  //   pressedKeys.C = event.key === "c" ? false : pressedKeys.C;
+  //   pressedKeys.V = event.key === "v" ? false : pressedKeys.V;
+  //   console.log("up", event.key, pressedKeys.Control, pressedKeys.C);
+  // };
+
   return (
     <div className="df-canvas">
       <ReactFlowProvider>
@@ -172,6 +200,10 @@ const DataFlowCanvas = ({ cref }: any) => {
             nodeTypes={nodeTypes}
             deleteKeyCode={46}
             onPaneClick={onPaneClick}
+            tabIndex={0}
+            // onKeyDown={onKeyDown}
+            // onKeyUp={onKeyUp}
+            zoomOnDoubleClick={false}
           >
             <Controls />
           </ReactFlow>

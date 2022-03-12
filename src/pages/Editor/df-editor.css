@@ -126,6 +126,22 @@ category color
 } */
 
 /* -------------------------
+node color 
+----------------------------*/
+/* .nodecolor-Ops-Number{
+  background-color: rgb(71, 84, 99);
+}
+.nodecolor-Ops-String{
+  background-color: rgb(71, 99, 79);
+} */
+.nodecolor-Entity-CZML{
+  background-color: rgb(107, 81, 47);
+}
+.nodecolor-Entity-GeoJSON{
+  background-color: rgb(110, 60, 54);
+}
+
+/* -------------------------
 port color 
 ----------------------------*/
 .portcolor-number,
@@ -139,7 +155,8 @@ port color
   background: var(--theme-color-green);
 }
 .portcolor-object,
-.portcolor-objectArray{
+.portcolor-objectArray,
+.portcolor-objectSpread{
   background: var(--theme-color-orange);
 }
 

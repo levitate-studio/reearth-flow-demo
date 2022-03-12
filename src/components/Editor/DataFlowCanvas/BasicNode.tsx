@@ -37,9 +37,17 @@ const BasicNode = ({ data }: any) => {
     ));
   }
   return (
-    <div className={`node catcolor-${nodeDef.category?.replace(".", "-")}`}>
+    <div className="node">
       <div className="node-ports node-ports-top">{portsIn}</div>
-      <div className="node-title">{nodeDef.ui.title}</div>
+      <div
+        className={`node-content nodecolor-${nodeDef.category?.replace(
+          ".",
+          "-"
+        )}`}
+      >
+        <div className="node-title">{nodeDef.ui.title}</div>
+        <div className="node-cover"></div>
+      </div>
       <div className="node-ports node-ports-bottom">{portsOut}</div>
     </div>
   );

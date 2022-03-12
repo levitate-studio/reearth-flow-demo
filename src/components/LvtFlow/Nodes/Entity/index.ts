@@ -1,8 +1,8 @@
-import CSV from "../Entity/CSV";
-import CZML from "../Entity/CZML";
-import GeoJSONTurf from "../Entity/GeoJSONTurf";
+import CSV from "./CSV";
+import CZML from "./CZML";
+import GeoJSON from "./GeoJSON";
 
 export default {
   _id: "Entity",
-  children: [CSV, CZML, GeoJSONTurf],
+  children: [CSV, CZML, GeoJSON],
 };
