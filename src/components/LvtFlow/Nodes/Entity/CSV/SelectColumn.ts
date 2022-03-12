@@ -1,3 +1,4 @@
+import { updateNode } from "../../../Core/CommFuc";
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
 const SelectColumn: LvtNodeDef = {
@@ -37,9 +38,7 @@ const SelectColumn: LvtNodeDef = {
     return _temp;
   },
   update: (node: LvtNode) => {
-    const data = node.getPortInByName("csvData")?.getValue();
-    const index = node.getPortInByName("column")?.getValue();
-    node.getPortOutByName("result")?.setValue(node.rule(data, index));
+    updateNode(node, "result", ["csvData", "column"]);
     return node;
   },
 };

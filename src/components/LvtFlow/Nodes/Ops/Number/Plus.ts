@@ -1,9 +1,10 @@
+import { updateNode } from "../../../Core/CommFuc";
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
-const Add: LvtNodeDef = {
-  _id: "Add",
+const Plus: LvtNodeDef = {
+  _id: "Plus",
   ui: {
-    title: "Add",
+    title: "Plus",
     description: "",
   },
   portsIn: [
@@ -29,11 +30,9 @@ const Add: LvtNodeDef = {
     return a + b;
   },
   update: (node: LvtNode) => {
-    const n0 = node.getPortInByName("number0")?.getValue();
-    const n1 = node.getPortInByName("number1")?.getValue();
-    node.getPortOutByName("result")?.setValue(node.rule(n0, n1));
+    updateNode(node, "result", ["number0", "number1"]);
     return node;
   },
 };
 
-export default Add;
+export default Plus;

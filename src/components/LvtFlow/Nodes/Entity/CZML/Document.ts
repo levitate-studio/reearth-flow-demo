@@ -1,3 +1,4 @@
+import { updateNode } from "../../../Core/CommFuc";
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
 const Document: LvtNodeDef = {
@@ -49,10 +50,7 @@ const Document: LvtNodeDef = {
     }
   },
   update: (node: LvtNode) => {
-    const objects = node.getPortInByName("objects")?.getValue();
-    const name = node.getPortInByName("name")?.getValue();
-    const version = node.getPortInByName("version")?.getValue();
-    node.getPortOutByName("CZML")?.setValue(node.rule(objects, name, version));
+    updateNode(node, "CZML", ["objects", "name", "version"]);
     return node;
   },
 };

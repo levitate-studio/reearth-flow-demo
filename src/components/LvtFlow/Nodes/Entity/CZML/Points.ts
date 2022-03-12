@@ -1,4 +1,4 @@
-import { spreadData } from "../../../Core/CommFuc";
+import { spreadData, updateNode } from "../../../Core/CommFuc";
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
 const Points: LvtNodeDef = {
@@ -74,15 +74,13 @@ const Points: LvtNodeDef = {
     return _temp;
   },
   update: (node: LvtNode) => {
-    const id = node.getPortInByName("id")?.getValue();
-    const name = node.getPortInByName("name")?.getValue();
-    const description = node.getPortInByName("description")?.getValue();
-    const position = node.getPortInByName("position")?.getValue();
-    const point = node.getPortInByName("point")?.getValue();
-
-    node
-      .getPortOutByName("points")
-      ?.setValue(node.rule(id, name, description, position, point));
+    updateNode(node, "points", [
+      "id",
+      "name",
+      "description",
+      "position",
+      "point",
+    ]);
     return node;
   },
 };

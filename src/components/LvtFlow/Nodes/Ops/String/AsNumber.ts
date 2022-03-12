@@ -1,4 +1,4 @@
-import { spreadData } from "../../../Core/CommFuc";
+import { spreadData, updateNode } from "../../../Core/CommFuc";
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
 const AsNumber: LvtNodeDef = {
@@ -28,9 +28,7 @@ const AsNumber: LvtNodeDef = {
     return _temp;
   },
   update: (node: LvtNode) => {
-    const s = node.getPortInByName("string")?.getValue();
-
-    node.getPortOutByName("number")?.setValue(node.rule(s));
+    updateNode(node, "number", ["string"]);
     return node;
   },
 };

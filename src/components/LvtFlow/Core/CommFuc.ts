@@ -22,3 +22,11 @@ export const idCreator = createIdFucCreator();
 export const spreadData = (data: any) => {
   return Array.isArray(data) ? data : [data];
 };
+
+export const updateNode = (node: any, output: string, inputs: string[]) => {
+  const inputValues: any = [];
+  inputs.forEach((input) => {
+    inputValues.push(node.getPortInByName(input)?.getValue());
+  });
+  node.getPortOutByName(output)?.setValue(node.rule.apply(null, inputValues));
+};

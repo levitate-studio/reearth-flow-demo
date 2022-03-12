@@ -1,4 +1,4 @@
-import { spreadData } from "../../../Core/CommFuc";
+import { spreadData, updateNode } from "../../../Core/CommFuc";
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
 const PointGraphic: LvtNodeDef = {
@@ -38,12 +38,7 @@ const PointGraphic: LvtNodeDef = {
     return _temp;
   },
   update: (node: LvtNode) => {
-    const color = node.getPortInByName("color")?.getValue();
-    const pixelSize = node.getPortInByName("pixelSize")?.getValue();
-
-    node
-      .getPortOutByName("pointGraphic")
-      ?.setValue(node.rule(color, pixelSize));
+    updateNode(node, "pointGraphic", ["color", "pixelSize"]);
     return node;
   },
 };

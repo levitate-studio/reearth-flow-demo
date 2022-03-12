@@ -1,4 +1,4 @@
-import { spreadData } from "../../../Core/CommFuc";
+import { spreadData, updateNode } from "../../../Core/CommFuc";
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
 const RGBA: LvtNodeDef = {
@@ -51,12 +51,7 @@ const RGBA: LvtNodeDef = {
     return _temp;
   },
   update: (node: LvtNode) => {
-    const R = node.getPortInByName("R")?.getValue();
-    const G = node.getPortInByName("G")?.getValue();
-    const B = node.getPortInByName("B")?.getValue();
-    const A = node.getPortInByName("A")?.getValue();
-
-    node.getPortOutByName("color")?.setValue(node.rule(R, G, B, A));
+    updateNode(node, "color", ["R", "G", "B", "A"]);
     return node;
   },
 };

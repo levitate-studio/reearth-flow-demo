@@ -1,3 +1,4 @@
+import { updateNode } from "../../../Core/CommFuc";
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
 const CSV: LvtNodeDef = {
@@ -26,8 +27,7 @@ const CSV: LvtNodeDef = {
     return a;
   },
   update: (node: LvtNode) => {
-    const file = node.getPortInByName("file")?.getValue();
-    node.getPortOutByName("data")?.setValue(node.rule(file));
+    updateNode(node, "data", ["file"]);
     return node;
   },
 };

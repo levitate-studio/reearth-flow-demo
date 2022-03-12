@@ -1,3 +1,4 @@
+import { updateNode } from "../../../Core/CommFuc";
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
 const Vector2: LvtNodeDef = {
@@ -29,9 +30,7 @@ const Vector2: LvtNodeDef = {
     return [a, b];
   },
   update: (node: LvtNode) => {
-    const x = node.getPortInByName("x")?.getValue();
-    const y = node.getPortInByName("y")?.getValue();
-    node.getPortOutByName("vector2")?.setValue(node.rule(x, y));
+    updateNode(node, "vector2", ["x", "y"]);
     return node;
   },
 };

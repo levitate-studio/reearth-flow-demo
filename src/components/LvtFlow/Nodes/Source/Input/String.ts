@@ -1,3 +1,4 @@
+import { updateNode } from "../../../Core/CommFuc";
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
 const String: LvtNodeDef = {
@@ -28,8 +29,8 @@ const String: LvtNodeDef = {
     return a;
   },
   update: (node: LvtNode) => {
-    const input = node.getPortInByName("input")?.getValue();
-    node.getPortOutByName("result")?.setValue(node.rule(input));
+    updateNode(node, "result", ["input"]);
+    return node;
   },
 };
 

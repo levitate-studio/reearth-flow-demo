@@ -1,3 +1,4 @@
+import { updateNode } from "../../../Core/CommFuc";
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
 const Renderer: LvtNodeDef = {
@@ -30,8 +31,7 @@ const Renderer: LvtNodeDef = {
     };
   },
   update: (node: LvtNode) => {
-    const geoJSON = node.getPortInByName("CZML")?.getValue();
-    node.getPortOutByName("renderData")?.setValue(node.rule(geoJSON));
+    updateNode(node, "renderData", ["CZML"]);
     return node;
   },
 };
