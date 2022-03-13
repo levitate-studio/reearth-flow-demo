@@ -1,3 +1,26 @@
 .df-toolbar-panel{
   border-bottom: 1px solid var(--block-border-color);
 }
+
+.df-toolbar-panel .menu{
+  position: absolute;
+  background-color: var(--block-bg-color);
+  z-index: 100;
+  top: 26px;
+  left: 0;
+  display: none;
+}
+
+.df-block-title-tab:hover .menu{
+  display: block;
+}
+
+.df-toolbar-panel .menu-item{
+  padding: 6px 12px;
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.df-toolbar-panel .menu-item:hover{
+  color: var(--theme-color-orange);
+}

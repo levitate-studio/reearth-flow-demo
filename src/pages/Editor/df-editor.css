@@ -67,6 +67,7 @@ block
 tab 
 ----------------------------*/
 .df-block-title-tab{
+  position: relative;
   padding: 7px 10px;
   color: #fff;
 }

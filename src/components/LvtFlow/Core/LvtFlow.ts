@@ -222,7 +222,7 @@ export class LvtFlow {
   // renderer
   // =======================================
   setRenderer(node: LvtNode) {
-    const rendererPort = node.data.portsOut.find((n) => n.isRenderSource);
+    const rendererPort = node?.data?.portsOut.find((n) => n.isRenderSource);
     if (rendererPort) {
       (this.renderData as any) = rendererPort.value;
       this.rendererId = node.id;

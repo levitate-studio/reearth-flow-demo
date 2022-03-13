@@ -6,7 +6,6 @@ import OutputPanel from "../../components/Editor/OutputPanel";
 import PropertyPanel from "../../components/Editor/PropertyPanel";
 import ToolbarPanel from "../../components/Editor/ToolbarPanel";
 import LvtFlow from "../../components/LvtFlow";
-import Demos from "../../demos";
 
 import "./df-editor.css";
 
@@ -36,13 +35,20 @@ const Editor: React.FC<Props> = () => {
     lvtFlow.clearData();
     (dataFlowCanvasRef.current as any).clearData();
   };
-  // import
-  const importData = (demoName: string) => {
-    const data = (Demos as any)[demoName];
-    if (data) {
-      lvtFlow.importData(data.lvtFlow);
-      (dataFlowCanvasRef.current as any).importData(data.canvas);
-    }
+  // load
+  const loadData = (url: string) => {
+    const req = new XMLHttpRequest();
+    req.open("get", url);
+    req.send(null);
+    req.onload = () => {
+      if (req.status === 200) {
+        const data = JSON.parse(req.responseText);
+        if (data) {
+          lvtFlow.importData(data.lvtFlow);
+          (dataFlowCanvasRef.current as any).importData(data.canvas);
+        }
+      }
+    };
   };
   //
   return (
@@ -52,7 +58,7 @@ const Editor: React.FC<Props> = () => {
           <ToolbarPanel
             exportData={exportData}
             clearData={clearData}
-            importData={importData}
+            loadData={loadData}
           />
           <DataFlowCanvas cref={dataFlowCanvasRef} />
         </div>
