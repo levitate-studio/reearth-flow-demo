@@ -1,5 +1,5 @@
 import * as Cesium from "cesium";
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 
 import { LvtFlowContext } from "../../../pages/Editor/index";
 import "cesium/Build/Cesium/Widgets/widgets.css";
@@ -7,10 +7,14 @@ import "cesium/Build/Cesium/Widgets/widgets.css";
 let viewer: any;
 
 const CesiumMap = () => {
+  // update control
+  const [autoUpdate, setAutoUpdate] = useState(true);
   const lvtFlow = useContext(LvtFlowContext);
-  const renderData = lvtFlow.renderData?.v;
-  if (viewer) {
-    if (renderData) {
+
+  const updateCesium = (force = false) => {
+    console.log("update cesium");
+    const renderData = lvtFlow.renderData?.v;
+    if (renderData && (autoUpdate || force)) {
       let dataSourcePromise;
       switch (renderData.dataType) {
         case "CZML":
@@ -26,6 +30,10 @@ const CesiumMap = () => {
     } else {
       viewer.dataSources.removeAll();
     }
+  };
+
+  if (autoUpdate) {
+    updateCesium();
   }
 
   useEffect(() => {
@@ -37,7 +45,30 @@ const CesiumMap = () => {
     });
   }, []);
 
-  return <div id="cesium-container"></div>;
+  return (
+    <>
+      <div id="cesium-container"></div>
+      <div className="cesium-ui">
+        <div
+          className="cesium-ui-ele button"
+          onClick={() => {
+            setAutoUpdate(!autoUpdate);
+          }}
+        >
+          AUTO UPDATE:
+          <span className="status">{autoUpdate ? "ON" : "OFF"}</span>
+        </div>
+        <div
+          className="cesium-ui-ele button"
+          onClick={() => {
+            updateCesium(true);
+          }}
+        >
+          UPDATE
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default CesiumMap;

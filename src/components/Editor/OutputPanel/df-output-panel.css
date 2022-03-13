@@ -17,6 +17,9 @@ output panel
   padding: 0;
 }
 
+/* -------------------------
+json viewer
+----------------------------*/
 .react-json-view{
   background: #1a1a1a !important;
   font-size: 13px;
@@ -24,7 +27,37 @@ output panel
   padding: 10px;
 }
 
+/* -------------------------
+cesium
+----------------------------*/
 #cesium-container{
   width: 100%;
   height: 100%;
+}
+
+.cesium-ui{
+  position: absolute;
+  z-index: 999;
+  padding: 6px;
+  opacity: .5;
+}
+.cesium-ui:hover{
+  opacity: 1;
+}
+
+.cesium-ui-ele.button{
+  padding: 6px 12px;
+  font-weight: bold;
+  background-color: #000;
+  margin-bottom: 2px;
+  cursor: pointer;
+}
+.cesium-ui-ele.button:hover{
+  background-color: var(--theme-color-orange);
+  color: #000;
+}
+.cesium-ui-ele .status{
+  display: inline-block;
+  padding: 0 5px;
+  
 }
