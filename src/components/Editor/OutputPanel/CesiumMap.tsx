@@ -12,23 +12,24 @@ const CesiumMap = () => {
   const lvtFlow = useContext(LvtFlowContext);
 
   const updateCesium = (force = false) => {
-    console.log("update cesium");
-    const renderData = lvtFlow.renderData?.v;
-    if (renderData && (autoUpdate || force)) {
-      let dataSourcePromise;
-      switch (renderData.dataType) {
-        case "CZML":
-        default:
-          dataSourcePromise = Cesium.CzmlDataSource.load(renderData.data);
-          break;
-        case "GeoJSON":
-          dataSourcePromise = Cesium.GeoJsonDataSource.load(renderData.data);
-          break;
+    if (viewer) {
+      const renderData = lvtFlow.renderData?.v;
+      if (renderData && (autoUpdate || force)) {
+        let dataSourcePromise;
+        switch (renderData.dataType) {
+          case "CZML":
+          default:
+            dataSourcePromise = Cesium.CzmlDataSource.load(renderData.data);
+            break;
+          case "GeoJSON":
+            dataSourcePromise = Cesium.GeoJsonDataSource.load(renderData.data);
+            break;
+        }
+        viewer.dataSources.removeAll();
+        viewer.dataSources.add(dataSourcePromise);
+      } else {
+        viewer.dataSources.removeAll();
       }
-      viewer.dataSources.removeAll();
-      viewer.dataSources.add(dataSourcePromise);
-    } else {
-      viewer.dataSources.removeAll();
     }
   };
 
