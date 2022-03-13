@@ -7,33 +7,36 @@ const BasicNode = ({ data }: any) => {
   let portsIn: JSX.Element[] = [];
   if (nodeDef.portsIn.length > 0) {
     portsIn = nodeDef.portsIn.map((port: any, index: number) => (
-      <Handle
-        key={`in-${index}`}
-        type="target"
-        id={port.name}
-        // isConnectable={isConnectable}
-        position={Position.Top}
-        isValidConnection={data.isValidConnection}
-        className={`portcolor-${port.dataType} ${
-          port.ui?.hidden && "port-hidden"
-        }`}
-      />
+      <div className="port-wrapper in" key={`in-${index}`}>
+        <Handle
+          type="target"
+          id={port.name}
+          position={Position.Top}
+          isValidConnection={data.isValidConnection}
+          className={`portcolor-${port.dataType} ${
+            port.ui?.hidden && "port-hidden"
+          }`}
+        />
+        <div className="port-tip">{port.name}</div>
+      </div>
     ));
   }
   let portsOut: JSX.Element[] = [];
   if (nodeDef.portsOut.length > 0) {
     portsOut = nodeDef.portsOut.map((port: any, index: number) => (
-      <Handle
-        key={`out-${index}`}
-        type="source"
-        id={port.name}
-        // isConnectable={isConnectable}
-        position={Position.Bottom}
-        isValidConnection={data.isValidConnection}
-        className={`portcolor-${port.dataType} ${
-          port.ui?.hidden && "port-hidden"
-        }`}
-      />
+      <div className="port-wrapper out" key={`out-${index}`}>
+        <Handle
+          key={`out-${index}`}
+          type="source"
+          id={port.name}
+          position={Position.Bottom}
+          isValidConnection={data.isValidConnection}
+          className={`portcolor-${port.dataType} ${
+            port.ui?.hidden && "port-hidden"
+          }`}
+        />
+        <div className="port-tip">{port.name}</div>
+      </div>
     ));
   }
   return (

@@ -76,3 +76,14 @@
 .react-flow__handle:last-child{
   margin-right: 0;
 }
+
+.port-tip{
+  position: absolute;
+  z-index: 3;
+  font-size: 12px;
+  background-color: var(--block-bg-color);
+  display: none;
+}
+.port-wrapper:hover .port-tip{
+  display: block;
+}
