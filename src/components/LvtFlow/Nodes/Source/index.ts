@@ -1,8 +1,8 @@
-import Demo from "./Demo";
 import File from "./File";
 import Input from "./Input";
+import Sample from "./Sample";
 
 export default {
   _id: "Source",
-  children: [Input, Demo, File],
+  children: [Input, Sample, File],
 };

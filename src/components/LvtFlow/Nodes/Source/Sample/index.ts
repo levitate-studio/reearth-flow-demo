@@ -3,6 +3,6 @@ import CZMLPoint from "./CZMLPoint";
 import CZMLPoints from "./CZMLPoints";
 
 export default {
-  _id: "Demo",
+  _id: "Sample",
   children: [CSV, CZMLPoint, CZMLPoints],
 };
