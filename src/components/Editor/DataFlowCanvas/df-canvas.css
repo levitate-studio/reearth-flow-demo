@@ -69,12 +69,7 @@
   top: 0;
   position: relative;
   transform: none;
-  margin-right: 2px;
   flex-shrink: 0;
-}
-
-.react-flow__handle:last-child{
-  margin-right: 0;
 }
 
 .port-tip{
@@ -83,6 +78,12 @@
   font-size: 12px;
   background-color: var(--block-bg-color);
   display: none;
+}
+.port-wrapper{
+  margin-right: 2px;
+}
+.port-wrapper:last-child{
+  margin-right: 0;
 }
 .port-wrapper:hover .port-tip{
   display: block;
