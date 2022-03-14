@@ -200,7 +200,6 @@ const DataFlowCanvas = ({ cref }: any) => {
             nodeTypes={nodeTypes}
             deleteKeyCode={46}
             onPaneClick={onPaneClick}
-            tabIndex={0}
             // onKeyDown={onKeyDown}
             // onKeyUp={onKeyUp}
             zoomOnDoubleClick={false}
