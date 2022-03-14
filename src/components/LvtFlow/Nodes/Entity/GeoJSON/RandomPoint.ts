@@ -12,6 +12,7 @@ const RandomPoint: LvtNodeDef = {
     {
       name: "count",
       dataType: "number",
+      defaultValue: 1,
       ui: {
         description: "how many geometries will be generated",
       },
@@ -28,7 +29,7 @@ const RandomPoint: LvtNodeDef = {
     {
       name: "points",
       dataType: "object",
-      defaultValue: randomPoint(0),
+      defaultValue: randomPoint(1),
       ui: {
         description: "GeoJSON FeatureCollection of points",
       },
@@ -38,7 +39,7 @@ const RandomPoint: LvtNodeDef = {
   update: (node: LvtNode) => {
     const count = node.getPortInByName("count")?.getValue();
     const bbox = node.getPortInByName("bbox")?.getValue();
-    const options = bbox.length > 0 ? { bbox } : undefined;
+    const options = bbox?.length > 0 ? { bbox } : undefined;
     node.getPortOutByName("points")?.setValue(node.rule(count, options));
   },
 };

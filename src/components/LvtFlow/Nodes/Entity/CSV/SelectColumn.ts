@@ -15,6 +15,7 @@ const SelectColumn: LvtNodeDef = {
     {
       name: "column",
       dataType: "number",
+      defaultValue: 0,
       ui: {
         component: "Select",
         componentOptions: {
@@ -32,8 +33,10 @@ const SelectColumn: LvtNodeDef = {
   ],
   rule: (a: any, b: number) => {
     const _temp = [];
-    for (let i = 1; i < a.length; i += 1) {
-      _temp.push(a[i][b]);
+    if (a) {
+      for (let i = 1; i < a.length; i += 1) {
+        _temp.push(a[i][b]);
+      }
     }
     return _temp;
   },

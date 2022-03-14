@@ -15,6 +15,7 @@ const HexToRGBA: LvtNodeDef = {
     {
       name: "alpha",
       dataType: "numberArray",
+      defaultValue: 255,
     },
   ],
   portsOut: [
@@ -26,19 +27,24 @@ const HexToRGBA: LvtNodeDef = {
   rule: (hex: any, alpha: any) => {
     const _hex = spreadData(hex);
     const _alpha = spreadData(alpha);
-
-    const max = Math.max(_hex.length, _alpha.length);
+    const spreadLengths = [];
+    if (_hex) spreadLengths.push(_hex.length);
+    if (_alpha) spreadLengths.push(_alpha.length);
+    const max = Math.max(...spreadLengths);
     const _temp = [];
-    for (let i = 0; i < max; i += 1) {
-      _temp.push({
-        rgba: [
-          parseInt("0x" + _hex[i % _hex.length].slice(1, 3)),
-          parseInt("0x" + _hex[i % _hex.length].slice(3, 5)),
-          parseInt("0x" + _hex[i % _hex.length].slice(5, 7)),
-          _alpha[i % _alpha.length],
-        ],
-      });
+    if (_hex) {
+      for (let i = 0; i < max; i += 1) {
+        _temp.push({
+          rgba: [
+            parseInt("0x" + _hex[i % _hex.length].slice(1, 3)),
+            parseInt("0x" + _hex[i % _hex.length].slice(3, 5)),
+            parseInt("0x" + _hex[i % _hex.length].slice(5, 7)),
+            _alpha[i % _alpha.length],
+          ],
+        });
+      }
     }
+
     return _temp;
   },
   update: (node: LvtNode) => {

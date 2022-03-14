@@ -42,7 +42,12 @@ const Editor: React.FC<Props> = () => {
     req.send(null);
     req.onload = () => {
       if (req.status === 200) {
-        const data = JSON.parse(req.responseText);
+        let data;
+        try {
+          data = JSON.parse(req.responseText);
+        } catch (error) {
+          console.warn("Request JSON is not valid.");
+        }
         if (data) {
           lvtFlow.importData(data.lvtFlow);
           (dataFlowCanvasRef.current as any).importData(data.canvas);

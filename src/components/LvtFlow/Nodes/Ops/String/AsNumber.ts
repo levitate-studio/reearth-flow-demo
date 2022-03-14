@@ -22,8 +22,10 @@ const AsNumber: LvtNodeDef = {
   rule: (s: any) => {
     const _s = spreadData(s);
     const _temp = [];
-    for (let i = 0; i < _s.length; i += 1) {
-      _temp.push(Number(_s[i]));
+    if (_s) {
+      for (let i = 0; i < _s.length; i += 1) {
+        _temp.push(Number(_s[i]));
+      }
     }
     return _temp;
   },

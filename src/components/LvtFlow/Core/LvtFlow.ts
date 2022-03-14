@@ -320,6 +320,7 @@ export class LvtFlow {
         this.addNode(node);
       });
     }
+
     // add edges
     if (importData.edges.length > 0) {
       importData.edges.forEach((edge) => {

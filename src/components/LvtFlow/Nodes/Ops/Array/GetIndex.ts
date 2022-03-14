@@ -20,7 +20,10 @@ const GetIndex: LvtNodeDef = {
     },
   ],
   rule: (a: any) => {
-    return [...a.keys()];
+    if (a) {
+      return [...a.keys()];
+    }
+    return [];
   },
   update: (node: LvtNode) => {
     updateNode(node, "index", ["data"]);

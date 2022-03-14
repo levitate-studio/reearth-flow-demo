@@ -4,8 +4,6 @@ import Document from "./Document";
 import Merge from "./Merge";
 import Mix from "./Mix";
 import Point from "./Point";
-import PointGraphic from "./PointGraphic";
-import Points from "./Points";
 import Positions from "./Positions";
 import Renderer from "./Renderer";
 
@@ -15,12 +13,10 @@ export default {
     BasicPacket,
     Billboard,
     Point,
-    Points,
     Positions,
     Mix,
     Merge,
     Document,
-    PointGraphic,
     Renderer,
   ],
 };

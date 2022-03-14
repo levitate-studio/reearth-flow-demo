@@ -11,10 +11,12 @@ const Merge: LvtNodeDef = {
     {
       name: "objects1",
       dataType: "objectArray",
+      defaultValue: {},
     },
     {
       name: "objects2",
       dataType: "objectArray",
+      defaultValue: {},
     },
   ],
   portsOut: [

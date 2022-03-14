@@ -10,6 +10,8 @@ const ToolbarPanel = (Props: Props) => {
   const examples = [
     { title: "CZML Point", url: "/examples/czml-point.json" },
     { title: "CZML Billboard", url: "/examples/czml-billboard.json" },
+    { title: "GeoJSON MultiPoint", url: "/examples/geojson-multipoint.json" },
+    { title: "DEV Test", url: "/examples/dev-test.json" },
   ];
   const examplesList = examples.map((example, index) => (
     <li

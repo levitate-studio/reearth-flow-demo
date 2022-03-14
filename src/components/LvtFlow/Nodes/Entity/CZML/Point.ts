@@ -1,4 +1,7 @@
-import { spreadData, updateNode } from "../../../Core/CommFuc";
+import {
+  updateNode,
+  packageSpreadCompositeValues,
+} from "../../../Core/CommFuc";
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
 const Point: LvtNodeDef = {
@@ -24,20 +27,11 @@ const Point: LvtNodeDef = {
     },
   ],
   rule: (color: any, pixelSize: any) => {
-    const _color = spreadData(color);
-    const _pixelSize = spreadData(pixelSize);
-
-    const max = Math.max(_color.length, _pixelSize.length);
-    const _temp = [];
-    for (let i = 0; i < max; i += 1) {
-      _temp.push({
-        point: {
-          color: _color[i % _color.length],
-          pixelSize: _pixelSize[i % _pixelSize.length],
-        },
-      });
-    }
-    return _temp;
+    return packageSpreadCompositeValues(
+      { color, pixelSize },
+      "object",
+      "point"
+    );
   },
   update: (node: LvtNode) => {
     updateNode(node, "point", ["color", "pixelSize"]);

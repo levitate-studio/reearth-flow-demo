@@ -55,8 +55,9 @@ const MultiPoint: LvtNodeDef = {
     const bbox = node.getPortInByName("bbox")?.getValue();
     const id = node.getPortInByName("id")?.getValue();
 
-    const options: any =
-      bbox.length > 0 && id.length > 0 ? { bbox, id } : undefined;
+    const options: any = bbox || id ? {} : undefined;
+    if (bbox) options.bbox = bbox;
+    if (id) options.id = id;
 
     node
       .getPortOutByName("points")
