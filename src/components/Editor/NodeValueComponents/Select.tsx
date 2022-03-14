@@ -1,8 +1,12 @@
 const Select = ({ node, port, lvtFlow }: any) => {
   let options = [];
-  if (port.ui.componentOptions)
-    options = node.getPortInByName(port.ui.componentOptions.columnSource).value
-      .v[0];
+  if (port.ui.componentOptions) {
+    const optionsSource = node.getPortInByName(
+      port.ui.componentOptions.columnSource
+    );
+    if (optionsSource?.getValue()) options = optionsSource.getValue()[0];
+  }
+
   return (
     <select
       value={port.value.v}
