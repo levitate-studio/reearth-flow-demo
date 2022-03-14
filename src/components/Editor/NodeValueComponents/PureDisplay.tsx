@@ -1,5 +1,6 @@
 const PureDisplay = ({ port }: any) => {
-  return <div className="property-value">{port.value.v.toString()}</div>;
+  const value = port.value.v !== undefined ? port.value.v.toString() : "";
+  return <div className="property-value">{value}</div>;
 };
 
 export default PureDisplay;

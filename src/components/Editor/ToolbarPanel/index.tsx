@@ -10,6 +10,7 @@ const ToolbarPanel = (Props: Props) => {
   const examples = [
     { title: "CZML Point", url: "/examples/czml-point.json" },
     { title: "CZML Billboard", url: "/examples/czml-billboard.json" },
+    { title: "CzmlLib Point", url: "/examples/czmllib-point.json" },
     { title: "GeoJSON MultiPoint", url: "/examples/geojson-multipoint.json" },
     { title: "DEV Test", url: "/examples/dev-test.json" },
   ];

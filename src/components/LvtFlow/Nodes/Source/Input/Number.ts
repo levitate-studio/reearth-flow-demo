@@ -11,6 +11,7 @@ const Number: LvtNodeDef = {
     {
       name: "input",
       dataType: "number",
+      defaultValue: 0,
       ui: {
         component: "NumberInput",
         hidden: true,

@@ -1,10 +1,10 @@
 import { spreadData, updateNode } from "../../../Core/CommFuc";
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
-const HexToRGBA: LvtNodeDef = {
-  _id: "HexToRGBA",
+const HexToRGBAObj: LvtNodeDef = {
+  _id: "HexToRGBAObj",
   ui: {
-    title: "HexToRGBA",
+    title: "HexToRGBAObj",
     description: "",
   },
   portsIn: [
@@ -34,12 +34,14 @@ const HexToRGBA: LvtNodeDef = {
     const _temp = [];
     if (_hex) {
       for (let i = 0; i < max; i += 1) {
-        _temp.push([
-          parseInt("0x" + _hex[i % _hex.length].slice(1, 3)),
-          parseInt("0x" + _hex[i % _hex.length].slice(3, 5)),
-          parseInt("0x" + _hex[i % _hex.length].slice(5, 7)),
-          _alpha[i % _alpha.length],
-        ]);
+        _temp.push({
+          rgba: [
+            parseInt("0x" + _hex[i % _hex.length].slice(1, 3)),
+            parseInt("0x" + _hex[i % _hex.length].slice(3, 5)),
+            parseInt("0x" + _hex[i % _hex.length].slice(5, 7)),
+            _alpha[i % _alpha.length],
+          ],
+        });
       }
     }
 
@@ -51,4 +53,4 @@ const HexToRGBA: LvtNodeDef = {
   },
 };
 
-export default HexToRGBA;
+export default HexToRGBAObj;

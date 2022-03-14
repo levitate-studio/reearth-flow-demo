@@ -129,6 +129,7 @@ export class LvtFlow {
   // edges
   // =======================================
   isValidConnection(params: any) {
+    return true;
     const sourcePort = this.getNodeById(params.source).getPortOutByName(
       params.sourceHandle
     );

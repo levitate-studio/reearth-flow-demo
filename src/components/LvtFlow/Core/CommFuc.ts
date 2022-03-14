@@ -44,17 +44,23 @@ export const spreadData = (data: any) => {
 };
 
 // =======================================
+// transform port name
+// =======================================
+const transInternalName = (name) => {
+  return name.substring(0, 1) === "_" ? name.slice(1) : name;
+};
+// =======================================
 // Package Spread Composite Value
 // =======================================
 export const packageSpreadCompositeValues = (
   props: any,
   packageType: "object" | "array",
-  objKey: string
+  objKey?: string
 ) => {
   const spreadProps: any = {};
   const spreadLength: number[] = [];
   Object.keys(props).forEach((propName) => {
-    if (props[propName]) {
+    if (props[propName] !== undefined) {
       spreadProps[propName] = spreadData(props[propName]);
       spreadLength.push(spreadProps[propName].length);
     }
@@ -66,7 +72,9 @@ export const packageSpreadCompositeValues = (
     if (packageType === "object") {
       ele = {};
       Object.keys(spreadProps).forEach((propName: string) => {
-        ele[propName] = spreadProps[propName][i % spreadProps[propName].length];
+        const outputPropName = transInternalName(propName);
+        ele[outputPropName] =
+          spreadProps[propName][i % spreadProps[propName].length];
       });
     } else if (packageType === "array") {
       ele = [];
@@ -75,9 +83,13 @@ export const packageSpreadCompositeValues = (
       });
     }
     //
-    const current: any = {};
-    current[objKey] = ele;
-    outputSpread.push(current);
+    if (objKey) {
+      const current: any = {};
+      current[objKey] = ele;
+      outputSpread.push(current);
+    } else {
+      outputSpread.push(ele);
+    }
   }
   return outputSpread;
 };
@@ -99,7 +111,9 @@ export const packageSpreadValue = (props: any) => {
   for (let i = 0; i < maxLength; i += 1) {
     const ele: any = {};
     Object.keys(spreadProps).forEach((propName: string) => {
-      ele[propName] = spreadProps[propName][i % spreadProps[propName].length];
+      const outputPropName = transInternalName(propName);
+      ele[outputPropName] =
+        spreadProps[propName][i % spreadProps[propName].length];
     });
     outputSpread.push(ele);
   }
