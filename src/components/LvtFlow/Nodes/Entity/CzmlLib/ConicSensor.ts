@@ -30,7 +30,6 @@ const ConicSensor: LvtNodeDef = {
       ui:{
         description: "The outer half angle of the cone."
       },
-      defaultValue: "π",
     },{
       name: "minimumClockAngle",
       dataType: "Double",
@@ -43,7 +42,6 @@ const ConicSensor: LvtNodeDef = {
       ui:{
         description: "The maximum clock angle limit of the cone."
       },
-      defaultValue: "2π",
     },{
       name: "radius",
       dataType: "Double",

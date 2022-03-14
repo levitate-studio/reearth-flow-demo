@@ -30,7 +30,6 @@ const RectangularSensor: LvtNodeDef = {
       ui:{
         description: "The Y half angle."
       },
-      defaultValue: "π / 2",
     },{
       name: "radius",
       dataType: "Double",

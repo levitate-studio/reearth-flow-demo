@@ -55,6 +55,10 @@ const Editor: React.FC<Props> = () => {
       }
     };
   };
+  // check czml
+  const checkCZML = () => {
+    console.log(lvtFlow.renderData?.v?.data);
+  };
   //
   return (
     <LvtFlowContext.Provider value={lvtFlow}>
@@ -64,6 +68,7 @@ const Editor: React.FC<Props> = () => {
             exportData={exportData}
             clearData={clearData}
             loadData={loadData}
+            checkCZML={checkCZML}
           />
           <DataFlowCanvas cref={dataFlowCanvasRef} />
         </div>

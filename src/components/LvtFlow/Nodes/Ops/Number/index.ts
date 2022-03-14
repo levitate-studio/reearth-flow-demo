@@ -1,3 +1,4 @@
+import FlatSpread from "./FlatSpread";
 import MultiplySpread from "./MultiplySpread";
 import Plus from "./Plus";
 import Vector2 from "./Vector2";
@@ -10,6 +11,7 @@ export default {
   children: [
     Plus,
     MultiplySpread,
+    FlatSpread,
     Vector2,
     Vector2Spread,
     Vector3Spread,

@@ -23,7 +23,7 @@ const ImageMaterial: LvtNodeDef = {
       ui:{
         description: "The number of times the image repeats along each axis."
       },
-      defaultValue: "[1, 1]",
+      defaultValue: [1, 1],
     },{
       name: "color",
       dataType: "Color",

@@ -75,7 +75,6 @@ const Polygon: LvtNodeDef = {
       ui:{
         description: "The sampling distance, in radians."
       },
-      defaultValue: "π / 180.0",
     },{
       name: "fill",
       dataType: "Boolean",

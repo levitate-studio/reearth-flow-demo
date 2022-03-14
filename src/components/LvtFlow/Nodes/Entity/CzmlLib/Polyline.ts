@@ -43,7 +43,6 @@ const Polyline: LvtNodeDef = {
       ui:{
         description: "The sampling distance, in radians."
       },
-      defaultValue: "π / 180.0",
     },{
       name: "material",
       dataType: "PolylineMaterial",

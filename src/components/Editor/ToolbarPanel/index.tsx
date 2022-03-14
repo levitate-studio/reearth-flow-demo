@@ -4,6 +4,7 @@ interface Props {
   exportData: any;
   clearData: any;
   loadData: any;
+  checkCZML: any;
 }
 
 const ToolbarPanel = (Props: Props) => {
@@ -12,6 +13,7 @@ const ToolbarPanel = (Props: Props) => {
     { title: "CZML Billboard", url: "/examples/czml-billboard.json" },
     { title: "CzmlLib Point", url: "/examples/czmllib-point.json" },
     { title: "CzmlLib Box", url: "/examples/czmllib-box.json" },
+    { title: "CzmlLib Corridor", url: "/examples/czmllib-corridor.json" },
     { title: "GeoJSON MultiPoint", url: "/examples/geojson-multipoint.json" },
     { title: "DEV Test", url: "/examples/dev-test.json" },
   ];
@@ -39,6 +41,9 @@ const ToolbarPanel = (Props: Props) => {
         <div className="df-block-title-tab">
           Examples
           <ul className="menu">{examplesList}</ul>
+        </div>
+        <div className="df-block-title-tab button" onClick={Props.checkCZML}>
+          CZML
         </div>
       </div>
     </div>

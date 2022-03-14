@@ -30,7 +30,7 @@ const GridMaterial: LvtNodeDef = {
       ui:{
         description: "The number of grid lines along each axis."
       },
-      defaultValue: "[8, 8]",
+      defaultValue: [8, 8],
     },{
       name: "lineThickness",
       dataType: "LineThickness",
