@@ -66,9 +66,10 @@ export class LvtPort {
   // node: any;
 
   static getPortDefaultValue(type: dataType, defaultValue: any) {
-    if (defaultValue) {
+    if (defaultValue !== undefined) {
       return defaultValue;
     }
+    return undefined;
     switch (type) {
       case "number":
       default:
