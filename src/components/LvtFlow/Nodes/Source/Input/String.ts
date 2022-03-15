@@ -11,6 +11,7 @@ const String: LvtNodeDef = {
     {
       name: "input",
       dataType: "string",
+      defaultValue: "",
       ui: {
         hidden: true,
       },
