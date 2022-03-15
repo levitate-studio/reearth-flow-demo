@@ -7,6 +7,7 @@
     "lint": "eslint .",
     "format": "eslint . --fix",
     "build": "tsc && vite build",
+    "build-ignore": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
