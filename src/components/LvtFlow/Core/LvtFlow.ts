@@ -20,6 +20,8 @@ interface IRenderData {
 
 export class LvtFlow {
   data: any;
+  // action
+  needUpdateData: boolean;
   // current
   currentElement: LvtNode | null;
   // output
@@ -39,6 +41,7 @@ export class LvtFlow {
     this.currentElement = null;
     this.outputSource = null;
     this.renderData = null;
+    this.needUpdateData = true;
     // expose to window
     (window as any).lvtFlow = this;
     //
@@ -66,6 +69,7 @@ export class LvtFlow {
       this.currentElement = null;
       this.setOutputSource(null);
     }
+    this.needUpdateData = false;
     LvtFlow.reRender();
   }
 
@@ -78,6 +82,7 @@ export class LvtFlow {
     } else {
       this.outputSource = null;
     }
+    this.needUpdateData = false;
     LvtFlow.reRender();
   }
 
@@ -122,6 +127,7 @@ export class LvtFlow {
         });
       });
     }
+    this.needUpdateData = true;
     LvtFlow.reRender();
   }
 
@@ -266,6 +272,7 @@ export class LvtFlow {
     this.currentElement = null;
     this.outputSource = null;
     this.renderData = null;
+    this.needUpdateData = true;
     LvtFlow.reRender();
   }
 

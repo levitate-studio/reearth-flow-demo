@@ -1,45 +1,47 @@
-import * as Cesium from "cesium";
+// import * as Cesium from "cesium";
+import { Viewer, CzmlDataSource, GeoJsonDataSource } from "cesium";
 import { useEffect, useContext, useState } from "react";
 
 import { LvtFlowContext } from "../../../pages/Editor/index";
 import "cesium/Build/Cesium/Widgets/widgets.css";
 
-let viewer: any;
+let cesiumViewer: any;
 
-const CesiumMap = () => {
+const CesiumMap = ({ skipUpdate }: { skipUpdate: boolean }) => {
   // update control
   const [autoUpdate, setAutoUpdate] = useState(true);
   const lvtFlow = useContext(LvtFlowContext);
 
   const updateCesium = (force = false) => {
-    if (viewer) {
+    if (cesiumViewer && lvtFlow.needUpdateData && (autoUpdate || force)) {
       const renderData = lvtFlow.renderData?.v;
-      if (renderData && (autoUpdate || force)) {
+      if (renderData) {
         let dataSourcePromise;
         switch (renderData.dataType) {
           case "CZML":
           default:
-            dataSourcePromise = Cesium.CzmlDataSource.load(renderData.data);
+            dataSourcePromise = CzmlDataSource.load(renderData.data);
             break;
           case "GeoJSON":
-            dataSourcePromise = Cesium.GeoJsonDataSource.load(renderData.data);
+            dataSourcePromise = GeoJsonDataSource.load(renderData.data);
             break;
         }
-        viewer.dataSources.removeAll();
-        viewer.dataSources.add(dataSourcePromise);
+        cesiumViewer.dataSources.removeAll();
+        cesiumViewer.dataSources.add(dataSourcePromise);
+        console.log("cesium: rerendered source");
       } else {
-        viewer.dataSources.removeAll();
+        cesiumViewer.dataSources.removeAll();
       }
     }
   };
 
-  if (autoUpdate) {
+  if (autoUpdate && !skipUpdate) {
     updateCesium();
   }
 
   useEffect(() => {
     const cesiumContainer = document.getElementById("cesium-container");
-    viewer = new Cesium.Viewer(cesiumContainer as HTMLElement, {
+    cesiumViewer = new Viewer(cesiumContainer as HTMLElement, {
       timeline: false,
       animation: false,
       fullscreenElement: cesiumContainer as HTMLElement,
