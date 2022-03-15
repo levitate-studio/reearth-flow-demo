@@ -8,13 +8,12 @@ import ReactFlow, {
   Edge,
   Connection,
   Elements,
-  // FlowElement,
-  // Position,
   isEdge,
   isNode,
 } from "react-flow-renderer";
 
 import { LvtFlowContext } from "../../../pages/Editor/index";
+import NodesInputMenu from "../NodesInputMenu";
 
 import "./df-canvas.css";
 import BasicNode from "./BasicNode";
@@ -24,11 +23,6 @@ const nodeTypes = {
 };
 
 let lastClickTime = 0;
-// const pressedKeys: any = {
-//   Control: false,
-//   C: false,
-//   V: false,
-// };
 
 const DataFlowCanvas = ({ cref }: any) => {
   const reactFlowWrapper = useRef<HTMLDivElement>(null);
@@ -70,31 +64,40 @@ const DataFlowCanvas = ({ cref }: any) => {
   // =======================================
   // Event: onDrop
   // =======================================
+  const addNode = ({ nodeId, pos, reactFlowBounds }: any) => {
+    const position = reactFlowInstance.project({
+      x: pos.clientX - reactFlowBounds.left,
+      y: pos.clientY - reactFlowBounds.top,
+    });
+    const node = lvtFlow.addNode({ nodeId });
+    if (node) {
+      setElements((es: any) =>
+        es.concat({
+          id: node.id,
+          type: node.ui.nodeType,
+          position,
+          data: {
+            nodeId: node.nodeId,
+            isValidConnection: lvtFlow.isValidConnection,
+          },
+        })
+      );
+    }
+  };
   const onDrop = (event: any) => {
     event.preventDefault();
-
     const reactFlowBounds = reactFlowWrapper?.current?.getBoundingClientRect();
     if (reactFlowBounds) {
       const nodeId = event.dataTransfer.getData("application/reactflow");
       if (nodeId) {
-        const position = reactFlowInstance.project({
-          x: event.clientX - reactFlowBounds.left,
-          y: event.clientY - reactFlowBounds.top,
+        addNode({
+          nodeId,
+          pos: {
+            clientX: event.clientX,
+            clientY: event.clientY,
+          },
+          reactFlowBounds,
         });
-        const node = lvtFlow.addNode({ nodeId });
-        if (node) {
-          setElements((es: any) =>
-            es.concat({
-              id: node.id,
-              type: node.ui.nodeType,
-              position,
-              data: {
-                nodeId: node.nodeId,
-                isValidConnection: lvtFlow.isValidConnection,
-              },
-            })
-          );
-        }
       }
     }
   };
@@ -146,17 +149,57 @@ const DataFlowCanvas = ({ cref }: any) => {
     } else {
       lvtFlow.setCurrentElement(null);
     }
+    hideNodesInputMenu();
+  };
+
+  // =======================================
+  // Event: onSelectionChange
+  // =======================================
+  const onNodeDragStart = () => {
+    hideNodesInputMenu();
   };
 
   // =======================================
   // Event: onDoubleClick
   // =======================================
-  const onPaneClick = () => {
+  const onPaneClick = (event: any) => {
     const now = new Date().getTime();
     if (now - lastClickTime < 300) {
-      console.log("dbclick");
+      const reactFlowBounds =
+        reactFlowWrapper?.current?.getBoundingClientRect();
+      if (reactFlowBounds) {
+        (nodesInputMenuRef.current as any).show({
+          pos: {
+            clientX: event.clientX,
+            clientY: event.clientY,
+          },
+          reactFlowBounds,
+        });
+      }
     } else {
       lastClickTime = now;
+      hideNodesInputMenu();
+    }
+  };
+
+  // =======================================
+  // Nodes Input Menu
+  // =======================================
+  const nodesInputMenuRef = useRef();
+  const hideNodesInputMenu = () => {
+    (nodesInputMenuRef.current as any).hide();
+  };
+  // =======================================
+  // Event: onAddNodeFromMenu
+  // =======================================
+  const onAddNodeFromMenu = ({ nodeId, pos }: any) => {
+    const reactFlowBounds = reactFlowWrapper?.current?.getBoundingClientRect();
+    if (reactFlowBounds) {
+      addNode({
+        nodeId,
+        pos,
+        reactFlowBounds,
+      });
     }
   };
 
@@ -195,7 +238,7 @@ const DataFlowCanvas = ({ cref }: any) => {
             onDrop={onDrop}
             onDragOver={onDragOver}
             onSelectionChange={onSelectionChange}
-            // onNodeDragStop={onNodeDragStop}
+            onNodeDragStart={onNodeDragStart}
             snapToGrid={true}
             snapGrid={[20, 20]}
             defaultZoom={1.2}
@@ -208,6 +251,10 @@ const DataFlowCanvas = ({ cref }: any) => {
           >
             <Controls />
           </ReactFlow>
+          <NodesInputMenu
+            cref={nodesInputMenuRef}
+            addNodeFromMenu={onAddNodeFromMenu}
+          />
         </div>
       </ReactFlowProvider>
     </div>

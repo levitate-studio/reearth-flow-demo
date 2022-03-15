@@ -5,3 +5,9 @@
   color: var(--text-color-default);
   background-color: var(--block-bg-color);
 }
+
+.df-app input{
+  font-family: Menlo, Monaco, 'Courier New', monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
