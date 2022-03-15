@@ -38,7 +38,10 @@ const DataFlowCanvas = ({ cref }: any) => {
       setElements([]);
     },
     importData: (flow: any) => {
-      setElements(flow.elements || []);
+      setElements([]);
+      if (flow) {
+        setElements(flow.elements);
+      }
       setTimeout(() => {
         reactFlowInstance.fitView();
       }, 0);
