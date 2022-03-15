@@ -2,7 +2,7 @@ import { updateNode } from "../../../Core/CommFuc";
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
 const SelectColumn: LvtNodeDef = {
-  _id: "SeclectColumn",
+  _id: "SelectColumn",
   ui: {
     title: "SelectColumn",
     description: "",
