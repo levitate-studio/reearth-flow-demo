@@ -2,11 +2,10 @@ import { useState } from "react";
 
 import CesiumMap from "./CesiumMap";
 import DataViewer from "./DataViewer";
-// import ResiumMap from "./ResiumMap";
 
 import "./df-output-panel.css";
 
-const OutputPanel = () => {
+const OutputPanel = ({ skipUpdate }: any) => {
   const [activeTab, setActiveTab] = useState("output");
   return (
     <div className="df-output-panel">
@@ -43,8 +42,7 @@ const OutputPanel = () => {
         <div
           className={`df-block-tab-content ${activeTab === "map" && "active"}`}
         >
-          {/* <ResiumMap /> */}
-          <CesiumMap />
+          <CesiumMap skipUpdate={skipUpdate || activeTab !== "map"} />
         </div>
       </div>
     </div>

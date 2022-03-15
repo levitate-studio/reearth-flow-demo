@@ -4,8 +4,6 @@ import { LvtFlowContext } from "../../../pages/Editor/index";
 import NodeValueComponents from "../NodeValueComponents";
 import "./df-property-panel.css";
 
-// console.log(NodeValueComponents);
-
 const PropertyPanel = () => {
   const lvtFlow = useContext(LvtFlowContext);
   const element = lvtFlow.currentElement;
@@ -20,7 +18,7 @@ const PropertyPanel = () => {
   };
 
   // portIn
-  const portsIn = element && element?.data.portsIn.length > 0 && (
+  const portsIn = element?.data && element?.data.portsIn.length > 0 && (
     <>
       <div className="df-block-group-title">Ports IN</div>
       {element?.data.portsIn.map((port: any, index: number) => (
@@ -33,7 +31,7 @@ const PropertyPanel = () => {
   );
 
   // portIn
-  const portsOut = element && element?.data.portsOut.length > 0 && (
+  const portsOut = element?.data && element.data.portsOut.length > 0 && (
     <>
       <div className="df-block-group-title">Ports OUT</div>
       {element?.data.portsOut.map((port: any, index: number) => (
@@ -57,6 +55,10 @@ const PropertyPanel = () => {
             <div className="property-line">
               <div className="property-name">Node</div>
               <div className="property-value">{element.nodeId}</div>
+            </div>
+            <div className="property-line">
+              <div className="property-name">Description</div>
+              <div className="property-value">{element.ui?.description}</div>
             </div>
             <div className="property-line">
               <div className="property-name">Element ID</div>

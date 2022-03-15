@@ -50,17 +50,19 @@ propery panel
   background-color: var(--block-bg-color);
 }
 .property-name{
-  width: 30%;
+  width: 40%;
   flex-shrink: 0;
   height: 30px;
   display: flex;
   align-items: center;
+  font-weight: bold;
 }
 .property-value{
   flex-grow: 0;
   max-width: 500px;
   display: flex;
   align-items: center;
+  font-weight: bold;
 }
 .output-source{
   text-decoration: underline;

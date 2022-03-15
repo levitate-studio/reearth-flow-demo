@@ -13,7 +13,6 @@ const NodesPanel = () => {
   const nodeList = useMemo(() => {
     const l = (element: any, prefix: any) => {
       if (typeof element === "object" && typeof element[0] !== "string") {
-        console.log(element);
         return Object.keys(element).map((key: string) => (
           <div className="df-block-group" key={key}>
             <div className={`df-block-group-title catcolor${prefix}-${key}`}>

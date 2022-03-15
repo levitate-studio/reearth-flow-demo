@@ -24,11 +24,16 @@ const Editor: React.FC<Props> = () => {
 
   // canvas
   const dataFlowCanvasRef = useRef();
+
+  // =======================================
+  // File Functions
+  // =======================================
   // export
   const exportData = () => {
     const e = {
       lvtFlow: lvtFlow.exportData(),
       canvas: (dataFlowCanvasRef.current as any).exportData(),
+      version: lvtFlow.version,
     };
     console.log(JSON.stringify(e));
   };
@@ -62,7 +67,7 @@ const Editor: React.FC<Props> = () => {
     console.log(lvtFlow.renderData?.v?.data);
   };
   // =======================================
-  // seperator
+  // Seperator Control
   // =======================================
   const [sideBarX, setSideBarX] = useState(
     localStorage?.["df-sep-sidebar-x"] ? localStorage?.["df-sep-sidebar-x"] : 40
@@ -96,6 +101,13 @@ const Editor: React.FC<Props> = () => {
       }
     }
   };
+  const [skipUpdate, setSkipUpdate] = useState(false);
+  const onSepBarDragStart = () => {
+    setSkipUpdate(true);
+  };
+  const onSepBarDragEnd = () => {
+    setSkipUpdate(false);
+  };
   //
   return (
     <LvtFlowContext.Provider value={lvtFlow}>
@@ -113,6 +125,8 @@ const Editor: React.FC<Props> = () => {
           className="df-sep verti"
           draggable
           onDrag={onSepSideBarDrag}
+          onDragStart={onSepBarDragStart}
+          onDragEnd={onSepBarDragEnd}
           style={{ right: `${sideBarX}vw` }}
         ></div>
         <div className="df-sidebar" style={{ width: `${sideBarX}vw` }}>
@@ -120,12 +134,14 @@ const Editor: React.FC<Props> = () => {
             className="df-sidebar-top"
             style={{ height: `${sideBarTopY}vh` }}
           >
-            <OutputPanel />
+            <OutputPanel skipUpdate={skipUpdate} />
           </div>
           <div
             className="df-sep horzi"
             draggable
             onDrag={onSepSideBarTopDrag}
+            onDragStart={onSepBarDragStart}
+            onDragEnd={onSepBarDragEnd}
             style={{ top: `${sideBarTopY}vh` }}
           ></div>
           <div

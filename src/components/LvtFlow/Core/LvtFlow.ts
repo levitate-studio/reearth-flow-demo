@@ -30,6 +30,9 @@ export class LvtFlow {
   renderData: IRenderData | null;
   rendererId: string | undefined;
 
+  // version
+  version: string;
+
   // ui rerenderer for react
   static uiReRenderer: React.Dispatch<React.SetStateAction<number>> | undefined;
 
@@ -42,6 +45,8 @@ export class LvtFlow {
     this.outputSource = null;
     this.renderData = null;
     this.needUpdateData = true;
+    // fixed
+    this.version = "1.0";
     // expose to window
     (window as any).lvtFlow = this;
     //

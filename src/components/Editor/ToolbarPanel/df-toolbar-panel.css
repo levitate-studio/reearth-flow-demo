@@ -20,7 +20,12 @@
   font-size: 12px;
   white-space: nowrap;
   cursor: pointer;
+  min-width: 100px;
 }
 .df-toolbar-panel .menu-item:hover{
   color: var(--theme-color-orange);
+}
+.df-toolbar-panel .menu-sep{
+  height: 1px;
+  background-color: #000;
 }

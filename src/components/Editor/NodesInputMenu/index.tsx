@@ -70,7 +70,11 @@ const NodesInputMenu = (Props: any) => {
   const searchNode = (v: string, list: string[]) => {
     if (v) {
       const filted: string[] = [];
-      const regStr = ["", v.replace(/\s/g, "-"), ""].join(".*");
+      const regStr = [
+        "",
+        v.replace(/\+|\*|\[|\]|\(|\)/g, "").replace(/\s/g, "-(.*)"),
+        "",
+      ].join(".*");
       const reg = new RegExp(regStr, "i");
 
       list.forEach((nodeId: string) => {
