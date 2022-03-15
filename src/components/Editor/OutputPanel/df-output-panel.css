@@ -3,7 +3,8 @@ output panel
 ----------------------------*/
 .df-output-panel{
   position: relative;
-  height: 40%;
+  height: 100%;
+  width: 100%;
   background-color: var(--output-bg-color);
   display: flex;
   flex-direction: column;

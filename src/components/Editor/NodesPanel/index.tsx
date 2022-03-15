@@ -11,7 +11,7 @@ const NodesPanel = () => {
   const l = (element: any, prefix: any) => {
     if (typeof element === "object" && typeof element[0] !== "string") {
       return Object.keys(element).map((key: string) => (
-        <div key={key}>
+        <div className="df-block-group" key={key}>
           <div className={`df-block-group-title catcolor${prefix}-${key}`}>
             {key}
           </div>
@@ -42,7 +42,9 @@ const NodesPanel = () => {
       <div className="df-block-title">
         <div className="df-block-title-tab">Nodes</div>
       </div>
-      <div className="df-block-content">{nodeList}</div>
+      <div className="df-block-content">
+        <div className="df-block-content-wrapper">{nodeList}</div>
+      </div>
     </div>
   );
 };

@@ -12,14 +12,14 @@
 structure 
 ----------------------------*/
 .df-main{
-  width: 60%;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
 .df-sidebar{
-  width: 40%;
-  flex-grow: 1;
+  position: relative;
+  width: 40vw;
+  flex-grow: 0;
   display: flex;
   flex-direction: column;
   background-color: var(--block-bg-color);
@@ -27,11 +27,40 @@ structure
   border-left: 1px solid var(--block-border-color);
   overflow: hidden;
 }
-
-.df-group-panel{
+.df-sidebar-top{
+  position: relative;
   display: flex;
-  height: 60%;
+  height: 30vh;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.df-sidebar-bottom{
+  display: flex;
+  height: 70vh;
+  flex-grow: 0;
+  flex-shrink: 0;
   border-top: 1px solid var(--block-border-color);
+}
+
+/* -------------------------
+seprator 
+----------------------------*/
+.df-sep{
+  position: absolute;
+  z-index: 200;
+}
+.df-sep.verti{
+  height: 100%;
+  width: 5px;
+  top: 0;
+  cursor: ew-resize;
+}
+.df-sep.horzi{
+  width: 100%;
+  height: 5px;
+  cursor: ns-resize;
+  left: 0;
+  top: 30vh;
 }
 
 /* -------------------------
@@ -47,12 +76,19 @@ block
 }
 
 .df-block-content{
+  position: relative;
   padding: 0 10px;
   height: calc(100% - 26px);
-
   overflow: auto;
 }
+.df-block-content-wrapper{
+  position: relative;
+  margin-bottom: 24px;
+}
 
+.df-block-group{
+  position: relative;
+}
 .df-block-group-title{
   margin: 10px 0 10px;
   font-weight: bold;

@@ -76,23 +76,25 @@ const DataFlowCanvas = ({ cref }: any) => {
     const reactFlowBounds = reactFlowWrapper?.current?.getBoundingClientRect();
     if (reactFlowBounds) {
       const nodeId = event.dataTransfer.getData("application/reactflow");
-      const position = reactFlowInstance.project({
-        x: event.clientX - reactFlowBounds.left,
-        y: event.clientY - reactFlowBounds.top,
-      });
-      const node = lvtFlow.addNode({ nodeId });
-      if (node) {
-        setElements((es: any) =>
-          es.concat({
-            id: node.id,
-            type: node.ui.nodeType,
-            position,
-            data: {
-              nodeId: node.nodeId,
-              isValidConnection: lvtFlow.isValidConnection,
-            },
-          })
-        );
+      if (nodeId) {
+        const position = reactFlowInstance.project({
+          x: event.clientX - reactFlowBounds.left,
+          y: event.clientY - reactFlowBounds.top,
+        });
+        const node = lvtFlow.addNode({ nodeId });
+        if (node) {
+          setElements((es: any) =>
+            es.concat({
+              id: node.id,
+              type: node.ui.nodeType,
+              position,
+              data: {
+                nodeId: node.nodeId,
+                isValidConnection: lvtFlow.isValidConnection,
+              },
+            })
+          );
+        }
       }
     }
   };

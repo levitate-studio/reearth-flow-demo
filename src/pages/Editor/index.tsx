@@ -12,6 +12,8 @@ import "./df-editor.css";
 const lvtFlow = new LvtFlow();
 const LvtFlowContext = createContext(lvtFlow);
 
+const localStorage = window.localStorage;
+
 export type Props = {
   path?: string;
 };
@@ -59,6 +61,41 @@ const Editor: React.FC<Props> = () => {
   const checkCZML = () => {
     console.log(lvtFlow.renderData?.v?.data);
   };
+  // =======================================
+  // seperator
+  // =======================================
+  const [sideBarX, setSideBarX] = useState(
+    localStorage?.["df-sep-sidebar-x"] ? localStorage?.["df-sep-sidebar-x"] : 40
+  );
+  const [sideBarTopY, setSideBarTopY] = useState(
+    localStorage?.["df-sep-sidebartop-y"]
+      ? localStorage?.["df-sep-sidebartop-y"]
+      : 40
+  );
+  const onSepSideBarDrag = (e: any) => {
+    if (e.clientX) {
+      const x = Math.max(
+        Math.min((1 - e.clientX / window.innerWidth) * 100, 90),
+        10
+      );
+      setSideBarX(x);
+      if (localStorage) {
+        localStorage["df-sep-sidebar-x"] = x;
+      }
+    }
+  };
+  const onSepSideBarTopDrag = (e: any) => {
+    if (e.clientY) {
+      const y = Math.max(
+        Math.min((e.clientY / window.innerHeight) * 100, 90),
+        10
+      );
+      setSideBarTopY(y);
+      if (localStorage) {
+        localStorage["df-sep-sidebartop-y"] = y;
+      }
+    }
+  };
   //
   return (
     <LvtFlowContext.Provider value={lvtFlow}>
@@ -72,9 +109,29 @@ const Editor: React.FC<Props> = () => {
           />
           <DataFlowCanvas cref={dataFlowCanvasRef} />
         </div>
-        <div className="df-sidebar">
-          <OutputPanel />
-          <div className="df-group-panel">
+        <div
+          className="df-sep verti"
+          draggable
+          onDrag={onSepSideBarDrag}
+          style={{ right: `${sideBarX}vw` }}
+        ></div>
+        <div className="df-sidebar" style={{ width: `${sideBarX}vw` }}>
+          <div
+            className="df-sidebar-top"
+            style={{ height: `${sideBarTopY}vh` }}
+          >
+            <OutputPanel />
+          </div>
+          <div
+            className="df-sep horzi"
+            draggable
+            onDrag={onSepSideBarTopDrag}
+            style={{ top: `${sideBarTopY}vh` }}
+          ></div>
+          <div
+            className="df-sidebar-bottom"
+            style={{ height: `${100 - sideBarTopY}vh` }}
+          >
             <PropertyPanel />
             <NodesPanel />
           </div>
