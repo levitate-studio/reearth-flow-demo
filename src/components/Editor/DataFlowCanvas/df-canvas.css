@@ -4,7 +4,7 @@
 }
 
 /* controls */
-.react-flow__controls-button{
+.df-canvas .react-flow__controls-button{
   border-color: #333;
   background: #555;
 }
@@ -12,6 +12,9 @@
 /* node */
 .react-flow__node-basicNode .node{
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 
 /* edge */
@@ -23,6 +26,7 @@
   position: relative;
   padding: 6px 12px;
   background-color: rgb(59, 77, 95);
+  z-index: 2;
 }
 .node-cover{
   position: absolute;
@@ -48,18 +52,19 @@
 
 /* handles */
 .node-ports{
+  position: relative;
   left: 0;
   width: 100%;
   display: flex;
 }
 .node-ports-top{
-  top: 0;
+  top: 0px;
 }
 .node-ports-bottom{
   bottom: 0;
 }
 
-.react-flow__handle{
+.node-ports .react-flow__handle{
   border-radius: 0;
   border: none;
   background: #aaa;
@@ -70,14 +75,29 @@
   position: relative;
   transform: none;
   flex-shrink: 0;
+  transition: all .25s ease;
 }
+.node-ports-top .react-flow__handle{
+  transform-origin: center bottom;
+}
+.node-ports-bottom .react-flow__handle{
+  transform-origin: center top;
+}
+/* .react-flow__handle:hover{
+  transform: scaleY(1.5);
+} */
 
 .port-tip{
   position: absolute;
+  padding: 2px;
+  top: 6px;
   z-index: 3;
   font-size: 12px;
   background-color: var(--block-bg-color);
   display: none;
+}
+.node-ports-bottom .port-tip{
+  top: -16px;
 }
 .port-wrapper{
   margin-right: 2px;

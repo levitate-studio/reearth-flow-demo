@@ -107,6 +107,9 @@ tab
   padding: 7px 10px;
   color: #fff;
 }
+a.df-block-title-tab{
+  text-decoration: none;
+}
 .df-block-title-tab.multi{
   cursor: pointer;
 }
@@ -184,17 +187,17 @@ port color
 .portcolor-number,
 .portcolor-numberArray,
 .portcolor-numberSpread{
-  background: var(--theme-color-blue);
+  background: var(--theme-color-blue) !important;
 }
 .portcolor-string,
 .portcolor-stringArray,
 .portcolor-stringSpread{
-  background: var(--theme-color-green);
+  background: var(--theme-color-green) !important;
 }
 .portcolor-object,
 .portcolor-objectArray,
 .portcolor-objectSpread{
-  background: var(--theme-color-orange);
+  background: var(--theme-color-orange) !important;
 }
 
 .port-hidden{
