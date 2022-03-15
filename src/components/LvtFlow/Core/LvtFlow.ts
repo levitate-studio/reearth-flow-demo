@@ -247,8 +247,15 @@ export class LvtFlow {
   // =======================================
   // rerender
   // =======================================
+  static reRenderId = "";
   static reRender() {
-    LvtFlow.uiReRenderer?.(new Date().getTime());
+    const timeStamp = new Date().getTime().toString();
+    if (timeStamp !== LvtFlow.reRenderId) {
+      LvtFlow.reRenderId = timeStamp;
+      setTimeout(() => {
+        LvtFlow.uiReRenderer?.(new Date().getTime());
+      }, 0);
+    }
   }
 
   // =======================================
