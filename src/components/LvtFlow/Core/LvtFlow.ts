@@ -132,8 +132,14 @@ export class LvtFlow {
         });
       });
     }
-    this.needUpdateData = true;
-    LvtFlow.reRender();
+  }
+
+  updateNodesFromNode(id: string) {
+    this.chainUpdateNode(id);
+    setTimeout(() => {
+      this.needUpdateData = true;
+      LvtFlow.reRender();
+    }, 0);
   }
 
   // =======================================
@@ -204,7 +210,7 @@ export class LvtFlow {
       this.setRenderer(target);
     }
     // update
-    this.chainUpdateNode(params.target);
+    this.updateNodesFromNode(params.target);
   }
 
   removeEdge(params: IEdgeParams | any) {
@@ -221,12 +227,13 @@ export class LvtFlow {
         portName: params.targetHandle,
       });
       // set target value
-      targetPort.cloneValue(sourcePort.value);
+      // targetPort.cloneValue(sourcePort.value);
+      targetPort.resetValue();
       // set render
       if (target.isRenderer && this.rendererId === target.id) {
         this.removeRenderer();
       }
-      this.chainUpdateNode(params.target);
+      this.updateNodesFromNode(params.target);
     }
   }
 

@@ -13,7 +13,7 @@ const CesiumMap = ({ skipUpdate }: { skipUpdate: boolean }) => {
   const lvtFlow = useContext(LvtFlowContext);
 
   const updateCesium = (force = false) => {
-    if (cesiumViewer && lvtFlow.needUpdateData && (autoUpdate || force)) {
+    if (cesiumViewer && ((autoUpdate && lvtFlow.needUpdateData) || force)) {
       const renderData = lvtFlow.renderData?.v;
       if (renderData) {
         let dataSourcePromise;

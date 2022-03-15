@@ -5,7 +5,7 @@ const Input = ({ port, node, lvtFlow }: any) => {
       disabled={port.connected}
       onChange={(e) => {
         port.setValue(e.target.value);
-        lvtFlow.chainUpdateNode(node.id);
+        lvtFlow.updateNodesFromNode(node.id);
       }}
     />
   );

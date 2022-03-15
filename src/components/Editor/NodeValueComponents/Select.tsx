@@ -12,7 +12,7 @@ const Select = ({ node, port, lvtFlow }: any) => {
       value={port.value.v}
       onChange={(e) => {
         port.setValue(Number(e.target.value));
-        lvtFlow.chainUpdateNode(node.id);
+        lvtFlow.updateNodesFromNode(node.id);
       }}
     >
       {options.map((column: string, index: number) => (
