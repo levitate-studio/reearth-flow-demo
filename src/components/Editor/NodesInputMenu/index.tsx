@@ -18,7 +18,7 @@ const NodesInputMenu = (Props: any) => {
 
   useImperativeHandle(Props.cref, () => ({
     show: ({ pos, reactFlowBounds }: any) => {
-      console.log(reactFlowBounds);
+      // console.log(reactFlowBounds);
       setPos(pos);
       setMenuPos({
         clientX:
@@ -63,7 +63,7 @@ const NodesInputMenu = (Props: any) => {
   const onInputChange = (e: any) => {
     updateList(e.target.value);
   };
-  const updateList = (value) => {
+  const updateList = (value: string) => {
     setInputValue(value);
     setFiltedNodeIds(searchNode(value, Object.keys(Nodes.nodeDefs)));
   };
