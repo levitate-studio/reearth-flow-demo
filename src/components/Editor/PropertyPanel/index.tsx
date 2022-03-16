@@ -4,7 +4,7 @@ import { LvtFlowContext } from "../../../pages/Editor/index";
 import NodeValueComponents from "../NodeValueComponents";
 import "./df-property-panel.css";
 
-const PropertyPanel = () => {
+const PropertyPanel = ({ setOutputSource }: any) => {
   const lvtFlow = useContext(LvtFlowContext);
   const element = lvtFlow.currentElement;
   console.log("rerender property");
@@ -14,6 +14,7 @@ const PropertyPanel = () => {
       node,
       port,
       lvtFlow,
+      setOutputSource,
     });
   };
 

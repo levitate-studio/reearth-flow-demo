@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useState, useImperativeHandle } from "react";
 
 import CesiumMap from "./CesiumMap";
 import DataViewer from "./DataViewer";
 
 import "./df-output-panel.css";
 
-const OutputPanel = ({ skipUpdate }: any) => {
+const OutputPanel = ({ skipUpdate, cref }: any) => {
   const [activeTab, setActiveTab] = useState("output");
+
+  useImperativeHandle(cref, () => ({
+    setTab: (tab: string) => {
+      setActiveTab(tab);
+    },
+  }));
+
   return (
     <div className="df-output-panel">
       <div className="df-block-title">

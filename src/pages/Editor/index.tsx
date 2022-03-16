@@ -101,6 +101,15 @@ const Editor: React.FC<Props> = () => {
   const onSepBarDragEnd = () => {
     setSkipUpdate(false);
   };
+
+  // =======================================
+  // outputSource Control
+  // =======================================
+  const outputPanelRef = useRef();
+  const setOutputSource = () => {
+    (outputPanelRef.current as any).setTab("output");
+  };
+
   //
   return (
     <LvtFlowContext.Provider value={lvtFlow}>
@@ -127,7 +136,7 @@ const Editor: React.FC<Props> = () => {
             className="df-sidebar-top"
             style={{ height: `${sideBarTopY}vh` }}
           >
-            <OutputPanel skipUpdate={skipUpdate} />
+            <OutputPanel cref={outputPanelRef} skipUpdate={skipUpdate} />
           </div>
           <div
             className="df-sep horzi"
@@ -141,7 +150,7 @@ const Editor: React.FC<Props> = () => {
             className="df-sidebar-bottom"
             style={{ height: `${100 - sideBarTopY}vh` }}
           >
-            <PropertyPanel />
+            <PropertyPanel setOutputSource={setOutputSource} />
             <NodesPanel />
           </div>
         </div>
