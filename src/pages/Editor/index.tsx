@@ -2,6 +2,8 @@ import { useState, createContext, useRef } from "react";
 import useFetch from "use-http";
 
 import DataFlowCanvas from "../../components/Editor/DataFlowCanvas";
+import ExportWindow from "../../components/Editor/ExportWindow";
+import ImportWindow from "../../components/Editor/ImportWindow";
 import NodesPanel from "../../components/Editor/NodesPanel";
 import OutputPanel from "../../components/Editor/OutputPanel";
 import PropertyPanel from "../../components/Editor/PropertyPanel";
@@ -30,24 +32,49 @@ const Editor: React.FC<Props> = () => {
   const { get, response } = useFetch();
 
   // =======================================
-  // File Functions
+  // Export Project
   // =======================================
-  // export
-  const exportData = () => {
-    const e = {
+  const exportWindowRef = useRef();
+  //
+  const popupExportProjectWindow = () => {
+    const projectData = {
       lvtFlow: lvtFlow.exportData(),
       canvas: (dataFlowCanvasRef.current as any).exportData(),
       version: lvtFlow.version,
+      type: "separated",
     };
-    console.log(JSON.stringify(e));
+    (exportWindowRef.current as any).setText(JSON.stringify(projectData));
+    (exportWindowRef.current as any).show();
   };
-  // clear
+
+  // =======================================
+  // Import Project
+  // =======================================
+  const importWindowRef = useRef();
+  const popupImportProjectWindow = () => {
+    (importWindowRef.current as any).show();
+  };
+  // import
+  const importProject = (projectData: string) => {
+    if (projectData) {
+      const data = JSON.parse(projectData);
+      lvtFlow.importData(data.lvtFlow);
+      (dataFlowCanvasRef.current as any).importData(data.canvas);
+    }
+  };
+
+  // =======================================
+  // New (clear)
+  // =======================================
   const clearData = () => {
     lvtFlow.clearData();
     (dataFlowCanvasRef.current as any).clearData();
   };
-  // load
-  const loadData = async (url: string) => {
+
+  // =======================================
+  // Load
+  // =======================================
+  const loadProjectFromUrl = async (url: string) => {
     const data = await get(url);
     if (response.ok && data) {
       lvtFlow.importData(data.lvtFlow);
@@ -55,9 +82,14 @@ const Editor: React.FC<Props> = () => {
     }
   };
 
-  // check czml
-  const checkCZML = () => {
-    console.log(lvtFlow.renderData?.v?.data);
+  // =======================================
+  // Export CZML
+  // =======================================
+  const popupExportCZMLWindow = () => {
+    (exportWindowRef.current as any).setText(
+      JSON.stringify(lvtFlow.renderData?.v?.data)
+    );
+    (exportWindowRef.current as any).show();
   };
   // =======================================
   // Seperator Control
@@ -116,10 +148,11 @@ const Editor: React.FC<Props> = () => {
       <div className="df-editor dark">
         <div className="df-main">
           <ToolbarPanel
-            exportData={exportData}
+            popupExportProjectWindow={popupExportProjectWindow}
+            popupImportProjectWindow={popupImportProjectWindow}
+            loadProjectFromUrl={loadProjectFromUrl}
             clearData={clearData}
-            loadData={loadData}
-            checkCZML={checkCZML}
+            popupExportCZMLWindow={popupExportCZMLWindow}
           />
           <DataFlowCanvas cref={dataFlowCanvasRef} />
         </div>
@@ -154,6 +187,8 @@ const Editor: React.FC<Props> = () => {
             <NodesPanel />
           </div>
         </div>
+        <ExportWindow cref={exportWindowRef} />
+        <ImportWindow cref={importWindowRef} importProject={importProject} />
       </div>
     </LvtFlowContext.Provider>
   );

@@ -9,6 +9,18 @@
 }
 
 /* -------------------------
+common reset 
+----------------------------*/
+.df-editor *{
+  box-sizing: border-box;
+}
+.df-editor input,
+.df-editor textarea{
+  border: none;
+  outline: none;
+}
+
+/* -------------------------
 structure 
 ----------------------------*/
 .df-main{
@@ -40,6 +52,86 @@ structure
   flex-grow: 0;
   flex-shrink: 0;
   border-top: 1px solid var(--block-border-color);
+}
+
+/* -------------------------
+popup 
+----------------------------*/
+.df-popup-layer{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 300;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.df-popup-bg{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.5);
+}
+.df-popup-content{
+  position: relative;
+  top: 10vh;
+  width: 80%;
+  max-width: 800px;
+  background-color: #050505;
+  z-index: 2;
+}
+
+.df-popup-content-textarea{
+  width: 100%;
+  background-color: #090909;
+  height: 30vh;
+  resize: none;
+  padding: 6px 12px;
+  color: #aaa;
+  font-weight: bold;
+}
+.df-popup-content-textarea:hover{
+  background-color: #0a0a0a;
+}
+.df-popup-layer .df-block-content-wrapper{
+  padding: 6px 0;
+  margin: 0;
+}
+/* -------------------------
+bottom bar 
+----------------------------*/
+.df-block-bottom-bar{
+  display: flex;
+  justify-content: flex-end;
+  padding: 2px 0;
+}
+
+/* -------------------------
+button
+----------------------------*/
+.df-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: #000;
+  color: var(--theme-color-orange);
+  margin: 0 2px;
+  cursor: pointer;
+}
+.df-button:last-child{
+  margin-right:0;
+}
+.df-button:hover{
+  background-color: var(--theme-color-orange);
+  color: #000;
 }
 
 /* -------------------------

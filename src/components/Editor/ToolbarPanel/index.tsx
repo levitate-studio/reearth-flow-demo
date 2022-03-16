@@ -3,10 +3,11 @@ import "./df-toolbar-panel.css";
 import useFetch from "use-http";
 
 interface Props {
-  exportData: any;
+  popupExportProjectWindow: any;
+  popupImportProjectWindow: any;
+  popupExportCZMLWindow: any;
+  loadProjectFromUrl: any;
   clearData: any;
-  loadData: any;
-  checkCZML: any;
 }
 
 const ToolbarPanel = (Props: Props) => {
@@ -30,7 +31,7 @@ const ToolbarPanel = (Props: Props) => {
           className="menu-item"
           key={index}
           onClick={() => {
-            Props.loadData(example["url"]);
+            Props.loadProjectFromUrl(example["url"]);
           }}
         >
           {example["title"]}
@@ -46,20 +47,20 @@ const ToolbarPanel = (Props: Props) => {
           DATAFLOW
         </a>
         <div className="df-block-title-tab">
-          File
+          Project
           <ul className="menu">
             <li className="menu-item" onClick={Props.clearData}>
               New
             </li>
             <li className="menu-sep"></li>
-            <li className="menu-item" onClick={Props.exportData}>
+            <li className="menu-item" onClick={Props.popupImportProjectWindow}>
               Import
             </li>
-            <li className="menu-item" onClick={Props.exportData}>
+            <li className="menu-item" onClick={Props.popupExportProjectWindow}>
               Export
             </li>
             <li className="menu-sep"></li>
-            <li className="menu-item" onClick={Props.checkCZML}>
+            <li className="menu-item" onClick={Props.popupExportCZMLWindow}>
               Export CZML
             </li>
           </ul>
