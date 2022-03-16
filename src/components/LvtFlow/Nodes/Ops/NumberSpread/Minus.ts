@@ -1,10 +1,10 @@
 import { updateNode } from "../../../Core/CommFuc";
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
-const MultiplySpread: LvtNodeDef = {
-  _id: "MultiplySpread",
+const Minus: LvtNodeDef = {
+  _id: "Minus",
   ui: {
-    title: "MultiplySpread",
+    title: "Minus",
     description: "",
   },
   portsIn: [
@@ -31,7 +31,7 @@ const MultiplySpread: LvtNodeDef = {
     const max = Math.max(_a.length, _b.length);
     const result = [];
     for (let i = 0; i < max; i += 1) {
-      result.push(_a[i % _a.length] * _b[i % _b.length]);
+      result.push(_a[i % _a.length] - _b[i % _b.length]);
     }
     return result;
   },
@@ -41,4 +41,4 @@ const MultiplySpread: LvtNodeDef = {
   },
 };
 
-export default MultiplySpread;
+export default Minus;

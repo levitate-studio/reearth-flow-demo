@@ -1,10 +1,10 @@
 import { updateNode } from "../../../Core/CommFuc";
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
-const PlusSpread: LvtNodeDef = {
-  _id: "PlusSpread",
+const Plus: LvtNodeDef = {
+  _id: "Plus",
   ui: {
-    title: "PlusSpread",
+    title: "Plus",
     description: "",
   },
   portsIn: [
@@ -41,4 +41,4 @@ const PlusSpread: LvtNodeDef = {
   },
 };
 
-export default PlusSpread;
+export default Plus;

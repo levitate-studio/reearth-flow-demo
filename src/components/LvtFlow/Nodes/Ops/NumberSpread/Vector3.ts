@@ -4,10 +4,10 @@ import {
 } from "../../../Core/CommFuc";
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
-const Vector3Spread: LvtNodeDef = {
-  _id: "Vector3Spread",
+const Vector3: LvtNodeDef = {
+  _id: "Vector3",
   ui: {
-    title: "Vector3Spread",
+    title: "Vector3",
     description: "",
   },
   portsIn: [
@@ -42,4 +42,4 @@ const Vector3Spread: LvtNodeDef = {
   },
 };
 
-export default Vector3Spread;
+export default Vector3;

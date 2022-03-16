@@ -1,51 +1,44 @@
 import { updateNode } from "../../../Core/CommFuc";
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
-const Vector2Spread: LvtNodeDef = {
-  _id: "Vector2Spread",
+const Multiply: LvtNodeDef = {
+  _id: "Multiply",
   ui: {
-    title: "Vector2Spread",
+    title: "Multiply",
     description: "",
   },
   portsIn: [
     {
-      name: "x",
+      name: "spread0",
       dataType: "numberSpread",
-      ui: {
-        component: "OutputSource",
-      },
+      defaultValue: 0,
     },
     {
-      name: "y",
+      name: "spread1",
       dataType: "numberSpread",
-      ui: {
-        component: "OutputSource",
-      },
+      defaultValue: 0,
     },
   ],
   portsOut: [
     {
-      name: "vector2Spread",
+      name: "result",
       dataType: "numberSpread",
-      ui: {
-        component: "OutputSource",
-      },
     },
   ],
-  rule: (a: number[] | number, b: number[] | number) => {
+  rule: (a: number, b: number) => {
     const _a = typeof a === "object" ? a : [a];
     const _b = typeof b === "object" ? b : [b];
     const max = Math.max(_a.length, _b.length);
     const result = [];
     for (let i = 0; i < max; i += 1) {
-      result.push([_a[i % _a.length], _b[i % _b.length]]);
+      result.push(_a[i % _a.length] * _b[i % _b.length]);
     }
     return result;
   },
   update: (node: LvtNode) => {
-    updateNode(node, "vector2Spread", ["x", "y"]);
+    updateNode(node, "result", ["spread0", "spread1"]);
     return node;
   },
 };
 
-export default Vector2Spread;
+export default Multiply;

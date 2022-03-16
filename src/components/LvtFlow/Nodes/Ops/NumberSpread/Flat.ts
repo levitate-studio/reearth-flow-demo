@@ -1,10 +1,10 @@
 import { updateNode } from "../../../Core/CommFuc";
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
-const FlatSpread: LvtNodeDef = {
-  _id: "FlatSpread",
+const Flat: LvtNodeDef = {
+  _id: "Flat",
   ui: {
-    title: "FlatSpread",
+    title: "Flat",
     description: "",
   },
   portsIn: [
@@ -31,4 +31,4 @@ const FlatSpread: LvtNodeDef = {
   },
 };
 
-export default FlatSpread;
+export default Flat;
