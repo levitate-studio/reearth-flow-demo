@@ -9,6 +9,7 @@ import OutputPanel from "../../components/Editor/OutputPanel";
 import PropertyPanel from "../../components/Editor/PropertyPanel";
 import ToolbarPanel from "../../components/Editor/ToolbarPanel";
 import LvtFlow from "../../components/LvtFlow";
+import { LvtPort } from "../../components/LvtFlow/Core/LvtPort";
 
 import "./df-editor.css";
 
@@ -138,8 +139,9 @@ const Editor: React.FC<Props> = () => {
   // outputSource Control
   // =======================================
   const outputPanelRef = useRef();
-  const setOutputSource = () => {
+  const setOutputSource = (port: LvtPort) => {
     (outputPanelRef.current as any).setTab("output");
+    lvtFlow.setOutputSource(port);
   };
 
   //

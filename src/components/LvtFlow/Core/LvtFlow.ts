@@ -24,8 +24,10 @@ export class LvtFlow {
   needUpdateData: boolean;
   // current
   currentElement: LvtNode | null;
+  currentElementRenderSeed: number | undefined;
   // output
   outputSource: LvtPort | null;
+  outputSourceRenderSeed: number | undefined;
   // render
   renderData: IRenderData | null;
   rendererId: string | undefined;
@@ -75,6 +77,7 @@ export class LvtFlow {
       this.setOutputSource(null);
     }
     this.needUpdateData = false;
+    this.currentElementRenderSeed = Math.random();
     LvtFlow.reRender();
   }
 
@@ -87,6 +90,8 @@ export class LvtFlow {
     } else {
       this.outputSource = null;
     }
+    this.outputSourceRenderSeed = Math.random();
+    console.log(this.outputSourceRenderSeed);
     this.needUpdateData = false;
     LvtFlow.reRender();
   }

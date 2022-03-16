@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { LvtFlowContext } from "../../../pages/Editor/index";
 import NodeValueComponents from "../NodeValueComponents";
@@ -6,8 +6,11 @@ import "./df-property-panel.css";
 
 const PropertyPanel = ({ setOutputSource }: any) => {
   const lvtFlow = useContext(LvtFlowContext);
-  const element = lvtFlow.currentElement;
-  console.log("rerender property");
+  const [element, setElement] = useState(lvtFlow.currentElement);
+
+  useEffect(() => {
+    setElement(lvtFlow.currentElement);
+  }, [lvtFlow.currentElementRenderSeed, lvtFlow.currentElement]);
 
   const valueComponent = (node: any, port: any) => {
     return NodeValueComponents[port.ui.component as string]?.({
