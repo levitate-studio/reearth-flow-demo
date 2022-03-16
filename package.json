@@ -18,7 +18,8 @@
     "react-csv-reader": "^3.4.0",
     "react-dom": "^17.0.2",
     "react-flow-renderer": "^9.7.3",
-    "react-json-view": "^1.21.3"
+    "react-json-view": "^1.21.3",
+    "use-http": "^1.0.26"
   },
   "devDependencies": {
     "@types/d3": "^7.1.0",
