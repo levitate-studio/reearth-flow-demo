@@ -1,4 +1,5 @@
 import { useState, createContext, useRef } from "react";
+import useFetch from "use-http";
 
 import DataFlowCanvas from "../../components/Editor/DataFlowCanvas";
 import NodesPanel from "../../components/Editor/NodesPanel";
@@ -25,6 +26,9 @@ const Editor: React.FC<Props> = () => {
   // canvas
   const dataFlowCanvasRef = useRef();
 
+  // fetch
+  const { get, response } = useFetch("");
+
   // =======================================
   // File Functions
   // =======================================
@@ -43,25 +47,32 @@ const Editor: React.FC<Props> = () => {
     (dataFlowCanvasRef.current as any).clearData();
   };
   // load
-  const loadData = (url: string) => {
-    const req = new XMLHttpRequest();
-    req.open("get", url);
-    req.send(null);
-    req.onload = () => {
-      if (req.status === 200) {
-        let data;
-        try {
-          data = JSON.parse(req.responseText);
-        } catch (error) {
-          console.warn("Request JSON is not valid.");
-        }
-        if (data) {
-          lvtFlow.importData(data.lvtFlow);
-          (dataFlowCanvasRef.current as any).importData(data.canvas);
-        }
-      }
-    };
+  const loadData = async (url: string) => {
+    const data = await get(url);
+    if (response.ok && data) {
+      lvtFlow.importData(data.lvtFlow);
+      (dataFlowCanvasRef.current as any).importData(data.canvas);
+    }
   };
+  // const loadData = (url: string) => {
+  //   const req = new XMLHttpRequest();
+  //   req.open("get", url);
+  //   req.send(null);
+  //   req.onload = () => {
+  //     if (req.status === 200) {
+  //       let data;
+  //       try {
+  //         data = JSON.parse(req.responseText);
+  //       } catch (error) {
+  //         console.warn("Request JSON is not valid.");
+  //       }
+  //       if (data) {
+  //         lvtFlow.importData(data.lvtFlow);
+  //         (dataFlowCanvasRef.current as any).importData(data.canvas);
+  //       }
+  //     }
+  //   };
+  // };
   // check czml
   const checkCZML = () => {
     console.log(lvtFlow.renderData?.v?.data);

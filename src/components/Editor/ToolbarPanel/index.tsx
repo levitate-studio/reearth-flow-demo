@@ -1,5 +1,6 @@
-import { useMemo } from "react";
+import { useMemo, useEffect, useState } from "react";
 import "./df-toolbar-panel.css";
+import useFetch from "use-http";
 
 interface Props {
   exportData: any;
@@ -9,29 +10,34 @@ interface Props {
 }
 
 const ToolbarPanel = (Props: Props) => {
-  const examplesList = useMemo(() => {
-    const examples = [
-      { title: "CZML Point", url: "/examples/czml-point.json" },
-      { title: "CZML Billboard", url: "/examples/czml-billboard.json" },
-      { title: "CzmlLib Point", url: "/examples/czmllib-point.json" },
-      { title: "CzmlLib Box", url: "/examples/czmllib-box.json" },
-      { title: "CzmlLib Corridor", url: "/examples/czmllib-corridor.json" },
-      { title: "GeoJSON MultiPoint", url: "/examples/geojson-multipoint.json" },
-      { title: "DEV Test", url: "/examples/dev-test.json" },
-    ];
+  const [examples, setExamples] = useState([]);
+  const { get, response } = useFetch();
 
-    return examples.map((example, index) => (
-      <li
-        className="menu-item"
-        key={index}
-        onClick={() => {
-          Props.loadData(example.url);
-        }}
-      >
-        {example.title}
-      </li>
-    ));
-  }, [Props]);
+  useEffect(() => {
+    const initExamples = async () => {
+      const reqExamples = await get("/examples/index.json");
+      if (response.ok) {
+        setExamples(reqExamples);
+      }
+    };
+    initExamples();
+  }, []);
+
+  const examplesList = useMemo(() => {
+    if (examples) {
+      return examples.map((example, index): any => (
+        <li
+          className="menu-item"
+          key={index}
+          onClick={() => {
+            Props.loadData(example["url"]);
+          }}
+        >
+          {example["title"]}
+        </li>
+      ));
+    }
+  }, [Props, examples]);
 
   return (
     <div className="df-toolbar-panel">
