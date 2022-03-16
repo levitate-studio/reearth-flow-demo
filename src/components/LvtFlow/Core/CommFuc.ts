@@ -26,6 +26,24 @@ const createIdFucCreator = () => {
 export const idCreator = createIdFucCreator();
 
 // =======================================
+// xhr request
+// =======================================
+export const xhrGet = (url: string) => {
+  return new Promise((resolve, reject) => {
+    const req = new XMLHttpRequest();
+    req.open("get", url);
+    req.send(null);
+    req.onload = () => {
+      if (req.status === 200) {
+        resolve(req.response);
+      } else {
+        reject(req.status);
+      }
+    };
+  });
+};
+
+// =======================================
 // Update Node
 // =======================================
 export const updateNode = (node: any, output: string, inputs: string[]) => {
@@ -46,7 +64,7 @@ export const spreadData = (data: any) => {
 // =======================================
 // transform port name
 // =======================================
-const transInternalName = (name) => {
+const transInternalName = (name: string) => {
   return name.substring(0, 1) === "_" ? name.slice(1) : name;
 };
 // =======================================

@@ -27,7 +27,7 @@ const Editor: React.FC<Props> = () => {
   const dataFlowCanvasRef = useRef();
 
   // fetch
-  const { get, response } = useFetch("");
+  const { get, response } = useFetch();
 
   // =======================================
   // File Functions
@@ -54,25 +54,7 @@ const Editor: React.FC<Props> = () => {
       (dataFlowCanvasRef.current as any).importData(data.canvas);
     }
   };
-  // const loadData = (url: string) => {
-  //   const req = new XMLHttpRequest();
-  //   req.open("get", url);
-  //   req.send(null);
-  //   req.onload = () => {
-  //     if (req.status === 200) {
-  //       let data;
-  //       try {
-  //         data = JSON.parse(req.responseText);
-  //       } catch (error) {
-  //         console.warn("Request JSON is not valid.");
-  //       }
-  //       if (data) {
-  //         lvtFlow.importData(data.lvtFlow);
-  //         (dataFlowCanvasRef.current as any).importData(data.canvas);
-  //       }
-  //     }
-  //   };
-  // };
+
   // check czml
   const checkCZML = () => {
     console.log(lvtFlow.renderData?.v?.data);

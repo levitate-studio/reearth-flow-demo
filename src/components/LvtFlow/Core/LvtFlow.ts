@@ -122,9 +122,9 @@ export class LvtFlow {
     return this.data.find((n: LvtNode) => n.id === id);
   }
 
-  chainUpdateNode(id: string) {
+  async chainUpdateNode(id: string) {
     const node = this.getNodeById(id);
-    node.update?.(node);
+    await node.update?.(node);
     if (node.data.portsOut?.length > 0) {
       Array.from(node.data.portsOut).forEach((out: any) => {
         Array.from(out.targets).forEach((target: any) => {
