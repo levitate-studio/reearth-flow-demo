@@ -91,7 +91,6 @@ export class LvtFlow {
       this.outputSource = null;
     }
     this.outputSourceRenderSeed = Math.random();
-    console.log(this.outputSourceRenderSeed);
     this.needUpdateData = false;
     LvtFlow.reRender();
   }
