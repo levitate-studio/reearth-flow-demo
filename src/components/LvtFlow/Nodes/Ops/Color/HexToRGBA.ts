@@ -21,7 +21,7 @@ const HexToRGBA: LvtNodeDef = {
   portsOut: [
     {
       name: "color",
-      dataType: "objectArray",
+      dataType: "numberSpread",
     },
   ],
   rule: (hex: any, alpha: any) => {
