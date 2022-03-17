@@ -19,7 +19,8 @@ const SelectColumn: LvtNodeDef = {
       ui: {
         component: "Select",
         componentOptions: {
-          columnSource: "csvData",
+          selectorSource: "csvData",
+          selectorSourceType: "csvColumn",
         },
         hidden: true,
       },

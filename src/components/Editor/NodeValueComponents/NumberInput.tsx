@@ -7,6 +7,8 @@ const NumberInput = ({ port, node, lvtFlow }: any) => {
       onChange={(e) => {
         port.setValue(Number(e.target.value));
         lvtFlow.reRenderUI(["currentElement"]);
+      }}
+      onBlur={() => {
         lvtFlow.updateNodesFromNode(node.id);
       }}
     />

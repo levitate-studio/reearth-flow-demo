@@ -14,27 +14,8 @@ propery panel
   align-items: top;
   min-height: 30px;
 }
-.property-line input{
-  width: 100%;
-  background-color: var(--block-input-bg-color);
-  border: none;
-  border-radius: 0;
-  outline: none;
-  color: #ccc;
-  height: 24px;
-  font-size: 12px;
-}
-.property-line textarea{
-  width: 100%;
-  background-color: var(--block-input-bg-color);
-  border: none;
-  border-radius: 0;
-  outline: none;
-  color: #ccc;
-  height: 100px;
-  padding: 5px 0;
-  font-size: 12px;
-}
+.property-line input,
+.property-line textarea,
 .property-line select{
   width: 100%;
   background-color: var(--block-input-bg-color);
@@ -42,9 +23,21 @@ propery panel
   border-radius: 0;
   outline: none;
   color: #ccc;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 0 5px;
+}
+.property-line input{
+  height: 24px;
+}
+.property-line textarea{
+  height: 100px;
+  padding: 5px 0;
+
+}
+.property-line select{
   height: 24px;
   padding: 5px 0;
-  font-size: 12px;
 }
 .property-line input:disabled{
   background-color: var(--block-bg-color);
