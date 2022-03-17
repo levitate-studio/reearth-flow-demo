@@ -90,17 +90,31 @@ export class LvtPort {
     }
   }
 
-  static getPortDefaultCompnent(type: dataType, component: string | undefined) {
+  static getPortDefaultCompnent(
+    type: dataType,
+    component: string | undefined,
+    portType: string
+  ) {
     if (component) {
       return component;
     }
-    switch (type) {
-      case "number":
-        return "NumberInput";
-      case "string":
-        return "Input";
-      default:
-        return "OutputSource";
+    if (portType === "output") {
+      switch (type) {
+        case "number":
+        case "string":
+          return "PureDisplay";
+        default:
+          return "OutputSource";
+      }
+    } else {
+      switch (type) {
+        case "number":
+          return "NumberInput";
+        case "string":
+          return "Input";
+        default:
+          return "OutputSource";
+      }
     }
   }
 
@@ -111,7 +125,8 @@ export class LvtPort {
     this.ui = {
       component: LvtPort.getPortDefaultCompnent(
         options.dataType,
-        options.ui?.component
+        options.ui?.component,
+        options.portType
       ),
       componentOptions: options.ui?.componentOptions,
       description: options.ui?.description,
