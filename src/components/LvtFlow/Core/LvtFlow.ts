@@ -185,7 +185,7 @@ export class LvtFlow {
     // finish
     const t2 = new Date().getTime();
     clog.log("Flow", `update flow: v[${curDataVersion}] in ${t2 - t1}ms`);
-    this.reRenderUI(["renderMap"]);
+    this.reRenderUI(["renderMap", "outputSource"]);
   }
 
   // =======================================
