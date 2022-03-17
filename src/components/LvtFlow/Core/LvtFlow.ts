@@ -417,6 +417,7 @@ export class LvtFlow {
     this.outputSource = null;
     this.renderData = null;
     this.dataVersion = 0;
+    this.rendererId = undefined;
     //
     this.reRenderUI(["renderMap", "outputSource", "currentElement"]);
   }
@@ -493,7 +494,14 @@ export class LvtFlow {
       // set the id to prevent same id
       idCreator.setId(Math.max(...nodeIds) + 1);
       // init data
-      this.updateNodesUntilNode(this.rendererId);
+      if (this.rendererId) {
+        this.updateNodesUntilNode(this.rendererId);
+      } else {
+        console.warn("no renderer node found");
+        this.data.forEach((node: LvtNode) => {
+          this.updateNodesFromNode(node.id as string);
+        });
+      }
     }, 0);
   }
 }

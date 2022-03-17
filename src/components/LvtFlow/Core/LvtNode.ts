@@ -42,7 +42,7 @@ export class LvtNode {
   update: any;
   rule: any;
   //
-  dataVersion: number;
+  dataVersion: number | undefined;
 
   //
   static createPorts({ portsDef, portType, portValue }: any) {

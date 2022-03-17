@@ -14,11 +14,19 @@ const DatasetUrl: LvtNodeDef = {
       defaultValue: [
         {
           title: "French cities",
-          value: "/sampleData/fr.csv",
+          value: "/sampleData/french-cities.csv",
         },
         {
-          title: "World Cities",
-          value: "/sampleData/worldcities.csv",
+          title: "World cities",
+          value: "/sampleData/world-cities.csv",
+        },
+        {
+          title: "Countries",
+          value: "/sampleData/countries.csv",
+        },
+        {
+          title: "Countries indicators",
+          value: "/sampleData/countries-indicators.csv",
         },
       ],
       ui: {
