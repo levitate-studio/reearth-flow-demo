@@ -6,6 +6,7 @@ const FileCSVInput = ({ port, node, lvtFlow }: any) => {
       onFileLoaded={(data) => {
         console.log(data);
         port.setValue(data);
+        lvtFlow.reRenderUI(["currentElement"]);
         lvtFlow.updateNodesFromNode(node.id);
       }}
     />

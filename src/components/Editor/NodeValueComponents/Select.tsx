@@ -12,6 +12,7 @@ const Select = ({ node, port, lvtFlow }: any) => {
       value={port.value.v}
       onChange={(e) => {
         port.setValue(Number(e.target.value));
+        lvtFlow.reRenderUI(["currentElement"]);
         lvtFlow.updateNodesFromNode(node.id);
       }}
     >

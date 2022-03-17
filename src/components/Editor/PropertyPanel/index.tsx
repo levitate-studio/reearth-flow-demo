@@ -1,6 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 
 import { LvtFlowContext } from "../../../pages/Editor/index";
+import { clog } from "../../LvtFlow/Core/CommFuc";
 import NodeValueComponents from "../NodeValueComponents";
 import "./df-property-panel.css";
 
@@ -8,9 +9,12 @@ const PropertyPanel = ({ setOutputSource }: any) => {
   const lvtFlow = useContext(LvtFlowContext);
   const [element, setElement] = useState(lvtFlow.currentElement);
 
-  useEffect(() => {
-    setElement(lvtFlow.currentElement);
-  }, [lvtFlow.currentElementRenderSeed, lvtFlow.currentElement]);
+  useMemo(() => {
+    if (lvtFlow.currentElementRenderSeed) {
+      clog.log("UI", "update properties panel");
+      setElement(lvtFlow.currentElement);
+    }
+  }, [lvtFlow.currentElementRenderSeed]);
 
   const valueComponent = (node: any, port: any) => {
     return NodeValueComponents[port.ui.component as string]?.({
@@ -67,6 +71,10 @@ const PropertyPanel = ({ setOutputSource }: any) => {
             <div className="property-line">
               <div className="property-name">Element ID</div>
               <div className="property-value">{element.id}</div>
+            </div>
+            <div className="property-line">
+              <div className="property-name">Data Version</div>
+              <div className="property-value">{element.dataVersion}</div>
             </div>
           </>
         )}

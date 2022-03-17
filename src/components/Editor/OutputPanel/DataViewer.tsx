@@ -1,21 +1,25 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import ReactJson from "react-json-view";
 
 import { LvtFlowContext } from "../../../pages/Editor/index";
+import { clog } from "../../LvtFlow/Core/CommFuc";
 
 const DataViewer = () => {
   const lvtFlow = useContext(LvtFlowContext);
   const [displayData, setDisplayData] = useState({});
 
-  useEffect(() => {
-    setDisplayData(
-      lvtFlow.outputSource
-        ? typeof lvtFlow.outputSource.value.v === "object"
-          ? lvtFlow.outputSource.value.v
-          : { value: lvtFlow.outputSource.value.v }
-        : {}
-    );
-  }, [lvtFlow.outputSourceRenderSeed, lvtFlow.outputSource]);
+  useMemo(() => {
+    if (lvtFlow.outputSourceRenderSeed) {
+      clog.log("UI", "update data viewer panel");
+      setDisplayData(
+        lvtFlow.outputSource
+          ? typeof lvtFlow.outputSource.value.v === "object"
+            ? lvtFlow.outputSource.value.v
+            : { value: lvtFlow.outputSource.value.v }
+          : {}
+      );
+    }
+  }, [lvtFlow.outputSourceRenderSeed]);
 
   return (
     <ReactJson

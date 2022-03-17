@@ -20,6 +20,9 @@
   "title": "GeoJSON MultiPoint",
   "url": "/examples/geojson-multipoint.json"
 }, {
+  "title": "DEV Performance Test",
+  "url": "/examples/dev-performance-test.json"
+}, {
   "title": "DEV Test",
   "url": "/examples/dev-test.json"
 }]

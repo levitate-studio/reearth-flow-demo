@@ -137,3 +137,34 @@ export const packageSpreadValue = (props: any) => {
   }
   return outputSpread;
 };
+
+// =======================================
+// Console log
+// =======================================
+export const clog = {
+  log: (type: string, data: any) => {
+    let bgcolor = "#ffffff";
+    switch (type) {
+      case "UI":
+        bgcolor = "#FF9671";
+        break;
+      case "Node":
+        bgcolor = "#00D0B9";
+        break;
+      case "Flow":
+        bgcolor = "#0081C0";
+        break;
+      default:
+        break;
+    }
+    console.log(
+      `%c ${type} %c %s`,
+      `background-color:${bgcolor};border-radius:2px;color:#000`,
+      "",
+      data
+    );
+  },
+  // log: (type: string, data: any[]) => {
+  //   console.log(`%c ${...data}`,'color:#0000ff');
+  // },
+};

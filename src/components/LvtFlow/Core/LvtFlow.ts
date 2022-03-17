@@ -1,6 +1,6 @@
 import React from "react";
 
-import { idCreator } from "./CommFuc";
+import { idCreator, clog } from "./CommFuc";
 import { LvtNode, LvtNodeOptions } from "./LvtNode";
 import { LvtPort } from "./LvtPort";
 
@@ -20,8 +20,7 @@ interface IRenderData {
 
 export class LvtFlow {
   data: any;
-  // action
-  needUpdateData: boolean;
+  dataVersion: number;
   // current
   currentElement: LvtNode | null;
   currentElementRenderSeed: number | undefined;
@@ -31,6 +30,8 @@ export class LvtFlow {
   // render
   renderData: IRenderData | null;
   rendererId: string | undefined;
+  // map
+  renderMapSeed: number | undefined;
 
   // version
   version: string;
@@ -43,10 +44,10 @@ export class LvtFlow {
   // =======================================
   constructor() {
     this.data = [];
+    this.dataVersion = 0;
     this.currentElement = null;
     this.outputSource = null;
     this.renderData = null;
-    this.needUpdateData = true;
     // fixed
     this.version = "1.0";
     // expose to window
@@ -76,9 +77,7 @@ export class LvtFlow {
       this.currentElement = null;
       this.setOutputSource(null);
     }
-    this.needUpdateData = false;
-    this.currentElementRenderSeed = Math.random();
-    LvtFlow.reRender();
+    this.reRenderUI(["currentElement"]);
   }
 
   // =======================================
@@ -90,16 +89,14 @@ export class LvtFlow {
     } else {
       this.outputSource = null;
     }
-    this.outputSourceRenderSeed = Math.random();
-    this.needUpdateData = false;
-    LvtFlow.reRender();
+    this.reRenderUI(["outputSource"]);
   }
 
   // =======================================
   // nodes
   // =======================================
   addNode(options: LvtNodeOptions) {
-    const node = new LvtNode(options);
+    const node = new LvtNode({ ...options, dataVersion: this.dataVersion });
     this.data.push(node);
     return node;
   }
@@ -126,24 +123,128 @@ export class LvtFlow {
     return this.data.find((n: LvtNode) => n.id === id);
   }
 
-  async chainUpdateNode(id: string) {
-    const node = this.getNodeById(id);
-    await node.update?.(node);
-    if (node.data.portsOut?.length > 0) {
-      Array.from(node.data.portsOut).forEach((out: any) => {
-        Array.from(out.targets).forEach((target: any) => {
-          this.chainUpdateNode(target.id);
-        });
-      });
+  async asyncUpdateNode(node: LvtNode) {
+    return new Promise((resolve) => {
+      setTimeout(async () => {
+        const t1 = new Date().getTime();
+        await node.update?.(node);
+        const t2 = new Date().getTime();
+        clog.log("Node", `update ${node.nodeId}: ${t2 - t1}ms`);
+        resolve(node);
+      }, 0);
+    });
+  }
+
+  // =======================================
+  // data update
+  // =======================================
+  async updateNodesFromNode(id: string) {
+    const t1 = new Date().getTime();
+    // step 1:
+    // increase the data version
+    this.dataVersion += 1;
+
+    // step 2:
+    // find all affected nodes
+    let affectedNodes: string[] = [];
+    const addAffectNode = (id: string) => {
+      affectedNodes.push(id);
+      const node = this.getNodeById(id);
+      if (node.data.portsOut?.length > 0) {
+        for (let p = 0, pl = node.data.portsOut.length; p < pl; p += 1) {
+          for (
+            let t = 0, tl = node.data.portsOut[p].targets.length;
+            t < tl;
+            t += 1
+          ) {
+            addAffectNode(node.data.portsOut[p].targets[t].id);
+          }
+        }
+      }
+    };
+    addAffectNode(id);
+    affectedNodes = Array.from(new Set(affectedNodes));
+
+    // step 3:
+    // update all unaffected node data version
+    for (let i = 0, n = this.data.length; i < n; i += 1) {
+      const node = this.data[i];
+      if (
+        affectedNodes.indexOf(node.id) === -1 &&
+        node.dataVersion === this.dataVersion - 1
+      ) {
+        node.dataVersion = this.dataVersion;
+      }
+    }
+
+    // step 4:
+    // start update the affect nodes
+    await this.cUpdateNode(id);
+
+    // finish
+    const t2 = new Date().getTime();
+    clog.log("Flow", `update flow: ${t2 - t1}ms`);
+    this.reRenderUI(["renderMap"]);
+  }
+
+  // =======================================
+  // data update
+  // =======================================
+  async updateNodesUntilNode(id: string | undefined) {
+    if (id) {
+      this.dataVersion += 1;
+      const t1 = new Date().getTime();
+      await this.cUpdateNode(id);
+      const t2 = new Date().getTime();
+      clog.log("Flow", `update flow: ${t2 - t1}ms`);
+      this.reRenderUI(["renderMap"]);
     }
   }
 
-  updateNodesFromNode(id: string) {
-    this.chainUpdateNode(id);
-    setTimeout(() => {
-      this.needUpdateData = true;
-      LvtFlow.reRender();
-    }, 0);
+  async cUpdateDepNode(id: string, curDataVersion: number) {
+    const node = this.getNodeById(id);
+    if (node.dataVersion === this.dataVersion) {
+      return true;
+    } else {
+      if (node.data.portsIn?.length > 0) {
+        for (let i = 0, p = node.data.portsIn.length; i < p; i += 1) {
+          if (node.data.portsIn[i].source?.id) {
+            await this.cUpdateDepNode(
+              node.data.portsIn[i].source?.id,
+              curDataVersion
+            );
+          }
+        }
+      }
+      // do update only for latest data version
+      if (curDataVersion === this.dataVersion) {
+        await this.asyncUpdateNode(node);
+        node.dataVersion = this.dataVersion;
+      }
+      return true;
+    }
+  }
+
+  async cUpdateNode(id: string) {
+    // step 1:
+    // update all deps and self
+    await this.cUpdateDepNode(id, this.dataVersion);
+    const node = this.getNodeById(id);
+
+    // step 2:
+    // update children
+    if (node.data.portsOut?.length > 0) {
+      for (let p = 0, pl = node.data.portsOut.length; p < pl; p += 1) {
+        for (
+          let t = 0, tl = node.data.portsOut[p].targets.length;
+          t < tl;
+          t += 1
+        ) {
+          await this.cUpdateNode(node.data.portsOut[p].targets[t].id);
+        }
+      }
+    }
+    return true;
   }
 
   // =======================================
@@ -192,7 +293,7 @@ export class LvtFlow {
     return allowed.includes(targetPort.dataType);
   }
 
-  addEdge(params: IEdgeParams | any) {
+  addEdge(params: IEdgeParams | any, doUpdate = true) {
     const source = this.getNodeById(params.source);
     const sourcePort = source.getPortOutByName(params.sourceHandle);
     const target = this.getNodeById(params.target);
@@ -214,7 +315,9 @@ export class LvtFlow {
       this.setRenderer(target);
     }
     // update
-    this.updateNodesFromNode(params.target);
+    if (doUpdate) {
+      this.updateNodesFromNode(params.target);
+    }
   }
 
   removeEdge(params: IEdgeParams | any) {
@@ -279,6 +382,24 @@ export class LvtFlow {
       }, 0);
     }
   }
+  reRenderUI(uiList: string[] = []) {
+    for (let i = 0, l = uiList.length; i < l; i += 1) {
+      switch (uiList[i]) {
+        case "outputSource":
+          this.outputSourceRenderSeed = Math.random();
+          break;
+        case "currentElement":
+          this.currentElementRenderSeed = Math.random();
+          break;
+        case "renderMap":
+          this.renderMapSeed = Math.random();
+          break;
+        default:
+          break;
+      }
+    }
+    LvtFlow.reRender();
+  }
 
   // =======================================
   // clear
@@ -288,8 +409,9 @@ export class LvtFlow {
     this.currentElement = null;
     this.outputSource = null;
     this.renderData = null;
-    this.needUpdateData = true;
-    LvtFlow.reRender();
+    this.dataVersion = 0;
+    //
+    this.reRenderUI(["renderMap"]);
   }
 
   // =======================================
@@ -341,25 +463,31 @@ export class LvtFlow {
   // =======================================
   // import
   // =======================================
-  importData(importData: IExportData) {
+  async importData(importData: IExportData) {
     this.clearData();
-    // add nodes
-    const nodeIds: number[] = [];
-    if (importData.nodes.length > 0) {
-      importData.nodes.forEach((node) => {
-        nodeIds.push(Number(node.id));
-        this.addNode(node);
-      });
-    }
 
-    // add edges
-    if (importData.edges.length > 0) {
-      importData.edges.forEach((edge) => {
-        this.addEdge(edge);
-      });
-    }
-    // set the id to prevent same id
-    idCreator.setId(Math.max(...nodeIds) + 1);
+    //
+    setTimeout(() => {
+      // add nodes
+      const nodeIds: number[] = [];
+      if (importData.nodes.length > 0) {
+        importData.nodes.forEach((node) => {
+          nodeIds.push(Number(node.id));
+          this.addNode(node);
+        });
+      }
+
+      // add edges
+      if (importData.edges.length > 0) {
+        importData.edges.forEach((edge) => {
+          this.addEdge(edge, false);
+        });
+      }
+      // set the id to prevent same id
+      idCreator.setId(Math.max(...nodeIds) + 1);
+      // init data
+      this.updateNodesUntilNode(this.rendererId);
+    }, 0);
   }
 }
 

@@ -1,4 +1,7 @@
-import { useState, useImperativeHandle } from "react";
+import { useState, useImperativeHandle, useContext } from "react";
+
+import { LvtFlowContext } from "../../../pages/Editor/index";
+import LvtFlow from "../../LvtFlow";
 
 import CesiumMap from "./CesiumMap";
 import DataViewer from "./DataViewer";
@@ -7,10 +10,19 @@ import "./df-output-panel.css";
 
 const OutputPanel = ({ skipUpdate, cref }: any) => {
   const [activeTab, setActiveTab] = useState("output");
+  const lvtFlow = useContext(LvtFlowContext);
+
+  const setTab = (tab: string) => {
+    setActiveTab(tab);
+    // trigger update for map
+    if (tab === "map") {
+      lvtFlow.reRenderUI(["renderMap"]);
+    }
+  };
 
   useImperativeHandle(cref, () => ({
     setTab: (tab: string) => {
-      setActiveTab(tab);
+      setTab(tab);
     },
   }));
 
@@ -22,7 +34,7 @@ const OutputPanel = ({ skipUpdate, cref }: any) => {
             activeTab === "output" && "active"
           }`}
           onClick={() => {
-            setActiveTab("output");
+            setTab("output");
           }}
         >
           Output
@@ -32,7 +44,7 @@ const OutputPanel = ({ skipUpdate, cref }: any) => {
             activeTab === "map" && "active"
           }`}
           onClick={() => {
-            setActiveTab("map");
+            setTab("map");
           }}
         >
           Map

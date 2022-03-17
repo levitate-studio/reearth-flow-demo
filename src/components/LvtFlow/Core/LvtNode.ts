@@ -9,6 +9,7 @@ export interface LvtNodeOptions {
   data?: {
     portsIn?: any;
   };
+  dataVersion: number;
 }
 
 export interface LvtNodeDef {
@@ -40,6 +41,8 @@ export class LvtNode {
     | undefined;
   update: any;
   rule: any;
+  //
+  dataVersion: number;
 
   //
   static createPorts({ portsDef, portType, portValue }: any) {
@@ -87,11 +90,11 @@ export class LvtNode {
       };
       this.isRenderer = nodeDef.isRenderer;
       //
-      // auto update once if is imported
-      this.update?.(this);
-      // if (options.id) {
-      //   this.update?.(this);
-      // }
+      // auto update once if is imported and has value
+      if (options.data?.portsIn) {
+        this.update?.(this);
+      }
+      this.dataVersion = options.dataVersion;
     }
   }
 

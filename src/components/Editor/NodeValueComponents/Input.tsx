@@ -5,6 +5,7 @@ const Input = ({ port, node, lvtFlow }: any) => {
       disabled={port.connected}
       onChange={(e) => {
         port.setValue(e.target.value);
+        lvtFlow.reRenderUI(["currentElement"]);
         lvtFlow.updateNodesFromNode(node.id);
       }}
     />
