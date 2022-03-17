@@ -58,6 +58,7 @@ const CesiumMap = ({ skipUpdate }: { skipUpdate: boolean }) => {
     cesiumViewer = new Viewer(cesiumContainer as HTMLElement, {
       timeline: false,
       animation: false,
+      requestRenderMode: true,
       fullscreenElement: cesiumContainer as HTMLElement,
     });
   }, []);
