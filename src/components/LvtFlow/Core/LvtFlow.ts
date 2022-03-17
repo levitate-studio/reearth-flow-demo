@@ -143,6 +143,7 @@ export class LvtFlow {
     // step 1:
     // increase the data version
     this.dataVersion += 1;
+    const curDataVersion = this.dataVersion;
 
     // step 2:
     // find all affected nodes
@@ -179,11 +180,11 @@ export class LvtFlow {
 
     // step 4:
     // start update the affect nodes
-    await this.cUpdateNode(id);
+    await this.cUpdateNode(id, curDataVersion);
 
     // finish
     const t2 = new Date().getTime();
-    clog.log("Flow", `update flow: ${t2 - t1}ms`);
+    clog.log("Flow", `update flow: v[${curDataVersion}] in ${t2 - t1}ms`);
     this.reRenderUI(["renderMap"]);
   }
 
@@ -193,10 +194,11 @@ export class LvtFlow {
   async updateNodesUntilNode(id: string | undefined) {
     if (id) {
       this.dataVersion += 1;
+      const curDataVersion = this.dataVersion;
       const t1 = new Date().getTime();
-      await this.cUpdateNode(id);
+      await this.cUpdateNode(id, curDataVersion);
       const t2 = new Date().getTime();
-      clog.log("Flow", `update flow: ${t2 - t1}ms`);
+      clog.log("Flow", `update flow: v[${curDataVersion}] in ${t2 - t1}ms`);
       this.reRenderUI(["renderMap"]);
     }
   }
@@ -219,16 +221,16 @@ export class LvtFlow {
       // do update only for latest data version
       if (curDataVersion === this.dataVersion) {
         await this.asyncUpdateNode(node);
-        node.dataVersion = this.dataVersion;
+        node.dataVersion = curDataVersion;
       }
       return true;
     }
   }
 
-  async cUpdateNode(id: string) {
+  async cUpdateNode(id: string, curDataVersion: number) {
     // step 1:
     // update all deps and self
-    await this.cUpdateDepNode(id, this.dataVersion);
+    await this.cUpdateDepNode(id, curDataVersion);
     const node = this.getNodeById(id);
 
     // step 2:
@@ -240,7 +242,10 @@ export class LvtFlow {
           t < tl;
           t += 1
         ) {
-          await this.cUpdateNode(node.data.portsOut[p].targets[t].id);
+          await this.cUpdateNode(
+            node.data.portsOut[p].targets[t].id,
+            curDataVersion
+          );
         }
       }
     }
@@ -382,7 +387,9 @@ export class LvtFlow {
       }, 0);
     }
   }
-  reRenderUI(uiList: string[] = []) {
+  reRenderUI(
+    uiList: Array<"outputSource" | "currentElement" | "renderMap"> = []
+  ) {
     for (let i = 0, l = uiList.length; i < l; i += 1) {
       switch (uiList[i]) {
         case "outputSource":
@@ -411,7 +418,7 @@ export class LvtFlow {
     this.renderData = null;
     this.dataVersion = 0;
     //
-    this.reRenderUI(["renderMap"]);
+    this.reRenderUI(["renderMap", "outputSource", "currentElement"]);
   }
 
   // =======================================

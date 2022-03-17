@@ -1,6 +1,6 @@
 // import * as Cesium from "cesium";
 import { Viewer, CzmlDataSource, GeoJsonDataSource } from "cesium";
-import { useEffect, useContext, useState, useMemo } from "react";
+import { useEffect, useContext, useState } from "react";
 
 import { LvtFlowContext } from "../../../pages/Editor/index";
 import { clog } from "../../LvtFlow/Core/CommFuc";
@@ -9,11 +9,11 @@ import "cesium/Build/Cesium/Widgets/widgets.css";
 
 let cesiumViewer: any;
 let rendering = false;
+let dataVersion = 0;
 
 const CesiumMap = ({ skipUpdate }: { skipUpdate: boolean }) => {
   // update control
   const [autoUpdate, setAutoUpdate] = useState(true);
-  const [dataVersion, setDataVersion] = useState(0);
   const lvtFlow = useContext(LvtFlowContext);
 
   const updateCesium = async (force = false) => {
@@ -30,6 +30,8 @@ const CesiumMap = ({ skipUpdate }: { skipUpdate: boolean }) => {
 
       // load new data
       if (renderData) {
+        const curDataVersion = lvtFlow.dataVersion;
+        clog.log("Cesium", `loading data: v[${curDataVersion}]`);
         let dataSourcePromise;
         switch (renderData.dataType) {
           case "CZML":
@@ -41,14 +43,20 @@ const CesiumMap = ({ skipUpdate }: { skipUpdate: boolean }) => {
             break;
         }
         const t2 = new Date().getTime();
-        clog.log("Cesium", `load data: ${t2 - t1}ms`);
+        clog.log("Cesium", `loaded data v[${curDataVersion}] in ${t2 - t1}ms`);
 
         // render new data
         cesiumViewer.dataSources.add(dataSourcePromise);
         const t3 = new Date().getTime();
-        clog.log("Cesium", `render data: ${t3 - t2}ms`);
+        clog.log(
+          "Cesium",
+          `rendered data v[${curDataVersion}] in ${t3 - t2}ms`
+        );
+        dataVersion = curDataVersion;
+      } else {
+        dataVersion = 0;
       }
-      setDataVersion(lvtFlow.dataVersion);
+
       rendering = false;
     }
   };
@@ -63,10 +71,12 @@ const CesiumMap = ({ skipUpdate }: { skipUpdate: boolean }) => {
     });
   }, []);
 
-  useMemo(() => {
+  useEffect(() => {
     clog.log("UI", `update cesium map`);
     if (dataVersion != lvtFlow.dataVersion) {
-      updateCesium();
+      setTimeout(() => {
+        updateCesium();
+      }, 0);
     }
   }, [lvtFlow.renderMapSeed]);
 

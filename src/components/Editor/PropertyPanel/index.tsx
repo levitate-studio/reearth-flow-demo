@@ -17,7 +17,11 @@ const PropertyPanel = ({ setOutputSource }: any) => {
   }, [lvtFlow.currentElementRenderSeed]);
 
   const valueComponent = (node: any, port: any) => {
-    return NodeValueComponents[port.ui.component as string]?.({
+    let component = port.ui.component;
+    if (component === "NumberInput" && typeof port.value.v === "object") {
+      component = "OutputSource";
+    }
+    return NodeValueComponents[component]?.({
       node,
       port,
       lvtFlow,
