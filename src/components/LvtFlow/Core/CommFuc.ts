@@ -164,7 +164,4 @@ export const clog = {
       data
     );
   },
-  // log: (type: string, data: any[]) => {
-  //   console.log(`%c ${...data}`,'color:#0000ff');
-  // },
 };
