@@ -56,6 +56,7 @@ const CesiumMap = ({ skipUpdate }: { skipUpdate: boolean }) => {
       } else {
         dataVersion = 0;
       }
+      cesiumViewer.scene.requestRender();
 
       rendering = false;
     }
