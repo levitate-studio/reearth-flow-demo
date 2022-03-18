@@ -23,7 +23,7 @@ export type Props = {
 };
 const Editor: React.FC<Props> = () => {
   // lvtflow
-  const [_timestamp, setTimestamp] = useState(new Date().getTime());
+  const [_timestamp, setTimestamp] = useState(new Date().getTime().toString());
   LvtFlow.setUIReRenderer(setTimestamp);
 
   // canvas

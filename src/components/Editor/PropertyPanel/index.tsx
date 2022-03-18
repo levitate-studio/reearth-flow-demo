@@ -2,6 +2,7 @@ import { useContext, useMemo, useState } from "react";
 
 import { LvtFlowContext } from "../../../pages/Editor/index";
 import { clog } from "../../LvtFlow/Core/CommFuc";
+import { getInternalDataType } from "../../LvtFlow/Core/DataTypes";
 import NodeValueComponents from "../NodeValueComponents";
 import "./df-property-panel.css";
 
@@ -35,6 +36,11 @@ const PropertyPanel = ({ setOutputSource }: any) => {
       <div className="df-block-group-title">Ports IN</div>
       {element?.data.portsIn.map((port: any, index: number) => (
         <div className="property-line" key={`in-${index}`}>
+          <div
+            className={`property-datatype portcolor-${getInternalDataType(
+              port.dataType
+            )}`}
+          ></div>
           <div className="property-name">{port.name}</div>
           {valueComponent(element, port)}
         </div>
@@ -48,6 +54,11 @@ const PropertyPanel = ({ setOutputSource }: any) => {
       <div className="df-block-group-title">Ports OUT</div>
       {element?.data.portsOut.map((port: any, index: number) => (
         <div className="property-line" key={`out-${index}`}>
+          <div
+            className={`property-datatype portcolor-${getInternalDataType(
+              port.dataType
+            )}`}
+          ></div>
           <div className="property-name">{port.name}</div>
           {valueComponent(element, port)}
         </div>

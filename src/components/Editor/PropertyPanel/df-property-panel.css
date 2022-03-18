@@ -10,6 +10,7 @@ propery panel
 }
 
 .property-line{
+  position: relative;
   display: flex;
   align-items: top;
   min-height: 30px;
@@ -41,6 +42,12 @@ propery panel
 }
 .property-line input:disabled{
   background-color: var(--block-bg-color);
+}
+.property-datatype{
+  position: absolute;
+  width: 5px;
+  height: 100%;
+  left: -10px;
 }
 .property-name{
   width: 40%;

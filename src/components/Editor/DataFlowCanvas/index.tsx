@@ -40,7 +40,25 @@ const DataFlowCanvas = ({ cref }: any) => {
     importData: (flow: any) => {
       setElements([]);
       if (flow) {
-        setElements(flow.elements);
+        for (let i = 0, m = flow.elements.length; i < m; i += 1) {
+          if (flow.elements[i].source) {
+            // is edge
+            setElements((els: Elements) => addEdge(flow.elements[i], els));
+          } else {
+            // is node
+            setElements((es: any) =>
+              es.concat({
+                id: flow.elements[i].id,
+                type: flow.elements[i].type,
+                position: flow.elements[i].position,
+                data: {
+                  nodeId: flow.elements[i].data.nodeId,
+                  isValidConnection: lvtFlow.isValidConnection,
+                },
+              })
+            );
+          }
+        }
       }
       setTimeout(() => {
         reactFlowInstance.fitView();

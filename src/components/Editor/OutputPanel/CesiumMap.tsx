@@ -10,6 +10,7 @@ import "cesium/Build/Cesium/Widgets/widgets.css";
 let cesiumViewer: any;
 let rendering = false;
 let dataVersion = 0;
+let projectHash = 0;
 
 const CesiumMap = ({ skipUpdate }: { skipUpdate: boolean }) => {
   // update control
@@ -31,6 +32,7 @@ const CesiumMap = ({ skipUpdate }: { skipUpdate: boolean }) => {
       // load new data
       if (renderData) {
         const curDataVersion = lvtFlow.dataVersion;
+        const curProjectHash = lvtFlow.projectHash;
         clog.log("Cesium", `loading data: v[${curDataVersion}]`);
         let dataSourcePromise;
         switch (renderData.dataType) {
@@ -53,8 +55,10 @@ const CesiumMap = ({ skipUpdate }: { skipUpdate: boolean }) => {
           `rendered data v[${curDataVersion}] in ${t3 - t2}ms`
         );
         dataVersion = curDataVersion;
+        projectHash = curProjectHash;
       } else {
         dataVersion = 0;
+        projectHash = 0;
       }
       cesiumViewer.scene.requestRender();
 
@@ -73,8 +77,14 @@ const CesiumMap = ({ skipUpdate }: { skipUpdate: boolean }) => {
   }, []);
 
   useEffect(() => {
-    clog.log("UI", `update cesium map`);
-    if (dataVersion != lvtFlow.dataVersion) {
+    clog.log(
+      "UI",
+      `update cesium map: map ${projectHash}.v[${dataVersion}] - data ${lvtFlow.projectHash}.v[${lvtFlow.dataVersion}]`
+    );
+    if (
+      dataVersion != lvtFlow.dataVersion ||
+      projectHash != lvtFlow.projectHash
+    ) {
       setTimeout(() => {
         updateCesium();
       }, 0);

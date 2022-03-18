@@ -10,7 +10,7 @@ const CSV: LvtNodeDef = {
   portsIn: [
     {
       name: "file",
-      dataType: "file",
+      dataType: "string",
       ui: {
         component: "FileCSVInput",
         hidden: true,

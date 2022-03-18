@@ -9,7 +9,7 @@ export interface LvtNodeOptions {
   data?: {
     portsIn?: any;
   };
-  dataVersion: number;
+  dataVersion?: number;
 }
 
 export interface LvtNodeDef {

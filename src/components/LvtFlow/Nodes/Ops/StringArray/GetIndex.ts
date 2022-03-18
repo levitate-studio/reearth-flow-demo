@@ -10,13 +10,13 @@ const GetIndex: LvtNodeDef = {
   portsIn: [
     {
       name: "data",
-      dataType: "array",
+      dataType: "stringArray",
     },
   ],
   portsOut: [
     {
       name: "index",
-      dataType: "array",
+      dataType: "numberArray",
     },
   ],
   rule: (a: any) => {

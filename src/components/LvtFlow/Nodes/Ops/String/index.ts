@@ -1,6 +1,6 @@
-import AsNumber from "./AsNumber";
+// import AsNumber from "../StringArray/AsNumber";
 
 export default {
   _id: "String",
-  children: [AsNumber],
+  children: [],
 };

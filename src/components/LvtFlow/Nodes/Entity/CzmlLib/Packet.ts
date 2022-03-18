@@ -13,25 +13,25 @@ const Packet: LvtNodeDef = {
   portsIn: [
     {
       name: "id",
-      dataType: "string",
+      dataType: "String",
       ui:{
         description: "The ID of the object described by this packet. IDs do not need to be GUIDs, but they do need to uniquely identify a single object within a CZML source and any other CZML sources loaded into the same scope. If this property is not specified, the client will automatically generate a unique one. However, this prevents later packets from referring to this object in order to add more data to it."
       },
     },{
       name: "delete",
-      dataType: "boolean",
+      dataType: "Boolean",
       ui:{
         description: "Whether the client should delete all existing data for this object, identified by ID. If true, all other properties in this packet will be ignored."
       },
     },{
       name: "name",
-      dataType: "string",
+      dataType: "String",
       ui:{
         description: "The name of the object. It does not have to be unique and is intended for user consumption."
       },
     },{
       name: "parent",
-      dataType: "string",
+      dataType: "String",
       ui:{
         description: "The ID of the parent object, if any."
       },
@@ -49,7 +49,7 @@ const Packet: LvtNodeDef = {
       },
     },{
       name: "version",
-      dataType: "string",
+      dataType: "String",
       ui:{
         description: "The CZML version being written. Only valid on the document object."
       },

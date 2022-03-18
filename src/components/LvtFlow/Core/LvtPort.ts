@@ -1,17 +1,6 @@
-export type portType = "input" | "output";
+import { type dataType } from "./DataTypeType";
 
-type dataType =
-  | "string"
-  | "stringArray"
-  | "stringSpread"
-  | "number"
-  | "numberArray"
-  | "numberSpread"
-  | "array"
-  | "spread"
-  | "object"
-  | "objectArray"
-  | "file";
+export type portType = "input" | "output";
 
 interface source {
   id: string;
@@ -70,24 +59,6 @@ export class LvtPort {
       return defaultValue;
     }
     return undefined;
-    switch (type) {
-      case "number":
-      default:
-        return 0;
-      case "string":
-        return "";
-      case "array":
-      case "numberArray":
-      case "stringArray":
-      case "objectArray":
-        return [];
-      case "spread":
-      case "numberSpread":
-      case "stringSpread":
-        return [[]];
-      case "object":
-        return {};
-    }
   }
 
   static getPortDefaultCompnent(
@@ -154,7 +125,7 @@ export class LvtPort {
   // value methods
   // =======================================
   getValue() {
-    return this.value.v;
+    return this.value?.v;
   }
   getValueObj() {
     return this.value;

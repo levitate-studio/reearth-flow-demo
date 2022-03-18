@@ -1,6 +1,7 @@
 import React from "react";
 
 import { idCreator, clog } from "./CommFuc";
+import { dataTransforValid, getInternalDataType } from "./DataTypes";
 import { LvtNode, LvtNodeOptions } from "./LvtNode";
 import { LvtPort } from "./LvtPort";
 
@@ -21,6 +22,8 @@ interface IRenderData {
 export class LvtFlow {
   data: any;
   dataVersion: number;
+  // project
+  projectHash: number;
   // current
   currentElement: LvtNode | null;
   currentElementRenderSeed: number | undefined;
@@ -37,7 +40,7 @@ export class LvtFlow {
   version: string;
 
   // ui rerenderer for react
-  static uiReRenderer: React.Dispatch<React.SetStateAction<number>> | undefined;
+  static uiReRenderer: React.Dispatch<React.SetStateAction<string>> | undefined;
 
   // =======================================
   // constructor
@@ -45,6 +48,7 @@ export class LvtFlow {
   constructor() {
     this.data = [];
     this.dataVersion = 0;
+    this.projectHash = Math.random();
     this.currentElement = null;
     this.outputSource = null;
     this.renderData = null;
@@ -136,6 +140,13 @@ export class LvtFlow {
   }
 
   // =======================================
+  // project
+  // =======================================
+  updateProjectHash() {
+    this.projectHash = Math.random();
+  }
+
+  // =======================================
   // data update
   // =======================================
   async updateNodesFromNode(id: string) {
@@ -205,25 +216,27 @@ export class LvtFlow {
 
   async cUpdateDepNode(id: string, curDataVersion: number) {
     const node = this.getNodeById(id);
-    if (node.dataVersion === this.dataVersion) {
-      return true;
-    } else {
-      if (node.data.portsIn?.length > 0) {
-        for (let i = 0, p = node.data.portsIn.length; i < p; i += 1) {
-          if (node.data.portsIn[i].source?.id) {
-            await this.cUpdateDepNode(
-              node.data.portsIn[i].source?.id,
-              curDataVersion
-            );
+    if (node) {
+      if (node.dataVersion === this.dataVersion) {
+        return true;
+      } else {
+        if (node.data.portsIn?.length > 0) {
+          for (let i = 0, p = node.data.portsIn.length; i < p; i += 1) {
+            if (node.data.portsIn[i].source?.id) {
+              await this.cUpdateDepNode(
+                node.data.portsIn[i].source?.id,
+                curDataVersion
+              );
+            }
           }
         }
+        // do update only for latest data version
+        if (curDataVersion === this.dataVersion) {
+          await this.asyncUpdateNode(node);
+          node.dataVersion = curDataVersion;
+        }
+        return true;
       }
-      // do update only for latest data version
-      if (curDataVersion === this.dataVersion) {
-        await this.asyncUpdateNode(node);
-        node.dataVersion = curDataVersion;
-      }
-      return true;
     }
   }
 
@@ -256,67 +269,44 @@ export class LvtFlow {
   // edges
   // =======================================
   isValidConnection(params: any) {
-    return true;
     const sourcePort = this.getNodeById(params.source).getPortOutByName(
       params.sourceHandle
     );
+    const sourceInternalDataType = getInternalDataType(sourcePort.dataType);
     const targetPort = this.getNodeById(params.target).getPortInByName(
       params.targetHandle
     );
-    let allowed: string[] = [];
-    switch (sourcePort.dataType) {
-      case "string":
-        allowed = ["string", "stringArray", "stringSpread"];
-        break;
-      case "stringSpread":
-        allowed = ["stringSpread"];
-        break;
-      case "stringArray":
-        allowed = ["stringArray", "stringSpread", "array"];
-        break;
-      case "array":
-        allowed = ["stringArray", "stringSpread", "array"];
-        break;
-      case "number":
-        allowed = ["number", "numberArray", "numberSpread"];
-        break;
-      case "numberArray":
-        allowed = ["numberArray", "numberSpread"];
-        break;
-      case "numberSpread":
-        allowed = ["numberSpread"];
-        break;
-      case "object":
-        allowed = ["object"];
-        break;
-      case "objectArray":
-        allowed = ["objectArray"];
-        break;
-      default:
-        break;
-    }
-    return allowed.includes(targetPort.dataType);
+    const targetInternalDataType = getInternalDataType(targetPort.dataType);
+    // console.log(
+    //   `try connect: ${sourcePort.dataType}(${sourceInternalDataType}) - ${
+    //     targetPort.dataType
+    //   }(${targetInternalDataType}): ${dataTransforValid(
+    //     sourceInternalDataType,
+    //     targetInternalDataType
+    //   )}`
+    // );
+    return dataTransforValid(sourceInternalDataType, targetInternalDataType);
   }
 
   addEdge(params: IEdgeParams | any, doUpdate = true) {
     const source = this.getNodeById(params.source);
-    const sourcePort = source.getPortOutByName(params.sourceHandle);
+    const sourcePort = source?.getPortOutByName(params.sourceHandle);
     const target = this.getNodeById(params.target);
-    const targetPort = target.getPortInByName(params.targetHandle);
+    const targetPort = target?.getPortInByName(params.targetHandle);
     // set target port source
-    targetPort.setSource({
+    targetPort?.setSource({
       id: params.source,
       portName: params.sourceHandle,
     });
     // set source port target
-    sourcePort.addTarget({
+    sourcePort?.addTarget({
       id: params.target,
       portName: params.targetHandle,
     });
     // set target value
-    targetPort.setValueObj(sourcePort.value);
+    targetPort?.setValueObj(sourcePort?.value);
     // set render
-    if (target.isRenderer) {
+    if (target?.isRenderer) {
       this.setRenderer(target);
     }
     // update
@@ -369,7 +359,7 @@ export class LvtFlow {
   // Enable rerender
   // =======================================
   static setUIReRenderer(
-    reRenderer: React.Dispatch<React.SetStateAction<number>>
+    reRenderer: React.Dispatch<React.SetStateAction<string>>
   ) {
     LvtFlow.uiReRenderer = reRenderer;
   }
@@ -380,12 +370,13 @@ export class LvtFlow {
   static reRenderId = "";
   static reRender() {
     const timeStamp = new Date().getTime().toString();
-    if (timeStamp !== LvtFlow.reRenderId) {
-      LvtFlow.reRenderId = timeStamp;
-      setTimeout(() => {
-        LvtFlow.uiReRenderer?.(new Date().getTime());
-      }, 0);
-    }
+    // if (timeStamp !== LvtFlow.reRenderId) {
+    //   LvtFlow.reRenderId = timeStamp;
+    //   setTimeout(() => {
+    //     LvtFlow.uiReRenderer?.(timeStamp);
+    //   }, 0);
+    // }
+    LvtFlow.uiReRenderer?.(timeStamp);
   }
   reRenderUI(
     uiList: Array<"outputSource" | "currentElement" | "renderMap"> = []
@@ -418,6 +409,7 @@ export class LvtFlow {
     this.renderData = null;
     this.dataVersion = 0;
     this.rendererId = undefined;
+    this.updateProjectHash();
     //
     this.reRenderUI(["renderMap", "outputSource", "currentElement"]);
   }
@@ -475,34 +467,34 @@ export class LvtFlow {
     this.clearData();
 
     //
-    setTimeout(() => {
-      // add nodes
-      const nodeIds: number[] = [];
-      if (importData.nodes.length > 0) {
-        importData.nodes.forEach((node) => {
-          nodeIds.push(Number(node.id));
-          this.addNode(node);
-        });
-      }
+    // setTimeout(() => {
+    // add nodes
+    const nodeIds: number[] = [];
+    if (importData.nodes.length > 0) {
+      importData.nodes.forEach((node) => {
+        nodeIds.push(Number(node.id));
+        this.addNode(node);
+      });
+    }
 
-      // add edges
-      if (importData.edges.length > 0) {
-        importData.edges.forEach((edge) => {
-          this.addEdge(edge, false);
-        });
-      }
-      // set the id to prevent same id
-      idCreator.setId(Math.max(...nodeIds) + 1);
-      // init data
-      if (this.rendererId) {
-        this.updateNodesUntilNode(this.rendererId);
-      } else {
-        console.warn("no renderer node found");
-        this.data.forEach((node: LvtNode) => {
-          this.updateNodesFromNode(node.id as string);
-        });
-      }
-    }, 0);
+    // add edges
+    if (importData.edges.length > 0) {
+      importData.edges.forEach((edge) => {
+        this.addEdge(edge, false);
+      });
+    }
+    // set the id to prevent same id
+    idCreator.setId(Math.max(...nodeIds) + 1);
+    // init data
+    if (this.rendererId) {
+      this.updateNodesUntilNode(this.rendererId);
+    } else {
+      console.warn("no renderer node found");
+      this.data.forEach((node: LvtNode) => {
+        this.updateNodesFromNode(node.id as string);
+      });
+    }
+    // }, 10000);
   }
 }
 

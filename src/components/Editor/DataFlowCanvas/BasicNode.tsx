@@ -1,9 +1,11 @@
 import { Handle, Position } from "react-flow-renderer";
 
+import { getInternalDataType } from "../../LvtFlow/Core/DataTypes";
 import { nodeDefs } from "../../LvtFlow/Nodes";
 
 const BasicNode = ({ data }: any) => {
   const nodeDef = nodeDefs[data.nodeId];
+  if (!nodeDef) return false;
   let portsIn: JSX.Element[] = [];
   if (nodeDef.portsIn.length > 0) {
     portsIn = nodeDef.portsIn.map((port: any, index: number) => (
@@ -13,7 +15,7 @@ const BasicNode = ({ data }: any) => {
           id={port.name}
           position={Position.Top}
           isValidConnection={data.isValidConnection}
-          className={`portcolor-${port.dataType} ${
+          className={`portcolor-${getInternalDataType(port.dataType)} ${
             port.ui?.hidden && "port-hidden"
           }`}
         />
@@ -31,7 +33,7 @@ const BasicNode = ({ data }: any) => {
           id={port.name}
           position={Position.Bottom}
           isValidConnection={data.isValidConnection}
-          className={`portcolor-${port.dataType} ${
+          className={`portcolor-${getInternalDataType(port.dataType)} ${
             port.ui?.hidden && "port-hidden"
           }`}
         />
