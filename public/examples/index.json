@@ -20,6 +20,9 @@
   "title": "CSV Left Join",
   "url": "/examples/csv-left-join.json"
 }, {
+  "title": "Ops Filter",
+  "url": "/examples/ops-filter.json"
+}, {
   "title": "GeoJSON MultiPoint",
   "url": "/examples/geojson-multipoint.json"
 }, {
