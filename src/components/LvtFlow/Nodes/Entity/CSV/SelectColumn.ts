@@ -29,7 +29,7 @@ const SelectColumn: LvtNodeDef = {
   portsOut: [
     {
       name: "result",
-      dataType: "stringArray",
+      dataType: "stringSpread",
     },
   ],
   rule: (a: any, b: number) => {

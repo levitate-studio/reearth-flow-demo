@@ -10,7 +10,7 @@ const CZMLPoints: LvtNodeDef = {
   portsOut: [
     {
       name: "data",
-      dataType: "objectArray",
+      dataType: "objectSpread",
       defaultValue: [
         {
           id: "document",

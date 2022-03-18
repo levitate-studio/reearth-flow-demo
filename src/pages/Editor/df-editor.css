@@ -288,7 +288,7 @@ port color
 .portcolor-number{
   background:rgb(0, 238, 255) !important;
 }
-.portcolor-numberArray{
+.portcolor-numberSpread{
   background:rgb(0, 195, 255) !important;
 }
 .portcolor-numberSpread{
@@ -297,7 +297,7 @@ port color
 .portcolor-string{
   background:rgb(166, 255, 0) !important;
 }
-.portcolor-stringArray{
+.portcolor-stringSpread{
   background:rgb(136, 255, 0) !important;
 }
 .portcolor-stringSpread{
@@ -306,7 +306,7 @@ port color
 .portcolor-object{
   background:rgb(255, 196, 0) !important;
 }
-.portcolor-objectArray{
+.portcolor-objectSpread{
   background:rgb(255, 153, 0) !important;
 }
 .portcolor-objectSpread{

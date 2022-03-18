@@ -9,8 +9,8 @@ const Max: LvtNodeDef = {
   },
   portsIn: [
     {
-      name: "numberArray",
-      dataType: "numberArray",
+      name: "numberSpread",
+      dataType: "numberSpread",
       defaultValue: [0],
     },
   ],
@@ -26,7 +26,7 @@ const Max: LvtNodeDef = {
     return result;
   },
   update: (node: LvtNode) => {
-    updateNode(node, "maxValue", ["numberArray"]);
+    updateNode(node, "maxValue", ["numberSpread"]);
     return node;
   },
 };

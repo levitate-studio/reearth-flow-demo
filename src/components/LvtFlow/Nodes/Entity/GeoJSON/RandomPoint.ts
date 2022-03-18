@@ -19,7 +19,7 @@ const RandomPoint: LvtNodeDef = {
     },
     {
       name: "bbox",
-      dataType: "numberArray",
+      dataType: "numberSpread",
       ui: {
         description: "a bounding box inside of which geometries are placed",
       },

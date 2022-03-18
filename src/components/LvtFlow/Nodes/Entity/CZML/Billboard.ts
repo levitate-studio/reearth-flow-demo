@@ -13,26 +13,26 @@ const Billboard: LvtNodeDef = {
   portsIn: [
     {
       name: "image",
-      dataType: "stringArray",
+      dataType: "stringSpread",
     },
     {
       name: "scale",
-      dataType: "numberArray",
+      dataType: "numberSpread",
       defaultValue: [1],
     },
     {
       name: "width",
-      dataType: "numberArray",
+      dataType: "numberSpread",
     },
     {
       name: "height",
-      dataType: "numberArray",
+      dataType: "numberSpread",
     },
   ],
   portsOut: [
     {
       name: "billboard",
-      dataType: "objectArray",
+      dataType: "objectSpread",
     },
   ],
   rule: (image: any, scale: any, width: any, height: any) => {

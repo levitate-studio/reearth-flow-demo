@@ -10,18 +10,18 @@ const HexToRGBAObj: LvtNodeDef = {
   portsIn: [
     {
       name: "hex",
-      dataType: "stringArray",
+      dataType: "stringSpread",
     },
     {
       name: "alpha",
-      dataType: "numberArray",
+      dataType: "numberSpread",
       defaultValue: 255,
     },
   ],
   portsOut: [
     {
       name: "color",
-      dataType: "objectArray",
+      dataType: "objectSpread",
     },
   ],
   rule: (hex: any, alpha: any) => {

@@ -25,7 +25,7 @@ const MultiPoint: LvtNodeDef = {
     },
     {
       name: "bbox",
-      dataType: "numberArray",
+      dataType: "numberSpread",
       ui: {
         description: "Bounding Box Array",
       },

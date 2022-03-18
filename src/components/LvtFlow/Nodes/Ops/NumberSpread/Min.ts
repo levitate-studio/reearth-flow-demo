@@ -9,8 +9,8 @@ const Min: LvtNodeDef = {
   },
   portsIn: [
     {
-      name: "numberArray",
-      dataType: "numberArray",
+      name: "numberSpread",
+      dataType: "numberSpread",
       defaultValue: [0],
     },
   ],
@@ -26,7 +26,7 @@ const Min: LvtNodeDef = {
     return result;
   },
   update: (node: LvtNode) => {
-    updateNode(node, "minValue", ["numberArray"]);
+    updateNode(node, "minValue", ["numberSpread"]);
     return node;
   },
 };

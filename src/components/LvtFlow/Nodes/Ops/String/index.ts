@@ -1,4 +1,4 @@
-// import AsNumber from "../StringArray/AsNumber";
+// import AsNumber from "../stringSpread/AsNumber";
 
 export default {
   _id: "String",

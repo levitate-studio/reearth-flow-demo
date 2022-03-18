@@ -11,7 +11,7 @@ const Map: LvtNodeDef = {
   portsIn: [
     {
       name: "input",
-      dataType: "numberArray",
+      dataType: "numberSpread",
       defaultValue: [0],
     },
     {
@@ -38,7 +38,7 @@ const Map: LvtNodeDef = {
   portsOut: [
     {
       name: "output",
-      dataType: "number",
+      dataType: "numberSpread",
     },
   ],
   rule: (a: any, smin: number, smax: number, dmin: number, dmax: number) => {

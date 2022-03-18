@@ -10,7 +10,7 @@ const Document: LvtNodeDef = {
   portsIn: [
     {
       name: "objects",
-      dataType: "objectArray",
+      dataType: "objectSpread",
     },
     {
       name: "name",
@@ -26,7 +26,7 @@ const Document: LvtNodeDef = {
   portsOut: [
     {
       name: "CZML",
-      dataType: "objectArray",
+      dataType: "objectSpread",
     },
   ],
   rule: (objects: any, name: any, version: any) => {

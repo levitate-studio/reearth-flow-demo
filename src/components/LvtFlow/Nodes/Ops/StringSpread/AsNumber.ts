@@ -10,13 +10,13 @@ const AsNumber: LvtNodeDef = {
   portsIn: [
     {
       name: "string",
-      dataType: "stringArray",
+      dataType: "stringSpread",
     },
   ],
   portsOut: [
     {
       name: "number",
-      dataType: "numberArray",
+      dataType: "numberSpread",
     },
   ],
   rule: (s: any) => {

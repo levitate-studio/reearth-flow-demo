@@ -20,7 +20,7 @@ const Vector2: LvtNodeDef = {
   portsOut: [
     {
       name: "vector2",
-      dataType: "numberArray",
+      dataType: "numberSpread",
       ui: {
         component: "OutputSource",
       },

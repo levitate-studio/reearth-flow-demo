@@ -10,25 +10,25 @@ const BasicPacket: LvtNodeDef = {
   portsIn: [
     {
       name: "id",
-      dataType: "stringArray",
+      dataType: "stringSpread",
     },
     {
       name: "name",
-      dataType: "stringArray",
+      dataType: "stringSpread",
     },
     {
       name: "description",
-      dataType: "stringArray",
+      dataType: "stringSpread",
     },
     {
       name: "position",
-      dataType: "objectArray",
+      dataType: "objectSpread",
     },
   ],
   portsOut: [
     {
       name: "packet",
-      dataType: "objectArray",
+      dataType: "objectSpread",
     },
   ],
   rule: (id: any, name: any, description: any, position: any) => {

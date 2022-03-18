@@ -1,4 +1,4 @@
-import { updateNode } from "../../../Core/CommFuc";
+import { spreadData, updateNode } from "../../../Core/CommFuc";
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
 const Limit: LvtNodeDef = {
@@ -9,7 +9,7 @@ const Limit: LvtNodeDef = {
   },
   portsIn: [
     {
-      name: "csvData",
+      name: "input",
       dataType: "stringSpread",
     },
     {
@@ -29,19 +29,20 @@ const Limit: LvtNodeDef = {
       dataType: "stringSpread",
     },
   ],
-  rule: (csvData: any, offset: any, count: any) => {
+  rule: (input: any, offset: any, count: any) => {
     const _temp = [];
-    if (csvData) {
+    const _input = spreadData(input);
+    if (_input) {
       for (let i = offset, m = offset + count; i < m; i += 1) {
-        if (csvData[i]) {
-          _temp.push(csvData[i]);
+        if (_input[i]) {
+          _temp.push(_input[i]);
         }
       }
     }
     return _temp;
   },
   update: (node: LvtNode) => {
-    updateNode(node, "result", ["csvData", "offset", "count"]);
+    updateNode(node, "result", ["input", "offset", "count"]);
     return node;
   },
 };

@@ -10,7 +10,7 @@ const DatasetUrl: LvtNodeDef = {
   portsIn: [
     {
       name: "datasetUrls",
-      dataType: "objectArray",
+      dataType: "objectSpread",
       defaultValue: [
         {
           title: "French cities",

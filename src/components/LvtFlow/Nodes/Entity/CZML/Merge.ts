@@ -10,19 +10,19 @@ const Merge: LvtNodeDef = {
   portsIn: [
     {
       name: "objects1",
-      dataType: "objectArray",
+      dataType: "objectSpread",
       defaultValue: [],
     },
     {
       name: "objects2",
-      dataType: "objectArray",
+      dataType: "objectSpread",
       defaultValue: [],
     },
   ],
   portsOut: [
     {
       name: "merged",
-      dataType: "objectArray",
+      dataType: "objectSpread",
     },
   ],
   rule: (objects1: any, objects2: any) => {

@@ -1,4 +1,4 @@
-import { updateNode } from "../../../Core/CommFuc";
+import { spreadData, updateNode } from "../../../Core/CommFuc";
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
 const Select: LvtNodeDef = {
@@ -20,13 +20,14 @@ const Select: LvtNodeDef = {
   portsOut: [
     {
       name: "result",
-      dataType: "stringArray",
+      dataType: "stringSpread",
     },
   ],
   rule: (a: any, b: number) => {
     const _temp = [];
-    for (let i = 0; i < a.length; i += 1) {
-      _temp.push(a[i][b]);
+    const _a = spreadData(a);
+    for (let i = 0; i < _a.length; i += 1) {
+      _temp.push(_a[i][b]);
     }
     return _temp;
   },

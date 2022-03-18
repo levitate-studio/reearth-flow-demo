@@ -13,22 +13,22 @@ const Positions: LvtNodeDef = {
   portsIn: [
     {
       name: "longitude",
-      dataType: "numberArray",
+      dataType: "numberSpread",
     },
     {
       name: "latitude",
-      dataType: "numberArray",
+      dataType: "numberSpread",
     },
     {
       name: "height",
-      dataType: "numberArray",
+      dataType: "numberSpread",
       defaultValue: [0],
     },
   ],
   portsOut: [
     {
       name: "positions",
-      dataType: "objectArray",
+      dataType: "objectSpread",
     },
   ],
   rule: (longitude: any, latitude: any, height: any) => {

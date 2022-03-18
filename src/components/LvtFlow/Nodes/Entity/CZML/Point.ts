@@ -13,17 +13,17 @@ const Point: LvtNodeDef = {
   portsIn: [
     {
       name: "color",
-      dataType: "objectArray",
+      dataType: "objectSpread",
     },
     {
       name: "pixelSize",
-      dataType: "numberArray",
+      dataType: "numberSpread",
     },
   ],
   portsOut: [
     {
       name: "point",
-      dataType: "objectArray",
+      dataType: "objectSpread",
     },
   ],
   rule: (color: any, pixelSize: any) => {

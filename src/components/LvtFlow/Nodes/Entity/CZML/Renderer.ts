@@ -11,7 +11,7 @@ const Renderer: LvtNodeDef = {
   portsIn: [
     {
       name: "CZML",
-      dataType: "objectArray",
+      dataType: "objectSpread",
     },
   ],
   portsOut: [
