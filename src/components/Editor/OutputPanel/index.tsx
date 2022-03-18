@@ -59,7 +59,9 @@ const OutputPanel = ({ skipUpdate, cref }: any) => {
           <DataViewer />
         </div>
         <div
-          className={`df-block-tab-content ${activeTab === "map" && "active"}`}
+          className={`df-block-tab-content map ${
+            activeTab === "map" && "active"
+          }`}
         >
           <CesiumMap skipUpdate={skipUpdate || activeTab !== "map"} />
         </div>

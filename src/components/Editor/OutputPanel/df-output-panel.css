@@ -11,11 +11,26 @@ output panel
   flex-grow: 0;
 }
 
-.df-output-panel .df-block-content{
-  display: flex;
-  flex-grow: 1;
+.df-output-panel .df-block-content{ 
   overflow: auto;
   padding: 0;
+}
+
+/* -------------------------
+table viewer
+----------------------------*/
+.df-output-table{
+  margin: 6px 0;
+  font-weight: bold;
+  flex-grow: 0;
+}
+.df-output-table td{
+  padding: 6px 12px;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.df-output-table td.index{
+  color: var(--theme-color-orange);
 }
 
 /* -------------------------
@@ -31,6 +46,12 @@ json viewer
 /* -------------------------
 cesium
 ----------------------------*/
+.df-block-tab-content.map{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
 #cesium-container{
   width: 100%;
   height: 100%;
