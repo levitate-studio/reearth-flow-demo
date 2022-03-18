@@ -13,19 +13,17 @@ const DataViewer = () => {
   useMemo(() => {
     if (lvtFlow.outputSourceRenderSeed) {
       clog.log("UI", "update data viewer panel");
-      setDisplayData(
-        lvtFlow.outputSource
-          ? typeof lvtFlow.outputSource.value.v === "object"
-            ? lvtFlow.outputSource.value.v
-            : { value: lvtFlow.outputSource.value.v }
-          : {}
-      );
+      setDisplayData(lvtFlow.outputSource?.value.v);
     }
   }, [lvtFlow.outputSourceRenderSeed]);
 
-  if (Array.isArray(displayData) && Array.isArray(displayData[0])) {
+  if (
+    Array.isArray(displayData) &&
+    !(typeof displayData[0] === "object" && !Array.isArray(displayData[0])) &&
+    displayData.length <= 300
+  ) {
     return <TableViewer data={displayData} />;
-  } else
+  } else if (typeof displayData === "object") {
     return (
       <ReactJson
         src={displayData}
@@ -35,6 +33,16 @@ const DataViewer = () => {
         displayObjectSize={false}
       />
     );
+  } else if (!lvtFlow.outputSource) {
+    return <div className="df-output-puredata"></div>;
+  } else {
+    return (
+      <div className="df-output-puredata">
+        <span className="puredata-type">[{typeof displayData}]</span>
+        {displayData}
+      </div>
+    );
+  }
 };
 
 export default DataViewer;

@@ -16,21 +16,36 @@ output panel
   padding: 0;
 }
 
+.df-output-puredata{
+  margin: 6px 0;
+  padding: 6px 12px;
+  font-weight: bold;
+  flex-grow: 0;
+}
+.df-output-puredata .puredata-type{
+  color: var(--theme-color-orange);
+  padding-right: 5px;
+}
 /* -------------------------
 table viewer
 ----------------------------*/
 .df-output-table{
+  width: 100%;
   margin: 6px 0;
   font-weight: bold;
   flex-grow: 0;
 }
 .df-output-table td{
-  padding: 6px 12px;
+  height: 24px;
+  padding: 0 12px;
   white-space: nowrap;
   vertical-align: middle;
 }
 .df-output-table td.index{
+  position: sticky;
+  left: 0;
   color: var(--theme-color-orange);
+  background-color: #151515;
 }
 
 /* -------------------------

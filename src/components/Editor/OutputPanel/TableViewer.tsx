@@ -5,9 +5,9 @@ const TableViewer = ({ data }: any) => {
         {data.map((row: any, i: number) => (
           <tr key={i}>
             <td className="index">{i}</td>
-            {row.map((col: any, j: number) => (
-              <td key={j}>{col}</td>
-            ))}
+            {typeof row !== "object" && <td>{row}</td>}
+            {typeof row === "object" &&
+              row.map((col: any, j: number) => <td key={j}>{col}</td>)}
           </tr>
         ))}
       </tbody>
