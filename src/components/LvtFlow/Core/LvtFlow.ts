@@ -491,10 +491,11 @@ export class LvtFlow {
     } else {
       console.warn("no renderer node found");
       this.data.forEach((node: LvtNode) => {
-        this.updateNodesFromNode(node.id as string);
+        if (!node.data?.portsOut?.[0]?.connected) {
+          this.updateNodesUntilNode(node.id as string);
+        }
       });
     }
-    // }, 10000);
   }
 }
 

@@ -15,6 +15,7 @@ const Select: LvtNodeDef = {
     {
       name: "index",
       dataType: "number",
+      defaultValue: 0,
     },
   ],
   portsOut: [
@@ -26,8 +27,10 @@ const Select: LvtNodeDef = {
   rule: (a: any, b: number) => {
     const _temp = [];
     const _a = spreadData(a);
-    for (let i = 0; i < _a.length; i += 1) {
-      _temp.push(_a[i][b]);
+    if (a) {
+      for (let i = 0; i < _a.length; i += 1) {
+        _temp.push(_a[i][b]);
+      }
     }
     return _temp;
   },

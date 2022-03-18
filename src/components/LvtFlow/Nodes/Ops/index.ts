@@ -1,3 +1,4 @@
+import BooleanSpread from "./BooleanSpread";
 import Color from "./Color";
 import Number from "./Number";
 import NumberSpread from "./NumberSpread";
@@ -6,5 +7,5 @@ import StringSpread from "./StringSpread";
 
 export default {
   _id: "Ops",
-  children: [Number, NumberSpread, String, StringSpread, Color],
+  children: [BooleanSpread, Number, NumberSpread, String, StringSpread, Color],
 };
