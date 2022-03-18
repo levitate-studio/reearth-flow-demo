@@ -41,7 +41,9 @@ const PropertyPanel = ({ setOutputSource }: any) => {
               port.dataType
             )}`}
           ></div>
-          <div className="property-name">{port.name}</div>
+          <div className="property-name" title={port.ui?.description}>
+            {port.name}
+          </div>
           {valueComponent(element, port)}
         </div>
       ))}

@@ -23,7 +23,7 @@ export class LvtFlow {
   data: any;
   dataVersion: number;
   // project
-  projectHash: number;
+  projectId: number;
   // current
   currentElement: LvtNode | null;
   currentElementRenderSeed: number | undefined;
@@ -48,7 +48,7 @@ export class LvtFlow {
   constructor() {
     this.data = [];
     this.dataVersion = 0;
-    this.projectHash = Math.random();
+    this.projectId = 1;
     this.currentElement = null;
     this.outputSource = null;
     this.renderData = null;
@@ -142,8 +142,8 @@ export class LvtFlow {
   // =======================================
   // project
   // =======================================
-  updateProjectHash() {
-    this.projectHash = Math.random();
+  updateprojectId() {
+    this.projectId += 1;
   }
 
   // =======================================
@@ -409,7 +409,7 @@ export class LvtFlow {
     this.renderData = null;
     this.dataVersion = 0;
     this.rendererId = undefined;
-    this.updateProjectHash();
+    this.updateprojectId();
     //
     this.reRenderUI(["renderMap", "outputSource", "currentElement"]);
   }
