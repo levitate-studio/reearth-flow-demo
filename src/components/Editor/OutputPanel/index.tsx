@@ -1,7 +1,6 @@
 import { useState, useImperativeHandle, useContext } from "react";
 
 import { LvtFlowContext } from "../../../pages/Editor/index";
-import LvtFlow from "../../LvtFlow";
 
 import CesiumMap from "./CesiumMap";
 import DataViewer from "./DataViewer";
