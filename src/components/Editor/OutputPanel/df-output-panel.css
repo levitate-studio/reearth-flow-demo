@@ -30,7 +30,7 @@ output panel
 table viewer
 ----------------------------*/
 .df-output-table{
-  width: 100%;
+  max-width: 100%;
   margin: 6px 0;
   font-weight: bold;
   flex-grow: 0;
