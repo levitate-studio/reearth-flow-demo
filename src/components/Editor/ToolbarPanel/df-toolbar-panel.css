@@ -9,16 +9,14 @@
   top: 26px;
   left: 0;
   display: none;
+  flex-wrap: wrap;
 }
-
 .df-block-title-tab:hover .menu{
   display: flex;
 }
-.df-block-title-tab .menu{
-  flex-wrap: wrap;
-}
 
 .df-toolbar-panel .menu-list-group{
+  width: 100%;
 }
 
 .df-toolbar-panel .menu-list-group-title{
@@ -28,12 +26,18 @@
   color: var(--theme-color-pink);
 }
 
+.df-block-title-tab .menu ul{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .df-toolbar-panel .menu-item{
   padding: 6px 12px;
   font-size: 12px;
   white-space: nowrap;
   cursor: pointer;
-  min-width: 100px;
+  width: 100%;
 }
 .df-toolbar-panel .menu-item:hover{
   color: var(--theme-color-orange);
