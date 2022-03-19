@@ -24,7 +24,10 @@
   }]
 }, {
   "groupTitle": "CZML Refrence",
-  "examples": []
+  "examples": [{
+    "title": "Point",
+    "url": "/examples/czml-refrence/point.json"
+  }]
 }, {
   "groupTitle": "Oprations",
   "examples": [{
