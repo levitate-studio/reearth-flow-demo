@@ -19,7 +19,10 @@ const BasicNode = ({ data }: any) => {
             port.ui?.hidden && "port-hidden"
           }`}
         />
-        <div className="port-tip">{port.name}</div>
+        <div className="port-tip">
+          <div className="port-name">{port.name}</div>
+          <div className="port-description">{port.ui?.description}</div>
+        </div>
       </div>
     ));
   }
@@ -37,7 +40,10 @@ const BasicNode = ({ data }: any) => {
             port.ui?.hidden && "port-hidden"
           }`}
         />
-        <div className="port-tip">{port.name}</div>
+        <div className="port-tip">
+          <div className="port-name">{port.name}</div>
+          <div className="port-description">{port.ui?.description}</div>
+        </div>
       </div>
     ));
   }

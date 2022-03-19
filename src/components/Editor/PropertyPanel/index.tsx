@@ -24,7 +24,6 @@ const PropertyPanel = ({ setOutputSource }: any) => {
     if (port.portType === "input" && port.connected) {
       component = "OutputSource";
     }
-
     // if OutputSource but is simple value -> use PureDisplay instead
     if (
       component === "OutputSource" &&

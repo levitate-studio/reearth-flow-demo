@@ -57,6 +57,7 @@
   width: 100%;
   display: flex;
   height: 6px;
+  z-index: 10;
 }
 .node-ports-top{
   top: 0px;
@@ -84,21 +85,28 @@
 .node-ports-bottom .react-flow__handle{
   transform-origin: center top;
 }
-/* .react-flow__handle:hover{
-  transform: scaleY(1.5);
-} */
 
 .port-tip{
   position: absolute;
-  padding: 2px;
   top: 6px;
   z-index: 3;
-  font-size: 12px;
-  background-color: var(--block-bg-color);
   display: none;
 }
 .node-ports-bottom .port-tip{
   top: -16px;
+}
+.port-tip .port-name{
+  padding: 2px;
+  font-size: 12px;
+  background-color: var(--block-bg-color);
+}
+.port-tip .port-description{
+  display: none;
+  position: fixed;
+  width: 200px;
+  padding: 2px;
+  font-size: 12px;
+  background-color: var(--block-bg-color);
 }
 .port-wrapper{
   margin-right: 2px;
