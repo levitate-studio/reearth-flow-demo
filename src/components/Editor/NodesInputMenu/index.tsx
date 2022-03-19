@@ -1,5 +1,5 @@
 import "./df-nodes-input-menu.css";
-import { useState, useImperativeHandle, useRef } from "react";
+import { useState, useImperativeHandle, useRef, useMemo } from "react";
 
 import * as Nodes from "../../LvtFlow/Nodes";
 
@@ -60,32 +60,51 @@ const NodesInputMenu = (Props: any) => {
   const [filtedNodeIds, setFiltedNodeIds] = useState(
     Object.keys(Nodes.nodeDefs)
   );
+  const [nodeIdTitles, setNodeIdTitles]: any = useState([]);
+
+  useMemo(() => {
+    const nodeIdTitles: any[] = [];
+    Object.keys(Nodes.nodeDefs).forEach((nodeId) => {
+      nodeIdTitles.push({
+        nodeId: nodeId,
+        text: `${nodeId.replace(/-/g, "")}${Nodes.nodeDefs[nodeId].ui.title}`,
+      });
+    });
+    setNodeIdTitles(nodeIdTitles);
+  }, []);
+
   const onInputChange = (e: any) => {
     updateList(e.target.value);
   };
   const updateList = (value: string) => {
     setInputValue(value);
-    setFiltedNodeIds(searchNode(value, Object.keys(Nodes.nodeDefs)));
+    setFiltedNodeIds(searchNode(value, nodeIdTitles));
   };
-  const searchNode = (v: string, list: string[]) => {
+  const searchNode = (v: string, list: any[]) => {
     if (v) {
       const filted: string[] = [];
       const regStr = [
         "",
-        v.replace(/\+|\*|\[|\]|\(|\)/g, "").replace(/\s/g, "-(.*)"),
+        v
+          .replace(/\s/g, "")
+          .replace(/\+/g, "\\+")
+          .replace(/\*/g, "\\*")
+          .replace(/\//g, "\\/"),
         "",
       ].join(".*");
       const reg = new RegExp(regStr, "i");
 
-      list.forEach((nodeId: string) => {
-        if (nodeId.match(reg)) {
-          filted.push(nodeId);
+      list.forEach((nodeIdTitle: any) => {
+        if (nodeIdTitle.text.match(reg)) {
+          filted.push(nodeIdTitle.nodeId);
         }
       });
+
       return filted;
     }
-    return list;
+    return Object.keys(Nodes.nodeDefs);
   };
+
   const FiltedList = filtedNodeIds.map((nodeId, index) => {
     const sep = nodeId.split("-");
     const nodeSelfId = sep.pop();
