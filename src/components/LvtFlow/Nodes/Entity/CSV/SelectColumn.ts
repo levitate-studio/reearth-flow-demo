@@ -36,7 +36,7 @@ const SelectColumn: LvtNodeDef = {
     const _temp = [];
     if (a) {
       for (let i = 1; i < a.length; i += 1) {
-        _temp.push(a[i][b]);
+        _temp.push(a[i][Number(b)]);
       }
     }
     return _temp;

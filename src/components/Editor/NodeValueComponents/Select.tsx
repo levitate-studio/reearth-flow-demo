@@ -1,22 +1,29 @@
 const Select = ({ node, port, lvtFlow }: any) => {
   let options = [];
-  if (
-    port.ui.componentOptions.selectorSourceType &&
-    port.ui.componentOptions.selectorSource
-  ) {
-    const optionsSource = node.getPortInByName(
-      port.ui.componentOptions.selectorSource
-    );
+  if (port.ui.componentOptions.selectorSourceType) {
+    let optionsSource;
+    if (port.ui.componentOptions.selectorSource) {
+      optionsSource = node.getPortInByName(
+        port.ui.componentOptions.selectorSource
+      );
+    }
+
     switch (port.ui.componentOptions.selectorSourceType) {
       case "preset":
-        [{ title: "" }, ...optionsSource.getValue()].map((l: any) =>
-          options.push(l.title)
-        );
+        options = [{ title: "" }, ...optionsSource.getValue()];
         break;
       case "csvColumn":
         if (optionsSource.getValue()) {
-          options = optionsSource.getValue()[0];
+          optionsSource.getValue()[0].map((v: string, index: number) => {
+            options.push({
+              title: v,
+              value: index,
+            });
+          });
         }
+        break;
+      case "self":
+        options = port.ui.componentOptions.selectorOptions;
         break;
       default:
         break;
@@ -28,14 +35,14 @@ const Select = ({ node, port, lvtFlow }: any) => {
       <select
         value={port.value.v}
         onChange={(e) => {
-          port.setValue(Number(e.target.value));
+          port.setValue(e.target.value);
           lvtFlow.reRenderUI(["currentElement"]);
           lvtFlow.updateNodesFromNode(node.id);
         }}
       >
-        {options.map((column: string, index: number) => (
-          <option key={index} value={index}>
-            {column}
+        {options.map((option: any, index: number) => (
+          <option key={index} value={option.value}>
+            {option.title}
           </option>
         ))}
       </select>

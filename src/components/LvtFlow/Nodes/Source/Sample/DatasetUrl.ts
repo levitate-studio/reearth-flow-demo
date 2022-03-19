@@ -52,11 +52,11 @@ const DatasetUrl: LvtNodeDef = {
       dataType: "string",
     },
   ],
-  rule: (datasetUrls: any, index: any) => {
-    return datasetUrls[index - 1]?.value;
+  rule: (dataset: any) => {
+    return dataset;
   },
   update: (node: LvtNode) => {
-    updateNode(node, "url", ["datasetUrls", "dataset"]);
+    updateNode(node, "url", ["dataset"]);
     return node;
   },
 };
