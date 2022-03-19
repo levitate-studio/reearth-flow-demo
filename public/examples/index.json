@@ -22,11 +22,14 @@
 }, {
   "groupTitle": "Oprations",
   "examples": [{
-    "title": "LeftJoin",
+    "title": "[StringSpread] LeftJoin",
     "url": "/examples/oprations/Ops-StringSpread-LeftJoin.json"
   }, {
-    "title": "Filter",
+    "title": "[StringSpread] Filter",
     "url": "/examples/oprations/Ops-StringSpread-Filter.json"
+  }, {
+    "title": "[NumberSpread] Expr",
+    "url": "/examples/oprations/Ops-NumberSpread-Expr.json"
   }]
 }, {
   "groupTitle": "GeoJSON",
