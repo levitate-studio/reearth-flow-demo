@@ -1,34 +1,46 @@
 [{
-  "title": "CZML Point",
-  "url": "/examples/czml-point.json"
+  "groupTitle": "CZML Entities",
+  "examples": [{
+    "title": "CzmlLib Point",
+    "url": "/examples/czml-entities/czmllib-point.json"
+  }, {
+    "title": "CzmlLib Billboard",
+    "url": "/examples/czml-entities/czmllib-billboard.json"
+  }, {
+    "title": "CzmlLib Box",
+    "url": "/examples/czml-entities/czmllib-box.json"
+  }, {
+    "title": "CzmlLib Box 59064",
+    "url": "/examples/czml-entities/czmllib-box-french-cities.json"
+  }, {
+    "title": "CzmlLib Corridor",
+    "url": "/examples/czml-entities/czmllib-corridor.json"
+  }]
 }, {
-  "title": "CZML Billboard",
-  "url": "/examples/czml-billboard.json"
+  "groupTitle": "CZML Refrence",
+  "examples": []
 }, {
-  "title": "CzmlLib Point",
-  "url": "/examples/czmllib-point.json"
+  "groupTitle": "Oprations",
+  "examples": [{
+    "title": "LeftJoin",
+    "url": "/examples/oprations/Ops-StringSpread-LeftJoin.json"
+  }, {
+    "title": "Filter",
+    "url": "/examples/oprations/Ops-StringSpread-Filter.json"
+  }]
 }, {
-  "title": "CzmlLib Box",
-  "url": "/examples/czmllib-box.json"
+  "groupTitle": "GeoJSON",
+  "examples": [{
+    "title": "GeoJSON MultiPoint",
+    "url": "/examples/geojson/geojson-multipoint.json"
+  }]
 }, {
-  "title": "CzmlLib Box 59064",
-  "url": "/examples/czmllib-box-fr.json"
-}, {
-  "title": "CzmlLib Corridor",
-  "url": "/examples/czmllib-corridor.json"
-}, {
-  "title": "CSV Left Join",
-  "url": "/examples/csv-left-join.json"
-}, {
-  "title": "Ops Filter",
-  "url": "/examples/ops-filter.json"
-}, {
-  "title": "GeoJSON MultiPoint",
-  "url": "/examples/geojson-multipoint.json"
-}, {
-  "title": "DEV Performance Test",
-  "url": "/examples/dev-performance-test.json"
-}, {
-  "title": "DEV Test",
-  "url": "/examples/dev-test.json"
+  "groupTitle": "Development",
+  "examples": [{
+    "title": "DEV Performance Test",
+    "url": "/examples/development/dev-performance-test.json"
+  }, {
+    "title": "DEV Test",
+    "url": "/examples/development/dev-test.json"
+  }]
 }]

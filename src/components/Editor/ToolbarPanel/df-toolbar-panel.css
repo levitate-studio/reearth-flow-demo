@@ -12,7 +12,20 @@
 }
 
 .df-block-title-tab:hover .menu{
-  display: block;
+  display: flex;
+}
+.df-block-title-tab .menu{
+  flex-wrap: wrap;
+}
+
+.df-toolbar-panel .menu-list-group{
+}
+
+.df-toolbar-panel .menu-list-group-title{
+  padding: 6px 12px;
+  font-size: 12px;
+  white-space: nowrap;
+  color: var(--theme-color-pink);
 }
 
 .df-toolbar-panel .menu-item{
