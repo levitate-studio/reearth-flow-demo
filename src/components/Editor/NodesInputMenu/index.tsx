@@ -12,7 +12,7 @@ const NodesInputMenu = (Props: any) => {
   const [menuPos, setMenuPos] = useState({ clientX: 0, clientY: 0 });
 
   const menuSize = {
-    width: 400,
+    width: 440,
     height: 500,
   };
 
