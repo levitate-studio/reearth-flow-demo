@@ -1,4 +1,13 @@
 [{
+  "groupTitle": "Demos",
+  "examples": [{
+    "title": "French cities: 59064 boxes",
+    "url": "/examples/demo/czmllib-box-french-cities.json"
+  },{
+    "title": "World population and income",
+    "url": "/examples/demo/world-population-and-income.json"
+  }]
+}, {
   "groupTitle": "CZML Entities",
   "examples": [{
     "title": "CzmlLib Point",
@@ -10,9 +19,6 @@
     "title": "CzmlLib Box",
     "url": "/examples/czml-entities/czmllib-box.json"
   }, {
-    "title": "CzmlLib Box 59064",
-    "url": "/examples/czml-entities/czmllib-box-french-cities.json"
-  }, {
     "title": "CzmlLib Corridor",
     "url": "/examples/czml-entities/czmllib-corridor.json"
   }]
@@ -22,10 +28,7 @@
 }, {
   "groupTitle": "Oprations",
   "examples": [{
-    "title": "[StringSpread] LeftJoin",
-    "url": "/examples/oprations/Ops-StringSpread-LeftJoin.json"
-  }, {
-    "title": "[StringSpread] Filter",
+    "title": "[StringSpread] LeftJoin | Filter | Limit",
     "url": "/examples/oprations/Ops-StringSpread-Filter.json"
   }, {
     "title": "[NumberSpread] Expr",
