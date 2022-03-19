@@ -3,14 +3,19 @@ const NumberInput = ({ port, node, lvtFlow }: any) => {
     <div className="property-value ">
       <input
         value={port.value.v}
-        type="number"
         disabled={port.connected}
         onChange={(e) => {
-          port.setValue(Number(e.target.value));
+          const number = e.target.value.replace(/[^\d.]/g, "");
+          port.setValue(number);
           lvtFlow.reRenderUI(["currentElement"]);
         }}
         onBlur={() => {
           lvtFlow.updateNodesFromNode(node.id);
+        }}
+        onKeyDown={(e) => {
+          if (e.code === "Enter") {
+            (e.target as HTMLInputElement).blur();
+          }
         }}
       />
     </div>

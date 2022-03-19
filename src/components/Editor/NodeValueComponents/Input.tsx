@@ -11,6 +11,11 @@ const Input = ({ port, node, lvtFlow }: any) => {
         onBlur={() => {
           lvtFlow.updateNodesFromNode(node.id);
         }}
+        onKeyDown={(e) => {
+          if (e.code === "Enter") {
+            (e.target as HTMLInputElement).blur();
+          }
+        }}
       />
     </div>
   );
