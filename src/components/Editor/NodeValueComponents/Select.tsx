@@ -24,20 +24,22 @@ const Select = ({ node, port, lvtFlow }: any) => {
   }
 
   return (
-    <select
-      value={port.value.v}
-      onChange={(e) => {
-        port.setValue(Number(e.target.value));
-        lvtFlow.reRenderUI(["currentElement"]);
-        lvtFlow.updateNodesFromNode(node.id);
-      }}
-    >
-      {options.map((column: string, index: number) => (
-        <option key={index} value={index}>
-          {column}
-        </option>
-      ))}
-    </select>
+    <div className="property-value ">
+      <select
+        value={port.value.v}
+        onChange={(e) => {
+          port.setValue(Number(e.target.value));
+          lvtFlow.reRenderUI(["currentElement"]);
+          lvtFlow.updateNodesFromNode(node.id);
+        }}
+      >
+        {options.map((column: string, index: number) => (
+          <option key={index} value={index}>
+            {column}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 };
 
