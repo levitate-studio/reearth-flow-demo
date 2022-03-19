@@ -80,6 +80,8 @@ export default {
   VerticalOrigin: "objectSpread",
   ViewFrom: "objectSpread",
   Wall: "objectSpread",
+  Number: "numberSpread",
+  InterpolatableProperty: "objectSpread",
   ArcTypeValue: "stringSpread",
   Articulations: "objectSpread",
   BooleanValue: "booleanSpread",
