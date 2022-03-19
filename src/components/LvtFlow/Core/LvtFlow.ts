@@ -112,8 +112,8 @@ export class LvtFlow {
         // remove edges
         const edges = node.getAllEdges();
         if (edges) {
-          edges.forEach((edge: any) => {
-            this.removeEdge(edge);
+          edges.forEach(async (edge: any) => {
+            await this.removeEdge(edge);
           });
         }
         // remove node data
@@ -150,53 +150,58 @@ export class LvtFlow {
   // data update
   // =======================================
   async updateNodesFromNode(id: string) {
-    const t1 = new Date().getTime();
-    // step 1:
-    // increase the data version
-    this.dataVersion += 1;
-    const curDataVersion = this.dataVersion;
+    // check if node exist
+    const fromNode = this.getNodeById(id);
+    console.log(fromNode);
+    if (fromNode) {
+      const t1 = new Date().getTime();
+      // step 1:
+      // increase the data version
+      this.dataVersion += 1;
+      const curDataVersion = this.dataVersion;
 
-    // step 2:
-    // find all affected nodes
-    let affectedNodes: string[] = [];
-    const addAffectNode = (id: string) => {
-      affectedNodes.push(id);
-      const node = this.getNodeById(id);
-      if (node.data.portsOut?.length > 0) {
-        for (let p = 0, pl = node.data.portsOut.length; p < pl; p += 1) {
-          for (
-            let t = 0, tl = node.data.portsOut[p].targets.length;
-            t < tl;
-            t += 1
-          ) {
-            addAffectNode(node.data.portsOut[p].targets[t].id);
+      // step 2:
+      // find all affected nodes
+      let affectedNodes: string[] = [];
+      const addAffectNode = (id: string) => {
+        affectedNodes.push(id);
+        const node = this.getNodeById(id);
+        if (node.data.portsOut?.length > 0) {
+          for (let p = 0, pl = node.data.portsOut.length; p < pl; p += 1) {
+            for (
+              let t = 0, tl = node.data.portsOut[p].targets.length;
+              t < tl;
+              t += 1
+            ) {
+              addAffectNode(node.data.portsOut[p].targets[t].id);
+            }
           }
         }
-      }
-    };
-    addAffectNode(id);
-    affectedNodes = Array.from(new Set(affectedNodes));
+      };
+      addAffectNode(id);
+      affectedNodes = Array.from(new Set(affectedNodes));
 
-    // step 3:
-    // update all unaffected node data version
-    for (let i = 0, n = this.data.length; i < n; i += 1) {
-      const node = this.data[i];
-      if (
-        affectedNodes.indexOf(node.id) === -1 &&
-        node.dataVersion === this.dataVersion - 1
-      ) {
-        node.dataVersion = this.dataVersion;
+      // step 3:
+      // update all unaffected node data version
+      for (let i = 0, n = this.data.length; i < n; i += 1) {
+        const node = this.data[i];
+        if (
+          affectedNodes.indexOf(node.id) === -1 &&
+          node.dataVersion === this.dataVersion - 1
+        ) {
+          node.dataVersion = this.dataVersion;
+        }
       }
+
+      // step 4:
+      // start update the affect nodes
+      await this.cUpdateNode(id, curDataVersion);
+
+      // finish
+      const t2 = new Date().getTime();
+      clog.log("Flow", `update flow: v[${curDataVersion}] in ${t2 - t1}ms`);
+      this.reRenderUI(["renderMap", "outputSource"]);
     }
-
-    // step 4:
-    // start update the affect nodes
-    await this.cUpdateNode(id, curDataVersion);
-
-    // finish
-    const t2 = new Date().getTime();
-    clog.log("Flow", `update flow: v[${curDataVersion}] in ${t2 - t1}ms`);
-    this.reRenderUI(["renderMap", "outputSource"]);
   }
 
   // =======================================
@@ -248,7 +253,7 @@ export class LvtFlow {
 
     // step 2:
     // update children
-    if (node.data.portsOut?.length > 0) {
+    if (node && node.data.portsOut?.length > 0) {
       for (let p = 0, pl = node.data.portsOut.length; p < pl; p += 1) {
         for (
           let t = 0, tl = node.data.portsOut[p].targets.length;
@@ -315,7 +320,7 @@ export class LvtFlow {
     }
   }
 
-  removeEdge(params: IEdgeParams | any) {
+  async removeEdge(params: IEdgeParams | any) {
     const source = this.getNodeById(params.source);
     const sourcePort = source?.getPortOutByName(params.sourceHandle);
     const target = this.getNodeById(params.target);
@@ -335,8 +340,10 @@ export class LvtFlow {
       if (target.isRenderer && this.rendererId === target.id) {
         this.removeRenderer();
       }
-      this.updateNodesFromNode(params.target);
+      await this.updateNodesFromNode(params.target);
+      return true;
     }
+    return false;
   }
 
   // =======================================
