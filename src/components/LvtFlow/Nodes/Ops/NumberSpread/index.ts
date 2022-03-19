@@ -2,6 +2,7 @@ import AsString from "./AsString";
 import Divide from "./Divide";
 import Expr from "./Expr";
 import Flat from "./Flat";
+import GreaterThan from "./GreaterThan";
 import Map from "./Map";
 import Max from "./Max";
 import Min from "./Min";
@@ -28,5 +29,6 @@ export default {
     Min,
     Max,
     Expr,
+    GreaterThan,
   ],
 };
