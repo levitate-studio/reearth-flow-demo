@@ -54,7 +54,8 @@ const PropertyPanel = ({ setOutputSource }: any) => {
             )}`}
           ></div>
           <div className="property-name" title={port.ui?.description}>
-            {port.name}
+            <span>{port.name}</span>
+            <div className="tail-cover"></div>
           </div>
           {valueComponent(element, port)}
         </div>
@@ -73,7 +74,10 @@ const PropertyPanel = ({ setOutputSource }: any) => {
               port.dataType
             )}`}
           ></div>
-          <div className="property-name">{port.name}</div>
+          <div className="property-name" title={port.ui?.description}>
+            <span>{port.name}</span>
+            <div className="tail-cover"></div>
+          </div>
           {valueComponent(element, port)}
         </div>
       ))}
@@ -88,15 +92,8 @@ const PropertyPanel = ({ setOutputSource }: any) => {
       <div className="df-block-content">
         {element && (
           <>
-            <div className="df-block-group-title">Basic</div>
-            <div className="property-line">
-              <div className="property-name">Node</div>
-              <div className="property-value">{element.nodeId}</div>
-            </div>
-            <div className="property-line">
-              <div className="property-name">Description</div>
-              <div className="property-value">{element.ui?.description}</div>
-            </div>
+            <div className="df-block-group-title node-id">{element.nodeId}</div>
+            <div className="df-block-group-des">{element.ui?.description}</div>
             <div className="property-line">
               <div className="property-name">Element ID</div>
               <div className="property-value">{element.id}</div>
