@@ -261,8 +261,8 @@ const DataFlowCanvas = ({ cref }: any) => {
             onSelectionChange={onSelectionChange}
             onNodeDragStart={onNodeDragStart}
             snapToGrid={true}
-            snapGrid={[20, 20]}
-            defaultZoom={1.2}
+            snapGrid={[14, 14]}
+            defaultZoom={1.0}
             nodeTypes={nodeTypes}
             deleteKeyCode={46}
             onPaneClick={onPaneClick}
