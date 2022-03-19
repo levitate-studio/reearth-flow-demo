@@ -39,7 +39,7 @@ const DataViewer = () => {
     return (
       <div className="df-output-puredata">
         <span className="puredata-type">[{typeof displayData}]</span>
-        {displayData}
+        {String(displayData)}
       </div>
     );
   }
