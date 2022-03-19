@@ -30,6 +30,7 @@ const NodesInputMenu = (Props: any) => {
             ? reactFlowBounds.bottom - menuSize.height - 10
             : pos.clientY,
       });
+      setSelectIndex(-1);
       setDisplayMenu(true);
       updateList("");
       setTimeout(() => {
@@ -52,6 +53,39 @@ const NodesInputMenu = (Props: any) => {
     Props.addNodeFromMenu({ nodeId, pos });
     hideMenu();
   };
+  const onInputEnter = () => {
+    if (filtedNodeIds.length > 0) {
+      const index =
+        selectedIndex !== -1 ? selectedIndex % filtedNodeIds.length : 0;
+      onNodeItemClick(filtedNodeIds[index]);
+    }
+  };
+
+  // =======================================
+  // Select
+  // =======================================
+  const [selectedIndex, setSelectIndex] = useState(-1);
+  const menuRef = useRef();
+
+  const updateSelectedIndex = (step: number) => {
+    let newIndex = -1;
+    if (filtedNodeIds.length > 0) {
+      newIndex =
+        (filtedNodeIds.length + selectedIndex + step) % filtedNodeIds.length;
+    }
+    setSelectIndex(newIndex);
+
+    if (newIndex !== -1) {
+      const top = (menuRef.current as any)?.children[newIndex].offsetTop;
+      const scrolled = (menuRef.current as any).scrollTop;
+      if (top + 100 - scrolled > menuSize.height) {
+        (menuRef.current as any).scrollTop = top + 100 - menuSize.height;
+      } else if (top - scrolled < 0) {
+        (menuRef.current as any).scrollTop = top;
+      }
+    }
+  };
+
   // =======================================
   // Nodes Filter
   // =======================================
@@ -110,11 +144,14 @@ const NodesInputMenu = (Props: any) => {
     const nodeSelfId = sep.pop();
     return (
       <div
-        className="item"
+        className={`item ${selectedIndex === index && "active"}`}
         key={nodeId}
         tabIndex={index}
         onClick={() => {
           onNodeItemClick(nodeId);
+        }}
+        onMouseEnter={() => {
+          setSelectIndex(index);
         }}
       >
         <div className="category">{sep.join(" ")}</div>
@@ -124,6 +161,7 @@ const NodesInputMenu = (Props: any) => {
       </div>
     );
   });
+
   return (
     <div
       className={`df-nodes-input-menu ${displayMenu ? "" : "hidden"}`}
@@ -139,10 +177,22 @@ const NodesInputMenu = (Props: any) => {
           ref={inputEl}
           value={inputValue}
           onChange={onInputChange}
+          onKeyDown={(e) => {
+            if (e.code === "Enter") {
+              onInputEnter();
+            } else if (e.code === "ArrowUp") {
+              e.preventDefault();
+              updateSelectedIndex(-1);
+            } else if (e.code === "ArrowDown") {
+              e.preventDefault();
+              updateSelectedIndex(1);
+            }
+          }}
         />
       </div>
       <div
         className="df-nodes-input-menu-wrapper"
+        ref={menuRef}
         style={{ maxHeight: `${menuSize.height - 37}px` }}
       >
         {FiltedList}
