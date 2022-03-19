@@ -1,7 +1,8 @@
+import Boolean from "./Boolean";
 import Number from "./Number";
 import String from "./String";
 
 export default {
   _id: "Input",
-  children: [Number, String],
+  children: [Boolean, Number, String],
 };

@@ -152,7 +152,6 @@ export class LvtFlow {
   async updateNodesFromNode(id: string) {
     // check if node exist
     const fromNode = this.getNodeById(id);
-    console.log(fromNode);
     if (fromNode) {
       const t1 = new Date().getTime();
       // step 1:

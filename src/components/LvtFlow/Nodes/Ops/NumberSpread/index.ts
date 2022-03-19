@@ -1,5 +1,6 @@
 import AsString from "./AsString";
 import Divide from "./Divide";
+import Expr from "./Expr";
 import Flat from "./Flat";
 import Map from "./Map";
 import Max from "./Max";
@@ -26,5 +27,6 @@ export default {
     Map,
     Min,
     Max,
+    Expr,
   ],
 };

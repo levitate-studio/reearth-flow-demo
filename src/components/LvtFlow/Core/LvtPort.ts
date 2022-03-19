@@ -25,6 +25,7 @@ export interface LvtPortDef {
       | "PureDisplay"
       | "Input"
       | "NumberInput"
+      | "BooleanRadio"
       | "FileCSVInput"
       | "Select"
       | "OutputSource";

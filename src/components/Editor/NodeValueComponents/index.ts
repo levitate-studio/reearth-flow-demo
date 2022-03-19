@@ -1,3 +1,4 @@
+import BooleanRadio from "./BooleanRadio";
 import FileCSVInput from "./FileCSVInput";
 import Input from "./Input";
 import NumberInput from "./NumberInput";
@@ -16,6 +17,7 @@ const NodeValueComponents: INodeValueComponent = {
   Select,
   OutputSource,
   Input,
+  BooleanRadio,
 };
 
 export default NodeValueComponents;
