@@ -33,7 +33,11 @@ const Limit: LvtNodeDef = {
     const _temp = [];
     const _input = spreadData(input);
     if (_input) {
-      for (let i = offset, m = offset + count; i < m; i += 1) {
+      for (
+        let i = Number(offset), m = Number(offset) + Number(count);
+        i < m;
+        i += 1
+      ) {
         if (_input[i]) {
           _temp.push(_input[i]);
         }
