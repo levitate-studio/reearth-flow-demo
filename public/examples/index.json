@@ -33,6 +33,9 @@
   }, {
     "title": "[NumberSpread] Expr",
     "url": "/examples/oprations/Ops-NumberSpread-Expr.json"
+  }, {
+    "title": "[NumberSpread] GreaterThan",
+    "url": "/examples/oprations/Ops-NumberSpread-GreaterThan.json"
   }]
 }, {
   "groupTitle": "GeoJSON",
