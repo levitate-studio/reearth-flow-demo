@@ -10,12 +10,12 @@ const Expr: LvtNodeDef = {
   portsIn: [
     {
       name: "x",
-      dataType: "numberSpread",
+      dataType: "number",
       defaultValue: 0,
     },
     {
       name: "y",
-      dataType: "numberSpread",
+      dataType: "number",
       defaultValue: 0,
     },
     {

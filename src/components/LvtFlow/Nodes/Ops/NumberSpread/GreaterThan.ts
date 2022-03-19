@@ -10,12 +10,12 @@ const GreaterThan: LvtNodeDef = {
   portsIn: [
     {
       name: "input0",
-      dataType: "numberSpread",
+      dataType: "number",
       defaultValue: 0,
     },
     {
       name: "input1",
-      dataType: "numberSpread",
+      dataType: "number",
       defaultValue: 0,
     },
   ],

@@ -1,44 +1,42 @@
 import { updateNode } from "../../../Core/CommFuc";
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
-const Multiply: LvtNodeDef = {
-  _id: "Multiply",
+const Or: LvtNodeDef = {
+  _id: "Or",
   ui: {
-    title: "*",
+    title: "Or",
     description: "",
   },
   portsIn: [
     {
-      name: "spread0",
-      dataType: "number",
-      defaultValue: 0,
+      name: "input0",
+      dataType: "boolean",
     },
     {
-      name: "spread1",
-      dataType: "number",
-      defaultValue: 0,
+      name: "input1",
+      dataType: "boolean",
     },
   ],
   portsOut: [
     {
       name: "result",
-      dataType: "numberSpread",
+      dataType: "booleanSpread",
     },
   ],
-  rule: (a: number, b: number) => {
+  rule: (a: any, b: any) => {
     const _a = typeof a === "object" ? a : [a];
     const _b = typeof b === "object" ? b : [b];
     const max = Math.max(_a.length, _b.length);
     const result = [];
     for (let i = 0; i < max; i += 1) {
-      result.push(_a[i % _a.length] * _b[i % _b.length]);
+      result.push(_a[i % _a.length] || _b[i % _b.length]);
     }
     return result;
   },
   update: (node: LvtNode) => {
-    updateNode(node, "result", ["spread0", "spread1"]);
+    updateNode(node, "result", ["input0", "input1"]);
     return node;
   },
 };
 
-export default Multiply;
+export default Or;

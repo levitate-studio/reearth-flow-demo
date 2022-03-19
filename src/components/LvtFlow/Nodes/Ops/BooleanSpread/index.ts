@@ -1,6 +1,8 @@
+import And from "./And";
 import Not from "./Not";
+import Or from "./Or";
 
 export default {
-  _id: "StringSpread",
-  children: [Not],
+  _id: "BooleanSpread",
+  children: [Not, And, Or],
 };

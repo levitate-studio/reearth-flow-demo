@@ -10,12 +10,12 @@ const Not: LvtNodeDef = {
   portsIn: [
     {
       name: "input",
-      dataType: "booleanSpread",
+      dataType: "boolean",
     },
   ],
   portsOut: [
     {
-      name: "not",
+      name: "result",
       dataType: "booleanSpread",
     },
   ],
@@ -30,7 +30,7 @@ const Not: LvtNodeDef = {
     return _temp;
   },
   update: (node: LvtNode) => {
-    updateNode(node, "not", ["input"]);
+    updateNode(node, "result", ["input"]);
     return node;
   },
 };

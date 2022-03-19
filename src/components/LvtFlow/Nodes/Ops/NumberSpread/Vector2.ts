@@ -13,17 +13,13 @@ const Vector2: LvtNodeDef = {
   portsIn: [
     {
       name: "x",
-      dataType: "numberSpread",
-      ui: {
-        component: "OutputSource",
-      },
+      dataType: "number",
+      defaultValue: 0,
     },
     {
       name: "y",
-      dataType: "numberSpread",
-      ui: {
-        component: "OutputSource",
-      },
+      dataType: "number",
+      defaultValue: 0,
     },
   ],
   portsOut: [

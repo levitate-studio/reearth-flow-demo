@@ -1,20 +1,20 @@
 import { updateNode } from "../../../Core/CommFuc";
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
-const Multiply: LvtNodeDef = {
-  _id: "Multiply",
+const LessThan: LvtNodeDef = {
+  _id: "LessThan",
   ui: {
-    title: "*",
+    title: "<",
     description: "",
   },
   portsIn: [
     {
-      name: "spread0",
+      name: "input0",
       dataType: "number",
       defaultValue: 0,
     },
     {
-      name: "spread1",
+      name: "input1",
       dataType: "number",
       defaultValue: 0,
     },
@@ -22,7 +22,7 @@ const Multiply: LvtNodeDef = {
   portsOut: [
     {
       name: "result",
-      dataType: "numberSpread",
+      dataType: "booleanSpread",
     },
   ],
   rule: (a: number, b: number) => {
@@ -31,14 +31,14 @@ const Multiply: LvtNodeDef = {
     const max = Math.max(_a.length, _b.length);
     const result = [];
     for (let i = 0; i < max; i += 1) {
-      result.push(_a[i % _a.length] * _b[i % _b.length]);
+      result.push(_a[i % _a.length] < _b[i % _b.length]);
     }
     return result;
   },
   update: (node: LvtNode) => {
-    updateNode(node, "result", ["spread0", "spread1"]);
+    updateNode(node, "result", ["input0", "input1"]);
     return node;
   },
 };
 
-export default Multiply;
+export default LessThan;

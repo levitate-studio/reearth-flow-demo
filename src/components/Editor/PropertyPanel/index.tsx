@@ -19,15 +19,21 @@ const PropertyPanel = ({ setOutputSource }: any) => {
 
   const valueComponent = (node: any, port: any) => {
     let component = port.ui.component;
-    if (component === "NumberInput" && typeof port.value.v === "object") {
+
+    // if input and connected -> use OutputSource instead
+    if (port.portType === "input" && port.connected) {
       component = "OutputSource";
-    } else if (
+    }
+
+    // if OutputSource but is simple value -> use PureDisplay instead
+    if (
       component === "OutputSource" &&
       (typeof port.value.v !== "object" ||
-        (port.value.v.lenght === 1 && typeof port.value.v[0] !== "object"))
+        (port.value.v.length === 1 && typeof port.value.v[0] !== "object"))
     ) {
       component = "PureDisplay";
     }
+
     return NodeValueComponents[component]?.({
       node,
       port,

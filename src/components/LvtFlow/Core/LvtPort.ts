@@ -74,12 +74,15 @@ export class LvtPort {
       switch (type) {
         case "number":
         case "string":
+        case "boolean":
           return "PureDisplay";
         default:
           return "OutputSource";
       }
     } else {
       switch (type) {
+        case "boolean":
+          return "BooleanRadio";
         case "number":
           return "NumberInput";
         case "string":

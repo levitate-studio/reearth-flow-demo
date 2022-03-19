@@ -13,22 +13,22 @@ const Vector4: LvtNodeDef = {
   portsIn: [
     {
       name: "r",
-      dataType: "numberSpread",
+      dataType: "number",
       defaultValue: 0,
     },
     {
       name: "g",
-      dataType: "numberSpread",
+      dataType: "number",
       defaultValue: 0,
     },
     {
       name: "b",
-      dataType: "numberSpread",
+      dataType: "number",
       defaultValue: 0,
     },
     {
       name: "a",
-      dataType: "numberSpread",
+      dataType: "number",
       defaultValue: 0,
     },
   ],

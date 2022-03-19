@@ -4,18 +4,18 @@ import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 const Divide: LvtNodeDef = {
   _id: "Divide",
   ui: {
-    title: "Divide",
+    title: "/",
     description: "",
   },
   portsIn: [
     {
       name: "spread0",
-      dataType: "numberSpread",
+      dataType: "number",
       defaultValue: 0,
     },
     {
       name: "spread1",
-      dataType: "numberSpread",
+      dataType: "number",
       defaultValue: 0,
     },
   ],

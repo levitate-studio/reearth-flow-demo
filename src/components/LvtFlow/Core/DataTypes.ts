@@ -26,28 +26,20 @@ export const dataTransforValid = (
   let allowed: string[] = [];
   switch (sourceDataType) {
     case "boolean":
+    case "booleanSpread":
       allowed = ["boolean", "booleanSpread"];
       break;
-    case "booleanSpread":
-      allowed = ["booleanSpread"];
-      break;
     case "string":
+    case "stringSpread":
       allowed = ["string", "stringSpread"];
       break;
-    case "stringSpread":
-      allowed = ["stringSpread"];
-      break;
     case "number":
+    case "numberSpread":
       allowed = ["number", "numberSpread"];
       break;
-    case "numberSpread":
-      allowed = ["numberSpread"];
-      break;
     case "object":
-      allowed = ["object", "objectSpread"];
-      break;
     case "objectSpread":
-      allowed = ["objectSpread"];
+      allowed = ["object", "objectSpread"];
       break;
     default:
       break;

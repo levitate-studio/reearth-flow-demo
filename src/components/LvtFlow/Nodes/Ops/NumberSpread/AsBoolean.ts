@@ -1,10 +1,10 @@
 import { spreadData, updateNode } from "../../../Core/CommFuc";
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
-const AsString: LvtNodeDef = {
-  _id: "AsString",
+const AsBoolean: LvtNodeDef = {
+  _id: "AsBoolean",
   ui: {
-    title: "AsString",
+    title: "AsBoolean",
     description: "",
   },
   portsIn: [
@@ -15,8 +15,8 @@ const AsString: LvtNodeDef = {
   ],
   portsOut: [
     {
-      name: "string",
-      dataType: "stringSpread",
+      name: "result",
+      dataType: "booleanSpread",
     },
   ],
   rule: (s: any) => {
@@ -24,15 +24,15 @@ const AsString: LvtNodeDef = {
     const _temp = [];
     if (_s) {
       for (let i = 0; i < _s.length; i += 1) {
-        _temp.push(String(_s[i]));
+        _temp.push(Number(_s[i]) !== 0);
       }
     }
     return _temp;
   },
   update: (node: LvtNode) => {
-    updateNode(node, "string", ["number"]);
+    updateNode(node, "result", ["number"]);
     return node;
   },
 };
 
-export default AsString;
+export default AsBoolean;

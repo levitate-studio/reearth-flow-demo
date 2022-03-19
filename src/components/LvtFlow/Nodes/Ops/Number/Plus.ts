@@ -4,7 +4,7 @@ import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 const Plus: LvtNodeDef = {
   _id: "Plus",
   ui: {
-    title: "Plus",
+    title: "+",
     description: "",
   },
   portsIn: [
