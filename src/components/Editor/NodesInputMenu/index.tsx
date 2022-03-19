@@ -65,7 +65,7 @@ const NodesInputMenu = (Props: any) => {
   // Select
   // =======================================
   const [selectedIndex, setSelectIndex] = useState(-1);
-  const menuRef = useRef();
+  const menuRef = useRef(null);
 
   const updateSelectedIndex = (step: number) => {
     let newIndex = -1;
