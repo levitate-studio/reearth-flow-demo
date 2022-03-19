@@ -21,6 +21,12 @@ const PropertyPanel = ({ setOutputSource }: any) => {
     let component = port.ui.component;
     if (component === "NumberInput" && typeof port.value.v === "object") {
       component = "OutputSource";
+    } else if (
+      component === "OutputSource" &&
+      (typeof port.value.v !== "object" ||
+        (port.value.v.lenght === 1 && typeof port.value.v[0] !== "object"))
+    ) {
+      component = "PureDisplay";
     }
     return NodeValueComponents[component]?.({
       node,
