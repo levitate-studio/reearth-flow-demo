@@ -17,7 +17,6 @@ const PolylineOutlineMaterial: LvtNodeDef = {
       ui:{
         description: "The color of the surface."
       },
-      defaultValue: "white",
     },{
       name: "outlineColor",
       dataType: "Color",
@@ -30,7 +29,6 @@ const PolylineOutlineMaterial: LvtNodeDef = {
       ui:{
         description: "The width of the outline."
       },
-      defaultValue: 1.0,
     },
   ],
   portsOut: [

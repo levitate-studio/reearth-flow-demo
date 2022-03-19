@@ -17,7 +17,6 @@ const Vector: LvtNodeDef = {
       ui:{
         description: "Whether or not the vector is shown."
       },
-      defaultValue: true,
     },{
       name: "color",
       dataType: "Color",
@@ -36,7 +35,6 @@ const Vector: LvtNodeDef = {
       ui:{
         description: "The graphical length of the vector, in meters."
       },
-      defaultValue: 1.0,
     },{
       name: "minimumLengthInPixels",
       dataType: "Double",

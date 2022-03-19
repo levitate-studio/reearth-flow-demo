@@ -17,7 +17,6 @@ const Point: LvtNodeDef = {
       ui:{
         description: "Whether or not the point is shown."
       },
-      defaultValue: true,
     },{
       name: "pixelSize",
       dataType: "Double",
@@ -30,7 +29,6 @@ const Point: LvtNodeDef = {
       ui:{
         description: "The height reference of the point, which indicates if the position is relative to terrain or not."
       },
-      defaultValue: "NONE",
     },{
       name: "color",
       dataType: "Color",
@@ -43,7 +41,6 @@ const Point: LvtNodeDef = {
       ui:{
         description: "The color of the outline of the point."
       },
-      defaultValue: "black",
     },{
       name: "outlineWidth",
       dataType: "Double",
@@ -74,7 +71,6 @@ const Point: LvtNodeDef = {
       ui:{
         description: "The distance from the camera at which to disable the depth test. This can be used to prevent clipping against terrain, for example. When set to zero, the depth test is always applied. When set to Infinity, the depth test is never applied."
       },
-      defaultValue: 0.0,
     },
   ],
   portsOut: [

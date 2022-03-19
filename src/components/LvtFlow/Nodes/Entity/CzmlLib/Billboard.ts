@@ -17,7 +17,6 @@ const Billboard: LvtNodeDef = {
       ui:{
         description: "Whether or not the billboard is shown."
       },
-      defaultValue: true,
     },{
       name: "image",
       dataType: "Uri",
@@ -30,7 +29,6 @@ const Billboard: LvtNodeDef = {
       ui:{
         description: "The scale of the billboard. The scale is multiplied with the pixel size of the billboard's `image`. For example, if the scale is 2.0, the billboard will be rendered with twice the number of pixels, in each direction, of the `image`."
       },
-      defaultValue: 1.0,
     },{
       name: "pixelOffset",
       dataType: "PixelOffset",
@@ -43,7 +41,6 @@ const Billboard: LvtNodeDef = {
       ui:{
         description: "The eye offset of the billboard, which is the offset in eye coordinates at which to place the billboard relative to the `position` property. Eye coordinates are a left-handed coordinate system where the X-axis points toward the viewer's right, the Y-axis points up, and the Z-axis points into the screen."
       },
-      defaultValue: [0.0, 0.0, 0.0],
     },{
       name: "horizontalOrigin",
       dataType: "HorizontalOrigin",
@@ -56,7 +53,6 @@ const Billboard: LvtNodeDef = {
       ui:{
         description: "The vertical origin of the billboard, which determines whether the billboard image is bottom-, center-, or top-aligned with the `position`."
       },
-      defaultValue: "CENTER",
     },{
       name: "heightReference",
       dataType: "HeightReference",
@@ -69,7 +65,6 @@ const Billboard: LvtNodeDef = {
       ui:{
         description: "The color of the billboard. This color value is multiplied with the values of the billboard's `image` to produce the final color."
       },
-      defaultValue: "white",
     },{
       name: "rotation",
       dataType: "Double",
@@ -82,7 +77,6 @@ const Billboard: LvtNodeDef = {
       ui:{
         description: "The aligned axis is the unit vector, in world coordinates, that the billboard up vector points towards. The default is the zero vector, which means the billboard is aligned to the screen up vector."
       },
-      defaultValue: [0.0, 0.0, 0.0],
     },{
       name: "sizeInMeters",
       dataType: "Boolean",
@@ -137,7 +131,6 @@ const Billboard: LvtNodeDef = {
       ui:{
         description: "The distance from the camera at which to disable the depth test. This can be used to prevent clipping against terrain, for example. When set to zero, the depth test is always applied. When set to Infinity, the depth test is never applied."
       },
-      defaultValue: 0.0,
     },
   ],
   portsOut: [

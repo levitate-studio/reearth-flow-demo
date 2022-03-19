@@ -17,7 +17,6 @@ const Corridor: LvtNodeDef = {
       ui:{
         description: "Whether or not the corridor is shown."
       },
-      defaultValue: true,
     },{
       name: "positions",
       dataType: "PositionList",
@@ -36,7 +35,6 @@ const Corridor: LvtNodeDef = {
       ui:{
         description: "The height of the corridor, which is the altitude of the corridor relative to the surface."
       },
-      defaultValue: 0.0,
     },{
       name: "heightReference",
       dataType: "HeightReference",
@@ -55,7 +53,6 @@ const Corridor: LvtNodeDef = {
       ui:{
         description: "The extruded height reference of the corridor, which indicates if `extrudedHeight` is relative to terrain or not."
       },
-      defaultValue: "NONE",
     },{
       name: "cornerType",
       dataType: "CornerType",
@@ -80,7 +77,6 @@ const Corridor: LvtNodeDef = {
       ui:{
         description: "The material to display on the surface of the corridor."
       },
-      defaultValue: "solid white",
     },{
       name: "outline",
       dataType: "Boolean",
@@ -93,7 +89,6 @@ const Corridor: LvtNodeDef = {
       ui:{
         description: "The color of the corridor outline."
       },
-      defaultValue: "black",
     },{
       name: "outlineWidth",
       dataType: "Double",
@@ -106,7 +101,6 @@ const Corridor: LvtNodeDef = {
       ui:{
         description: "Whether or not the corridor casts or receives shadows."
       },
-      defaultValue: "DISABLED",
     },{
       name: "distanceDisplayCondition",
       dataType: "DistanceDisplayCondition",
@@ -119,7 +113,6 @@ const Corridor: LvtNodeDef = {
       ui:{
         description: "Whether a classification affects terrain, 3D Tiles, or both."
       },
-      defaultValue: "BOTH",
     },{
       name: "zIndex",
       dataType: "Integer",

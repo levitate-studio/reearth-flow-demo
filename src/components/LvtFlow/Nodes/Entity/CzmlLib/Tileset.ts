@@ -17,7 +17,6 @@ const Tileset: LvtNodeDef = {
       ui:{
         description: "Whether or not the tileset is shown."
       },
-      defaultValue: true,
     },{
       name: "uri",
       dataType: "Uri",

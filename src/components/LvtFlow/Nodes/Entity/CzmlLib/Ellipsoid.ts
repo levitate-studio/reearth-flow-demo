@@ -17,7 +17,6 @@ const Ellipsoid: LvtNodeDef = {
       ui:{
         description: "Whether or not the ellipsoid is shown."
       },
-      defaultValue: true,
     },{
       name: "radii",
       dataType: "EllipsoidRadii",
@@ -36,7 +35,6 @@ const Ellipsoid: LvtNodeDef = {
       ui:{
         description: "The minimum clock angle of the ellipsoid."
       },
-      defaultValue: 0.0,
     },{
       name: "maximumClock",
       dataType: "Double",
@@ -49,7 +47,6 @@ const Ellipsoid: LvtNodeDef = {
       ui:{
         description: "The minimum cone angle of the ellipsoid."
       },
-      defaultValue: 0.0,
     },{
       name: "maximumCone",
       dataType: "Double",
@@ -62,7 +59,6 @@ const Ellipsoid: LvtNodeDef = {
       ui:{
         description: "The height reference of the ellipsoid, which indicates if the position is relative to terrain or not."
       },
-      defaultValue: "NONE",
     },{
       name: "fill",
       dataType: "Boolean",
@@ -75,7 +71,6 @@ const Ellipsoid: LvtNodeDef = {
       ui:{
         description: "The material to display on the surface of the ellipsoid."
       },
-      defaultValue: "solid white",
     },{
       name: "outline",
       dataType: "Boolean",
@@ -88,7 +83,6 @@ const Ellipsoid: LvtNodeDef = {
       ui:{
         description: "The color of the ellipsoid outline."
       },
-      defaultValue: "black",
     },{
       name: "outlineWidth",
       dataType: "Double",
@@ -101,7 +95,6 @@ const Ellipsoid: LvtNodeDef = {
       ui:{
         description: "The number of times to partition the ellipsoid into stacks."
       },
-      defaultValue: 64,
     },{
       name: "slicePartitions",
       dataType: "Integer",
@@ -114,7 +107,6 @@ const Ellipsoid: LvtNodeDef = {
       ui:{
         description: "The number of samples per outline ring, determining the granularity of the curvature."
       },
-      defaultValue: 128,
     },{
       name: "shadows",
       dataType: "ShadowMode",

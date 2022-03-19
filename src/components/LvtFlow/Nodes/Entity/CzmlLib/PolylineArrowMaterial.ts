@@ -17,7 +17,6 @@ const PolylineArrowMaterial: LvtNodeDef = {
       ui:{
         description: "The color of the surface."
       },
-      defaultValue: "white",
     },
   ],
   portsOut: [

@@ -17,7 +17,6 @@ const ConicSensor: LvtNodeDef = {
       ui:{
         description: "Whether or not the entire conical sensor is shown."
       },
-      defaultValue: true,
     },{
       name: "innerHalfAngle",
       dataType: "Double",
@@ -54,7 +53,6 @@ const ConicSensor: LvtNodeDef = {
       ui:{
         description: "Whether or not the intersection of the sensor with the Earth is shown."
       },
-      defaultValue: true,
     },{
       name: "intersectionColor",
       dataType: "Color",
@@ -67,7 +65,6 @@ const ConicSensor: LvtNodeDef = {
       ui:{
         description: "The width of the intersection in pixels."
       },
-      defaultValue: 1.0,
     },{
       name: "showLateralSurfaces",
       dataType: "Boolean",
@@ -80,7 +77,6 @@ const ConicSensor: LvtNodeDef = {
       ui:{
         description: "The material to use for the sensor's lateral surface, i.e., the outer sides of the sensor."
       },
-      defaultValue: "solid white",
     },{
       name: "showEllipsoidSurfaces",
       dataType: "Boolean",
@@ -93,7 +89,6 @@ const ConicSensor: LvtNodeDef = {
       ui:{
         description: "The material to use for the sensor's ellipsoid surfaces."
       },
-      defaultValue: "solid white",
     },{
       name: "showEllipsoidHorizonSurfaces",
       dataType: "Boolean",
@@ -106,7 +101,6 @@ const ConicSensor: LvtNodeDef = {
       ui:{
         description: "The material to use for the sensor's ellipsoid horizon surfaces."
       },
-      defaultValue: "solid white",
     },{
       name: "showDomeSurfaces",
       dataType: "Boolean",
@@ -119,7 +113,6 @@ const ConicSensor: LvtNodeDef = {
       ui:{
         description: "The material to use for the sensor's dome surfaces."
       },
-      defaultValue: "solid white",
     },{
       name: "portionToDisplay",
       dataType: "SensorVolumePortionToDisplay",
@@ -132,7 +125,6 @@ const ConicSensor: LvtNodeDef = {
       ui:{
         description: "Whether or not the sensor will be occluded by objects in the current view of the environment, e.g. visible terrain or models."
       },
-      defaultValue: false,
     },{
       name: "showEnvironmentOcclusion",
       dataType: "Boolean",
@@ -145,7 +137,6 @@ const ConicSensor: LvtNodeDef = {
       ui:{
         description: "The material to use for the portion of the sensor occluded by the environment."
       },
-      defaultValue: "solid white",
     },{
       name: "showEnvironmentIntersection",
       dataType: "Boolean",
@@ -158,7 +149,6 @@ const ConicSensor: LvtNodeDef = {
       ui:{
         description: "The color of the intersection line between the sensor and the environment."
       },
-      defaultValue: "white",
     },{
       name: "environmentIntersectionWidth",
       dataType: "Double",
@@ -171,7 +161,6 @@ const ConicSensor: LvtNodeDef = {
       ui:{
         description: "Whether or not a sensor intersecting the ellipsoid is drawn through the ellipsoid and potentially out to the other side."
       },
-      defaultValue: false,
     },{
       name: "showViewshed",
       dataType: "Boolean",
@@ -184,7 +173,6 @@ const ConicSensor: LvtNodeDef = {
       ui:{
         description: "The color of the scene geometry that is visible to the sensor."
       },
-      defaultValue: "lime, 50% transparent",
     },{
       name: "viewshedOccludedColor",
       dataType: "Color",
@@ -197,7 +185,6 @@ const ConicSensor: LvtNodeDef = {
       ui:{
         description: "The resolution in pixels of the viewshed."
       },
-      defaultValue: 2048,
     },
   ],
   portsOut: [

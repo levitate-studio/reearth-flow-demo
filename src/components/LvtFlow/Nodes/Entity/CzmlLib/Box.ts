@@ -17,7 +17,6 @@ const Box: LvtNodeDef = {
       ui:{
         description: "Whether or not the box is shown."
       },
-      defaultValue: true,
     },{
       name: "dimensions",
       dataType: "BoxDimensions",
@@ -30,7 +29,6 @@ const Box: LvtNodeDef = {
       ui:{
         description: "The height reference of the box, which indicates if the position is relative to terrain or not."
       },
-      defaultValue: "NONE",
     },{
       name: "fill",
       dataType: "Boolean",
@@ -43,7 +41,6 @@ const Box: LvtNodeDef = {
       ui:{
         description: "The material to display on the surface of the box."
       },
-      defaultValue: "solid white",
     },{
       name: "outline",
       dataType: "Boolean",
@@ -56,7 +53,6 @@ const Box: LvtNodeDef = {
       ui:{
         description: "The color of the box outline."
       },
-      defaultValue: "black",
     },{
       name: "outlineWidth",
       dataType: "Double",
@@ -69,7 +65,6 @@ const Box: LvtNodeDef = {
       ui:{
         description: "Whether or not the box casts or receives shadows."
       },
-      defaultValue: "DISABLED",
     },{
       name: "distanceDisplayCondition",
       dataType: "DistanceDisplayCondition",

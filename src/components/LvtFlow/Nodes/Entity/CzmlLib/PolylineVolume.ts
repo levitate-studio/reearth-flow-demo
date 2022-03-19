@@ -17,7 +17,6 @@ const PolylineVolume: LvtNodeDef = {
       ui:{
         description: "Whether or not the volume is shown."
       },
-      defaultValue: true,
     },{
       name: "positions",
       dataType: "PositionList",
@@ -36,7 +35,6 @@ const PolylineVolume: LvtNodeDef = {
       ui:{
         description: "The style of the corners of the volume."
       },
-      defaultValue: "ROUNDED",
     },{
       name: "granularity",
       dataType: "Double",
@@ -49,7 +47,6 @@ const PolylineVolume: LvtNodeDef = {
       ui:{
         description: "Whether or not the volume is filled."
       },
-      defaultValue: true,
     },{
       name: "material",
       dataType: "Material",
@@ -62,7 +59,6 @@ const PolylineVolume: LvtNodeDef = {
       ui:{
         description: "Whether or not the volume is outlined."
       },
-      defaultValue: false,
     },{
       name: "outlineColor",
       dataType: "Color",
@@ -75,7 +71,6 @@ const PolylineVolume: LvtNodeDef = {
       ui:{
         description: "The width of the volume outline."
       },
-      defaultValue: 1.0,
     },{
       name: "shadows",
       dataType: "ShadowMode",

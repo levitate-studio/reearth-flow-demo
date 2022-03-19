@@ -23,7 +23,6 @@ const InterpolatableProperty: LvtNodeDef = {
       ui:{
         description: "The interpolation algorithm to use when interpolating. Valid values are 'LINEAR', 'LAGRANGE', and 'HERMITE'."
       },
-      defaultValue: "LINEAR",
     },{
       name: "interpolationDegree",
       dataType: "Number",
@@ -36,7 +35,6 @@ const InterpolatableProperty: LvtNodeDef = {
       ui:{
         description: "The type of extrapolation to perform when a value is requested at a time after any available samples. Valid values are 'NONE', 'HOLD', and 'EXTRAPOLATE'."
       },
-      defaultValue: "NONE",
     },{
       name: "forwardExtrapolationDuration",
       dataType: "Number",
@@ -49,7 +47,6 @@ const InterpolatableProperty: LvtNodeDef = {
       ui:{
         description: "The type of extrapolation to perform when a value is requested at a time before any available samples. Valid values are 'NONE', 'HOLD', and 'EXTRAPOLATE'."
       },
-      defaultValue: "NONE",
     },{
       name: "backwardExtrapolationDuration",
       dataType: "Number",

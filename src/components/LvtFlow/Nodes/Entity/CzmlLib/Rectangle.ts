@@ -17,7 +17,6 @@ const Rectangle: LvtNodeDef = {
       ui:{
         description: "Whether or not the rectangle is shown."
       },
-      defaultValue: true,
     },{
       name: "coordinates",
       dataType: "RectangleCoordinates",
@@ -30,7 +29,6 @@ const Rectangle: LvtNodeDef = {
       ui:{
         description: "The height of the rectangle."
       },
-      defaultValue: 0.0,
     },{
       name: "heightReference",
       dataType: "HeightReference",
@@ -49,7 +47,6 @@ const Rectangle: LvtNodeDef = {
       ui:{
         description: "The extruded height reference of the rectangle, which indicates if `extrudedHeight` is relative to terrain or not."
       },
-      defaultValue: "NONE",
     },{
       name: "rotation",
       dataType: "Double",
@@ -62,7 +59,6 @@ const Rectangle: LvtNodeDef = {
       ui:{
         description: "The rotation of any applied texture. A positive rotation is counter-clockwise."
       },
-      defaultValue: 0.0,
     },{
       name: "granularity",
       dataType: "Double",
@@ -75,7 +71,6 @@ const Rectangle: LvtNodeDef = {
       ui:{
         description: "Whether or not the rectangle is filled."
       },
-      defaultValue: true,
     },{
       name: "material",
       dataType: "Material",
@@ -88,7 +83,6 @@ const Rectangle: LvtNodeDef = {
       ui:{
         description: "Whether or not the rectangle is outlined."
       },
-      defaultValue: false,
     },{
       name: "outlineColor",
       dataType: "Color",
@@ -101,7 +95,6 @@ const Rectangle: LvtNodeDef = {
       ui:{
         description: "The width of the rectangle outline."
       },
-      defaultValue: 1.0,
     },{
       name: "shadows",
       dataType: "ShadowMode",
@@ -120,7 +113,6 @@ const Rectangle: LvtNodeDef = {
       ui:{
         description: "Whether a classification affects terrain, 3D Tiles, or both."
       },
-      defaultValue: "BOTH",
     },{
       name: "zIndex",
       dataType: "Integer",

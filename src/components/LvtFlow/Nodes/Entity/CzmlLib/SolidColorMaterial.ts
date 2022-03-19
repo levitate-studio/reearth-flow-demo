@@ -17,7 +17,6 @@ const SolidColorMaterial: LvtNodeDef = {
       ui:{
         description: "The color of the surface."
       },
-      defaultValue: "white",
     },
   ],
   portsOut: [

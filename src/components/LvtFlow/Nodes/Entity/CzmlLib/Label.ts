@@ -17,7 +17,6 @@ const Label: LvtNodeDef = {
       ui:{
         description: "Whether or not the label is shown."
       },
-      defaultValue: true,
     },{
       name: "text",
       dataType: "String",
@@ -30,7 +29,6 @@ const Label: LvtNodeDef = {
       ui:{
         description: "The font to use for the label."
       },
-      defaultValue: "30px sans-serif",
     },{
       name: "style",
       dataType: "LabelStyle",
@@ -43,7 +41,6 @@ const Label: LvtNodeDef = {
       ui:{
         description: "The scale of the label. The scale is multiplied with the pixel size of the label's text. For example, if the scale is 2.0, the label will be rendered with twice the number of pixels, in each direction, of the text."
       },
-      defaultValue: 1.0,
     },{
       name: "showBackground",
       dataType: "Boolean",
@@ -56,7 +53,6 @@ const Label: LvtNodeDef = {
       ui:{
         description: "The color of the background behind the label."
       },
-      defaultValue: [0.165, 0.165, 0.165, 0.8],
     },{
       name: "backgroundPadding",
       dataType: "BackgroundPadding",
@@ -69,7 +65,6 @@ const Label: LvtNodeDef = {
       ui:{
         description: "The offset, in viewport pixels, of the label origin from the `position`. A pixel offset is the number of pixels up and to the right to place the label, relative to the `position`."
       },
-      defaultValue: [0.0, 0.0],
     },{
       name: "eyeOffset",
       dataType: "EyeOffset",
@@ -82,7 +77,6 @@ const Label: LvtNodeDef = {
       ui:{
         description: "The horizontal origin of the label. It controls whether the label is left-, center-, or right-aligned with the `position`."
       },
-      defaultValue: "CENTER",
     },{
       name: "verticalOrigin",
       dataType: "VerticalOrigin",
@@ -95,7 +89,6 @@ const Label: LvtNodeDef = {
       ui:{
         description: "The height reference of the label, which indicates if the position is relative to terrain or not."
       },
-      defaultValue: "NONE",
     },{
       name: "fillColor",
       dataType: "Color",
@@ -108,7 +101,6 @@ const Label: LvtNodeDef = {
       ui:{
         description: "The outline color of the label."
       },
-      defaultValue: "black",
     },{
       name: "outlineWidth",
       dataType: "Double",
@@ -145,7 +137,6 @@ const Label: LvtNodeDef = {
       ui:{
         description: "The distance from the camera at which to disable the depth test. This can be used to prevent clipping against terrain, for example. When set to zero, the depth test is always applied. When set to Infinity, the depth test is never applied."
       },
-      defaultValue: 0.0,
     },
   ],
   portsOut: [

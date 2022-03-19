@@ -17,7 +17,6 @@ const Path: LvtNodeDef = {
       ui:{
         description: "Whether or not the path is shown."
       },
-      defaultValue: true,
     },{
       name: "leadTime",
       dataType: "Double",
@@ -36,7 +35,6 @@ const Path: LvtNodeDef = {
       ui:{
         description: "The width of the path line."
       },
-      defaultValue: 1.0,
     },{
       name: "resolution",
       dataType: "Double",
@@ -49,7 +47,6 @@ const Path: LvtNodeDef = {
       ui:{
         description: "The material to use to draw the path."
       },
-      defaultValue: "solid white",
     },{
       name: "distanceDisplayCondition",
       dataType: "DistanceDisplayCondition",

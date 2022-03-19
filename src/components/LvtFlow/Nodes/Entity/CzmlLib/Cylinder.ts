@@ -17,7 +17,6 @@ const Cylinder: LvtNodeDef = {
       ui:{
         description: "Whether or not the cylinder is shown."
       },
-      defaultValue: true,
     },{
       name: "length",
       dataType: "Double",
@@ -42,7 +41,6 @@ const Cylinder: LvtNodeDef = {
       ui:{
         description: "The height reference of the cylinder, which indicates if the position is relative to terrain or not."
       },
-      defaultValue: "NONE",
     },{
       name: "fill",
       dataType: "Boolean",
@@ -55,7 +53,6 @@ const Cylinder: LvtNodeDef = {
       ui:{
         description: "The material to display on the surface of the cylinder."
       },
-      defaultValue: "solid white",
     },{
       name: "outline",
       dataType: "Boolean",
@@ -68,7 +65,6 @@ const Cylinder: LvtNodeDef = {
       ui:{
         description: "The color of the cylinder outline."
       },
-      defaultValue: "black",
     },{
       name: "outlineWidth",
       dataType: "Double",
@@ -81,7 +77,6 @@ const Cylinder: LvtNodeDef = {
       ui:{
         description: "The number of vertical lines to draw along the perimeter for the outline."
       },
-      defaultValue: 16,
     },{
       name: "slices",
       dataType: "Integer",
@@ -94,7 +89,6 @@ const Cylinder: LvtNodeDef = {
       ui:{
         description: "Whether or not the cylinder casts or receives shadows."
       },
-      defaultValue: "DISABLED",
     },{
       name: "distanceDisplayCondition",
       dataType: "DistanceDisplayCondition",

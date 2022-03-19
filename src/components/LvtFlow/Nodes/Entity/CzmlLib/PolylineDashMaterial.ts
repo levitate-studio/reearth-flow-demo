@@ -17,7 +17,6 @@ const PolylineDashMaterial: LvtNodeDef = {
       ui:{
         description: "The color of the dashes on the line."
       },
-      defaultValue: "white",
     },{
       name: "gapColor",
       dataType: "Color",
@@ -30,7 +29,6 @@ const PolylineDashMaterial: LvtNodeDef = {
       ui:{
         description: "The length in screen-space pixels of a single dash and gap pattern."
       },
-      defaultValue: 16.0,
     },{
       name: "dashPattern",
       dataType: "Integer",

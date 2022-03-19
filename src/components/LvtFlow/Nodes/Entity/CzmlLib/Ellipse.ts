@@ -17,7 +17,6 @@ const Ellipse: LvtNodeDef = {
       ui:{
         description: "Whether or not the ellipse is shown."
       },
-      defaultValue: true,
     },{
       name: "semiMajorAxis",
       dataType: "Double",
@@ -36,7 +35,6 @@ const Ellipse: LvtNodeDef = {
       ui:{
         description: "The altitude of the ellipse relative to the surface."
       },
-      defaultValue: 0.0,
     },{
       name: "heightReference",
       dataType: "HeightReference",
@@ -55,7 +53,6 @@ const Ellipse: LvtNodeDef = {
       ui:{
         description: "The extruded height reference of the ellipse, which indicates if `extrudedHeight` is relative to terrain or not."
       },
-      defaultValue: "NONE",
     },{
       name: "rotation",
       dataType: "Double",
@@ -68,7 +65,6 @@ const Ellipse: LvtNodeDef = {
       ui:{
         description: "The rotation of any applied texture coordinates."
       },
-      defaultValue: 0.0,
     },{
       name: "granularity",
       dataType: "Double",
@@ -81,7 +77,6 @@ const Ellipse: LvtNodeDef = {
       ui:{
         description: "Whether or not the ellipse is filled."
       },
-      defaultValue: true,
     },{
       name: "material",
       dataType: "Material",
@@ -94,7 +89,6 @@ const Ellipse: LvtNodeDef = {
       ui:{
         description: "Whether or not the ellipse is outlined."
       },
-      defaultValue: false,
     },{
       name: "outlineColor",
       dataType: "Color",
@@ -107,7 +101,6 @@ const Ellipse: LvtNodeDef = {
       ui:{
         description: "The width of the ellipse outline."
       },
-      defaultValue: 1.0,
     },{
       name: "numberOfVerticalLines",
       dataType: "Integer",
@@ -120,7 +113,6 @@ const Ellipse: LvtNodeDef = {
       ui:{
         description: "Whether or not the ellipse casts or receives shadows."
       },
-      defaultValue: "DISABLED",
     },{
       name: "distanceDisplayCondition",
       dataType: "DistanceDisplayCondition",
@@ -133,7 +125,6 @@ const Ellipse: LvtNodeDef = {
       ui:{
         description: "Whether a classification affects terrain, 3D Tiles, or both."
       },
-      defaultValue: "BOTH",
     },{
       name: "zIndex",
       dataType: "Integer",

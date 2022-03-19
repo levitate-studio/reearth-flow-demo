@@ -23,7 +23,6 @@ const Clock: LvtNodeDef = {
       ui:{
         description: "The behavior when the current time reaches its start or end times."
       },
-      defaultValue: "LOOP_STOP",
     },{
       name: "step",
       dataType: "ClockStep",

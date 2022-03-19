@@ -17,7 +17,6 @@ const StripeMaterial: LvtNodeDef = {
       ui:{
         description: "The value indicating if the stripes are horizontal or vertical."
       },
-      defaultValue: "HORIZONTAL",
     },{
       name: "evenColor",
       dataType: "Color",
@@ -30,7 +29,6 @@ const StripeMaterial: LvtNodeDef = {
       ui:{
         description: "The odd color."
       },
-      defaultValue: "black",
     },{
       name: "offset",
       dataType: "Double",
@@ -43,7 +41,6 @@ const StripeMaterial: LvtNodeDef = {
       ui:{
         description: "The number of times the stripes repeat."
       },
-      defaultValue: 1.0,
     },
   ],
   portsOut: [

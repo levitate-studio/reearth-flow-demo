@@ -17,7 +17,6 @@ const Polyline: LvtNodeDef = {
       ui:{
         description: "Whether or not the polyline is shown."
       },
-      defaultValue: true,
     },{
       name: "positions",
       dataType: "PositionList",
@@ -30,7 +29,6 @@ const Polyline: LvtNodeDef = {
       ui:{
         description: "The type of arc that should connect the positions of the polyline."
       },
-      defaultValue: "GEODESIC",
     },{
       name: "width",
       dataType: "Double",
@@ -55,7 +53,6 @@ const Polyline: LvtNodeDef = {
       ui:{
         description: "Whether or not the positions are connected as great arcs (the default) or as straight lines. This property has been superseded by `arcType`, which should be used instead."
       },
-      defaultValue: true,
     },{
       name: "shadows",
       dataType: "ShadowMode",
@@ -80,7 +77,6 @@ const Polyline: LvtNodeDef = {
       ui:{
         description: "Whether or not the polyline should be clamped to the ground."
       },
-      defaultValue: false,
     },{
       name: "classificationType",
       dataType: "ClassificationType",
@@ -93,7 +89,6 @@ const Polyline: LvtNodeDef = {
       ui:{
         description: "The z-index of the polyline, used for ordering ground geometry. Only has an effect if the polyline is constant, and `clampToGround` is true."
       },
-      defaultValue: 0,
     },
   ],
   portsOut: [

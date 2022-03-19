@@ -17,7 +17,6 @@ const Polygon: LvtNodeDef = {
       ui:{
         description: "Whether or not the polygon is shown."
       },
-      defaultValue: true,
     },{
       name: "positions",
       dataType: "PositionList",
@@ -36,7 +35,6 @@ const Polygon: LvtNodeDef = {
       ui:{
         description: "The type of arc that should connect the positions of the polygon."
       },
-      defaultValue: "GEODESIC",
     },{
       name: "height",
       dataType: "Double",
@@ -49,7 +47,6 @@ const Polygon: LvtNodeDef = {
       ui:{
         description: "The height reference of the polygon, which indicates if `height` is relative to terrain or not."
       },
-      defaultValue: "NONE",
     },{
       name: "extrudedHeight",
       dataType: "Double",
@@ -62,7 +59,6 @@ const Polygon: LvtNodeDef = {
       ui:{
         description: "The extruded height reference of the polygon, which indicates if `extrudedHeight` is relative to terrain or not."
       },
-      defaultValue: "NONE",
     },{
       name: "stRotation",
       dataType: "Double",
@@ -87,7 +83,6 @@ const Polygon: LvtNodeDef = {
       ui:{
         description: "The material to use to fill the polygon."
       },
-      defaultValue: "solid white",
     },{
       name: "outline",
       dataType: "Boolean",
@@ -100,7 +95,6 @@ const Polygon: LvtNodeDef = {
       ui:{
         description: "The color of the polygon outline."
       },
-      defaultValue: "black",
     },{
       name: "outlineWidth",
       dataType: "Double",
@@ -113,7 +107,6 @@ const Polygon: LvtNodeDef = {
       ui:{
         description: "Whether to use the height of each position to define the polygon or to use `height` as a constant height above the surface."
       },
-      defaultValue: false,
     },{
       name: "closeTop",
       dataType: "Boolean",
@@ -126,7 +119,6 @@ const Polygon: LvtNodeDef = {
       ui:{
         description: "Whether to close the bottom of the polygon."
       },
-      defaultValue: true,
     },{
       name: "shadows",
       dataType: "ShadowMode",
@@ -145,7 +137,6 @@ const Polygon: LvtNodeDef = {
       ui:{
         description: "Whether a classification affects terrain, 3D Tiles, or both."
       },
-      defaultValue: "BOTH",
     },{
       name: "zIndex",
       dataType: "Integer",

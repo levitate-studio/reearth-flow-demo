@@ -17,7 +17,6 @@ const PolylineGlowMaterial: LvtNodeDef = {
       ui:{
         description: "The color of the surface."
       },
-      defaultValue: "white",
     },{
       name: "glowPower",
       dataType: "Double",
@@ -30,7 +29,6 @@ const PolylineGlowMaterial: LvtNodeDef = {
       ui:{
         description: "The strength of the tapering effect.  1.0 and higher means no tapering."
       },
-      defaultValue: 1.0,
     },
   ],
   portsOut: [

@@ -15,12 +15,14 @@ const Boolean: LvtNodeDef = {
         component: "BooleanRadio",
         hidden: true,
       },
+      defaultValue: true,
     },
   ],
   portsOut: [
     {
       name: "result",
       dataType: "boolean",
+      defaultValue: true,
     },
   ],
   rule: (a: boolean) => {

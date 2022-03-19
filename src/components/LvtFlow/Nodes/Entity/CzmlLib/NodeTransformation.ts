@@ -17,7 +17,6 @@ const NodeTransformation: LvtNodeDef = {
       ui:{
         description: "The translation to apply to the model node."
       },
-      defaultValue: [0.0, 0.0, 0.0],
     },{
       name: "rotation",
       dataType: "Rotation",
@@ -30,7 +29,6 @@ const NodeTransformation: LvtNodeDef = {
       ui:{
         description: "The scaling to apply to the model node."
       },
-      defaultValue: [1.0, 1.0, 1.0],
     },
   ],
   portsOut: [

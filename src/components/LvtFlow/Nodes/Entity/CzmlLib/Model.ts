@@ -17,7 +17,6 @@ const Model: LvtNodeDef = {
       ui:{
         description: "Whether or not the model is shown."
       },
-      defaultValue: true,
     },{
       name: "gltf",
       dataType: "Uri",
@@ -30,7 +29,6 @@ const Model: LvtNodeDef = {
       ui:{
         description: "The scale of the model."
       },
-      defaultValue: 1.0,
     },{
       name: "minimumPixelSize",
       dataType: "Double",
@@ -49,7 +47,6 @@ const Model: LvtNodeDef = {
       ui:{
         description: "Whether or not the model can be rendered before all textures have loaded."
       },
-      defaultValue: true,
     },{
       name: "runAnimations",
       dataType: "Boolean",
@@ -62,7 +59,6 @@ const Model: LvtNodeDef = {
       ui:{
         description: "Whether or not the model casts or receives shadows."
       },
-      defaultValue: "ENABLED",
     },{
       name: "heightReference",
       dataType: "HeightReference",
@@ -75,7 +71,6 @@ const Model: LvtNodeDef = {
       ui:{
         description: "The color of the silhouette drawn around the model."
       },
-      defaultValue: "red",
     },{
       name: "silhouetteSize",
       dataType: "Double",
@@ -88,7 +83,6 @@ const Model: LvtNodeDef = {
       ui:{
         description: "The color to blend with the model's rendered color."
       },
-      defaultValue: "white",
     },{
       name: "colorBlendMode",
       dataType: "ColorBlendMode",
@@ -101,7 +95,6 @@ const Model: LvtNodeDef = {
       ui:{
         description: "The color strength when `colorBlendMode` is `MIX`. A value of 0.0 results in the model's rendered color while a value of 1.0 results in a solid color, with any value in-between resulting in a mix of the two."
       },
-      defaultValue: 0.5,
     },{
       name: "distanceDisplayCondition",
       dataType: "DistanceDisplayCondition",

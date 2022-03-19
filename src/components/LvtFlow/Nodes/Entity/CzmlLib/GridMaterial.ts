@@ -17,7 +17,6 @@ const GridMaterial: LvtNodeDef = {
       ui:{
         description: "The color of the surface."
       },
-      defaultValue: "white",
     },{
       name: "cellAlpha",
       dataType: "Double",
@@ -30,7 +29,6 @@ const GridMaterial: LvtNodeDef = {
       ui:{
         description: "The number of grid lines along each axis."
       },
-      defaultValue: [8, 8],
     },{
       name: "lineThickness",
       dataType: "LineThickness",
@@ -43,7 +41,6 @@ const GridMaterial: LvtNodeDef = {
       ui:{
         description: "The offset of grid lines along each axis, as a percentage from 0 to 1."
       },
-      defaultValue: [0.0, 0.0],
     },
   ],
   portsOut: [

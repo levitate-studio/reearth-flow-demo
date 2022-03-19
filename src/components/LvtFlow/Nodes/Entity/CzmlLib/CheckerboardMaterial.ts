@@ -17,7 +17,6 @@ const CheckerboardMaterial: LvtNodeDef = {
       ui:{
         description: "The even color."
       },
-      defaultValue: "white",
     },{
       name: "oddColor",
       dataType: "Color",
@@ -30,7 +29,6 @@ const CheckerboardMaterial: LvtNodeDef = {
       ui:{
         description: "The number of times the tiles repeat along each axis."
       },
-      defaultValue: [2, 2],
     },
   ],
   portsOut: [

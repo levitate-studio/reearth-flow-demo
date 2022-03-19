@@ -17,7 +17,6 @@ const Fan: LvtNodeDef = {
       ui:{
         description: "Whether or not the fan is shown."
       },
-      defaultValue: true,
     },{
       name: "directions",
       dataType: "DirectionList",
@@ -36,7 +35,6 @@ const Fan: LvtNodeDef = {
       ui:{
         description: "Whether the magnitude of each direction is used instead of a constant radius."
       },
-      defaultValue: false,
     },{
       name: "material",
       dataType: "Material",
@@ -49,7 +47,6 @@ const Fan: LvtNodeDef = {
       ui:{
         description: "Whether or not the fan is filled."
       },
-      defaultValue: true,
     },{
       name: "outline",
       dataType: "Boolean",
@@ -62,7 +59,6 @@ const Fan: LvtNodeDef = {
       ui:{
         description: "The color of the fan outline."
       },
-      defaultValue: "black",
     },{
       name: "outlineWidth",
       dataType: "Double",
@@ -75,7 +71,6 @@ const Fan: LvtNodeDef = {
       ui:{
         description: "The number of outline rings to draw, starting from the outer edge and equidistantly spaced towards the center."
       },
-      defaultValue: 6,
     },
   ],
   portsOut: [

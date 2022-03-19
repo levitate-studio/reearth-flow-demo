@@ -17,7 +17,6 @@ const Wall: LvtNodeDef = {
       ui:{
         description: "Whether or not the wall is shown."
       },
-      defaultValue: true,
     },{
       name: "positions",
       dataType: "PositionList",
@@ -54,7 +53,6 @@ const Wall: LvtNodeDef = {
       ui:{
         description: "The material to display on the surface of the wall."
       },
-      defaultValue: "solid white",
     },{
       name: "outline",
       dataType: "Boolean",
@@ -67,7 +65,6 @@ const Wall: LvtNodeDef = {
       ui:{
         description: "The color of the wall outline."
       },
-      defaultValue: "black",
     },{
       name: "outlineWidth",
       dataType: "Double",
@@ -80,7 +77,6 @@ const Wall: LvtNodeDef = {
       ui:{
         description: "Whether or not the wall casts or receives shadows."
       },
-      defaultValue: "DISABLED",
     },{
       name: "distanceDisplayCondition",
       dataType: "DistanceDisplayCondition",

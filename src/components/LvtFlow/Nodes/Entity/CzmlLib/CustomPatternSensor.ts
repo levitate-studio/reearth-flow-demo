@@ -17,7 +17,6 @@ const CustomPatternSensor: LvtNodeDef = {
       ui:{
         description: "Whether or not the entire custom sensor is shown."
       },
-      defaultValue: true,
     },{
       name: "directions",
       dataType: "DirectionList",
@@ -30,7 +29,6 @@ const CustomPatternSensor: LvtNodeDef = {
       ui:{
         description: "The radial limit of the sensor."
       },
-      defaultValue: Infinity,
     },{
       name: "showIntersection",
       dataType: "Boolean",
@@ -43,7 +41,6 @@ const CustomPatternSensor: LvtNodeDef = {
       ui:{
         description: "The color of the intersection of the sensor with the Earth."
       },
-      defaultValue: "white",
     },{
       name: "intersectionWidth",
       dataType: "Double",
@@ -56,7 +53,6 @@ const CustomPatternSensor: LvtNodeDef = {
       ui:{
         description: "Whether or not the lateral surfaces, i.e., the outer sides of the sensor, are shown."
       },
-      defaultValue: true,
     },{
       name: "lateralSurfaceMaterial",
       dataType: "Material",
@@ -69,7 +65,6 @@ const CustomPatternSensor: LvtNodeDef = {
       ui:{
         description: "Whether or not ellipsoid surfaces are shown."
       },
-      defaultValue: true,
     },{
       name: "ellipsoidSurfaceMaterial",
       dataType: "Material",
@@ -82,7 +77,6 @@ const CustomPatternSensor: LvtNodeDef = {
       ui:{
         description: "Whether or not ellipsoid horizon surfaces are shown."
       },
-      defaultValue: true,
     },{
       name: "ellipsoidHorizonSurfaceMaterial",
       dataType: "Material",
@@ -95,7 +89,6 @@ const CustomPatternSensor: LvtNodeDef = {
       ui:{
         description: "Whether or not dome surfaces are shown."
       },
-      defaultValue: true,
     },{
       name: "domeSurfaceMaterial",
       dataType: "Material",
@@ -108,7 +101,6 @@ const CustomPatternSensor: LvtNodeDef = {
       ui:{
         description: "What part of the sensor should be displayed."
       },
-      defaultValue: "COMPLETE",
     },{
       name: "environmentConstraint",
       dataType: "Boolean",
@@ -121,7 +113,6 @@ const CustomPatternSensor: LvtNodeDef = {
       ui:{
         description: "Whether or not the portion of the terrain occluded by the environment will be drawn with a separate material."
       },
-      defaultValue: false,
     },{
       name: "environmentOcclusionMaterial",
       dataType: "Material",
@@ -134,7 +125,6 @@ const CustomPatternSensor: LvtNodeDef = {
       ui:{
         description: "Whether or not a line showing where the sensor intersects the environment will be drawn."
       },
-      defaultValue: false,
     },{
       name: "environmentIntersectionColor",
       dataType: "Color",
@@ -147,7 +137,6 @@ const CustomPatternSensor: LvtNodeDef = {
       ui:{
         description: "The width in meters of the intersection line between the sensor and the environment."
       },
-      defaultValue: 5.0,
     },{
       name: "showThroughEllipsoid",
       dataType: "Boolean",
@@ -160,7 +149,6 @@ const CustomPatternSensor: LvtNodeDef = {
       ui:{
         description: "Whether or not the viewshed of the sensor will be drawn."
       },
-      defaultValue: false,
     },{
       name: "viewshedVisibleColor",
       dataType: "Color",
@@ -173,7 +161,6 @@ const CustomPatternSensor: LvtNodeDef = {
       ui:{
         description: "The color of the scene geometry that is not visible to the sensor."
       },
-      defaultValue: "red, 50% transparent",
     },{
       name: "viewshedResolution",
       dataType: "Integer",
