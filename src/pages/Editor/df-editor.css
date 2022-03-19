@@ -166,7 +166,6 @@ block
   display: flex;
   font-size: 12px;
 }
-
 .df-block-content{
   position: relative;
   padding: 0 10px;
@@ -186,6 +185,14 @@ block
   font-weight: bold;
   color: orange;
   flex-shrink: 0;
+}
+.df-block-group-des{
+  font-weight: bold;
+  padding-bottom: 12px;
+  font-size: 12px;
+  font-style: italic;
+  color: #999;
+  line-height: 1.5;
 }
 .df-block-group-wrapper{
   padding-left: 10px;
