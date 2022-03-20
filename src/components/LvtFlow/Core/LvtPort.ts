@@ -113,7 +113,10 @@ export class LvtPort {
       options.defaultValue
     );
     this.value = {
-      v: options.importedValue ? options.importedValue : this.defaultValue,
+      v:
+        options.importedValue !== undefined
+          ? options.importedValue
+          : this.defaultValue,
     };
     this.connected = false;
     // Edges
