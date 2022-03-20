@@ -6,8 +6,7 @@ const NumberInput = ({ port, node, lvtFlow }: any) => {
         disabled={port.connected}
         onChange={(e) => {
           // const number = e.target.value.replace(/[^\d.]/g, "");
-          const number = e.target.value;
-          port.setValue(Number(number));
+          port.setValue(e.target.value);
           lvtFlow.reRenderUI(["currentElement"]);
         }}
         onBlur={() => {

@@ -1,7 +1,7 @@
 import { updateNode } from "../../../Core/CommFuc";
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
-const Number: LvtNodeDef = {
+const _Number: LvtNodeDef = {
   _id: "Number",
   ui: {
     title: "Number",
@@ -27,8 +27,8 @@ const Number: LvtNodeDef = {
       },
     },
   ],
-  rule: (a: number) => {
-    return a;
+  rule: (a: any) => {
+    return Number(a);
   },
   update: (node: LvtNode) => {
     updateNode(node, "result", ["input"]);
@@ -36,4 +36,4 @@ const Number: LvtNodeDef = {
   },
 };
 
-export default Number;
+export default _Number;
