@@ -31,7 +31,6 @@ const Multiply: LvtNodeDef = {
     const max = Math.max(_a.length, _b.length);
     const result = [];
     for (let i = 0; i < max; i += 1) {
-      console.log(_a[i % _a.length], _b[i % _b.length]);
       result.push(Number(_a[i % _a.length]) * Number(_b[i % _b.length]));
     }
     return result;

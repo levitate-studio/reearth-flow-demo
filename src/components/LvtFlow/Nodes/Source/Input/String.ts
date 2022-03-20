@@ -20,10 +20,7 @@ const String: LvtNodeDef = {
   portsOut: [
     {
       name: "result",
-      dataType: "string",
-      ui: {
-        component: "PureDisplay",
-      },
+      dataType: "stringSpread",
     },
   ],
   rule: (a: string) => {

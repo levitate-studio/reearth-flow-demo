@@ -44,8 +44,21 @@ table viewer
 .df-output-table td.index{
   position: sticky;
   left: 0;
-  color: var(--theme-color-orange);
+  color: #999;
   background-color: #151515;
+}
+.df-output-table td.v-string{
+  color: rgb(253, 151, 31);
+}
+.df-output-table td.v-number{
+  color: rgb(166, 226, 46);
+}
+.df-output-table td.v-boolean{
+  color: rgb(174, 129, 255);
+}
+.df-output-table td.v-undefined{
+  color: #666;
+  font-style: italic;
 }
 
 /* -------------------------

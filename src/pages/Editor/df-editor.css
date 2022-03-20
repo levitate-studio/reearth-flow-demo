@@ -273,40 +273,47 @@ node color
 .nodecolor-Ops-String{
   background-color: rgb(71, 99, 79);
 } */
-.nodecolor-Entity-CZML{
+/* .nodecolor-Entity-CZML{
   background-color: rgb(107, 81, 47);
 }
 .nodecolor-Entity-GeoJSON{
   background-color: rgb(110, 60, 54);
-}
+} */
+/* .nodecolor-Entity-CzmlLib{
+  background-color: rgb(110, 60, 54);
+} */
 
 /* -------------------------
 port color 
 ----------------------------*/
-.portcolor-boolean{
-  background:rgb(247, 0, 255) !important;
-}
+.portcolor-boolean,
 .portcolor-booleanSpread{
-  background:rgb(255, 0, 140) !important;
+  background:rgb(162, 0, 255) !important;
 }
-.portcolor-number{
-  background:rgb(0, 238, 255) !important;
-}
+/* .portcolor-booleanSpread{
+  background:rgb(225, 0, 255) !important;
+} */
+.portcolor-number,
 .portcolor-numberSpread{
+  background:rgb(102, 255, 0) !important;
+}
+/* .portcolor-numberSpread{
   background:rgb(0, 174, 255) !important;
-}
-.portcolor-string{
-  background:rgb(166, 255, 0) !important;
-}
+} */
+.portcolor-string,
 .portcolor-stringSpread{
+  background:rgb(255, 153, 0) !important;
+}
+/* .portcolor-stringSpread{
   background:rgb(51, 255, 0) !important;
-}
-.portcolor-object{
-  background:rgb(255, 196, 0) !important;
-}
+} */
+.portcolor-object,
 .portcolor-objectSpread{
-  background:rgb(255, 115, 0) !important;
+  background:rgb(0, 204, 255) !important;
 }
+/* .portcolor-objectSpread{
+  background:rgb(255, 115, 0) !important;
+} */
 
 .port-hidden{
   display: none;

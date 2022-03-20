@@ -13,7 +13,6 @@ const _Number: LvtNodeDef = {
       dataType: "number",
       defaultValue: 0,
       ui: {
-        component: "NumberInput",
         hidden: true,
       },
     },
@@ -21,10 +20,7 @@ const _Number: LvtNodeDef = {
   portsOut: [
     {
       name: "result",
-      dataType: "number",
-      ui: {
-        component: "PureDisplay",
-      },
+      dataType: "numberSpread",
     },
   ],
   rule: (a: any) => {

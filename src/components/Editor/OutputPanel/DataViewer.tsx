@@ -36,12 +36,13 @@ const DataViewer = () => {
   } else if (!lvtFlow.outputSource) {
     return <div className="df-output-puredata"></div>;
   } else {
-    return (
-      <div className="df-output-puredata">
-        <span className="puredata-type">[{typeof displayData}]</span>
-        {String(displayData)}
-      </div>
-    );
+    return <TableViewer data={[displayData]} />;
+    // return (
+    //   <div className="df-output-puredata">
+    //     <span className="puredata-type">[{typeof displayData}]</span>
+    //     {String(displayData)}
+    //   </div>
+    // );
   }
 };
 

@@ -10,6 +10,7 @@ export interface LvtNodeOptions {
     portsIn?: any;
   };
   dataVersion?: number;
+  doUpdate?: boolean;
 }
 
 export interface LvtNodeDef {
@@ -60,13 +61,13 @@ export class LvtNode {
     return ports;
   }
 
-  constructor(options: LvtNodeOptions) {
-    const nodeDef = Nodes.nodeDefs[options.nodeId];
+  constructor({ nodeId, id, data, dataVersion, doUpdate }: LvtNodeOptions) {
+    const nodeDef = Nodes.nodeDefs[nodeId];
     if (!nodeDef) {
-      console.warn("NodeDef not found: " + options.nodeId);
+      console.warn("NodeDef not found: " + nodeId);
     } else {
       //
-      this.id = options.id ? options.id : idCreator.getId().toString();
+      this.id = id ? id : idCreator.getId().toString();
       this.nodeId = nodeDef.nodeId;
       this.category = nodeDef.category;
       //
@@ -81,7 +82,7 @@ export class LvtNode {
         portsIn: LvtNode.createPorts({
           portsDef: nodeDef.portsIn,
           portType: "input",
-          portValue: options.data?.portsIn,
+          portValue: data?.portsIn,
         }),
         portsOut: LvtNode.createPorts({
           portsDef: nodeDef.portsOut,
@@ -90,12 +91,10 @@ export class LvtNode {
       };
       this.isRenderer = nodeDef.isRenderer;
       //
-      // auto update once if is imported and has value
-      // if (options.data?.portsIn) {
-      //   this.update?.(this);
-      // }
-      this.update?.(this);
-      this.dataVersion = options.dataVersion;
+      if (doUpdate !== false) {
+        this.update?.(this);
+        this.dataVersion = dataVersion;
+      }
     }
   }
 

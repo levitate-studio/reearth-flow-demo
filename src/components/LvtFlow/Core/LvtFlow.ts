@@ -99,8 +99,12 @@ export class LvtFlow {
   // =======================================
   // nodes
   // =======================================
-  addNode(options: LvtNodeOptions) {
-    const node = new LvtNode({ ...options, dataVersion: this.dataVersion });
+  addNode(options: LvtNodeOptions, doUpdate = true) {
+    const node = new LvtNode({
+      ...options,
+      dataVersion: this.dataVersion,
+      doUpdate: doUpdate,
+    });
     this.data.push(node);
     return node;
   }
@@ -479,7 +483,7 @@ export class LvtFlow {
     if (importData.nodes.length > 0) {
       importData.nodes.forEach((node) => {
         nodeIds.push(Number(node.id));
-        this.addNode(node);
+        this.addNode(node, false);
       });
     }
 

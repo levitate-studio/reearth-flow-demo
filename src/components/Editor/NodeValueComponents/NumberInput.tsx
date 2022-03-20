@@ -19,6 +19,16 @@ const NumberInput = ({ port, node, lvtFlow }: any) => {
           }
         }}
       />
+      <div
+        className="porperty-reset"
+        onClick={() => {
+          port.setValue(port.defaultValue);
+          lvtFlow.reRenderUI(["currentElement"]);
+          lvtFlow.updateNodesFromNode(node.id);
+        }}
+      >
+        R
+      </div>
     </div>
   );
 };

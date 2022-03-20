@@ -26,18 +26,15 @@ const BooleanRadio = ({ port, node, lvtFlow }: any) => {
       >
         FALSE
       </div>
+      <div
+        className="porperty-reset"
+        onClick={() => {
+          setValue(port.defaultValue);
+        }}
+      >
+        R
+      </div>
     </div>
-    // <input
-    //   value={port.value.v === undefined ? "" : port.value.v}
-    //   disabled={port.connected}
-    //   onChange={(e) => {
-    //     port.setValue(e.target.value);
-    //     lvtFlow.reRenderUI(["currentElement"]);
-    //   }}
-    //   onBlur={() => {
-    //     lvtFlow.updateNodesFromNode(node.id);
-    //   }}
-    // />
   );
 };
 
