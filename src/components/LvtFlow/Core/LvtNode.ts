@@ -91,9 +91,10 @@ export class LvtNode {
       this.isRenderer = nodeDef.isRenderer;
       //
       // auto update once if is imported and has value
-      if (options.data?.portsIn) {
-        this.update?.(this);
-      }
+      // if (options.data?.portsIn) {
+      //   this.update?.(this);
+      // }
+      this.update?.(this);
       this.dataVersion = options.dataVersion;
     }
   }
