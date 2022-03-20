@@ -66,42 +66,6 @@ const PointPacket: LvtNodeDef = {
         description: "A suggested camera location when viewing this object. The property is specified as a Cartesian position in the East (x), North (y), Up (z) reference frame relative to the object's position."
       },
     },{
-      name: "billboard",
-      dataType: "Billboard",
-      ui:{
-        description: "A billboard, or viewport-aligned image, sometimes called a marker. The billboard is positioned in the scene by the `position` property."
-      },
-    },{
-      name: "box",
-      dataType: "Box",
-      ui:{
-        description: "A box, which is a closed rectangular cuboid. The box is positioned and oriented using the `position` and `orientation` properties."
-      },
-    },{
-      name: "corridor",
-      dataType: "Corridor",
-      ui:{
-        description: "A corridor, which is a shape defined by a centerline and width."
-      },
-    },{
-      name: "cylinder",
-      dataType: "Cylinder",
-      ui:{
-        description: "A cylinder, truncated cone, or cone defined by a length, top radius, and bottom radius. The cylinder is positioned and oriented using the `position` and `orientation` properties."
-      },
-    },{
-      name: "ellipse",
-      dataType: "Ellipse",
-      ui:{
-        description: "An ellipse, which is a closed curve on the surface of the Earth. The ellipse is positioned using the `position` property."
-      },
-    },{
-      name: "ellipsoid",
-      dataType: "Ellipsoid",
-      ui:{
-        description: "An ellipsoid, which is a closed quadric surface that is a three-dimensional analogue of an ellipse. The ellipsoid is positioned and oriented using the `position` and `orientation` properties."
-      },
-    },{
       name: "point",
       dataType: "Point",
       ui:{
@@ -115,13 +79,13 @@ const PointPacket: LvtNodeDef = {
       dataType: "PointPacket",
     },
   ],
-  rule: (_id: any, _delete: any, _name: any, _parent: any, _description: any, _availability: any, _properties: any, _position: any, _viewFrom: any, _billboard: any, _box: any, _corridor: any, _cylinder: any, _ellipse: any, _ellipsoid: any, _point: any) => {
+  rule: (_id: any, _delete: any, _name: any, _parent: any, _description: any, _availability: any, _properties: any, _position: any, _viewFrom: any, _point: any) => {
     return packageSpreadValue(
-      { _id, _delete, _name, _parent, _description, _availability, _properties, _position, _viewFrom, _billboard, _box, _corridor, _cylinder, _ellipse, _ellipsoid, _point }
+      { _id, _delete, _name, _parent, _description, _availability, _properties, _position, _viewFrom, _point }
     );
   },
   update: (node: LvtNode) => {
-    updateNode(node, "PointPacket", ["id", "delete", "name", "parent", "description", "availability", "properties", "position", "viewFrom", "billboard", "box", "corridor", "cylinder", "ellipse", "ellipsoid", "point"]);
+    updateNode(node, "PointPacket", ["id", "delete", "name", "parent", "description", "availability", "properties", "position", "viewFrom", "point"]);
     return node;
   },
 };
