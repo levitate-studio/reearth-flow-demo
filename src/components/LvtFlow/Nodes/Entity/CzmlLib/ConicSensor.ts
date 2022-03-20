@@ -1,0 +1,207 @@
+import {
+  updateNode,
+  packageSpreadValue,
+} from "../../../Core/CommFuc";
+import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
+
+const ConicSensor: LvtNodeDef = {
+  _id: "ConicSensor",
+  ui: {
+    title: "ConicSensor",
+    description: "A conical sensor volume taking into account occlusion of an ellipsoid, i.e., the globe.",
+  },
+  portsIn: [
+    {
+      name: "show",
+      dataType: "Boolean",
+      ui:{
+        description: "Whether or not the entire conical sensor is shown."
+      },
+    },{
+      name: "innerHalfAngle",
+      dataType: "Double",
+      ui:{
+        description: "The inner half angle of the cone."
+      },
+    },{
+      name: "outerHalfAngle",
+      dataType: "Double",
+      ui:{
+        description: "The outer half angle of the cone."
+      },
+    },{
+      name: "minimumClockAngle",
+      dataType: "Double",
+      ui:{
+        description: "The minimum clock angle limit of the cone."
+      },
+    },{
+      name: "maximumClockAngle",
+      dataType: "Double",
+      ui:{
+        description: "The maximum clock angle limit of the cone."
+      },
+    },{
+      name: "radius",
+      dataType: "Double",
+      ui:{
+        description: "The radial limit of the sensor."
+      },
+    },{
+      name: "showIntersection",
+      dataType: "Boolean",
+      ui:{
+        description: "Whether or not the intersection of the sensor with the Earth is shown."
+      },
+    },{
+      name: "intersectionColor",
+      dataType: "Color",
+      ui:{
+        description: "The color of the intersection of the sensor with the Earth."
+      },
+    },{
+      name: "intersectionWidth",
+      dataType: "Double",
+      ui:{
+        description: "The width of the intersection in pixels."
+      },
+    },{
+      name: "showLateralSurfaces",
+      dataType: "Boolean",
+      ui:{
+        description: "Whether or not the lateral surfaces, i.e., the outer sides of the sensor, are shown."
+      },
+    },{
+      name: "lateralSurfaceMaterial",
+      dataType: "Material",
+      ui:{
+        description: "The material to use for the sensor's lateral surface, i.e., the outer sides of the sensor."
+      },
+    },{
+      name: "showEllipsoidSurfaces",
+      dataType: "Boolean",
+      ui:{
+        description: "Whether or not ellipsoid surfaces are shown."
+      },
+    },{
+      name: "ellipsoidSurfaceMaterial",
+      dataType: "Material",
+      ui:{
+        description: "The material to use for the sensor's ellipsoid surfaces."
+      },
+    },{
+      name: "showEllipsoidHorizonSurfaces",
+      dataType: "Boolean",
+      ui:{
+        description: "Whether or not ellipsoid horizon surfaces are shown."
+      },
+    },{
+      name: "ellipsoidHorizonSurfaceMaterial",
+      dataType: "Material",
+      ui:{
+        description: "The material to use for the sensor's ellipsoid horizon surfaces."
+      },
+    },{
+      name: "showDomeSurfaces",
+      dataType: "Boolean",
+      ui:{
+        description: "Whether or not dome surfaces are shown."
+      },
+    },{
+      name: "domeSurfaceMaterial",
+      dataType: "Material",
+      ui:{
+        description: "The material to use for the sensor's dome surfaces."
+      },
+    },{
+      name: "portionToDisplay",
+      dataType: "SensorVolumePortionToDisplay",
+      ui:{
+        description: "What part of the sensor should be displayed."
+      },
+    },{
+      name: "environmentConstraint",
+      dataType: "Boolean",
+      ui:{
+        description: "Whether or not the sensor will be occluded by objects in the current view of the environment, e.g. visible terrain or models."
+      },
+    },{
+      name: "showEnvironmentOcclusion",
+      dataType: "Boolean",
+      ui:{
+        description: "Whether or not the portion of the terrain occluded by the environment will be drawn with a separate material."
+      },
+    },{
+      name: "environmentOcclusionMaterial",
+      dataType: "Material",
+      ui:{
+        description: "The material to use for the portion of the sensor occluded by the environment."
+      },
+    },{
+      name: "showEnvironmentIntersection",
+      dataType: "Boolean",
+      ui:{
+        description: "Whether or not a line showing where the sensor intersects the environment will be drawn."
+      },
+    },{
+      name: "environmentIntersectionColor",
+      dataType: "Color",
+      ui:{
+        description: "The color of the intersection line between the sensor and the environment."
+      },
+    },{
+      name: "environmentIntersectionWidth",
+      dataType: "Double",
+      ui:{
+        description: "The width in meters of the intersection line between the sensor and the environment."
+      },
+    },{
+      name: "showThroughEllipsoid",
+      dataType: "Boolean",
+      ui:{
+        description: "Whether or not a sensor intersecting the ellipsoid is drawn through the ellipsoid and potentially out to the other side."
+      },
+    },{
+      name: "showViewshed",
+      dataType: "Boolean",
+      ui:{
+        description: "Whether or not the viewshed of the sensor will be drawn."
+      },
+    },{
+      name: "viewshedVisibleColor",
+      dataType: "Color",
+      ui:{
+        description: "The color of the scene geometry that is visible to the sensor."
+      },
+    },{
+      name: "viewshedOccludedColor",
+      dataType: "Color",
+      ui:{
+        description: "The color of the scene geometry that is not visible to the sensor."
+      },
+    },{
+      name: "viewshedResolution",
+      dataType: "Integer",
+      ui:{
+        description: "The resolution in pixels of the viewshed."
+      },
+    },
+  ],
+  portsOut: [
+    {
+      name: "ConicSensor",
+      dataType: "ConicSensor",
+    },
+  ],
+  rule: (_show: any, _innerHalfAngle: any, _outerHalfAngle: any, _minimumClockAngle: any, _maximumClockAngle: any, _radius: any, _showIntersection: any, _intersectionColor: any, _intersectionWidth: any, _showLateralSurfaces: any, _lateralSurfaceMaterial: any, _showEllipsoidSurfaces: any, _ellipsoidSurfaceMaterial: any, _showEllipsoidHorizonSurfaces: any, _ellipsoidHorizonSurfaceMaterial: any, _showDomeSurfaces: any, _domeSurfaceMaterial: any, _portionToDisplay: any, _environmentConstraint: any, _showEnvironmentOcclusion: any, _environmentOcclusionMaterial: any, _showEnvironmentIntersection: any, _environmentIntersectionColor: any, _environmentIntersectionWidth: any, _showThroughEllipsoid: any, _showViewshed: any, _viewshedVisibleColor: any, _viewshedOccludedColor: any, _viewshedResolution: any) => {
+    return packageSpreadValue(
+      { _show, _innerHalfAngle, _outerHalfAngle, _minimumClockAngle, _maximumClockAngle, _radius, _showIntersection, _intersectionColor, _intersectionWidth, _showLateralSurfaces, _lateralSurfaceMaterial, _showEllipsoidSurfaces, _ellipsoidSurfaceMaterial, _showEllipsoidHorizonSurfaces, _ellipsoidHorizonSurfaceMaterial, _showDomeSurfaces, _domeSurfaceMaterial, _portionToDisplay, _environmentConstraint, _showEnvironmentOcclusion, _environmentOcclusionMaterial, _showEnvironmentIntersection, _environmentIntersectionColor, _environmentIntersectionWidth, _showThroughEllipsoid, _showViewshed, _viewshedVisibleColor, _viewshedOccludedColor, _viewshedResolution }
+    );
+  },
+  update: (node: LvtNode) => {
+    updateNode(node, "ConicSensor", ["show", "innerHalfAngle", "outerHalfAngle", "minimumClockAngle", "maximumClockAngle", "radius", "showIntersection", "intersectionColor", "intersectionWidth", "showLateralSurfaces", "lateralSurfaceMaterial", "showEllipsoidSurfaces", "ellipsoidSurfaceMaterial", "showEllipsoidHorizonSurfaces", "ellipsoidHorizonSurfaceMaterial", "showDomeSurfaces", "domeSurfaceMaterial", "portionToDisplay", "environmentConstraint", "showEnvironmentOcclusion", "environmentOcclusionMaterial", "showEnvironmentIntersection", "environmentIntersectionColor", "environmentIntersectionWidth", "showThroughEllipsoid", "showViewshed", "viewshedVisibleColor", "viewshedOccludedColor", "viewshedResolution"]);
+    return node;
+  },
+};
+
+export default ConicSensor;

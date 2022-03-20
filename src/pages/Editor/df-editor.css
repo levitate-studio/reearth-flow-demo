@@ -1,0 +1,342 @@
+.df-editor{
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  font-family: Menlo, Monaco, 'Courier New', monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--text-color-default);
+}
+
+/* -------------------------
+common reset 
+----------------------------*/
+.df-editor *{
+  box-sizing: border-box;
+}
+.df-editor input,
+.df-editor textarea{
+  border: none;
+  outline: none;
+}
+
+/* -------------------------
+structure 
+----------------------------*/
+.df-main{
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.df-sidebar{
+  position: relative;
+  width: 40vw;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--block-bg-color);
+  font-size: 12px;
+  border-left: 1px solid var(--block-border-color);
+  overflow: hidden;
+}
+.df-sidebar-top{
+  position: relative;
+  display: flex;
+  height: 30vh;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.df-sidebar-bottom{
+  display: flex;
+  height: 70vh;
+  flex-grow: 0;
+  flex-shrink: 0;
+  border-top: 1px solid var(--block-border-color);
+}
+
+/* -------------------------
+popup 
+----------------------------*/
+.df-popup-layer{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 300;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.df-popup-bg{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.5);
+}
+.df-popup-content{
+  position: relative;
+  top: 10vh;
+  width: 80%;
+  max-width: 800px;
+  background-color: #050505;
+  z-index: 2;
+}
+
+.df-popup-content-textarea{
+  width: 100%;
+  background-color: #090909;
+  height: 30vh;
+  resize: none;
+  padding: 6px 12px;
+  color: #aaa;
+  font-weight: bold;
+}
+.df-popup-content-textarea:hover{
+  background-color: #0a0a0a;
+}
+.df-popup-layer .df-block-content-wrapper{
+  padding: 6px 0;
+  margin: 0;
+}
+/* -------------------------
+bottom bar 
+----------------------------*/
+.df-block-bottom-bar{
+  display: flex;
+  justify-content: flex-end;
+  padding: 2px 0;
+}
+
+/* -------------------------
+button
+----------------------------*/
+.df-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: #000;
+  color: var(--theme-color-orange);
+  margin: 0 2px;
+  cursor: pointer;
+}
+.df-button:last-child{
+  margin-right:0;
+}
+.df-button:hover{
+  background-color: var(--theme-color-orange);
+  color: #000;
+}
+
+/* -------------------------
+seprator 
+----------------------------*/
+.df-sep{
+  position: absolute;
+  z-index: 200;
+}
+.df-sep.verti{
+  height: 100%;
+  width: 5px;
+  top: 0;
+  cursor: ew-resize;
+}
+.df-sep.horzi{
+  width: 100%;
+  height: 5px;
+  cursor: ns-resize;
+  left: 0;
+  top: 30vh;
+}
+
+/* -------------------------
+block 
+----------------------------*/
+.df-block{
+  flex-grow: 1;
+}
+.df-block-title{
+  font-weight: bold;
+  display: flex;
+  font-size: 12px;
+}
+.df-block-content{
+  position: relative;
+  padding: 0 10px;
+  height: calc(100% - 26px);
+  overflow: auto;
+}
+.df-block-content-wrapper{
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.df-block-group{
+  position: relative;
+}
+.df-block-group-title{
+  margin: 10px 0 10px;
+  font-weight: bold;
+  color: orange;
+  flex-shrink: 0;
+}
+.df-block-group-des{
+  font-weight: bold;
+  padding-bottom: 12px;
+  font-size: 12px;
+  font-style: italic;
+  color: #999;
+  line-height: 1.5;
+}
+.df-block-group-wrapper{
+  padding-left: 10px;
+}
+
+/* -------------------------
+tab 
+----------------------------*/
+.df-block-title-tab{
+  position: relative;
+  padding: 7px 10px;
+  color: #fff;
+}
+a.df-block-title-tab{
+  text-decoration: none;
+}
+.df-block-title-tab.multi{
+  cursor: pointer;
+}
+.df-block-title-tab.active{
+  border-bottom: 2px solid #f90;
+}
+.df-block-title-tab.button{
+  cursor: pointer;
+  color: var(--theme-color-orange);
+}
+.df-block-title-tab.logo{
+  cursor: pointer;
+  color: var(--theme-color-pink);
+  background: #000;
+}
+
+.df-block-tab-content{
+  width: 100%;
+  display: none;
+  position: relative;
+  flex-grow: 1;
+}
+.df-block-tab-content.active{
+  display: flex;
+}
+
+/* -------------------------
+canvas 
+----------------------------*/
+.df-canvas{
+  width: 100%;
+  height: 100%;
+  background-color: var(--canvas-bg-color);
+}
+
+/* -------------------------
+category color 
+----------------------------*/
+/* .catcolor-Source,
+.catcolor-Source-Input,
+.catcolor-Source-File,
+.catcolor-Source-Demo{
+  color: var(--theme-color-white);
+}
+.catcolor-Ops,
+.catcolor-Ops-Number,
+.catcolor-Ops-CSV{
+  color: var(--theme-color-white);
+}
+.catcolor-Renderer,
+.catcolor-Renderer-GeoJSON,
+.catcolor-Renderer-CZML{
+  color: var(--theme-color-white);
+} */
+
+/* -------------------------
+node color 
+----------------------------*/
+/* .nodecolor-Ops-Number{
+  background-color: rgb(71, 84, 99);
+}
+.nodecolor-Ops-String{
+  background-color: rgb(71, 99, 79);
+} */
+/* .nodecolor-Entity-CZML{
+  background-color: rgb(107, 81, 47);
+}
+.nodecolor-Entity-GeoJSON{
+  background-color: rgb(110, 60, 54);
+} */
+/* .nodecolor-Entity-CzmlLib{
+  background-color: rgb(110, 60, 54);
+} */
+
+/* -------------------------
+port color 
+----------------------------*/
+.portcolor-boolean,
+.portcolor-booleanSpread{
+  background:rgb(162, 0, 255) !important;
+}
+/* .portcolor-booleanSpread{
+  background:rgb(225, 0, 255) !important;
+} */
+.portcolor-number,
+.portcolor-numberSpread{
+  background:rgb(102, 255, 0) !important;
+}
+/* .portcolor-numberSpread{
+  background:rgb(0, 174, 255) !important;
+} */
+.portcolor-string,
+.portcolor-stringSpread{
+  background:rgb(255, 153, 0) !important;
+}
+/* .portcolor-stringSpread{
+  background:rgb(51, 255, 0) !important;
+} */
+.portcolor-object,
+.portcolor-objectSpread{
+  background:rgb(0, 204, 255) !important;
+}
+/* .portcolor-objectSpread{
+  background:rgb(255, 115, 0) !important;
+} */
+
+.port-hidden{
+  display: none;
+}
+
+/* -------------------------
+scroll-bar
+----------------------------*/
+::-webkit-scrollbar
+{
+  width:10px;
+  height:10px;
+  background-color:#1a1a1a;
+}
+::-webkit-scrollbar-track
+{
+  box-shadow:none;
+  border-radius:10px;
+  background-color:#1a1a1a;
+}
+::-webkit-scrollbar-thumb
+{
+  border-radius:5px;
+  box-shadow:inset 0 0 6px rgba(0,0,0,.3);
+  background-color:#666;
+}

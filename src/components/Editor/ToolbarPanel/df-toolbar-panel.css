@@ -1,0 +1,48 @@
+.df-toolbar-panel{
+  border-bottom: 1px solid var(--block-border-color);
+}
+
+.df-toolbar-panel .menu{
+  position: absolute;
+  background-color: var(--block-bg-color);
+  z-index: 100;
+  top: 26px;
+  left: 0;
+  display: none;
+  flex-wrap: wrap;
+}
+.df-block-title-tab:hover .menu{
+  display: flex;
+}
+
+.df-toolbar-panel .menu-list-group{
+  width: 100%;
+}
+
+.df-toolbar-panel .menu-list-group-title{
+  padding: 6px 12px;
+  font-size: 12px;
+  white-space: nowrap;
+  color: var(--theme-color-pink);
+}
+
+.df-block-title-tab .menu ul{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.df-toolbar-panel .menu-item{
+  padding: 6px 12px;
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+  width: 100%;
+}
+.df-toolbar-panel .menu-item:hover{
+  color: var(--theme-color-orange);
+}
+.df-toolbar-panel .menu-sep{
+  height: 1px;
+  background-color: #000;
+}

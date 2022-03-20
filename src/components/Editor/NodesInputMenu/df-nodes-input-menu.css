@@ -1,0 +1,48 @@
+.df-nodes-input-menu{
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  z-index: 200;
+  background-color: var(--block-bg-color);
+  border: 1px solid #000;
+}
+.df-nodes-input-menu.hidden{
+  display: none;
+}
+
+.df-nodes-input-menu-input{
+  background-color: #000;
+  border-bottom: 2px solid var(--theme-color-orange);
+}
+.df-nodes-input-menu-input input{
+  padding: 8px 12px;
+  font-size: 16px;
+  background: none;
+  color: #fff;
+  border: none;
+  outline: none;
+  width: 100%;
+  font-weight: bold;
+}
+
+.df-nodes-input-menu-wrapper{
+  position: relative;
+  overflow: auto;
+}
+
+.df-nodes-input-menu-wrapper .item{
+  font-size: 12px;
+  padding: 5px 12px;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  font-weight: bold;
+}
+.df-nodes-input-menu-wrapper .item.active{
+  color: var(--theme-color-orange);
+}
+
+.df-nodes-input-menu-wrapper .item .category{
+  width: 160px;
+  color: var(--theme-color-blue);
+}

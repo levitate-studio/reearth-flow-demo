@@ -1,0 +1,152 @@
+/* -------------------------
+propery panel
+----------------------------*/
+.df-property-panel{
+  width: 50%;
+}
+
+.df-block-group-title.node-id{
+  font-size: 14px;
+}
+
+.df-block-content{
+  color: #ccc;
+}
+
+.property-line{
+  position: relative;
+  display: flex;
+  align-items: top;
+  min-height: 30px;
+}
+.property-line input,
+.property-line textarea,
+.property-line select{
+  width: 100%;
+  background-color: var(--block-input-bg-color);
+  border: none;
+  border-radius: 0;
+  outline: none;
+  color: #ccc;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 0 5px;
+}
+.property-line input{
+  height: 24px;
+}
+.property-line textarea{
+  height: 100px;
+  padding: 5px 0;
+
+}
+.property-line select{
+  height: 24px;
+  padding: 5px 0;
+}
+.property-line input:disabled{
+  background-color: var(--block-bg-color);
+}
+.property-datatype{
+  position: absolute;
+  width: 5px;
+  height: 100%;
+  left: -10px;
+}
+.property-name{
+  position: relative;
+  width: 40%;
+  flex-shrink: 0;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  overflow: hidden;
+  z-index: 2;
+}
+.property-name:hover{
+  overflow: visible;
+}
+.property-name span{
+  display: inline-block;
+}
+.property-name:hover span{
+  background-color: var(--block-bg-color);
+  color: #fff;
+}
+.tail-cover{
+  position: absolute;
+  width: 40px;
+  height: 100%;
+  top: 0;
+  right: 0;
+  background-image: linear-gradient(to right , rgba(0,0,0,0), var(--block-bg-color));
+}
+.property-name:hover .tail-cover{
+  opacity: 0;
+}
+
+.property-value{
+  flex-grow: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+.output-source{
+  text-decoration: underline;
+  cursor: pointer;
+}
+.output-source:hover{
+  color: #fff;
+}
+
+.porperty-reset{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 0;
+  height: 24px;
+  background-color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  flex-shrink: 0;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+  transition: all .25s ease;
+}
+.porperty-reset:hover{
+  background-color: var(--theme-color-orange);
+  color: #000;
+}
+.property-line:hover .porperty-reset{
+  width: 24px;
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* -------------------------
+radio
+----------------------------*/
+.property-radios{
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.property-radios .radio{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ccc;
+  font-size: 12px;
+  font-weight: bold;
+  width: 100%;
+  height: 24px;
+  background-color: var(--block-input-bg-color);
+  cursor: pointer;
+}
+.property-radios .radio.active{
+  background-color: var(--theme-color-orange);
+  color: #000;
+}

@@ -1,0 +1,113 @@
+/* -------------------------
+output panel
+----------------------------*/
+.df-output-panel{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-color: var(--output-bg-color);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+}
+
+.df-output-panel .df-block-content{ 
+  overflow: auto;
+  padding: 0;
+}
+
+.df-output-puredata{
+  margin: 6px 0;
+  padding: 6px 12px;
+  font-weight: bold;
+  flex-grow: 0;
+}
+.df-output-puredata .puredata-type{
+  color: var(--theme-color-orange);
+  padding-right: 5px;
+}
+/* -------------------------
+table viewer
+----------------------------*/
+.df-output-table{
+  max-width: 100%;
+  margin: 6px 0;
+  font-weight: bold;
+  flex-grow: 0;
+}
+.df-output-table td{
+  height: 24px;
+  padding: 0 12px;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.df-output-table td.index{
+  position: sticky;
+  left: 0;
+  color: #999;
+  background-color: #151515;
+}
+.df-output-table td.v-string{
+  color: rgb(253, 151, 31);
+}
+.df-output-table td.v-number{
+  color: rgb(166, 226, 46);
+}
+.df-output-table td.v-boolean{
+  color: rgb(174, 129, 255);
+}
+.df-output-table td.v-undefined{
+  color: #666;
+  font-style: italic;
+}
+
+/* -------------------------
+json viewer
+----------------------------*/
+.react-json-view{
+  background: #1a1a1a !important;
+  font-size: 13px;
+  font-family: Menlo, Monaco, 'Courier New', monospace !important;
+  padding: 10px;
+}
+
+/* -------------------------
+cesium
+----------------------------*/
+.df-block-tab-content.map{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+#cesium-container{
+  width: 100%;
+  height: 100%;
+}
+
+.cesium-ui{
+  position: absolute;
+  z-index: 999;
+  padding: 6px;
+  opacity: .5;
+}
+.cesium-ui:hover{
+  opacity: 1;
+}
+
+.cesium-ui-ele.button{
+  padding: 6px 12px;
+  font-weight: bold;
+  background-color: #000;
+  margin-bottom: 2px;
+  cursor: pointer;
+}
+.cesium-ui-ele.button:hover{
+  background-color: var(--theme-color-orange);
+  color: #000;
+}
+.cesium-ui-ele .status{
+  display: inline-block;
+  padding: 0 5px;
+  
+}
