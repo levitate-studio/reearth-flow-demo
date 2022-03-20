@@ -16,7 +16,7 @@ const BasicNode = ({ data }: any) => {
           position={Position.Top}
           isValidConnection={data.isValidConnection}
           className={`portcolor-${getInternalDataType(port.dataType)} ${
-            port.ui?.hidden && "port-hidden"
+            port.ui?.hidden ? "port-hidden" : ""
           }`}
         />
         <div className="port-tip">
@@ -37,7 +37,7 @@ const BasicNode = ({ data }: any) => {
           position={Position.Bottom}
           isValidConnection={data.isValidConnection}
           className={`portcolor-${getInternalDataType(port.dataType)} ${
-            port.ui?.hidden && "port-hidden"
+            port.ui?.hidden ? "port-hidden" : ""
           }`}
         />
         <div className="port-tip">
