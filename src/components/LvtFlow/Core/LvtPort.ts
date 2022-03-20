@@ -1,3 +1,4 @@
+import { getInternalDataType } from "./DataTypes";
 import { type dataType } from "./DataTypeType";
 
 export type portType = "input" | "output";
@@ -96,10 +97,11 @@ export class LvtPort {
   constructor(options: LvtPortOptions) {
     this.name = options.name;
     this.portType = options.portType;
-    this.dataType = options.dataType;
+    const internalDataType = getInternalDataType(options.dataType);
+    this.dataType = internalDataType;
     this.ui = {
       component: LvtPort.getPortDefaultCompnent(
-        options.dataType,
+        internalDataType,
         options.ui?.component,
         options.portType
       ),
@@ -107,7 +109,7 @@ export class LvtPort {
       description: options.ui?.description,
     };
     this.defaultValue = LvtPort.getPortDefaultValue(
-      options.dataType,
+      internalDataType,
       options.defaultValue
     );
     this.value = {
