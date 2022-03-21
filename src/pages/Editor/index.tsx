@@ -36,16 +36,24 @@ const Editor: React.FC<Props> = () => {
   // Export Project
   // =======================================
   const exportWindowRef = useRef();
-  //
-  const popupExportProjectWindow = () => {
-    const projectData = {
+  const getProjectData = () => {
+    return {
       lvtFlow: lvtFlow.exportData(),
       canvas: (dataFlowCanvasRef.current as any).exportData(),
       version: lvtFlow.version,
       type: "separated",
     };
+  };
+  //
+  const popupExportProjectWindow = () => {
+    const projectData = getProjectData();
     (exportWindowRef.current as any).setText(JSON.stringify(projectData));
     (exportWindowRef.current as any).show();
+  };
+
+  const saveToLocalStorage = () => {
+    const projectData = getProjectData();
+    localStorage.setItem("lvtTempProjectData", JSON.stringify(projectData));
   };
 
   // =======================================
@@ -57,6 +65,15 @@ const Editor: React.FC<Props> = () => {
   };
   // import
   const importProject = (projectData: string) => {
+    if (projectData) {
+      const data = JSON.parse(projectData);
+      lvtFlow.importData(data.lvtFlow);
+      (dataFlowCanvasRef.current as any).importData(data.canvas);
+    }
+  };
+
+  const loadFromLocalStorage = () => {
+    const projectData = localStorage.getItem("lvtTempProjectData");
     if (projectData) {
       const data = JSON.parse(projectData);
       lvtFlow.importData(data.lvtFlow);
@@ -155,6 +172,8 @@ const Editor: React.FC<Props> = () => {
             loadProjectFromUrl={loadProjectFromUrl}
             clearData={clearData}
             popupExportCZMLWindow={popupExportCZMLWindow}
+            saveToLocalStorage={saveToLocalStorage}
+            loadFromLocalStorage={loadFromLocalStorage}
           />
           <DataFlowCanvas cref={dataFlowCanvasRef} />
         </div>

@@ -8,11 +8,14 @@ interface Props {
   popupExportCZMLWindow: any;
   loadProjectFromUrl: any;
   clearData: any;
+  saveToLocalStorage: any;
+  loadFromLocalStorage: any;
 }
 
 const ToolbarPanel = (Props: Props) => {
   const [examples, setExamples] = useState([]);
   const { get, response } = useFetch();
+  const [activeMenu, setActiveMenu] = useState("");
 
   useEffect(() => {
     const initExamples = async () => {
@@ -37,6 +40,7 @@ const ToolbarPanel = (Props: Props) => {
                     className="menu-item"
                     key={index}
                     onClick={() => {
+                      setActiveMenu("");
                       Props.loadProjectFromUrl(example["url"]);
                     }}
                   >
@@ -56,36 +60,93 @@ const ToolbarPanel = (Props: Props) => {
         <a className="df-block-title-tab logo" href="/">
           DATAFLOW
         </a>
-        <div className="df-block-title-tab">
+        <div
+          className={`df-block-title-tab ${
+            activeMenu === "Project" ? "on" : ""
+          }`}
+          onMouseEnter={() => {
+            setActiveMenu("Project");
+          }}
+          onMouseLeave={() => {
+            setActiveMenu("");
+          }}
+        >
           Project
           <div className="menu">
             <div className="menu-list-group">
               <ul>
-                <li className="menu-item" onClick={Props.clearData}>
+                <li
+                  className="menu-item"
+                  onClick={() => {
+                    setActiveMenu("");
+                    Props.clearData();
+                  }}
+                >
                   New
                 </li>
                 <li className="menu-sep"></li>
                 <li
                   className="menu-item"
-                  onClick={Props.popupImportProjectWindow}
+                  onClick={() => {
+                    setActiveMenu("");
+                    Props.saveToLocalStorage();
+                  }}
+                >
+                  Save Work
+                </li>
+                <li
+                  className="menu-item"
+                  onClick={() => {
+                    setActiveMenu("");
+                    Props.loadFromLocalStorage();
+                  }}
+                >
+                  Resume Work
+                </li>
+                <li className="menu-sep"></li>
+                <li
+                  className="menu-item"
+                  onClick={() => {
+                    setActiveMenu("");
+                    Props.popupImportProjectWindow();
+                  }}
                 >
                   Import
                 </li>
                 <li
                   className="menu-item"
-                  onClick={Props.popupExportProjectWindow}
+                  onClick={() => {
+                    setActiveMenu("");
+                    Props.popupExportProjectWindow();
+                  }}
                 >
                   Export
                 </li>
                 <li className="menu-sep"></li>
-                <li className="menu-item" onClick={Props.popupExportCZMLWindow}>
+                <li
+                  className="menu-item"
+                  onClick={() => {
+                    setActiveMenu("");
+                    Props.popupExportCZMLWindow();
+                  }}
+                >
                   Export CZML
                 </li>
               </ul>
             </div>
           </div>
         </div>
-        <div className="df-block-title-tab">
+        <div
+          className={`df-block-title-tab ${
+            activeMenu === "Examples" ? "on" : ""
+          }`}
+          onMouseEnter={() => {
+            setActiveMenu("Examples");
+          }}
+          onMouseLeave={() => {
+            setActiveMenu("");
+          }}
+        >
           Examples
           <div className="menu">{examplesList}</div>
         </div>

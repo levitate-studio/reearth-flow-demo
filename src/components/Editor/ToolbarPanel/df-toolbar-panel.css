@@ -11,7 +11,7 @@
   display: none;
   flex-wrap: wrap;
 }
-.df-block-title-tab:hover .menu{
+.df-block-title-tab.on .menu{
   display: flex;
 }
 
