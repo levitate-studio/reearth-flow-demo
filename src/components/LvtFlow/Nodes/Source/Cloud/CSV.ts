@@ -25,7 +25,9 @@ const CSV: LvtNodeDef = {
     if (url) {
       const csvData = await xhrGet(url);
       if (csvData) {
-        const { data }: any = Papa.parse(csvData as any);
+        const { data }: any = Papa.parse(csvData as any, {
+          skipEmptyLines: true,
+        });
         return data;
       }
     }
