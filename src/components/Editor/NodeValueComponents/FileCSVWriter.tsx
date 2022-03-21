@@ -5,9 +5,14 @@ const FileCSVWriter = ({ port, node }: any) => {
       try {
         for (let r = 0, rm = port.value.v.length; r < rm; r += 1) {
           let row = "";
-          for (let c = 0, cm = port.value.v[r].length; c < cm; c += 1) {
-            row += `"${port.value.v[r][c]}",`;
+          if (typeof port.value.v[r] !== "object") {
+            row += `"${port.value.v[r]}",`;
+          } else {
+            for (let c = 0, cm = port.value.v[r].length; c < cm; c += 1) {
+              row += `"${port.value.v[r][c]}",`;
+            }
           }
+
           row += "\r\n";
           csvData += row;
         }
