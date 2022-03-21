@@ -13,6 +13,11 @@ const SelectColumn: LvtNodeDef = {
       dataType: "stringSpread",
     },
     {
+      name: "includeHeader",
+      dataType: "boolean",
+      defaultValue: false,
+    },
+    {
       name: "column",
       dataType: "number",
       defaultValue: 0,
@@ -32,17 +37,17 @@ const SelectColumn: LvtNodeDef = {
       dataType: "stringSpread",
     },
   ],
-  rule: (a: any, b: number) => {
+  rule: (a: any, inclueHeader: any, b: number) => {
     const _temp = [];
     if (a) {
-      for (let i = 1; i < a.length; i += 1) {
+      for (let i = inclueHeader ? 0 : 1; i < a.length; i += 1) {
         _temp.push(a[i][Number(b)]);
       }
     }
     return _temp;
   },
   update: (node: LvtNode) => {
-    updateNode(node, "result", ["csvData", "column"]);
+    updateNode(node, "result", ["csvData", "includeHeader", "column"]);
     return node;
   },
 };
