@@ -28,6 +28,7 @@ export interface LvtPortDef {
       | "NumberInput"
       | "BooleanRadio"
       | "FileCSVInput"
+      | "FileCSVWriter"
       | "Select"
       | "OutputSource";
 
@@ -35,6 +36,7 @@ export interface LvtPortDef {
       selectorSourceType?: string;
       selectorSource?: string;
       selectorOptions?: Array<any>;
+      dataSource?: string;
     };
   };
 }
