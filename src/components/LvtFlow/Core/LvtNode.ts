@@ -7,7 +7,7 @@ export interface LvtNodeOptions {
   nodeId: string;
   id?: string;
   data?: {
-    portsIn?: any;
+    portsIn?: Array<LvtPortDef>;
   };
   dataVersion?: number;
   doUpdate?: boolean;

@@ -31,7 +31,11 @@ export interface LvtPortDef {
       | "Select"
       | "OutputSource";
 
-    componentOptions?: any;
+    componentOptions?: {
+      selectorSourceType?: string;
+      selectorSource?: string;
+      selectorOptions?: Array<any>;
+    };
   };
 }
 
