@@ -1,6 +1,9 @@
 [{
   "groupTitle": "Demos",
   "examples": [{
+    "title": "都道府県データ / 社会生活統計指標",
+    "url": "/examples/demo/e-stat-jp-population.json"
+  }, {
     "title": "French cities: 59064 boxes",
     "url": "/examples/demo/czmllib-box-french-cities.json"
   }, {
