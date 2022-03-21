@@ -74,6 +74,7 @@ propery panel
   background-color: var(--block-bg-color);
   color: #fff;
 }
+
 .tail-cover{
   position: absolute;
   width: 40px;
@@ -147,6 +148,36 @@ radio
   cursor: pointer;
 }
 .property-radios .radio.active{
+  background-color: var(--theme-color-orange);
+  color: #000;
+}
+
+.property-radios.multi{
+  flex-wrap: wrap;
+}
+.property-radios.multi .radio{
+  width: auto;
+  padding: 0 12px;
+  margin: 3px 6px 3px 0;
+}
+
+/* -------------------------
+button
+----------------------------*/
+.property-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ccc;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 0 20px;
+  min-width: 50%;
+  height: 24px;
+  background-color: var(--block-input-bg-color);
+  cursor: pointer;
+}
+.property-button:hover{
   background-color: var(--theme-color-orange);
   color: #000;
 }

@@ -28,10 +28,17 @@ export interface LvtPortDef {
       | "NumberInput"
       | "BooleanRadio"
       | "FileCSVInput"
+      | "FileCSVWriter"
       | "Select"
+      | "MultiRadio"
       | "OutputSource";
 
-    componentOptions?: any;
+    componentOptions?: {
+      selectorSourceType?: string;
+      selectorSource?: string;
+      selectorOptions?: Array<any>;
+      dataSource?: string;
+    };
   };
 }
 
