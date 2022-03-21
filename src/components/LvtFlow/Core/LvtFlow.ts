@@ -212,7 +212,6 @@ export class LvtFlow {
   // =======================================
   async updateNodesUntilNode(id: string | undefined) {
     if (id) {
-      this.dataVersion += 1;
       const curDataVersion = this.dataVersion;
       const t1 = new Date().getTime();
       await this.cUpdateNode(id, curDataVersion);
@@ -496,14 +495,15 @@ export class LvtFlow {
     // set the id to prevent same id
     idCreator.setId(Math.max(...nodeIds) + 1);
     // init data
+    this.dataVersion += 1;
     if (this.rendererId) {
-      this.updateNodesUntilNode(this.rendererId);
+      await this.updateNodesUntilNode(this.rendererId);
     } else {
       console.warn("no renderer node found");
-      for (let i = 0, n = this.data.length; i < n; i += 1) {
-        if (!this.data[i].data?.portsOut?.[0]?.connected) {
-          await this.updateNodesUntilNode(this.data[i].id as string);
-        }
+    }
+    for (let i = 0, n = this.data.length; i < n; i += 1) {
+      if (!this.data[i].data?.portsOut?.[0]?.connected) {
+        await this.updateNodesUntilNode(this.data[i].id as string);
       }
     }
   }
