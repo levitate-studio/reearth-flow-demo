@@ -6,6 +6,13 @@ import cesium from "vite-plugin-cesium";
 export default defineConfig({
   server: {
     open: true,
+    proxy: {
+      "/api.e-stat.go.jp": {
+        target: "http://api.e-stat.go.jp",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api.e-stat.go.jp/, ""),
+      },
+    },
   },
   resolve: {
     alias: {
