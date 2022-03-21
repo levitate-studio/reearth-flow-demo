@@ -2,6 +2,7 @@ import BooleanRadio from "./BooleanRadio";
 import FileCSVInput from "./FileCSVInput";
 import FileCSVWriter from "./FileCSVWriter";
 import Input from "./Input";
+import MultiRadio from "./MultiRadio";
 import NumberInput from "./NumberInput";
 import OutputSource from "./OutputSource";
 import PureDisplay from "./PureDisplay";
@@ -20,6 +21,7 @@ const NodeValueComponents: INodeValueComponent = {
   Input,
   BooleanRadio,
   FileCSVWriter,
+  MultiRadio,
 };
 
 export default NodeValueComponents;

@@ -30,6 +30,7 @@ export interface LvtPortDef {
       | "FileCSVInput"
       | "FileCSVWriter"
       | "Select"
+      | "MultiRadio"
       | "OutputSource";
 
     componentOptions?: {

@@ -17,6 +17,10 @@ const DatasetUrl: LvtNodeDef = {
           selectorSourceType: "self",
           selectorOptions: [
             {
+              title: "Japan cities",
+              value: "/sampleData/japan-cities.csv",
+            },
+            {
               title: "French cities",
               value: "/sampleData/french-cities.csv",
             },
