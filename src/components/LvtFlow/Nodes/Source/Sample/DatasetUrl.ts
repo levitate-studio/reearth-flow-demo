@@ -28,6 +28,15 @@ const DatasetUrl: LvtNodeDef = {
           title: "Countries indicators",
           value: "/sampleData/countries-indicators.csv",
         },
+        {
+          title: "都道府県データ / 社会生活統計指標 (online && dev)",
+          value:
+            "/api.e-stat.go.jp/rest/3.0/app/getSimpleStatsData?appId=8a8b80462573b03c3dd45514adcc6d70ae97a156&lang=J&statsDataId=0000010201&metaGetFlg=Y&cntGetFlg=N&explanationGetFlg=Y&annotationGetFlg=Y&sectionHeaderFlg=1&replaceSpChars=0",
+        },
+        {
+          title: "都道府県データ / 社会生活統計指標 (local)",
+          value: "/sampleData/e-stat-0000010201.csv",
+        },
       ],
       ui: {
         hidden: true,
