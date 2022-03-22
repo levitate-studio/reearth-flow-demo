@@ -68,6 +68,11 @@ const CesiumMap = ({ skipUpdate }: { skipUpdate: boolean }) => {
       }
       cesiumViewer.scene.requestRender();
 
+      // auto focus
+      if (dataVersion === 1) {
+        focus();
+      }
+
       rendering = false;
     } else {
       clog.log("Cesium", `cesiumViewer not exist.`);
