@@ -191,6 +191,7 @@
 .cesium-df .cesium-baseLayerPicker-itemLabel {
   color: #fff;
   font-weight: bold;
+  padding: 6px 0;
 }
 .cesium-df
   .cesium-baseLayerPicker-item:hover
@@ -210,16 +211,16 @@
 }
 
 .cesium-df .cesium-widget-errorPanel {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 1);
 }
 .cesium-df .cesium-widget-errorPanel-content {
-  border: 1px solid #526f82;
-  border-radius: 7px;
-  background-color: #fff;
-  color: #000;
+  border: 1px solid #000;
+  border-radius: 0;
+  background-color: var(--block-bg-color);
+  color: #fff;
 }
 .cesium-df .cesium-widget-errorPanel-header {
-  color: #b87d00;
+  color: var(--theme-color-pink);
 }
 .cesium-df .cesium-geocoder-input {
   border: none;
