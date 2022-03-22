@@ -245,6 +245,7 @@
 
 .cesium-df .cesium-timeline-bar {
   background: var(--block-bg-color);
+  height: calc(1.7em + 1px);
 }
 .cesium-df .cesium-timeline-main{
   border-color: var(--block-bg-color);
