@@ -6,6 +6,7 @@ import { LvtFlowContext } from "../../../pages/Editor/index";
 import { clog } from "../../LvtFlow/Core/CommFuc";
 
 import "cesium/Build/Cesium/Widgets/widgets.css";
+import "./df-cesium-map-theme.css";
 
 let cesiumViewer: any;
 let rendering = false;
@@ -69,11 +70,13 @@ const CesiumMap = ({ skipUpdate }: { skipUpdate: boolean }) => {
   useEffect(() => {
     const cesiumContainer = document.getElementById("cesium-container");
     cesiumViewer = new Viewer(cesiumContainer as HTMLElement, {
-      timeline: false,
-      animation: false,
+      // timeline: false,
+      // animation: false,
       requestRenderMode: true,
       fullscreenElement: cesiumContainer as HTMLElement,
     });
+    cesiumViewer.scene.debugShowFramesPerSecond = true;
+    cesiumViewer.animation.applyThemeChanges();
   }, []);
 
   useEffect(() => {
@@ -90,7 +93,7 @@ const CesiumMap = ({ skipUpdate }: { skipUpdate: boolean }) => {
 
   return (
     <>
-      <div id="cesium-container"></div>
+      <div id="cesium-container" className="cesium-df"></div>
       <div className="cesium-ui">
         <div
           className="cesium-ui-ele button"
