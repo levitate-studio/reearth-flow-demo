@@ -9,6 +9,7 @@ import "cesium/Build/Cesium/Widgets/widgets.css";
 import "./df-cesium-map-theme.css";
 
 let cesiumViewer: any;
+let dataSourcePromise: any;
 let rendering = false;
 let dataVersion = 0;
 let projectId = 0;
@@ -18,8 +19,13 @@ const CesiumMap = ({ skipUpdate }: { skipUpdate: boolean }) => {
   const [autoUpdate, setAutoUpdate] = useState(true);
   const lvtFlow = useContext(LvtFlowContext);
 
-  const updateCesium = async (force = false) => {
-    if (cesiumViewer && (autoUpdate || force) && !skipUpdate && !rendering) {
+  // =======================================
+  // Render data
+  // =======================================
+  // rander data
+  // only affect by viewer and data
+  const renderData = async () => {
+    if (cesiumViewer) {
       rendering = true;
       const renderData = lvtFlow.renderData?.v;
 
@@ -35,7 +41,6 @@ const CesiumMap = ({ skipUpdate }: { skipUpdate: boolean }) => {
         const curDataVersion = lvtFlow.dataVersion;
         const curprojectId = lvtFlow.projectId;
         clog.log("Cesium", `loading data: v[${curDataVersion}]`);
-        let dataSourcePromise;
         switch (renderData.dataType) {
           case "CZML":
           default:
@@ -64,14 +69,23 @@ const CesiumMap = ({ skipUpdate }: { skipUpdate: boolean }) => {
       cesiumViewer.scene.requestRender();
 
       rendering = false;
+    } else {
+      clog.log("Cesium", `cesiumViewer not exist.`);
     }
   };
 
+  const updateCesium = async () => {
+    if (autoUpdate && !skipUpdate && !rendering) {
+      await renderData();
+    }
+  };
+
+  // =======================================
+  // Init Cesium
+  // =======================================
   useEffect(() => {
     const cesiumContainer = document.getElementById("cesium-container");
     cesiumViewer = new Viewer(cesiumContainer as HTMLElement, {
-      // timeline: false,
-      // animation: false,
       requestRenderMode: true,
       fullscreenElement: cesiumContainer as HTMLElement,
     });
@@ -79,17 +93,45 @@ const CesiumMap = ({ skipUpdate }: { skipUpdate: boolean }) => {
     cesiumViewer.animation.applyThemeChanges();
   }, []);
 
+  // =======================================
+  // Component Update Base on Seed
+  // =======================================
   useEffect(() => {
     clog.log(
       "UI",
       `update cesium map: map ${projectId}.v[${dataVersion}] - data ${lvtFlow.projectId}.v[${lvtFlow.dataVersion}]`
     );
+    // update UI
+    const renderData = lvtFlow.renderData?.v;
+    if (renderData) {
+      setAnimationUI(renderData.options?.showAnimation);
+      setTimelineUI(renderData.options?.showTimeline);
+    }
     if (dataVersion != lvtFlow.dataVersion || projectId != lvtFlow.projectId) {
-      setTimeout(() => {
-        updateCesium();
-      }, 0);
+      updateCesium();
     }
   }, [lvtFlow.renderMapSeed]);
+
+  // =======================================
+  // UI Functions
+  // =======================================
+  const setAnimationUI = (show: boolean) => {
+    if (cesiumViewer?.animation?._container) {
+      cesiumViewer.animation._container.style.display = show ? "block" : "none";
+    }
+  };
+
+  const setTimelineUI = (show: boolean) => {
+    if (cesiumViewer?.timeline?.container) {
+      cesiumViewer.timeline.container.style.display = show ? "block" : "none";
+    }
+  };
+
+  const focus = () => {
+    if (cesiumViewer && dataSourcePromise) {
+      cesiumViewer.zoomTo(dataSourcePromise);
+    }
+  };
 
   return (
     <>
@@ -107,10 +149,18 @@ const CesiumMap = ({ skipUpdate }: { skipUpdate: boolean }) => {
         <div
           className="cesium-ui-ele button"
           onClick={() => {
-            updateCesium(true);
+            renderData();
           }}
         >
           UPDATE
+        </div>
+        <div
+          className="cesium-ui-ele button"
+          onClick={() => {
+            focus();
+          }}
+        >
+          FOCUS
         </div>
       </div>
     </>

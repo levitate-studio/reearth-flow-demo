@@ -13,6 +13,22 @@ const Renderer: LvtNodeDef = {
       name: "CZML",
       dataType: "objectSpread",
     },
+    {
+      name: "showAnimation",
+      dataType: "boolean",
+      defaultValue: false,
+      ui: {
+        hidden: true,
+      },
+    },
+    {
+      name: "showTimeline",
+      dataType: "boolean",
+      defaultValue: false,
+      ui: {
+        hidden: true,
+      },
+    },
   ],
   portsOut: [
     {
@@ -24,14 +40,18 @@ const Renderer: LvtNodeDef = {
       },
     },
   ],
-  rule: (a: any) => {
+  rule: (a: any, showAnimation: any, showTimeline: any) => {
     return {
       dataType: "CZML",
       data: a,
+      options: {
+        showAnimation,
+        showTimeline,
+      },
     };
   },
   update: (node: LvtNode) => {
-    updateNode(node, "renderData", ["CZML"]);
+    updateNode(node, "renderData", ["CZML", "showAnimation", "showTimeline"]);
     return node;
   },
 };
