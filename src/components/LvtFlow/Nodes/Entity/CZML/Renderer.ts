@@ -13,6 +13,10 @@ const Renderer: LvtNodeDef = {
       name: "CZML",
       dataType: "objectSpread",
     },
+    {
+      name: "rendererOptions",
+      dataType: "object",
+    },
   ],
   portsOut: [
     {
@@ -24,14 +28,15 @@ const Renderer: LvtNodeDef = {
       },
     },
   ],
-  rule: (a: any) => {
+  rule: (czml: any, rendererOptions: any) => {
     return {
       dataType: "CZML",
-      data: a,
+      data: czml,
+      options: rendererOptions ? rendererOptions[0] : undefined,
     };
   },
   update: (node: LvtNode) => {
-    updateNode(node, "renderData", ["CZML"]);
+    updateNode(node, "renderData", ["CZML", "rendererOptions"]);
     return node;
   },
 };

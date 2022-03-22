@@ -27,6 +27,9 @@
   }, {
     "title": "CzmlLib Corridor",
     "url": "/examples/czml-entities/czmllib-corridor.json"
+  }, {
+    "title": "CzmlLib Path",
+    "url": "/examples/czml-entities/czmllib-path.json"
   }]
 }, {
   "groupTitle": "CZML Refrence",

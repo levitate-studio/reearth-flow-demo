@@ -5,7 +5,7 @@ const AsNumber: LvtNodeDef = {
   _id: "AsNumber",
   ui: {
     title: "AsNumber",
-    description: "",
+    description: "Transfer string to number.",
   },
   portsIn: [
     {
@@ -24,7 +24,15 @@ const AsNumber: LvtNodeDef = {
     const _temp = [];
     if (_s) {
       for (let i = 0; i < _s.length; i += 1) {
-        _temp.push(Number(_s[i]));
+        if (Array.isArray(_s[i])) {
+          const _row = [];
+          for (let j = 0, jm = _s[i].length; j < jm; j += 1) {
+            _row.push(Number(_s[i][j]));
+          }
+          _temp.push(_row);
+        } else {
+          _temp.push(Number(_s[i]));
+        }
       }
     }
     return _temp;

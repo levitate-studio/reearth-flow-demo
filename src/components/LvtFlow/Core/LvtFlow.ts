@@ -16,6 +16,7 @@ interface IRenderData {
   v: {
     dataType: string;
     data: any;
+    options: any;
   };
 }
 
