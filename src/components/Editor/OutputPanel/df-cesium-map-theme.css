@@ -1,3 +1,7 @@
+.cesium-df .cesium-viewer-geocoderContainer,
+.cesium-df .cesium-sceneModePicker-wrapper{
+  margin: 0;
+}
 .cesium-df .cesium-button {
   color: #fff;
   fill: #fff;
@@ -8,7 +12,7 @@
   box-shadow: none;
 }
 .cesium-df .cesium-button svg{
-  transform: scale(.8);
+  transform: scale(.7);
 }
 .cesium-df .cesium-button:focus {
   color: #fff;
@@ -237,7 +241,7 @@
   fill: #fff;
 }
 .cesium-df .cesium-geocoder-searchButton svg{
-  transform: scale(.75);
+  transform: scale(.7);
 }
 .cesium-df .cesium-geocoder-searchButton:hover {
   background: var(--theme-color-orange);
