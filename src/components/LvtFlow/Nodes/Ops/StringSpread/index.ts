@@ -1,6 +1,7 @@
 import AsNumber from "./AsNumber";
 import Equal from "./Equal";
 import Filter from "./Filter";
+import Flat from "./Flat";
 import GetIndex from "./GetIndex";
 import IsEmpty from "./IsEmpty";
 import LeftJoin from "./LeftJoin";
@@ -20,5 +21,6 @@ export default {
     LeftJoin,
     Merge,
     Equal,
+    Flat,
   ],
 };

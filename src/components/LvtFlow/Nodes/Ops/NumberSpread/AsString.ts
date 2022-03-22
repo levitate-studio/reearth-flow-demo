@@ -24,7 +24,15 @@ const AsString: LvtNodeDef = {
     const _temp = [];
     if (_s) {
       for (let i = 0; i < _s.length; i += 1) {
-        _temp.push(String(_s[i]));
+        if (Array.isArray(_s[i])) {
+          const _row = [];
+          for (let j = 0, jm = _s[i].length; j < jm; j += 1) {
+            _row.push(String(_s[i][j]));
+          }
+          _temp.push(_row);
+        } else {
+          _temp.push(String(_s[i]));
+        }
       }
     }
     return _temp;

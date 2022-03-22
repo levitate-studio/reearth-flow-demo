@@ -18,6 +18,12 @@ const Clock: LvtNodeDef = {
         description: "The current time, specified in ISO8601 format."
       },
     },{
+      name: "multiplier",
+      dataType: "number",
+      ui:{
+        description: "The multiplier. When `step` is set to `TICK_DEPENDENT`, this is the number of seconds to advance each tick. When `step` is set to `SYSTEM_CLOCK_DEPENDENT`, this is multiplied by the elapsed system time between ticks. This value is ignored in `SYSTEM_CLOCK` mode."
+      },
+    },{
       name: "range",
       dataType: "ClockRange",
       ui:{
@@ -37,13 +43,13 @@ const Clock: LvtNodeDef = {
       dataType: "Clock",
     },
   ],
-  rule: (_currentTime: any, _range: any, _step: any) => {
+  rule: (_currentTime: any, _multiplier: any, _range: any, _step: any) => {
     return packageSpreadValue(
-      { _currentTime, _range, _step }
+      { _currentTime, _multiplier, _range, _step }
     );
   },
   update: (node: LvtNode) => {
-    updateNode(node, "Clock", ["currentTime", "range", "step"]);
+    updateNode(node, "Clock", ["currentTime", "multiplier", "range", "step"]);
     return node;
   },
 };

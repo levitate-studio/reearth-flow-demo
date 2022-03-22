@@ -24,7 +24,15 @@ const AsBoolean: LvtNodeDef = {
     const _temp = [];
     if (_s) {
       for (let i = 0; i < _s.length; i += 1) {
-        _temp.push(Number(_s[i]) !== 0);
+        if (Array.isArray(_s[i])) {
+          const _row = [];
+          for (let j = 0, jm = _s[i].length; j < jm; j += 1) {
+            _row.push(Number(_s[i][j] !== 0));
+          }
+          _temp.push(_row);
+        } else {
+          _temp.push(Number(_s[i] !== 0));
+        }
       }
     }
     return _temp;
