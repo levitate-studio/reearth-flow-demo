@@ -16,6 +16,9 @@ const SelectColumn: LvtNodeDef = {
       name: "includeHeader",
       dataType: "boolean",
       defaultValue: false,
+      ui: {
+        hidden: true,
+      },
     },
     {
       name: "column",

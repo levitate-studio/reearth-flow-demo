@@ -16,6 +16,9 @@ const SelectMultiColumn: LvtNodeDef = {
       name: "includeHeader",
       dataType: "boolean",
       defaultValue: true,
+      ui: {
+        hidden: true,
+      },
     },
     {
       name: "columns",

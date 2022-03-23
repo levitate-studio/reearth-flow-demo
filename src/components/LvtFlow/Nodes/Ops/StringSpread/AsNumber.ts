@@ -12,6 +12,14 @@ const AsNumber: LvtNodeDef = {
       name: "string",
       dataType: "string",
     },
+    {
+      name: "strict",
+      dataType: "boolean",
+      defaultValue: true,
+      ui: {
+        hidden: true,
+      },
+    },
   ],
   portsOut: [
     {
@@ -19,7 +27,7 @@ const AsNumber: LvtNodeDef = {
       dataType: "numberSpread",
     },
   ],
-  rule: (s: any) => {
+  rule: (s: any, strict: any) => {
     const _s = spreadData(s);
     const _temp = [];
     if (_s) {
@@ -27,7 +35,7 @@ const AsNumber: LvtNodeDef = {
         if (Array.isArray(_s[i])) {
           const _row = [];
           for (let j = 0, jm = _s[i].length; j < jm; j += 1) {
-            if (Number(_s[i][j]) || Number(_s[i][j]) === 0) {
+            if (strict || Number(_s[i][j]) || Number(_s[i][j]) === 0) {
               _row.push(Number(_s[i][j]));
             } else {
               _row.push(_s[i][j]);
@@ -35,7 +43,7 @@ const AsNumber: LvtNodeDef = {
           }
           _temp.push(_row);
         } else {
-          if (Number(_s[i]) || Number(_s[i]) === 0) {
+          if (strict || Number(_s[i]) || Number(_s[i]) === 0) {
             _temp.push(Number(_s[i]));
           } else {
             _temp.push(_s[i]);
@@ -46,7 +54,7 @@ const AsNumber: LvtNodeDef = {
     return _temp;
   },
   update: (node: LvtNode) => {
-    updateNode(node, "number", ["string"]);
+    updateNode(node, "number", ["string", "strict"]);
     return node;
   },
 };

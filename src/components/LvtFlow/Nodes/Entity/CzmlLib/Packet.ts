@@ -42,18 +42,6 @@ const Packet: LvtNodeDef = {
         description: "An HTML description of the object."
       },
     },{
-      name: "clock",
-      dataType: "Clock",
-      ui:{
-        description: "The clock settings for the entire data set. Only valid on the document object."
-      },
-    },{
-      name: "version",
-      dataType: "String",
-      ui:{
-        description: "The CZML version being written. Only valid on the document object."
-      },
-    },{
       name: "availability",
       dataType: "TimeIntervalCollection",
       ui:{
@@ -217,13 +205,13 @@ const Packet: LvtNodeDef = {
       dataType: "Packet",
     },
   ],
-  rule: (_id: any, _delete: any, _name: any, _parent: any, _description: any, _clock: any, _version: any, _availability: any, _properties: any, _position: any, _orientation: any, _viewFrom: any, _billboard: any, _box: any, _corridor: any, _cylinder: any, _ellipse: any, _ellipsoid: any, _label: any, _model: any, _path: any, _point: any, _polygon: any, _polyline: any, _polylineVolume: any, _rectangle: any, _tileset: any, _wall: any, _agi_conicSensor: any, _agi_customPatternSensor: any, _agi_rectangularSensor: any, _agi_fan: any, _agi_vector: any) => {
+  rule: (_id: any, _delete: any, _name: any, _parent: any, _description: any, _availability: any, _properties: any, _position: any, _orientation: any, _viewFrom: any, _billboard: any, _box: any, _corridor: any, _cylinder: any, _ellipse: any, _ellipsoid: any, _label: any, _model: any, _path: any, _point: any, _polygon: any, _polyline: any, _polylineVolume: any, _rectangle: any, _tileset: any, _wall: any, _agi_conicSensor: any, _agi_customPatternSensor: any, _agi_rectangularSensor: any, _agi_fan: any, _agi_vector: any) => {
     return packageSpreadValue(
-      { _id, _delete, _name, _parent, _description, _clock, _version, _availability, _properties, _position, _orientation, _viewFrom, _billboard, _box, _corridor, _cylinder, _ellipse, _ellipsoid, _label, _model, _path, _point, _polygon, _polyline, _polylineVolume, _rectangle, _tileset, _wall, _agi_conicSensor, _agi_customPatternSensor, _agi_rectangularSensor, _agi_fan, _agi_vector }
+      { _id, _delete, _name, _parent, _description, _availability, _properties, _position, _orientation, _viewFrom, _billboard, _box, _corridor, _cylinder, _ellipse, _ellipsoid, _label, _model, _path, _point, _polygon, _polyline, _polylineVolume, _rectangle, _tileset, _wall, _agi_conicSensor, _agi_customPatternSensor, _agi_rectangularSensor, _agi_fan, _agi_vector }
     );
   },
   update: (node: LvtNode) => {
-    updateNode(node, "Packet", ["id", "delete", "name", "parent", "description", "clock", "version", "availability", "properties", "position", "orientation", "viewFrom", "billboard", "box", "corridor", "cylinder", "ellipse", "ellipsoid", "label", "model", "path", "point", "polygon", "polyline", "polylineVolume", "rectangle", "tileset", "wall", "agi_conicSensor", "agi_customPatternSensor", "agi_rectangularSensor", "agi_fan", "agi_vector"]);
+    updateNode(node, "Packet", ["id", "delete", "name", "parent", "description", "availability", "properties", "position", "orientation", "viewFrom", "billboard", "box", "corridor", "cylinder", "ellipse", "ellipsoid", "label", "model", "path", "point", "polygon", "polyline", "polylineVolume", "rectangle", "tileset", "wall", "agi_conicSensor", "agi_customPatternSensor", "agi_rectangularSensor", "agi_fan", "agi_vector"]);
     return node;
   },
 };
