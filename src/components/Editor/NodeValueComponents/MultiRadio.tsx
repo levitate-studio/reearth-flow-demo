@@ -1,64 +1,46 @@
-const options: any = [];
+let active: string;
 
 const MultiRadio = ({ port, node, lvtFlow }: any) => {
-  if (port.ui.componentOptions.selectorSourceType) {
-    let optionsSource;
-
-    switch (port.ui.componentOptions.selectorSourceType) {
-      case "csvColumn":
-        if (port.ui.componentOptions.selectorSource) {
-          optionsSource = node.getPortInByName(
-            port.ui.componentOptions.selectorSource
-          );
-        }
-        if (optionsSource.getValue()) {
-          optionsSource.getValue()[0].map((v: string, index: number) => {
-            options[index] = {
-              title: v,
-              value: port.value.v[index],
-            };
-          });
-        }
+  let options = [];
+  if (port.ui.componentOptions.radioSourceType) {
+    switch (port.ui.componentOptions.radioSourceType) {
+      case "self":
+        options = port.ui.componentOptions.radioOptions;
         break;
       default:
         break;
     }
   }
 
-  const setValue = (index: number, value: boolean) => {
-    options[index].value = value;
-    const values = [];
-    for (let i = 0, j = options.length; i < j; i += 1) {
-      values.push(options[i].value);
-    }
-    port.setValue(values);
+  active = port.value.v;
+  const setValue = (value: string) => {
+    active = value;
+    port.setValue(value);
     lvtFlow.reRenderUI(["currentElement"]);
     lvtFlow.updateNodesFromNode(node.id);
   };
+
   return (
-    <div className="property-radios multi">
+    <div className="property-radios">
       {options.map((option: any, index: number) => (
         <div
           key={index}
-          className={`radio ${option.value === true && "active"}`}
+          className={`radio ${active === option.value && "active"}`}
           onClick={() => {
-            setValue(index, !option.value);
+            setValue(option.value);
           }}
         >
           {option.title}
         </div>
       ))}
-
-      {options.length > 0 && (
-        <div
-          className="porperty-reset"
-          onClick={() => {
-            port.setValue(port.defaultValue);
-          }}
-        >
-          R
-        </div>
-      )}
+      <div
+        className="porperty-reset"
+        onClick={() => {
+          setValue(port.defaultValue);
+        }}
+      >
+        R
+      </div>
     </div>
   );
 };
