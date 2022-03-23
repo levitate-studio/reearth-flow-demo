@@ -18,18 +18,6 @@ const Clock: LvtNodeDef = {
         description: "The interval of the clock, specified in ISO8601 format."
       },
     },{
-      name: "startTime",
-      dataType: "Time",
-      ui:{
-        description: "The start time of the clock, specified in ISO8601 format."
-      },
-    },{
-      name: "stopTime",
-      dataType: "Time",
-      ui:{
-        description: "The stop time of the clock, specified in ISO8601 format."
-      },
-    },{
       name: "currentTime",
       dataType: "Time",
       ui:{
@@ -61,13 +49,13 @@ const Clock: LvtNodeDef = {
       dataType: "Clock",
     },
   ],
-  rule: (_interval: any, _startTime: any, _stopTime: any, _currentTime: any, _multiplier: any, _range: any, _step: any) => {
+  rule: (_interval: any, _currentTime: any, _multiplier: any, _range: any, _step: any) => {
     return packageSpreadValue(
-      { _interval, _startTime, _stopTime, _currentTime, _multiplier, _range, _step }
+      { _interval, _currentTime, _multiplier, _range, _step }
     );
   },
   update: (node: LvtNode) => {
-    updateNode(node, "Clock", ["interval", "startTime", "stopTime", "currentTime", "multiplier", "range", "step"]);
+    updateNode(node, "Clock", ["interval", "currentTime", "multiplier", "range", "step"]);
     return node;
   },
 };
