@@ -22,7 +22,7 @@ const SelectMultiColumn: LvtNodeDef = {
       dataType: "booleanSpread",
       defaultValue: [],
       ui: {
-        component: "MultiRadio",
+        component: "Checkbox",
         componentOptions: {
           selectorSource: "csvData",
           selectorSourceType: "csvColumn",

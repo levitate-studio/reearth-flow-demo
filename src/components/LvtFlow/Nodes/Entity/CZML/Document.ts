@@ -22,6 +22,14 @@ const Document: LvtNodeDef = {
       dataType: "string",
       defaultValue: "1.0",
     },
+    {
+      name: "clock",
+      dataType: "Clock",
+      ui: {
+        description:
+          "The clock settings for the entire data set. Only valid on the document object.",
+      },
+    },
   ],
   portsOut: [
     {
@@ -29,28 +37,23 @@ const Document: LvtNodeDef = {
       dataType: "objectSpread",
     },
   ],
-  rule: (objects: any, name: any, version: any) => {
+  rule: (objects: any, name: any, version: any, clock: any) => {
+    const documentPacket: any = {
+      id: "document",
+      name,
+      version,
+    };
+    if (clock) {
+      documentPacket.clock = clock[0];
+    }
     if (typeof objects === "object") {
-      return [
-        {
-          id: "document",
-          name,
-          version,
-        },
-        ...objects,
-      ];
+      return [documentPacket, ...objects];
     } else {
-      return [
-        {
-          id: "document",
-          name,
-          version,
-        },
-      ];
+      return documentPacket;
     }
   },
   update: (node: LvtNode) => {
-    updateNode(node, "CZML", ["objects", "name", "version"]);
+    updateNode(node, "CZML", ["objects", "name", "version", "clock"]);
     return node;
   },
 };

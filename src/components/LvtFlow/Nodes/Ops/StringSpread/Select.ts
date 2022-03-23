@@ -27,7 +27,7 @@ const Select: LvtNodeDef = {
   rule: (a: any, b: number) => {
     const _temp = [];
     const _a = spreadData(a);
-    if (a) {
+    if (_a) {
       for (let i = 0; i < _a.length; i += 1) {
         _temp.push(_a[i][b]);
       }

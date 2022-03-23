@@ -3,6 +3,7 @@ import AsString from "./AsString";
 import Divide from "./Divide";
 import Expr from "./Expr";
 import Flat from "./Flat";
+import FlatById from "./FlatById";
 import GreaterThan from "./GreaterThan";
 import LessThan from "./LessThan";
 import Map from "./Map";
@@ -23,6 +24,7 @@ export default {
     Multiply,
     Divide,
     Flat,
+    FlatById,
     Vector2,
     Vector3,
     Vector4,
