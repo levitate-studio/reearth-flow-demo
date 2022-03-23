@@ -165,3 +165,16 @@ export const clog = {
     );
   },
 };
+
+// =======================================
+// Deepcopy
+// =======================================
+export const deepcopy = (obj: any) => {
+  const out: Array<any> = [];
+  for (let i = 0, len = obj.length; i < len; i++) {
+    if (obj[i] instanceof Array) {
+      out[i] = deepcopy(obj[i]);
+    } else out[i] = obj[i];
+  }
+  return out;
+};
