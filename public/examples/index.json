@@ -2,7 +2,10 @@
   "groupTitle": "Demos",
   "examples": [{
     "title": "都道府県データ / 社会生活統計指標",
-    "url": "/examples/demo/e-stat-jp-population.json"
+    "url": "/examples/demo/e-stat-jp-0000010201.json"
+  }, {
+    "title": "都道府県データ / 社会生活統計指標 Animate",
+    "url": "/examples/demo/e-stat-jp-0000010201-ani.json"
   }, {
     "title": "French cities: 59064 boxes",
     "url": "/examples/demo/czmllib-box-french-cities.json"
