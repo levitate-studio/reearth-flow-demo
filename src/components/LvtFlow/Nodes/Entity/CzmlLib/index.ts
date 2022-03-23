@@ -1,238 +1,238 @@
-import ArcType from "./ArcType"
-import Billboard from "./Billboard"
 import Articulation from "./Articulation"
+import ArcType from "./ArcType"
 import ArcTypeValue from "./ArcTypeValue"
-import BackgroundPadding from "./BackgroundPadding"
+import Billboard from "./Billboard"
 import Boolean from "./Boolean"
+import BackgroundPadding from "./BackgroundPadding"
 import BoundingRectangle from "./BoundingRectangle"
+import Box from "./Box"
 import AlignedAxis from "./AlignedAxis"
 import BoxDimensions from "./BoxDimensions"
-import Box from "./Box"
-import CheckerboardMaterial from "./CheckerboardMaterial"
-import ClassificationTypeValue from "./ClassificationTypeValue"
-import ClassificationType from "./ClassificationType"
 import ClockRange from "./ClockRange"
-import Color from "./Color"
-import ClockStep from "./ClockStep"
-import ColorBlendMode from "./ColorBlendMode"
 import Clock from "./Clock"
-import ConicSensor from "./ConicSensor"
-import CornerType from "./CornerType"
+import CheckerboardMaterial from "./CheckerboardMaterial"
+import ClassificationType from "./ClassificationType"
+import ClockStep from "./ClockStep"
 import ColorBlendModeValue from "./ColorBlendModeValue"
-import Corridor from "./Corridor"
+import Color from "./Color"
+import ConicSensor from "./ConicSensor"
 import CornerTypeValue from "./CornerTypeValue"
-import CustomProperty from "./CustomProperty"
+import ColorBlendMode from "./ColorBlendMode"
+import Corridor from "./Corridor"
 import Cylinder from "./Cylinder"
-import CustomPatternSensor from "./CustomPatternSensor"
+import CornerType from "./CornerType"
+import Direction from "./Direction"
+import CustomProperty from "./CustomProperty"
+import ClassificationTypeValue from "./ClassificationTypeValue"
 import DistanceDisplayCondition from "./DistanceDisplayCondition"
 import DirectionList from "./DirectionList"
-import Direction from "./Direction"
-import Double from "./Double"
+import CustomPatternSensor from "./CustomPatternSensor"
 import DoubleList from "./DoubleList"
-import EyeOffset from "./EyeOffset"
+import Double from "./Double"
 import EllipsoidRadii from "./EllipsoidRadii"
 import Ellipse from "./Ellipse"
 import Ellipsoid from "./Ellipsoid"
-import Fan from "./Fan"
-import HeightReference from "./HeightReference"
-import HeightReferenceValue from "./HeightReferenceValue"
-import Font from "./Font"
+import EyeOffset from "./EyeOffset"
 import GridMaterial from "./GridMaterial"
+import Font from "./Font"
+import HeightReferenceValue from "./HeightReferenceValue"
+import Fan from "./Fan"
 import HorizontalOrigin from "./HorizontalOrigin"
-import HorizontalOriginValue from "./HorizontalOriginValue"
 import ImageMaterial from "./ImageMaterial"
+import HorizontalOriginValue from "./HorizontalOriginValue"
+import HeightReference from "./HeightReference"
 import Integer from "./Integer"
 import LabelStyleValue from "./LabelStyleValue"
+import Label from "./Label"
 import LabelStyle from "./LabelStyle"
 import LineCount from "./LineCount"
 import LineOffset from "./LineOffset"
-import Label from "./Label"
-import LineThickness from "./LineThickness"
 import InterpolatableProperty from "./InterpolatableProperty"
-import NearFarScalar from "./NearFarScalar"
+import LineThickness from "./LineThickness"
 import Material from "./Material"
-import NodeTransformation from "./NodeTransformation"
 import Model from "./Model"
+import NearFarScalar from "./NearFarScalar"
+import NodeTransformation from "./NodeTransformation"
 import Orientation from "./Orientation"
-import PixelOffset from "./PixelOffset"
-import Path from "./Path"
-import Polyline from "./Polyline"
-import Polygon from "./Polygon"
-import PolylineArrowMaterial from "./PolylineArrowMaterial"
-import Packet from "./Packet"
 import Point from "./Point"
+import Polygon from "./Polygon"
+import Path from "./Path"
+import PixelOffset from "./PixelOffset"
+import PolylineDashMaterial from "./PolylineDashMaterial"
+import Polyline from "./Polyline"
+import Packet from "./Packet"
+import PolylineArrowMaterial from "./PolylineArrowMaterial"
 import PolylineGlowMaterial from "./PolylineGlowMaterial"
 import PolylineOutlineMaterial from "./PolylineOutlineMaterial"
 import PolylineMaterial from "./PolylineMaterial"
-import PolylineVolume from "./PolylineVolume"
 import Position from "./Position"
 import PositionList from "./PositionList"
-import Rectangle from "./Rectangle"
 import PositionListOfLists from "./PositionListOfLists"
-import RectangularSensor from "./RectangularSensor"
-import PolylineDashMaterial from "./PolylineDashMaterial"
 import RectangleCoordinates from "./RectangleCoordinates"
-import Rotation from "./Rotation"
+import PolylineVolume from "./PolylineVolume"
+import RectangularSensor from "./RectangularSensor"
+import Rectangle from "./Rectangle"
 import Repeat from "./Repeat"
-import Scale from "./Scale"
-import SensorVolumePortionToDisplayValue from "./SensorVolumePortionToDisplayValue"
 import SensorVolumePortionToDisplay from "./SensorVolumePortionToDisplay"
-import ShadowModeValue from "./ShadowModeValue"
+import Rotation from "./Rotation"
 import ShadowMode from "./ShadowMode"
-import SolidColorMaterial from "./SolidColorMaterial"
-import String from "./String"
-import StripeMaterial from "./StripeMaterial"
+import Scale from "./Scale"
 import Shape from "./Shape"
+import SolidColorMaterial from "./SolidColorMaterial"
+import ShadowModeValue from "./ShadowModeValue"
+import SensorVolumePortionToDisplayValue from "./SensorVolumePortionToDisplayValue"
+import String from "./String"
+import StripeOrientation from "./StripeOrientation"
+import StripeMaterial from "./StripeMaterial"
 import Tileset from "./Tileset"
 import StripeOrientationValue from "./StripeOrientationValue"
-import StripeOrientation from "./StripeOrientation"
 import Translation from "./Translation"
 import Uri from "./Uri"
-import VerticalOrigin from "./VerticalOrigin"
-import VerticalOriginValue from "./VerticalOriginValue"
 import Vector from "./Vector"
-import Wall from "./Wall"
 import ViewFrom from "./ViewFrom"
+import VerticalOrigin from "./VerticalOrigin"
+import Wall from "./Wall"
+import AgiCustomPatternSensorPacket from "./AgiCustomPatternSensorPacket"
+import AgiRectangularSensorPacket from "./AgiRectangularSensorPacket"
+import VerticalOriginValue from "./VerticalOriginValue"
 import AgiConicSensorPacket from "./AgiConicSensorPacket"
 import AgiFanPacket from "./AgiFanPacket"
-import AgiRectangularSensorPacket from "./AgiRectangularSensorPacket"
 import AgiVectorPacket from "./AgiVectorPacket"
-import CorridorPacket from "./CorridorPacket"
-import AgiCustomPatternSensorPacket from "./AgiCustomPatternSensorPacket"
 import BoxPacket from "./BoxPacket"
 import BillboradPacket from "./BillboradPacket"
-import LabelPacket from "./LabelPacket"
 import CylinderPacket from "./CylinderPacket"
 import EllipsoidPacket from "./EllipsoidPacket"
 import EllipsePacket from "./EllipsePacket"
-import PolylinePacket from "./PolylinePacket"
-import PathPacket from "./PathPacket"
+import LabelPacket from "./LabelPacket"
 import ModelPacket from "./ModelPacket"
+import PolylinePacket from "./PolylinePacket"
 import PolygonPacket from "./PolygonPacket"
+import CorridorPacket from "./CorridorPacket"
+import PointPacket from "./PointPacket"
 import PolylineVolumePacket from "./PolylineVolumePacket"
+import PathPacket from "./PathPacket"
 import RectanglePacket from "./RectanglePacket"
 import TilesetPacket from "./TilesetPacket"
-import PointPacket from "./PointPacket"
 import WallPacket from "./WallPacket"
 
 export default {
   _id: "CzmlLib",
   children: [
-    ArcType,
-    Billboard,
     Articulation,
+    ArcType,
     ArcTypeValue,
-    BackgroundPadding,
+    Billboard,
     Boolean,
+    BackgroundPadding,
     BoundingRectangle,
+    Box,
     AlignedAxis,
     BoxDimensions,
-    Box,
-    CheckerboardMaterial,
-    ClassificationTypeValue,
-    ClassificationType,
     ClockRange,
-    Color,
-    ClockStep,
-    ColorBlendMode,
     Clock,
-    ConicSensor,
-    CornerType,
+    CheckerboardMaterial,
+    ClassificationType,
+    ClockStep,
     ColorBlendModeValue,
-    Corridor,
+    Color,
+    ConicSensor,
     CornerTypeValue,
-    CustomProperty,
+    ColorBlendMode,
+    Corridor,
     Cylinder,
-    CustomPatternSensor,
+    CornerType,
+    Direction,
+    CustomProperty,
+    ClassificationTypeValue,
     DistanceDisplayCondition,
     DirectionList,
-    Direction,
-    Double,
+    CustomPatternSensor,
     DoubleList,
-    EyeOffset,
+    Double,
     EllipsoidRadii,
     Ellipse,
     Ellipsoid,
-    Fan,
-    HeightReference,
-    HeightReferenceValue,
-    Font,
+    EyeOffset,
     GridMaterial,
+    Font,
+    HeightReferenceValue,
+    Fan,
     HorizontalOrigin,
-    HorizontalOriginValue,
     ImageMaterial,
+    HorizontalOriginValue,
+    HeightReference,
     Integer,
     LabelStyleValue,
+    Label,
     LabelStyle,
     LineCount,
     LineOffset,
-    Label,
-    LineThickness,
     InterpolatableProperty,
-    NearFarScalar,
+    LineThickness,
     Material,
-    NodeTransformation,
     Model,
+    NearFarScalar,
+    NodeTransformation,
     Orientation,
-    PixelOffset,
-    Path,
-    Polyline,
-    Polygon,
-    PolylineArrowMaterial,
-    Packet,
     Point,
+    Polygon,
+    Path,
+    PixelOffset,
+    PolylineDashMaterial,
+    Polyline,
+    Packet,
+    PolylineArrowMaterial,
     PolylineGlowMaterial,
     PolylineOutlineMaterial,
     PolylineMaterial,
-    PolylineVolume,
     Position,
     PositionList,
-    Rectangle,
     PositionListOfLists,
-    RectangularSensor,
-    PolylineDashMaterial,
     RectangleCoordinates,
-    Rotation,
+    PolylineVolume,
+    RectangularSensor,
+    Rectangle,
     Repeat,
-    Scale,
-    SensorVolumePortionToDisplayValue,
     SensorVolumePortionToDisplay,
-    ShadowModeValue,
+    Rotation,
     ShadowMode,
-    SolidColorMaterial,
-    String,
-    StripeMaterial,
+    Scale,
     Shape,
+    SolidColorMaterial,
+    ShadowModeValue,
+    SensorVolumePortionToDisplayValue,
+    String,
+    StripeOrientation,
+    StripeMaterial,
     Tileset,
     StripeOrientationValue,
-    StripeOrientation,
     Translation,
     Uri,
-    VerticalOrigin,
-    VerticalOriginValue,
     Vector,
-    Wall,
     ViewFrom,
+    VerticalOrigin,
+    Wall,
+    AgiCustomPatternSensorPacket,
+    AgiRectangularSensorPacket,
+    VerticalOriginValue,
     AgiConicSensorPacket,
     AgiFanPacket,
-    AgiRectangularSensorPacket,
     AgiVectorPacket,
-    CorridorPacket,
-    AgiCustomPatternSensorPacket,
     BoxPacket,
     BillboradPacket,
-    LabelPacket,
     CylinderPacket,
     EllipsoidPacket,
     EllipsePacket,
-    PolylinePacket,
-    PathPacket,
+    LabelPacket,
     ModelPacket,
+    PolylinePacket,
     PolygonPacket,
+    CorridorPacket,
+    PointPacket,
     PolylineVolumePacket,
+    PathPacket,
     RectanglePacket,
     TilesetPacket,
-    PointPacket,
     WallPacket
   ],
 };

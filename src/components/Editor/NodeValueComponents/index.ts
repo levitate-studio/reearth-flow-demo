@@ -1,4 +1,5 @@
 import BooleanRadio from "./BooleanRadio";
+import Checkbox from "./Checkbox";
 import FileCSVInput from "./FileCSVInput";
 import FileCSVWriter from "./FileCSVWriter";
 import Input from "./Input";
@@ -21,6 +22,7 @@ const NodeValueComponents: INodeValueComponent = {
   Input,
   BooleanRadio,
   FileCSVWriter,
+  Checkbox,
   MultiRadio,
 };
 

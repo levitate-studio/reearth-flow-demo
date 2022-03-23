@@ -1,22 +1,24 @@
+import toISOString from "to-iso-string";
+
 import { spreadData, updateNode } from "../../../Core/CommFuc";
 import { LvtNodeDef, LvtNode } from "../../../Core/LvtNode";
 
-const AsNumber: LvtNodeDef = {
-  _id: "AsNumber",
+const TimeISO8601: LvtNodeDef = {
+  _id: "TimeISO8601",
   ui: {
-    title: "AsNumber",
-    description: "Transfer string to number.",
+    title: "TimeISO8601",
+    description: "Return a ISO-8601 formated time string.",
   },
   portsIn: [
     {
-      name: "string",
+      name: "time",
       dataType: "string",
     },
   ],
   portsOut: [
     {
-      name: "number",
-      dataType: "numberSpread",
+      name: "timeISO8601",
+      dataType: "stringSpread",
     },
   ],
   rule: (s: any) => {
@@ -27,28 +29,20 @@ const AsNumber: LvtNodeDef = {
         if (Array.isArray(_s[i])) {
           const _row = [];
           for (let j = 0, jm = _s[i].length; j < jm; j += 1) {
-            if (Number(_s[i][j]) || Number(_s[i][j]) === 0) {
-              _row.push(Number(_s[i][j]));
-            } else {
-              _row.push(_s[i][j]);
-            }
+            _row.push(toISOString(new Date(_s[i][j])));
           }
           _temp.push(_row);
         } else {
-          if (Number(_s[i]) || Number(_s[i]) === 0) {
-            _temp.push(Number(_s[i]));
-          } else {
-            _temp.push(_s[i]);
-          }
+          _temp.push(toISOString(new Date(_s[i])));
         }
       }
     }
     return _temp;
   },
   update: (node: LvtNode) => {
-    updateNode(node, "number", ["string"]);
+    updateNode(node, "timeISO8601", ["time"]);
     return node;
   },
 };
 
-export default AsNumber;
+export default TimeISO8601;
