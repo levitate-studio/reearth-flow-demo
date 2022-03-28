@@ -1,6 +1,6 @@
 import CSVReader from "react-csv-reader";
 
-const FileCSVInput = ({ port, node, lvtFlow }: any) => {
+const FileCSVInput = ({ props }: any) => {
   const papaparseOptions = {
     skipEmptyLines: true,
   };
@@ -9,9 +9,9 @@ const FileCSVInput = ({ port, node, lvtFlow }: any) => {
       <CSVReader
         parserOptions={papaparseOptions}
         onFileLoaded={(data) => {
-          port.setValue(data);
-          lvtFlow.reRenderUI(["currentElement"]);
-          lvtFlow.updateNodesFromNode(node.id);
+          props.port.setValue(data);
+          props.lvtFlow.reRenderUI(["currentElement"]);
+          props.lvtFlow.updateNodesFromNode(props.node.id);
         }}
       />
     </div>

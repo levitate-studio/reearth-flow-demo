@@ -1,15 +1,15 @@
-const Input = ({ port, node, lvtFlow }: any) => {
+const Input = ({ props }: any) => {
   return (
     <div className="property-value ">
       <input
-        value={port.value.v === undefined ? "" : port.value.v}
-        disabled={port.connected}
+        value={props.port.value.v === undefined ? "" : props.port.value.v}
+        disabled={props.port.connected}
         onChange={(e) => {
-          port.setValue(e.target.value);
-          lvtFlow.reRenderUI(["currentElement"]);
+          props.port.setValue(e.target.value);
+          props.lvtFlow.reRenderUI(["currentElement"]);
         }}
         onBlur={() => {
-          lvtFlow.updateNodesFromNode(node.id);
+          props.lvtFlow.updateNodesFromNode(props.node.id);
         }}
         onKeyDown={(e) => {
           if (e.code === "Enter") {
@@ -20,9 +20,9 @@ const Input = ({ port, node, lvtFlow }: any) => {
       <div
         className="porperty-reset"
         onClick={() => {
-          port.setValue(port.defaultValue);
-          lvtFlow.reRenderUI(["currentElement"]);
-          lvtFlow.updateNodesFromNode(node.id);
+          props.port.setValue(props.port.defaultValue);
+          props.lvtFlow.reRenderUI(["currentElement"]);
+          props.lvtFlow.updateNodesFromNode(props.node.id);
         }}
       >
         R

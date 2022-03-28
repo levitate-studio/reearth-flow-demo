@@ -1,12 +1,15 @@
-let active;
+// let active;
+import { useState } from "react";
 
-const BooleanRadio = ({ port, node, lvtFlow }: any) => {
-  active = port.value.v;
+const BooleanRadio = ({ props }: any) => {
+  const [active, setActive] = useState(props.port.value.v);
+  // active = port.value.v;
   const setValue = (value: boolean) => {
-    active = value;
-    port.setValue(value);
-    lvtFlow.reRenderUI(["currentElement"]);
-    lvtFlow.updateNodesFromNode(node.id);
+    // active = value;
+    setActive(value);
+    props.port.setValue(value);
+    props.lvtFlow.reRenderUI(["currentElement"]);
+    props.lvtFlow.updateNodesFromNode(props.node.id);
   };
   return (
     <div className="property-radios">
@@ -29,7 +32,7 @@ const BooleanRadio = ({ port, node, lvtFlow }: any) => {
       <div
         className="porperty-reset"
         onClick={() => {
-          setValue(port.defaultValue);
+          setValue(props.port.defaultValue);
         }}
       >
         R

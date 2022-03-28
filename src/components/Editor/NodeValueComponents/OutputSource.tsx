@@ -1,13 +1,15 @@
-const OutputSource = ({ port, setOutputSource }: any) => {
+const OutputSource = ({ props }: any) => {
   return (
     <div className="property-value ">
       <a
         className="output-source"
         onClick={() => {
-          setOutputSource(port);
+          props.setOutputSource(props.port);
         }}
       >
-        {typeof port.value.v}
+        {Array.isArray(props.port.value.v)
+          ? "array"
+          : typeof props.port.value.v}
       </a>
     </div>
   );

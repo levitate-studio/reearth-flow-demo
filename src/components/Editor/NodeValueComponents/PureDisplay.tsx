@@ -1,5 +1,6 @@
-const PureDisplay = ({ port }: any) => {
-  const value = port.value.v !== undefined ? port.value.v.toString() : "";
+const PureDisplay = ({ props }: any) => {
+  const value =
+    props.port.value.v !== undefined ? props.port.value.v.toString() : "";
   return <div className="property-value">{value}</div>;
 };
 
