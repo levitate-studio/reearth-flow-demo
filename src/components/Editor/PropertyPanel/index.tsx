@@ -3,7 +3,17 @@ import { useContext, useMemo, useState } from "react";
 import { LvtFlowContext } from "../../../pages/Editor/index";
 import { clog } from "../../LvtFlow/Core/CommFuc";
 import { getInternalDataType } from "../../LvtFlow/Core/DataTypes";
-import NodeValueComponents from "../NodeValueComponents";
+import BooleanRadio from "../NodeValueComponents/BooleanRadio";
+import Checkbox from "../NodeValueComponents/Checkbox";
+import FileCSVInput from "../NodeValueComponents/FileCSVInput";
+import FileCSVWriter from "../NodeValueComponents/FileCSVWriter";
+import Input from "../NodeValueComponents/Input";
+import MultiRadio from "../NodeValueComponents/MultiRadio";
+import NumberInput from "../NodeValueComponents/NumberInput";
+import OutputSource from "../NodeValueComponents/OutputSource";
+import PureDisplay from "../NodeValueComponents/PureDisplay";
+import Select from "../NodeValueComponents/Select";
+
 import "./df-property-panel.css";
 
 const PropertyPanel = ({ setOutputSource }: any) => {
@@ -17,7 +27,7 @@ const PropertyPanel = ({ setOutputSource }: any) => {
     }
   }, [lvtFlow.currentElementRenderSeed]);
 
-  const valueComponent = (node: any, port: any) => {
+  const getRealValueComponent = (port: any) => {
     let component = port.ui.component;
 
     // if input and connected -> use OutputSource instead
@@ -32,13 +42,43 @@ const PropertyPanel = ({ setOutputSource }: any) => {
     ) {
       component = "PureDisplay";
     }
+    return component;
+  };
 
-    return NodeValueComponents[component]?.({
-      node,
-      port,
-      lvtFlow,
-      setOutputSource,
-    });
+  const valueComponent = (node: any, port: any) => {
+    const component = getRealValueComponent(port);
+    switch (component) {
+      case "BooleanRadio":
+        return (
+          <BooleanRadio props={{ port, node, lvtFlow, setOutputSource }} />
+        );
+      case "Checkbox":
+        return <Checkbox props={{ port, node, lvtFlow, setOutputSource }} />;
+      case "FileCSVInput":
+        return (
+          <FileCSVInput props={{ port, node, lvtFlow, setOutputSource }} />
+        );
+      case "FileCSVWriter":
+        return (
+          <FileCSVWriter props={{ port, node, lvtFlow, setOutputSource }} />
+        );
+      case "Input":
+        return <Input props={{ port, node, lvtFlow, setOutputSource }} />;
+      case "MultiRadio":
+        return <MultiRadio props={{ port, node, lvtFlow, setOutputSource }} />;
+      case "NumberInput":
+        return <NumberInput props={{ port, node, lvtFlow, setOutputSource }} />;
+      case "OutputSource":
+        return (
+          <OutputSource props={{ port, node, lvtFlow, setOutputSource }} />
+        );
+      case "PureDisplay":
+        return <PureDisplay props={{ port, node, lvtFlow, setOutputSource }} />;
+      case "Select":
+        return <Select props={{ port, node, lvtFlow, setOutputSource }} />;
+      default:
+        break;
+    }
   };
 
   // portIn

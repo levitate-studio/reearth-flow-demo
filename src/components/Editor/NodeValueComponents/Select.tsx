@@ -1,14 +1,14 @@
-const Select = ({ node, port, lvtFlow }: any) => {
+const Select = ({ props }: any) => {
   let options = [];
-  if (port.ui.componentOptions.selectorSourceType) {
+  if (props.port.ui.componentOptions.selectorSourceType) {
     let optionsSource;
-    if (port.ui.componentOptions.selectorSource) {
-      optionsSource = node.getPortInByName(
-        port.ui.componentOptions.selectorSource
+    if (props.port.ui.componentOptions.selectorSource) {
+      optionsSource = props.node.getPortInByName(
+        props.port.ui.componentOptions.selectorSource
       );
     }
 
-    switch (port.ui.componentOptions.selectorSourceType) {
+    switch (props.port.ui.componentOptions.selectorSourceType) {
       case "preset":
         options = [{ title: "" }, ...optionsSource.getValue()];
         break;
@@ -23,7 +23,7 @@ const Select = ({ node, port, lvtFlow }: any) => {
         }
         break;
       case "self":
-        options = port.ui.componentOptions.selectorOptions;
+        options = props.port.ui.componentOptions.selectorOptions;
         break;
       default:
         break;
@@ -33,11 +33,11 @@ const Select = ({ node, port, lvtFlow }: any) => {
   return (
     <div className="property-value ">
       <select
-        value={port.value.v}
+        value={props.port.value.v}
         onChange={(e) => {
-          port.setValue(e.target.value);
-          lvtFlow.reRenderUI(["currentElement"]);
-          lvtFlow.updateNodesFromNode(node.id);
+          props.port.setValue(e.target.value);
+          props.lvtFlow.reRenderUI(["currentElement"]);
+          props.lvtFlow.updateNodesFromNode(props.node.id);
         }}
       >
         {options.map((option: any, index: number) => (

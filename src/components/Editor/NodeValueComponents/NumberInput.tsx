@@ -1,17 +1,17 @@
-const NumberInput = ({ port, node, lvtFlow }: any) => {
+const NumberInput = ({ props }: any) => {
   return (
     <div className="property-value ">
       <input
-        value={port.value.v === undefined ? "" : port.value.v}
-        disabled={port.connected}
+        value={props.port.value.v === undefined ? "" : props.port.value.v}
+        disabled={props.port.connected}
         onChange={(e) => {
           // const number = e.target.value.replace(/[^\d.]/g, "");
-          port.setValue(e.target.value);
-          lvtFlow.reRenderUI(["currentElement"]);
+          props.port.setValue(e.target.value);
+          props.lvtFlow.reRenderUI(["currentElement"]);
         }}
         onBlur={() => {
-          port.setValue(Number(port.value.v));
-          lvtFlow.updateNodesFromNode(node.id);
+          props.port.setValue(Number(props.port.value.v));
+          props.lvtFlow.updateNodesFromNode(props.node.id);
         }}
         onKeyDown={(e) => {
           if (e.code === "Enter") {
@@ -22,9 +22,9 @@ const NumberInput = ({ port, node, lvtFlow }: any) => {
       <div
         className="porperty-reset"
         onClick={() => {
-          port.setValue(port.defaultValue);
-          lvtFlow.reRenderUI(["currentElement"]);
-          lvtFlow.updateNodesFromNode(node.id);
+          props.port.setValue(props.port.defaultValue);
+          props.lvtFlow.reRenderUI(["currentElement"]);
+          props.lvtFlow.updateNodesFromNode(props.node.id);
         }}
       >
         R

@@ -1,6 +1,9 @@
-let active: string;
+import { useState } from "react";
+
+// let active: string;
 
 const MultiRadio = ({ port, node, lvtFlow }: any) => {
+  const [active, setActive] = useState(port.value.v);
   let options = [];
   if (port.ui.componentOptions.radioSourceType) {
     switch (port.ui.componentOptions.radioSourceType) {
@@ -12,9 +15,10 @@ const MultiRadio = ({ port, node, lvtFlow }: any) => {
     }
   }
 
-  active = port.value.v;
+  // active = port.value.v;
   const setValue = (value: string) => {
-    active = value;
+    setActive(value);
+    // active = value;
     port.setValue(value);
     lvtFlow.reRenderUI(["currentElement"]);
     lvtFlow.updateNodesFromNode(node.id);

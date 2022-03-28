@@ -1,21 +1,21 @@
 const options: any = [];
 
-const Checkbox = ({ port, node, lvtFlow }: any) => {
-  if (port.ui.componentOptions.selectorSourceType) {
+const Checkbox = ({ props }: any) => {
+  if (props.port.ui.componentOptions.selectorSourceType) {
     let optionsSource;
 
-    switch (port.ui.componentOptions.selectorSourceType) {
+    switch (props.port.ui.componentOptions.selectorSourceType) {
       case "csvColumn":
-        if (port.ui.componentOptions.selectorSource) {
-          optionsSource = node.getPortInByName(
-            port.ui.componentOptions.selectorSource
+        if (props.port.ui.componentOptions.selectorSource) {
+          optionsSource = props.node.getPortInByName(
+            props.port.ui.componentOptions.selectorSource
           );
         }
         if (optionsSource.getValue()) {
           optionsSource.getValue()[0].map((v: string, index: number) => {
             options[index] = {
               title: v,
-              value: port.value.v[index],
+              value: props.port.value.v[index],
             };
           });
         }
@@ -31,9 +31,9 @@ const Checkbox = ({ port, node, lvtFlow }: any) => {
     for (let i = 0, j = options.length; i < j; i += 1) {
       values.push(options[i].value);
     }
-    port.setValue(values);
-    lvtFlow.reRenderUI(["currentElement"]);
-    lvtFlow.updateNodesFromNode(node.id);
+    props.port.setValue(values);
+    props.lvtFlow.reRenderUI(["currentElement"]);
+    props.lvtFlow.updateNodesFromNode(props.node.id);
   };
   return (
     <div className="property-radios multi">
@@ -53,7 +53,7 @@ const Checkbox = ({ port, node, lvtFlow }: any) => {
         <div
           className="porperty-reset"
           onClick={() => {
-            port.setValue(port.defaultValue);
+            props.port.setValue(props.port.defaultValue);
           }}
         >
           R
