@@ -1,9 +1,17 @@
-import { useState } from "react";
+// import { useState } from "react";
 
 // let active: string;
+let active: string;
 
 const MultiRadio = ({ props }: any) => {
-  const [active, setActive] = useState(props.port.value.v);
+  // const [active, setActive] = useState(props.port.value.v);
+
+  const setActive = (a: string) => {
+    active = a;
+  };
+
+  setActive(props.port.value.v);
+
   let options = [];
   if (props.port.ui.componentOptions.radioSourceType) {
     switch (props.port.ui.componentOptions.radioSourceType) {
