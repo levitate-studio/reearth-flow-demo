@@ -36,6 +36,7 @@ const Select = ({ props }: any) => {
         value={props.port.value.v}
         onChange={(e) => {
           props.port.setValue(e.target.value);
+          props.node.update?.(props.node);
           props.lvtFlow.reRenderUI(["currentElement"]);
           props.lvtFlow.updateNodesFromNode(props.node.id);
         }}

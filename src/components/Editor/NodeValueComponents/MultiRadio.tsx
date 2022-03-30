@@ -20,6 +20,7 @@ const MultiRadio = ({ props }: any) => {
     setActive(value);
     // active = value;
     props.port.setValue(value);
+    props.node.update?.(props.node);
     props.lvtFlow.reRenderUI(["currentElement"]);
     props.lvtFlow.updateNodesFromNode(props.node.id);
   };

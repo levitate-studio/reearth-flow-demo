@@ -10,6 +10,7 @@ const FileCSVInput = ({ props }: any) => {
         parserOptions={papaparseOptions}
         onFileLoaded={(data) => {
           props.port.setValue(data);
+          props.node.update?.(props.node);
           props.lvtFlow.reRenderUI(["currentElement"]);
           props.lvtFlow.updateNodesFromNode(props.node.id);
         }}

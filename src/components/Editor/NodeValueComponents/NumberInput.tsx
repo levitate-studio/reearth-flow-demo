@@ -7,6 +7,7 @@ const NumberInput = ({ props }: any) => {
         onChange={(e) => {
           // const number = e.target.value.replace(/[^\d.]/g, "");
           props.port.setValue(e.target.value);
+          props.node.update?.(props.node);
           props.lvtFlow.reRenderUI(["currentElement"]);
         }}
         onBlur={() => {
@@ -23,6 +24,7 @@ const NumberInput = ({ props }: any) => {
         className="porperty-reset"
         onClick={() => {
           props.port.setValue(props.port.defaultValue);
+          props.node.update?.(props.node);
           props.lvtFlow.reRenderUI(["currentElement"]);
           props.lvtFlow.updateNodesFromNode(props.node.id);
         }}

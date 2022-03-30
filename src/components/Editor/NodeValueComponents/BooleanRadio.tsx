@@ -8,6 +8,7 @@ const BooleanRadio = ({ props }: any) => {
     // active = value;
     setActive(value);
     props.port.setValue(value);
+    props.node.update?.(props.node);
     props.lvtFlow.reRenderUI(["currentElement"]);
     props.lvtFlow.updateNodesFromNode(props.node.id);
   };
