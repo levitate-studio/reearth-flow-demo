@@ -32,6 +32,7 @@ const Checkbox = ({ props }: any) => {
       values.push(options[i].value);
     }
     props.port.setValue(values);
+    props.node.update?.(props.node);
     props.lvtFlow.reRenderUI(["currentElement"]);
     props.lvtFlow.updateNodesFromNode(props.node.id);
   };

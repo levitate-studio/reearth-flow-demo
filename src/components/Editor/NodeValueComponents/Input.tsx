@@ -6,6 +6,7 @@ const Input = ({ props }: any) => {
         disabled={props.port.connected}
         onChange={(e) => {
           props.port.setValue(e.target.value);
+          props.node.update?.(props.node);
           props.lvtFlow.reRenderUI(["currentElement"]);
         }}
         onBlur={() => {
@@ -21,6 +22,7 @@ const Input = ({ props }: any) => {
         className="porperty-reset"
         onClick={() => {
           props.port.setValue(props.port.defaultValue);
+          props.node.update?.(props.node);
           props.lvtFlow.reRenderUI(["currentElement"]);
           props.lvtFlow.updateNodesFromNode(props.node.id);
         }}
