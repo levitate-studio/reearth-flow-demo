@@ -2,13 +2,13 @@ import { useState } from "react";
 
 // let active: string;
 
-const MultiRadio = ({ port, node, lvtFlow }: any) => {
-  const [active, setActive] = useState(port.value.v);
+const MultiRadio = ({ props }: any) => {
+  const [active, setActive] = useState(props.port.value.v);
   let options = [];
-  if (port.ui.componentOptions.radioSourceType) {
-    switch (port.ui.componentOptions.radioSourceType) {
+  if (props.port.ui.componentOptions.radioSourceType) {
+    switch (props.port.ui.componentOptions.radioSourceType) {
       case "self":
-        options = port.ui.componentOptions.radioOptions;
+        options = props.port.ui.componentOptions.radioOptions;
         break;
       default:
         break;
@@ -19,9 +19,9 @@ const MultiRadio = ({ port, node, lvtFlow }: any) => {
   const setValue = (value: string) => {
     setActive(value);
     // active = value;
-    port.setValue(value);
-    lvtFlow.reRenderUI(["currentElement"]);
-    lvtFlow.updateNodesFromNode(node.id);
+    props.port.setValue(value);
+    props.lvtFlow.reRenderUI(["currentElement"]);
+    props.lvtFlow.updateNodesFromNode(props.node.id);
   };
 
   return (
@@ -40,7 +40,7 @@ const MultiRadio = ({ port, node, lvtFlow }: any) => {
       <div
         className="porperty-reset"
         onClick={() => {
-          setValue(port.defaultValue);
+          setValue(props.port.defaultValue);
         }}
       >
         R
