@@ -26,14 +26,30 @@ const Plus: LvtNodeDef = {
     },
   ],
   rule: (a: number, b: number) => {
-    const _a = typeof a === "object" ? a : [a];
-    const _b = typeof b === "object" ? b : [b];
+    const _a = Array.isArray(a) ? a : [a];
+    const _b = Array.isArray(b) ? b : [b];
     const max = Math.max(_a.length, _b.length);
-    const result = [];
-    for (let i = 0; i < max; i += 1) {
-      result.push(Number(_a[i % _a.length]) + Number(_b[i % _b.length]));
+    const result: any[] = [];
+    if (typeof _a[0] !== "object" && typeof _b[0] !== "object") {
+      for (let i = 0; i < max; i += 1) {
+        result.push(Number(_a[i % _a.length]) + Number(_b[i % _b.length]));
+      }
+      return result;
+    } else if (
+      Array.isArray(_a[0]) &&
+      Array.isArray(_b[0]) &&
+      _a[0].length === _b[0].length
+    ) {
+      for (let i = 0; i < max; i += 1) {
+        const row = [];
+        for (let j = 0, jmax = _a[0].length; j < jmax; j += 1) {
+          row.push(Number(_a[i % _a.length][j]) + Number(_b[i % _b.length][j]));
+        }
+        result.push(row);
+      }
+      return result;
     }
-    return result;
+    return NaN;
   },
   update: (node: LvtNode) => {
     updateNode(node, "result", ["spread0", "spread1"]);
