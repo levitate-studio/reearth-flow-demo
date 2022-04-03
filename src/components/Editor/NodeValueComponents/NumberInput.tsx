@@ -2,7 +2,9 @@ const NumberInput = ({ props }: any) => {
   return (
     <div className="property-value ">
       <input
-        value={props.port.value.v === undefined ? "" : props.port.value.v}
+        value={
+          props.port.value.v === undefined ? "" : String(props.port.value.v)
+        }
         disabled={props.port.connected}
         onChange={(e) => {
           // const number = e.target.value.replace(/[^\d.]/g, "");
