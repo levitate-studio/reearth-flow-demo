@@ -139,6 +139,8 @@ const CesiumMap = ({ skipUpdate }: { skipUpdate: boolean }) => {
   // Init Cesium
   // =======================================
   useEffect(() => {
+    Cesium.Ion.defaultAccessToken =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJjYjdkNTNkMS0yYWE3LTRiOTQtOWU5ZC1iMTI2ZTliYTYzOWUiLCJpZCI6ODUzODUsImlhdCI6MTY0Njk2NjQ2OH0.h_JL80aTinhLDQ4kIpSbpKMiwDxus4Wjz1YEngm6wdc";
     const cesiumContainer = document.getElementById("cesium-container");
     cesiumViewer = new Cesium.Viewer(cesiumContainer as HTMLElement, {
       requestRenderMode: true,
