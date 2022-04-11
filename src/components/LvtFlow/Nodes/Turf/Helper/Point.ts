@@ -13,12 +13,10 @@ const Point: LvtNodeDef = {
     {
       name: "coordinates",
       dataType: "Turf.Array <number>",
-    },
-    {
+    },{
       name: "properties",
       dataType: "Turf.Object",
-    },
-    {
+    },{
       name: "options",
       dataType: "Turf.Object",
     },
@@ -32,11 +30,7 @@ const Point: LvtNodeDef = {
   rule: (_coordinates: any, _properties: any, _options: any) => {
     let result = [];
     try {
-      result = packageFuctionCall(turf.point, [
-        _coordinates,
-        _properties,
-        _options,
-      ]);
+      result = packageFuctionCall(turf.point, [_coordinates, _properties, _options]);
     } catch (error) {
       console.log(error);
     }
