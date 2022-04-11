@@ -167,4 +167,5 @@ export type dataType =
   | "VelocityReferenceValue"
   | "UriValue"
   | "number"
-  | "Number";
+  | "Number"
+  | any;
