@@ -3,9 +3,10 @@ import { LvtNodeDef } from "../Core/LvtNode";
 import Entity from "./Entity";
 import Ops from "./Ops";
 import Source from "./Source";
+import Turf from "./Turf";
 
 const nodes = {
-  children: [Source, Ops, Entity],
+  children: [Source, Ops, Entity, Turf],
 };
 
 // =======================================

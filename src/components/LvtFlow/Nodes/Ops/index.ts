@@ -1,3 +1,4 @@
+import Any from "./Any";
 import BooleanSpread from "./BooleanSpread";
 import Color from "./Color";
 // import Number from "./Number";
@@ -16,5 +17,6 @@ export default {
     StringSpread,
     ObjectSpread,
     Color,
+    Any,
   ],
 };

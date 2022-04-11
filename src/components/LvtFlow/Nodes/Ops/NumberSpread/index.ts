@@ -12,6 +12,7 @@ import Min from "./Min";
 import Minus from "./Minus";
 import Multiply from "./Multiply";
 import Plus from "./Plus";
+import Ring from "./Ring";
 import Vector2 from "./Vector2";
 import Vector3 from "./Vector3";
 import Vector4 from "./Vector4";
@@ -36,5 +37,6 @@ export default {
     GreaterThan,
     LessThan,
     AsBoolean,
+    Ring,
   ],
 };
