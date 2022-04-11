@@ -139,6 +139,38 @@ export const packageSpreadValue = (props: any) => {
 };
 
 // =======================================
+// Package Spread Function call
+// =======================================
+export const packageFuctionCall = (func: any, props: any) => {
+  const spreadProps: any = {};
+  const spreadLength: number[] = [];
+  Object.keys(props).forEach((propName) => {
+    if (props[propName] !== undefined) {
+      spreadProps[propName] = spreadData(props[propName]);
+      spreadLength.push(spreadProps[propName].length);
+    }
+  });
+  const maxLength = Math.max(...spreadLength);
+  const spreadPropsArray: any = [];
+  for (let i = 0; i < maxLength; i += 1) {
+    const ele: any = [];
+    Object.keys(spreadProps).forEach((propName: string) => {
+      ele.push(spreadProps[propName][i % spreadProps[propName].length]);
+    });
+    spreadPropsArray.push(ele);
+  }
+  // console.log(spreadPropsArray);
+  // console.log(spreadPropsArray[0]);
+  // console.log(func.apply(spreadPropsArray[0]));
+  // console.log(1123);
+  const outputSpread: any = [];
+  for (let i = 0; i < maxLength; i += 1) {
+    outputSpread.push(func(...spreadPropsArray[i]));
+  }
+  return outputSpread;
+};
+
+// =======================================
 // Console log
 // =======================================
 export const clog = {
