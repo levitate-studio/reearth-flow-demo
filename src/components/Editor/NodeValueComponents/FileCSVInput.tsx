@@ -51,13 +51,9 @@ const FileCSVInput = ({ props }: any) => {
         {({ getRootProps, acceptedFile, ProgressBar }: any) => (
           <>
             <div style={styles.csvReader}>
-              <button
-                type="button"
-                {...getRootProps()}
-                style={styles.browseFile}
-              >
+              <div className="property-button" {...getRootProps()}>
                 Browse
-              </button>
+              </div>
               <div style={styles.acceptedFile}>{acceptedFile?.name}</div>
             </div>
             <ProgressBar style={styles.progressBarBackgroundColor} />

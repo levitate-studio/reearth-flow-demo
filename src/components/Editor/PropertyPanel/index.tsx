@@ -7,6 +7,7 @@ import BooleanRadio from "../NodeValueComponents/BooleanRadio";
 import Checkbox from "../NodeValueComponents/Checkbox";
 import FileCSVInput from "../NodeValueComponents/FileCSVInput";
 import FileCSVWriter from "../NodeValueComponents/FileCSVWriter";
+import FileGeoJSONWriter from "../NodeValueComponents/FileGeoJSONWriter";
 import Input from "../NodeValueComponents/Input";
 import MultiRadio from "../NodeValueComponents/MultiRadio";
 import NumberInput from "../NodeValueComponents/NumberInput";
@@ -25,7 +26,7 @@ const PropertyPanel = ({ setOutputSource }: any) => {
       clog.log("UI", "update properties panel");
       setElement(lvtFlow.currentElement);
     }
-  }, [lvtFlow.currentElementRenderSeed]);
+  }, [lvtFlow.currentElementRenderSeed, lvtFlow.currentElement]);
 
   const getRealValueComponent = (port: any) => {
     let component = port.ui.component;
@@ -61,6 +62,10 @@ const PropertyPanel = ({ setOutputSource }: any) => {
       case "FileCSVWriter":
         return (
           <FileCSVWriter props={{ port, node, lvtFlow, setOutputSource }} />
+        );
+      case "FileGeoJSONWriter":
+        return (
+          <FileGeoJSONWriter props={{ port, node, lvtFlow, setOutputSource }} />
         );
       case "Input":
         return <Input props={{ port, node, lvtFlow, setOutputSource }} />;

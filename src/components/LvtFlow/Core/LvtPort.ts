@@ -29,6 +29,7 @@ export interface LvtPortDef {
       | "BooleanRadio"
       | "FileCSVInput"
       | "FileCSVWriter"
+      | "FileGeoJSONWriter"
       | "Select"
       | "Checkbox"
       | "OutputSource"
