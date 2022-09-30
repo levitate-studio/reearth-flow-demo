@@ -16,7 +16,7 @@ propery panel
 .property-line{
   position: relative;
   display: flex;
-  align-items: top;
+  align-items: center;
   min-height: 30px;
 }
 .property-line input,
@@ -88,6 +88,7 @@ propery panel
 }
 
 .property-value{
+  position: relative;
   flex-grow: 0;
   width: 100%;
   display: flex;
