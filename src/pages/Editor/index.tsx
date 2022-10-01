@@ -1,4 +1,5 @@
-import { useState, createContext, useRef } from "react";
+import axios from "axios";
+import { useState, createContext, useRef, useEffect } from "react";
 import useFetch from "use-http";
 
 import DataFlowCanvas from "../../components/Editor/DataFlowCanvas";
@@ -64,14 +65,40 @@ const Editor: React.FC<Props> = () => {
     (importWindowRef.current as any).show();
   };
   // import
-  const importProject = (projectData: string) => {
+  const importProject = async (projectData: string) => {
     if (projectData) {
-      const data = JSON.parse(projectData);
-      lvtFlow.importData(data.lvtFlow);
-      (dataFlowCanvasRef.current as any).importData(data.canvas);
+      let data;
+      if (
+        /^(https?:\/\/(([a-zA-Z0-9]+-?)+[a-zA-Z0-9]+\.)+[a-zA-Z]+)(:\d+)?(\/.*)?(\?.*)?(#.*)?$/.test(
+          projectData
+        )
+      ) {
+        await axios.get(projectData).then((msg) => {
+          data = msg.data;
+        });
+      } else {
+        data = JSON.parse(projectData);
+      }
+      if (data?.lvtFlow) {
+        lvtFlow.importData(data.lvtFlow);
+        (dataFlowCanvasRef.current as any).importData(data.canvas);
+      }
     }
   };
 
+  // =======================================
+  // Import from URL params
+  // =======================================
+  useEffect(() => {
+    const projectUrl = getQueryVariable("projecturl");
+    if (projectUrl) {
+      importProject(projectUrl);
+    }
+  }, []);
+
+  // =======================================
+  // Import from local storage
+  // =======================================
   const loadFromLocalStorage = () => {
     const projectData = localStorage.getItem("lvtTempProjectData");
     if (projectData) {
@@ -214,5 +241,17 @@ const Editor: React.FC<Props> = () => {
     </LvtFlowContext.Provider>
   );
 };
+
+function getQueryVariable(variable: string) {
+  const query = window.location.search.substring(1);
+  const vars = query.split("&");
+  for (let i = 0; i < vars.length; i++) {
+    const pair = vars[i].split("=");
+    if (pair[0] == variable) {
+      return pair[1];
+    }
+  }
+  return false;
+}
 
 export { Editor, LvtFlowContext };
