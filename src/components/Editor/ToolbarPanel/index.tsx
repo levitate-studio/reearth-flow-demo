@@ -57,11 +57,8 @@ const ToolbarPanel = (Props: Props) => {
   return (
     <div className="df-toolbar-panel">
       <div className="df-block-title">
-        <a className="df-block-title-tab logo" href="/">
-          DATAFLOW
-        </a>
         <div
-          className={`df-block-title-tab ${
+          className={`df-block-title-tab logo ${
             activeMenu === "Project" ? "on" : ""
           }`}
           onMouseEnter={() => {
@@ -71,9 +68,10 @@ const ToolbarPanel = (Props: Props) => {
             setActiveMenu("");
           }}
         >
-          Project
+          <span className="menu-title">DATAFLOW</span>
           <div className="menu">
             <div className="menu-list-group">
+              <div className="menu-list-group-title">Project</div>
               <ul>
                 <li
                   className="menu-item"
@@ -92,7 +90,7 @@ const ToolbarPanel = (Props: Props) => {
                     Props.saveToLocalStorage();
                   }}
                 >
-                  Save Work
+                  Local Save
                 </li>
                 <li
                   className="menu-item"
@@ -101,7 +99,7 @@ const ToolbarPanel = (Props: Props) => {
                     Props.loadFromLocalStorage();
                   }}
                 >
-                  Resume Work
+                  Local Resume
                 </li>
                 <li className="menu-sep"></li>
                 <li
@@ -111,7 +109,7 @@ const ToolbarPanel = (Props: Props) => {
                     Props.popupImportProjectWindow();
                   }}
                 >
-                  Import
+                  Import JSON/URL
                 </li>
                 <li
                   className="menu-item"
@@ -120,9 +118,13 @@ const ToolbarPanel = (Props: Props) => {
                     Props.popupExportProjectWindow();
                   }}
                 >
-                  Export
+                  Export JSON
                 </li>
-                <li className="menu-sep"></li>
+              </ul>
+            </div>
+            <div className="menu-list-group">
+              <div className="menu-list-group-title">Output</div>
+              <ul>
                 <li
                   className="menu-item"
                   onClick={() => {
@@ -130,7 +132,7 @@ const ToolbarPanel = (Props: Props) => {
                     Props.popupExportCZMLWindow();
                   }}
                 >
-                  Export CZML
+                  Export Data
                 </li>
               </ul>
             </div>

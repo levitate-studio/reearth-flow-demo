@@ -15,6 +15,12 @@
   display: flex;
 }
 
+.df-block-title-tab.logo .menu-title{
+  cursor: pointer;
+  color: var(--theme-color-pink);
+  background: #000;
+}
+
 .df-toolbar-panel .menu-list-group{
   width: 100%;
 }

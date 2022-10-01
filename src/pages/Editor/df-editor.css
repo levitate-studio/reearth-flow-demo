@@ -219,11 +219,6 @@ a.df-block-title-tab{
   cursor: pointer;
   color: var(--theme-color-orange);
 }
-.df-block-title-tab.logo{
-  cursor: pointer;
-  color: var(--theme-color-pink);
-  background: #000;
-}
 
 .df-block-tab-content{
   width: 100%;
