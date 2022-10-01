@@ -8,7 +8,6 @@ const BooleanRadio = ({ props }: any) => {
     active = a;
   };
   setActive(props.port.value.v);
-  console.log(active);
 
   const setValue = (value: boolean) => {
     // active = value;
