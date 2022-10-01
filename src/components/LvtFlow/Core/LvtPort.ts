@@ -98,6 +98,7 @@ export class LvtPort {
         case "number":
           return "NumberInput";
         case "string":
+        case "any":
           return "Input";
         default:
           return "OutputSource";
