@@ -48,6 +48,7 @@ const Editor: React.FC<Props> = () => {
   //
   const popupExportProjectWindow = () => {
     const projectData = getProjectData();
+    (exportWindowRef.current as any).setType("project");
     (exportWindowRef.current as any).setText(JSON.stringify(projectData));
     (exportWindowRef.current as any).show();
   };
@@ -131,6 +132,7 @@ const Editor: React.FC<Props> = () => {
   // Export CZML
   // =======================================
   const popupExportCZMLWindow = () => {
+    (exportWindowRef.current as any).setType("czml");
     (exportWindowRef.current as any).setText(
       JSON.stringify(lvtFlow.renderData?.v?.data)
     );

@@ -4,6 +4,7 @@ import { useState, useImperativeHandle } from "react";
 const ExportWindow = ({ cref }: any) => {
   const [display, setDisplay] = useState(false);
   const [text, setText] = useState("");
+  const [type, setType] = useState("");
 
   useImperativeHandle(cref, () => ({
     show: () => {
@@ -12,11 +13,26 @@ const ExportWindow = ({ cref }: any) => {
     setText: (text: string) => {
       setText(text);
     },
+    setType: (type: "project" | "czml") => {
+      setType(type);
+    },
   }));
 
   const close = () => {
     setDisplay(false);
     setText("");
+  };
+
+  const download = (text: string) => {
+    const blob = new Blob([text], {
+      type: "application/json",
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = type === "project" ? "project.geojson" : "export.czml";
+    a.click();
+    URL.revokeObjectURL(url);
   };
 
   return (
@@ -46,6 +62,14 @@ const ExportWindow = ({ cref }: any) => {
                 }}
               >
                 COPY TO CLIPBOARD
+              </div>
+              <div
+                className="df-button"
+                onClick={() => {
+                  download(text);
+                }}
+              >
+                DOWNLOAD
               </div>
               <div className="df-button" onClick={close}>
                 CLOSE
